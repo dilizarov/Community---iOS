@@ -13,6 +13,15 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var search: UITextField!
     
     @IBOutlet var profileButton: UIButton!
+    @IBAction func profileButtonPressed(sender: AnyObject) {
+        var segue = "goToLoggedOutProfile"
+        
+        if (NSUserDefaults.standardUserDefaults().objectForKey("auth_token") != nil) {
+            segue = "goToProfile"
+        }
+        
+        self.performSegueWithIdentifier(segue, sender: self)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
