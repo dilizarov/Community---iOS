@@ -20,6 +20,8 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
             segue = "goToProfile"
         }
         
+        segue = "goToProfile"
+
         self.performSegueWithIdentifier(segue, sender: self)
     }
     

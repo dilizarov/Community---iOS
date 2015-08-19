@@ -10,6 +10,7 @@
 		9AA6135A1B83B2B8004911C2 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA613591B83B2B8004911C2 /* ProfileViewController.swift */; };
 		9AA6135C1B83E17C004911C2 /* CommunityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA6135B1B83E17C004911C2 /* CommunityViewController.swift */; };
 		9AA6135E1B83F572004911C2 /* LoggedOutProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA6135D1B83F572004911C2 /* LoggedOutProfileViewController.swift */; };
+		9AA613601B8464F0004911C2 /* CommunityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA6135F1B8464F0004911C2 /* CommunityCell.swift */; };
 		9AAD20491B82A22F0053F743 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AAD20481B82A22F0053F743 /* AppDelegate.swift */; };
 		9AAD204B1B82A22F0053F743 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AAD204A1B82A22F0053F743 /* SearchViewController.swift */; };
 		9AAD204E1B82A22F0053F743 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9AAD204C1B82A22F0053F743 /* Main.storyboard */; };
@@ -36,6 +37,7 @@
 		9AA613591B83B2B8004911C2 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		9AA6135B1B83E17C004911C2 /* CommunityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunityViewController.swift; sourceTree = "<group>"; };
 		9AA6135D1B83F572004911C2 /* LoggedOutProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggedOutProfileViewController.swift; sourceTree = "<group>"; };
+		9AA6135F1B8464F0004911C2 /* CommunityCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunityCell.swift; sourceTree = "<group>"; };
 		9AAD20431B82A22F0053F743 /* Community.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Community.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AAD20471B82A22F0053F743 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9AAD20481B82A22F0053F743 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 				9AAD20511B82A22F0053F743 /* LaunchScreen.xib */,
 				9AAD20461B82A22F0053F743 /* Supporting Files */,
 				9AA613591B83B2B8004911C2 /* ProfileViewController.swift */,
+				9AA6135F1B8464F0004911C2 /* CommunityCell.swift */,
 				9AA6135B1B83E17C004911C2 /* CommunityViewController.swift */,
 				9AA6135D1B83F572004911C2 /* LoggedOutProfileViewController.swift */,
 			);
@@ -302,6 +305,7 @@
 				9AAD204B1B82A22F0053F743 /* SearchViewController.swift in Sources */,
 				9AA6135E1B83F572004911C2 /* LoggedOutProfileViewController.swift in Sources */,
 				9AAD20491B82A22F0053F743 /* AppDelegate.swift in Sources */,
+				9AA613601B8464F0004911C2 /* CommunityCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -431,6 +435,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = Community/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -445,6 +450,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = Community/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
