@@ -1,12 +1,15 @@
 PODS:
+  - MGSwipeTableCell (1.5.1)
   - SwiftHTTP (0.9.5)
   - SwiftyJSON (2.2.1)
 
 DEPENDENCIES:
+  - MGSwipeTableCell (~> 1.5.1)
   - SwiftHTTP (~> 0.9.4)
   - SwiftyJSON (~> 2.2.1)
 
 SPEC CHECKSUMS:
+  MGSwipeTableCell: a51fa670c01f0aa048f12af040acebf315223137
   SwiftHTTP: cd7b248bc07db02926ff54cf19b580b78f7abfa1
   SwiftyJSON: ae2d0a3d68025d136602a33c4ee215091ced3e33
 

@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import MGSwipeTableCell
 
-class CommunityCell: UITableViewCell {
+class CommunityCell: MGSwipeTableCell {
     
     var name: NSString!
     
@@ -18,6 +19,7 @@ class CommunityCell: UITableViewCell {
         self.name = name
         
         self.communityName.text = name as String
+        self.rightButtons = [MGSwipeButton(title: "Leave", backgroundColor: UIColor.redColor()), MGSwipeButton(title: "Share", backgroundColor: UIColor.blueColor())]
     }
     
     override func awakeFromNib() {
