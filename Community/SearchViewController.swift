@@ -19,8 +19,6 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
         if (NSUserDefaults.standardUserDefaults().objectForKey("auth_token") != nil) {
             segue = "goToProfile"
         }
-        
-        segue = "goToProfile"
 
         self.performSegueWithIdentifier(segue, sender: self)
     }
