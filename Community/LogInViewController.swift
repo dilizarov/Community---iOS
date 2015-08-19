@@ -10,8 +10,24 @@ import UIKit
 
 class LogInViewController: UIViewController {
 
+    @IBOutlet var emailLabel: UILabel!
+    @IBOutlet var passwordLabel: UILabel!
+    @IBOutlet var emailTextField: UITextField!
+    @IBOutlet var passwordTextField: UITextField!
+    @IBOutlet var forgotPasswordButton: UIButton!
+    @IBOutlet var logInButton: UIButton!
+    
+    @IBAction func forgetPasswordButtonPressed(sender: AnyObject) {
+    }
+    
+    @IBAction func logInButtonPressed(sender: AnyObject) {
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        emailTextField.becomeFirstResponder()
 
         // Do any additional setup after loading the view.
     }
