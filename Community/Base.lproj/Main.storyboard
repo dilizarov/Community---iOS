@@ -234,6 +234,36 @@
                                     <outlet property="delegate" destination="O6d-pE-TaK" id="ngS-jz-dwg"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="btQ-iO-sCc">
+                                <rect key="frame" x="165" y="193" width="46" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="notificationsButtonPressed:" destination="O6d-pE-TaK" eventType="touchUpInside" id="VNa-Ra-3rv"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n5F-oN-nxN">
+                                <rect key="frame" x="70" y="193" width="46" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="leftButtonPressed:" destination="O6d-pE-TaK" eventType="touchUpInside" id="Gwu-qS-O9H"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="txb-oE-xds">
+                                <rect key="frame" x="260" y="193" width="46" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="settingsPressed:" destination="O6d-pE-TaK" eventType="touchUpInside" id="EpS-3f-Gkw"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
@@ -248,6 +278,9 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="communitiesTable" destination="BUT-lp-P0x" id="8Ie-sT-vfR"/>
+                        <outlet property="leftButton" destination="n5F-oN-nxN" id="nnx-wG-OxZ"/>
+                        <outlet property="notifications" destination="btQ-iO-sCc" id="fkY-X5-HHd"/>
+                        <outlet property="settings" destination="txb-oE-xds" id="UCb-cG-3xT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R5x-3T-l3V" userLabel="First Responder" sceneMemberID="firstResponder"/>
