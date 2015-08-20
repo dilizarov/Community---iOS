@@ -37,6 +37,11 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
     }
     
+    @IBOutlet var backButton: UIButton!
+    @IBAction func backButtonPressed(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()

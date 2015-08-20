@@ -10,4 +10,11 @@ import UIKit
 
 class LoggedOutProfileViewController: UIViewController {
     
+    @IBOutlet var backButton: UIButton!
+    @IBAction func backButtonPressed(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    
+    
 }
