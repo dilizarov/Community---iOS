@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LogInViewController: UIViewController {
+class LogInViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet var emailLabel: UILabel!
     @IBOutlet var passwordLabel: UILabel!
@@ -35,9 +35,23 @@ class LogInViewController: UIViewController {
         emailTextField.tintColor = UIColor.whiteColor()
         passwordTextField.tintColor = UIColor.whiteColor()
         
+        self.emailTextField.delegate = self
+        self.passwordTextField.delegate = self
+        
         emailTextField.becomeFirstResponder()
 
         // Do any additional setup after loading the view.
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        
+        if (textField == emailTextField) {
+            passwordTextField.becomeFirstResponder()
+        } else if (textField == passwordTextField) {
+            //If disabled, nothing, else, press
+        }
+        
+        return true
     }
 
     override func didReceiveMemoryWarning() {
