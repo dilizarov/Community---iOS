@@ -7,7 +7,8 @@
 //
 
 import UIKit
-import SwiftHTTP
+import Alamofire
+import SwiftyJSON
 
 class CreateAccountViewController: UIViewController, UITextFieldDelegate {
     
@@ -62,7 +63,6 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var createAccountButton: UIButton!
     @IBAction func createAccountButtonPressed(sender: AnyObject) {
-        var request = HTTPTask()
         
         var usernameText = strippedString(usernameTextField.text)
         var emailText    = strippedString(emailTextField.text)
@@ -74,17 +74,18 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
         
         params["user"] = user
         
-        request.responseSerializer = JSONResponseSerializer()
-        
-        request.POST("https://ohhowiwishihadcommunity.com",
-            parameters: params,
-            completionHandler: {(response: HTTPResponse) in
-                // Process success
-                dispatch_async(dispatch_get_main_queue(), {
-                    println("Hyuk")
-                })
-            }
-        )
+        Alamofire.request(.POST, "https://infinite-river-7560.herokuapp.com/api/v1/registrations.json", parameters: params, encoding: .JSON)
+            .responseJSON { _, b, jsonData, errors in
+                println(b?.statusCode)
+                println(jsonData)
+                println(errors)
+                println("lalalalallala")
+                
+                if let jsonData: AnyObject = jsonData {
+                    let post = JSON(jsonData)
+                    println(post)
+                }
+        }
     }
     
     
