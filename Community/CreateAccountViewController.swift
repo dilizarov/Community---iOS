@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftHTTP
 
 class CreateAccountViewController: UIViewController, UITextFieldDelegate {
     
@@ -59,8 +60,38 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    @IBOutlet var createAccountButton: UIButton!
+    @IBAction func createAccountButtonPressed(sender: AnyObject) {
+        var request = HTTPTask()
+        
+        var usernameText = strippedString(usernameTextField.text)
+        var emailText    = strippedString(emailTextField.text)
+        var passwordText = strippedString(passwordTextField.text)
+        
+        var params = [String: AnyObject]()
+        
+        var user = [ "username" : usernameText, "email" : emailText, "password" : passwordText]
+        
+        params["user"] = user
+        
+        request.responseSerializer = JSONResponseSerializer()
+        
+        request.POST("https://ohhowiwishihadcommunity.com",
+            parameters: params,
+            completionHandler: {(response: HTTPResponse) in
+                // Process success
+                dispatch_async(dispatch_get_main_queue(), {
+                    println("Hyuk")
+                })
+            }
+        )
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+ 
+        disableCreateAccountButton()
         
         usernameTextField.tintColor = UIColor.whiteColor()
         emailTextField.tintColor = UIColor.whiteColor()
@@ -71,6 +102,11 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
         self.emailTextField.delegate = self
         self.passwordTextField.delegate = self
         self.confirmTextField.delegate = self
+        
+        usernameTextField.addTarget(self, action: Selector("textFieldDidChange"), forControlEvents: .EditingChanged)
+        emailTextField.addTarget(self, action: Selector("textFieldDidChange"), forControlEvents: .EditingChanged)
+        passwordTextField.addTarget(self, action: Selector("textFieldDidChange"), forControlEvents: .EditingChanged)
+        confirmTextField.addTarget(self, action: Selector("textFieldDidChange"), forControlEvents: .EditingChanged)
 
         usernameTextField.becomeFirstResponder()
         // Do any additional setup after loading the view.
@@ -114,6 +150,40 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
         }
     }
 
+    // We check all fields and if the fields meet the criteria, we activate create account button.
+    func textFieldDidChange() {
+    
+        var usernameChars = strippedString(usernameTextField.text)
+        var emailChars    = strippedString(emailTextField.text)
+        var passwordChars = strippedString(passwordTextField.text)
+        var confirmChars  = strippedString(confirmTextField.text)
+        
+        if (usernameChars.isEmpty || !validateEmail(emailChars) || passwordChars.isEmpty || confirmChars.isEmpty || passwordChars != confirmChars) {
+            disableCreateAccountButton()
+        } else {
+            enableCreateAccountButton()
+        }
+    }
+    
+    func strippedString(text: String) -> String {
+        return text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+    }
+    
+    func validateEmail(candidate: String) -> Bool {
+        let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}"
+        return NSPredicate(format: "SELF MATCHES %@", emailRegex).evaluateWithObject(candidate)
+    }
+    
+    func disableCreateAccountButton() {
+        createAccountButton.enabled = false
+        createAccountButton.alpha = 0.4
+    }
+    
+    func enableCreateAccountButton() {
+        createAccountButton.enabled = true
+        createAccountButton.alpha = 1.0
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
