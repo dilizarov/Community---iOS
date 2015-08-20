@@ -9,10 +9,31 @@
 import UIKit
 
 class CreateAccountViewController: UIViewController {
-
+    
+    @IBOutlet var usernameLabel: UILabel!
+    @IBOutlet var emailLabel: UILabel!
+    @IBOutlet var passwordLabel: UILabel!
+    @IBOutlet var confirmLabel: UILabel!
+    @IBOutlet var usernameTextField: UITextField!
+    @IBOutlet var emailTextField: UITextField!
+    @IBOutlet var passwordTextField: UITextField!
+    @IBOutlet var confirmTextField: UITextField!
+    
+    
+    @IBOutlet var backButton: UIButton!
+    @IBAction func backButtonPressed(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        usernameTextField.tintColor = UIColor.whiteColor()
+        emailTextField.tintColor = UIColor.whiteColor()
+        passwordTextField.tintColor = UIColor.whiteColor()
+        confirmTextField.tintColor = UIColor.whiteColor()
 
+        usernameTextField.becomeFirstResponder()
         // Do any additional setup after loading the view.
     }
 

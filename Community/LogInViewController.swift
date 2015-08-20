@@ -32,6 +32,9 @@ class LogInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        emailTextField.tintColor = UIColor.whiteColor()
+        passwordTextField.tintColor = UIColor.whiteColor()
+        
         emailTextField.becomeFirstResponder()
 
         // Do any additional setup after loading the view.
