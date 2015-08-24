@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import MMProgressHUD
 
 class CreateAccountViewController: UIViewController, UITextFieldDelegate {
     
@@ -64,6 +65,10 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var createAccountButton: UIButton!
     @IBAction func createAccountButtonPressed(sender: AnyObject) {
         
+        MMProgressHUD.sharedHUD().overlayMode = MMProgressHUDWindowOverlayMode.Linear
+        MMProgressHUD.setPresentationStyle(MMProgressHUDPresentationStyle.Balloon)
+        MMProgressHUD.show()
+        
         var usernameText = strippedString(usernameTextField.text)
         var emailText    = strippedString(emailTextField.text)
         var passwordText = strippedString(passwordTextField.text)
@@ -74,17 +79,39 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
         
         params["user"] = user
         
-        Alamofire.request(.POST, "https://infinite-river-7560.herokuapp.com/api/v1/registrations.json", parameters: params, encoding: .JSON)
-            .responseJSON { _, b, jsonData, errors in
-                println(b?.statusCode)
-                println(jsonData)
-                println(errors)
-                println("lalalalallala")
+        Alamofire.request(.POST, "https://infinite-lake-4056.herokuapp.com/api/v1/registrations.json", parameters: params, encoding: .JSON)
+            .responseJSON { request, response, jsonData, errors in
+                // We delay by 1 second to keep a very smooth animation.
+                var delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC)))
                 
-                if let jsonData: AnyObject = jsonData {
-                    let post = JSON(jsonData)
-                    println(post)
-                }
+                dispatch_after(delayTime, dispatch_get_main_queue(), {
+                    var defaultError = errors?.localizedDescription
+                    
+                    if (defaultError != nil) {
+                        MMProgressHUD.dismissWithError(defaultError, afterDelay: NSTimeInterval(3))
+                    } else if let jsonData: AnyObject = jsonData {
+                        let json = JSON(jsonData)
+                        
+                        if (json["errors"] == nil) {
+                            self.storeSessionData(json)
+                            MMProgressHUD.sharedHUD().dismissAnimationCompletion = {
+                                self.performSegueWithIdentifier("successfullyCreatedAccount", sender: self)
+                            }
+                            
+                            MMProgressHUD.dismissWithSuccess(":)")
+                        } else {
+                            var errorString = ""
+                            
+                            for var i = 0; i < json["errors"].count; i++ {
+                                if (i != 0) { errorString += "\n\n" }
+                                
+                                errorString += json["errors"][i].string!
+                            }
+                                
+                            MMProgressHUD.dismissWithError(errorString, afterDelay: NSTimeInterval(3))
+                        }
+                    }
+                })
         }
     }
     
@@ -110,7 +137,6 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
         confirmTextField.addTarget(self, action: Selector("textFieldDidChange"), forControlEvents: .EditingChanged)
 
         usernameTextField.becomeFirstResponder()
-        // Do any additional setup after loading the view.
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -122,7 +148,9 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
         } else if (textField == passwordTextField) {
             confirmTextField.becomeFirstResponder()
         } else if (textField == confirmTextField) {
-            
+            if (createAccountButton.enabled) {
+                createAccountButton.sendActionsForControlEvents(UIControlEvents.TouchUpInside)
+            }
         }
         
         return true
@@ -173,6 +201,20 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
     func validateEmail(candidate: String) -> Bool {
         let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}"
         return NSPredicate(format: "SELF MATCHES %@", emailRegex).evaluateWithObject(candidate)
+    }
+    
+    func storeSessionData(jsonData: JSON) {
+        var defaults = NSUserDefaults.standardUserDefaults()
+        
+        var user = jsonData["user"]
+        
+        defaults.setObject(user["username"].string, forKey: "username")
+        defaults.setObject(user["email"].string, forKey: "email")
+        defaults.setObject(user["external_id"].string, forKey: "user_id")
+        defaults.setObject(user["auth_token"].string, forKey: "auth_token")
+        defaults.setObject(user["created_at"].string, forKey: "created_at")
+        
+        defaults.synchronize()
     }
     
     func disableCreateAccountButton() {

@@ -14,6 +14,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>MMDrawerController.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>MMProgressHUD.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -27,22 +37,32 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>227234FAB96694FE9E280C7DC9E00860</key>
+		<key>02A0AD831D81372768E1D05096887F91</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3DC0D3EBDDB85149491CA65078A0DC89</key>
+		<key>289C3C28167E7E9D81C487118CBD7CEC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>729648F1C9FBA121D0CBE9EDEFCC97E4</key>
+		<key>5A48572371A97C86DF6FB8772F246165</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>960DC2C33C633AE9F85320FBF85640B9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>B9A04D3C9B208813656510FDA8ADAE02</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BFAF832675DC3F46CC1EF016E57219B0</key>
 		<dict>
 			<key>primary</key>
 			<true/>

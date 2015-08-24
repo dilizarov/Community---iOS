@@ -16,7 +16,7 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
     @IBAction func profileButtonPressed(sender: AnyObject) {
         var segue = "goToLoggedOutProfile"
         
-        if (NSUserDefaults.standardUserDefaults().objectForKey("auth_token") != nil) {
+        if (NSUserDefaults.standardUserDefaults().objectForKey("auth_tokenn") != nil) {
             segue = "goToProfile"
         }
 
@@ -26,6 +26,12 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        search.layer.masksToBounds = false
+        search.layer.cornerRadius = 8
+        search.layer.shadowOffset = CGSizeMake(0, 5)
+        search.layer.shadowRadius = 5
+        search.layer.shadowOpacity = 0.4
+        search.tintColor = UIColor.whiteColor()
         
        self.search.delegate = self
     }

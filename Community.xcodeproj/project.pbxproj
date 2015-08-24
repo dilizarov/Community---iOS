@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9A3D2C271B8AA0C400C10CC5 /* SearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3D2C261B8AA0C400C10CC5 /* SearchTextField.swift */; };
+		9AA526861B89CF4C00900383 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AA526851B89CF4C00900383 /* QuartzCore.framework */; };
 		9AA6135A1B83B2B8004911C2 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA613591B83B2B8004911C2 /* ProfileViewController.swift */; };
 		9AA6135C1B83E17C004911C2 /* CommunityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA6135B1B83E17C004911C2 /* CommunityViewController.swift */; };
 		9AA6135E1B83F572004911C2 /* LoggedOutProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA6135D1B83F572004911C2 /* LoggedOutProfileViewController.swift */; };
@@ -36,6 +38,8 @@
 		066B46063845E40386972153 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		11CFFFB983B375515C97E45F /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		12BC73E1CC021A3521FB56B1 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		9A3D2C261B8AA0C400C10CC5 /* SearchTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTextField.swift; sourceTree = "<group>"; };
+		9AA526851B89CF4C00900383 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		9AA613591B83B2B8004911C2 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		9AA6135B1B83E17C004911C2 /* CommunityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunityViewController.swift; sourceTree = "<group>"; };
 		9AA6135D1B83F572004911C2 /* LoggedOutProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggedOutProfileViewController.swift; sourceTree = "<group>"; };
@@ -59,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9AA526861B89CF4C00900383 /* QuartzCore.framework in Frameworks */,
 				9CD1118C8AAD2ACAFAF5D95C /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -76,6 +81,7 @@
 		766893C32D3850291B651045 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9AA526851B89CF4C00900383 /* QuartzCore.framework */,
 				11CFFFB983B375515C97E45F /* Pods.framework */,
 			);
 			name = Frameworks;
@@ -104,6 +110,7 @@
 		9AAD20451B82A22F0053F743 /* Community */ = {
 			isa = PBXGroup;
 			children = (
+				9A3D2C261B8AA0C400C10CC5 /* SearchTextField.swift */,
 				9AA613631B851FD6004911C2 /* CreateAccountViewController.swift */,
 				9AA613611B851F79004911C2 /* LogInViewController.swift */,
 				9AAD20481B82A22F0053F743 /* AppDelegate.swift */,
@@ -314,6 +321,7 @@
 				9AA6135E1B83F572004911C2 /* LoggedOutProfileViewController.swift in Sources */,
 				9AAD20491B82A22F0053F743 /* AppDelegate.swift in Sources */,
 				9AA613601B8464F0004911C2 /* CommunityCell.swift in Sources */,
+				9A3D2C271B8AA0C400C10CC5 /* SearchTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -448,6 +456,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 			};
 			name = Debug;
 		};
@@ -463,6 +472,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 			};
 			name = Release;
 		};
