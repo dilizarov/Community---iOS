@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9A3D2C271B8AA0C400C10CC5 /* SearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3D2C261B8AA0C400C10CC5 /* SearchTextField.swift */; };
+		9A3D2C2B1B8BFD4F00C10CC5 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3D2C2A1B8BFD4E00C10CC5 /* Extensions.swift */; };
 		9AA526861B89CF4C00900383 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AA526851B89CF4C00900383 /* QuartzCore.framework */; };
 		9AA6135A1B83B2B8004911C2 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA613591B83B2B8004911C2 /* ProfileViewController.swift */; };
 		9AA6135C1B83E17C004911C2 /* CommunityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA6135B1B83E17C004911C2 /* CommunityViewController.swift */; };
@@ -39,6 +40,7 @@
 		11CFFFB983B375515C97E45F /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		12BC73E1CC021A3521FB56B1 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		9A3D2C261B8AA0C400C10CC5 /* SearchTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTextField.swift; sourceTree = "<group>"; };
+		9A3D2C2A1B8BFD4E00C10CC5 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		9AA526851B89CF4C00900383 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		9AA613591B83B2B8004911C2 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		9AA6135B1B83E17C004911C2 /* CommunityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunityViewController.swift; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 				9AA6135F1B8464F0004911C2 /* CommunityCell.swift */,
 				9AA6135B1B83E17C004911C2 /* CommunityViewController.swift */,
 				9AA6135D1B83F572004911C2 /* LoggedOutProfileViewController.swift */,
+				9A3D2C2A1B8BFD4E00C10CC5 /* Extensions.swift */,
 			);
 			path = Community;
 			sourceTree = "<group>";
@@ -318,6 +321,7 @@
 				9AAD204B1B82A22F0053F743 /* SearchViewController.swift in Sources */,
 				9AA613621B851F79004911C2 /* LogInViewController.swift in Sources */,
 				9AA613641B851FD6004911C2 /* CreateAccountViewController.swift in Sources */,
+				9A3D2C2B1B8BFD4F00C10CC5 /* Extensions.swift in Sources */,
 				9AA6135E1B83F572004911C2 /* LoggedOutProfileViewController.swift in Sources */,
 				9AAD20491B82A22F0053F743 /* AppDelegate.swift in Sources */,
 				9AA613601B8464F0004911C2 /* CommunityCell.swift in Sources */,

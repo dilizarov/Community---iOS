@@ -448,6 +448,8 @@
                         <outlet property="logInButton" destination="Xyk-Eg-86Y" id="UQ8-Wq-c6S"/>
                         <outlet property="passwordLabel" destination="6M3-PD-OJS" id="qab-VY-CFf"/>
                         <outlet property="passwordTextField" destination="f07-iY-cDL" id="eJw-tB-nI5"/>
+                        <outlet property="passwordTextFieldUnderline" destination="zAn-Sz-ky4" id="4qk-nF-VVh"/>
+                        <segue destination="vXZ-lx-hvc" kind="show" identifier="successfullyLoggedIn" id="QNB-FD-O67"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kBF-YX-bwA" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -789,6 +791,6 @@
         <image name="Screen Shot 2015-08-19 at 5.02.11 PM" width="376" height="667"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="6sR-uC-Dq4"/>
+        <segue reference="QNB-FD-O67"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -65,13 +65,13 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var createAccountButton: UIButton!
     @IBAction func createAccountButtonPressed(sender: AnyObject) {
         
-        MMProgressHUD.sharedHUD().overlayMode = MMProgressHUDWindowOverlayMode.Linear
-        MMProgressHUD.setPresentationStyle(MMProgressHUDPresentationStyle.Balloon)
+        MMProgressHUD.sharedHUD().overlayMode = .Linear
+        MMProgressHUD.setPresentationStyle(.Balloon)
         MMProgressHUD.show()
         
-        var usernameText = strippedString(usernameTextField.text)
-        var emailText    = strippedString(emailTextField.text)
-        var passwordText = strippedString(passwordTextField.text)
+        var usernameText = usernameTextField.text.strip()
+        var emailText    = emailTextField.text.strip()
+        var passwordText = passwordTextField.text.strip()
         
         var params = [String: AnyObject]()
         
@@ -110,6 +110,9 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
                                 
                             MMProgressHUD.dismissWithError(errorString, afterDelay: NSTimeInterval(3))
                         }
+                    } else {
+                        // Realistically, should never trigger, but should always handle dismissing the HUD.
+                        MMProgressHUD.dismissWithError(":(")
                     }
                 })
         }
@@ -182,25 +185,16 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
     // We check all fields and if the fields meet the criteria, we activate create account button.
     func textFieldDidChange() {
     
-        var usernameChars = strippedString(usernameTextField.text)
-        var emailChars    = strippedString(emailTextField.text)
-        var passwordChars = strippedString(passwordTextField.text)
-        var confirmChars  = strippedString(confirmTextField.text)
+        var usernameChars = usernameTextField.text.strip()
+        var emailChars    = emailTextField.text.strip()
+        var passwordChars = passwordTextField.text.strip()
+        var confirmChars  = confirmTextField.text.strip()
         
-        if (usernameChars.isEmpty || !validateEmail(emailChars) || passwordChars.isEmpty || confirmChars.isEmpty || passwordChars != confirmChars) {
+        if (usernameChars.isEmpty || !String.validateEmail(emailChars) || passwordChars.isEmpty || confirmChars.isEmpty || passwordChars != confirmChars) {
             disableCreateAccountButton()
         } else {
             enableCreateAccountButton()
         }
-    }
-    
-    func strippedString(text: String) -> String {
-        return text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
-    }
-    
-    func validateEmail(candidate: String) -> Bool {
-        let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}"
-        return NSPredicate(format: "SELF MATCHES %@", emailRegex).evaluateWithObject(candidate)
     }
     
     func storeSessionData(jsonData: JSON) {
