@@ -15,6 +15,11 @@ class LoggedOutProfileViewController: UIViewController {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
+        
+        NSNotificationCenter.defaultCenter().postNotificationName("sideViewAppeared", object: self)
+    }
     
     
 }

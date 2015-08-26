@@ -11,6 +11,8 @@ import MMDrawerController
 
 class SearchViewController: UIViewController, UITextFieldDelegate {
     
+    var observingSideViewAppeared = false
+    
     @IBOutlet var search: UITextField!
     
     @IBOutlet var profileButton: UIButton!
@@ -36,7 +38,32 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
         
        self.search.delegate = self
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if (!observingSideViewAppeared) {
+            observingSideViewAppeared = true
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("resignSearchKeyboard"), name: "sideViewAppeared", object: nil)
+        }
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "sideViewAppeared", object: nil)
+        observingSideViewAppeared = false
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "sideViewAppeared", object: nil)
+        observingSideViewAppeared = false
+    }
 
+    func resignSearchKeyboard() {
+        search.resignFirstResponder()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
