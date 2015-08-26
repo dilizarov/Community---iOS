@@ -7,15 +7,32 @@
 //
 
 import UIKit
+import MMDrawerController
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var drawerController: MMDrawerController?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        var centerViewController =  mainStoryboard.instantiateViewControllerWithIdentifier("SearchViewController") as! UIViewController
+        
+        drawerController = MMDrawerController(centerViewController: centerViewController, leftDrawerViewController: mainStoryboard.instantiateViewControllerWithIdentifier("LoggedOutProfileViewController") as! UIViewController)
+        
+        drawerController?.setMaximumLeftDrawerWidth(330, animated: true, completion: nil)
+        drawerController?.openDrawerGestureModeMask = .All
+        drawerController?.closeDrawerGestureModeMask = .All
+        drawerController?.centerHiddenInteractionMode = .None
+        drawerController?.setDrawerVisualStateBlock(MMDrawerVisualState.parallaxVisualStateBlockWithParallaxFactor(3)!)
+        
+        self.window?.rootViewController = drawerController
+        self.window?.makeKeyAndVisible()
+        
         return true
     }
 

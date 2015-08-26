@@ -7,212 +7,212 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		04E272782951DE32BBAD831F8BBB1666 /* MMProgressHUDOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 882F0724CFF4509C872A3126ED78A2A6 /* MMProgressHUDOverlayView.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		062A347E9002BC30120103139B05A39B /* MGSwipeTableCell.h in Headers */ = {isa = PBXBuildFile; fileRef = AB3A36491A6E150044AB6C3F0C37D808 /* MGSwipeTableCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		06630BB2F91524A177A75867AE36E9CE /* MMProgressHUDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2467B67D32CC11D893DFEBB0A52EBFBF /* MMProgressHUDViewController.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		06BB797DBD712EECB7A71E4AD2702718 /* UIViewController+MMDrawerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EB90DD76F863422B3FE48662510B7B4 /* UIViewController+MMDrawerController.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		07E8B3847D4588F026161EE017EEAAD1 /* MMVectorImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 97586EA5DDC429D28C7DF9D48D381C6C /* MMVectorImage.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		0FF57A1989215B3DFE6904F4BD263A12 /* MMDrawerVisualState.h in Headers */ = {isa = PBXBuildFile; fileRef = 25CF9205F0CFB5EDA9D592CD010E4834 /* MMDrawerVisualState.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1189E0E89468E2CBD4EE974FDDDAA23F /* Alamofire-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 661CA22996333C80D056C2625B976E75 /* Alamofire-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1364C6311F4FEC10061F5CE73405E0E1 /* MMProgressHUDViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 997CA742AA5C2A9662931206B8AEF4F5 /* MMProgressHUDViewController.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		13FEF77D9282E88336367C3695A57FEC /* MMLinearProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = D78A9932CD0846E02F09B2BBE8303444 /* MMLinearProgressView.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		1C437264E47A7F6A521DDFDF9B420C09 /* MMVectorImage.h in Headers */ = {isa = PBXBuildFile; fileRef = D9832E79FE0A45C1E429C6124EDD25ED /* MMVectorImage.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		212F21ADAE83FD68CDDB9C93A8719EE4 /* MMProgressHUD+Animations.h in Headers */ = {isa = PBXBuildFile; fileRef = EC60FE8F45A793552B4991AEFCDD8BA1 /* MMProgressHUD+Animations.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		02383D5165197C04441B2048D1FBDBA4 /* MMDrawerController+Subclass.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A229D7830EA794E1E157FE1A9EA7645 /* MMDrawerController+Subclass.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		05988D9B434F2ED9CFF844A17916ECCF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4CE0584156ED39DE66657EDA4448587 /* QuartzCore.framework */; };
+		1B125E1BE0AC8A906A61FA673F5567F1 /* MMProgressHUD+Animations.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B0F3C4CE205796155ECA6151C1EDC5E /* MMProgressHUD+Animations.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		1CF295337200B8984A29262945B630FF /* ResponseSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D556029C2B03FAB147716C4F896E3F /* ResponseSerialization.swift */; };
 		23F5940A08DB5F0B129F9DFF7CCC3452 /* SwiftyJSON-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 85E62DA073C367ACFC8C77B0B6180FD1 /* SwiftyJSON-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2A0638B848837542B62BA4A698900688 /* UIViewController+MMDrawerController.h in Headers */ = {isa = PBXBuildFile; fileRef = AEF47A2620A2890D4A25A9728B24EA0B /* UIViewController+MMDrawerController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2A9030729CDAA87628DDF1BC51CCB41A /* MMProgressHUD+Animations.m in Sources */ = {isa = PBXBuildFile; fileRef = EC4500C9BB4C99C3C05689A4A9E28505 /* MMProgressHUD+Animations.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		2898EAECB68F3CE5B5AF08A012B84D2D /* MGSwipeTableCell-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = FB0817F1F5C5272DCEF72E776DF46D0E /* MGSwipeTableCell-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2AC77FB510059C2ED7CF2915914F284F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4CE0584156ED39DE66657EDA4448587 /* QuartzCore.framework */; };
+		2F3824CE3A77CDCEE11C6A4CF401F29F /* MMProgressHUDOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B236422AAB5ACC776491A7FA467C53B /* MMProgressHUDOverlayView.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		3188F07FE3D188CA62739AAC3E5149D1 /* MMProgressHUDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 827E17A8E53E3F06DA17CA1DDB6D66F8 /* MMProgressHUDViewController.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		36116470D7FA3F8F55DC2AF5720493B2 /* MMRadialProgressView.h in Headers */ = {isa = PBXBuildFile; fileRef = 80124E9DB13945E9064312E4FBD18E3E /* MMRadialProgressView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3769B9433B301E32A9DC200E73038AF3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4EC4B75BAE91861986227C1BE7B931E /* Foundation.framework */; };
 		39A8A7DB3537BDC61EF618B1737C1EB5 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F861572AEF58AF8E8738463397C601 /* SwiftyJSON.swift */; };
-		499514A1CFA5DF433AC0F582B085E4C5 /* MultipartFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC0BAFE293FDB3F7DCD9F9BDF92F0FE /* MultipartFormData.swift */; };
-		4995EC95AF3CB71036E4CDDB777AC2CA /* MMRadialProgressView.h in Headers */ = {isa = PBXBuildFile; fileRef = 0707072078154F198E9A9BBD9E43C688 /* MMRadialProgressView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3A4EE97F76440781DC4D2C866834FB13 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4EC4B75BAE91861986227C1BE7B931E /* Foundation.framework */; };
+		3BD9E251C516E799BBC227148C451C50 /* MMVectorImage.h in Headers */ = {isa = PBXBuildFile; fileRef = A812ABA8E7A7E1D4038CEC03F54FF6DF /* MMVectorImage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3D1892C672A22C541D0E214229EE318B /* MMDrawerController.h in Headers */ = {isa = PBXBuildFile; fileRef = 69F6B170D3B7C7B124360FAB201F1E8D /* MMDrawerController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		44C0D04E60ABC9C26196EE41799B788C /* MMDrawerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4243BCBB019D30F73FDCA53A8C4FEC51 /* MMDrawerController.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		495EF2A9EAF3C8B8A7B366D92D90A2DB /* MMHud.m in Sources */ = {isa = PBXBuildFile; fileRef = 882EDF2B7A2056BB85D2AE7CF46B9F98 /* MMHud.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		4BE06EC2D7930FF1B02197C0F1E84DEB /* Pods-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BDCE98AAE0B4E2EFC4110ACE70409C8 /* Pods-dummy.m */; };
-		4CD974529C5D022C03054EE8FFB3E381 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98948424E1078235ECAE75DB0A1C4B20 /* QuartzCore.framework */; };
-		4D1D72B96DDB1258C347EB91B4F32260 /* MMDrawerController.h in Headers */ = {isa = PBXBuildFile; fileRef = 6AFB187CDBA9EF7DFFAC6AF3C7C3BBFF /* MMDrawerController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4D39DB61303D0D70A183CAF8BCB30254 /* MMRadialProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = F18B4D9E037619799E56127E28E46D96 /* MMRadialProgressView.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		4D786C757F4A07480B25682E9228C6CC /* MMHud.m in Sources */ = {isa = PBXBuildFile; fileRef = 495B51BA1581CD5DF04753A068E07E34 /* MMHud.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		556A75792F95751311CC8BE245DC0CC4 /* MGSwipeButton.h in Headers */ = {isa = PBXBuildFile; fileRef = AF1DAC34648E3FE4FC08BD6C2F9C6471 /* MGSwipeButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5CC1054EDAF2C75B4987C5636A3AC9F8 /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F139AAF869CC3612A5A294C298850F1B /* Validation.swift */; };
-		60DF1ACFF55984BE90D8C532673B7A86 /* MMProgressView-Protocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 30CC2F77F22FC9BA5C215AF5EBD1ADC3 /* MMProgressView-Protocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		60F7E974E6A62759903D45343A5D9CA2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98948424E1078235ECAE75DB0A1C4B20 /* QuartzCore.framework */; };
-		6AD3E68B630651BECA06334BAD5318D8 /* MMProgressHUDCommon.h in Headers */ = {isa = PBXBuildFile; fileRef = 84108C23E4DF7409519598FF2F41CD2C /* MMProgressHUDCommon.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		533B5C605131310F14CF2E352D44DAD6 /* MMDrawerVisualState.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0333F0B16104C1A20873A7B00580E6 /* MMDrawerVisualState.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		5B80320FF07728B1C0FCB257FF97A031 /* MMVectorImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 48613285AED645ABC1F320C4F8612E56 /* MMVectorImage.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		6160B33AF7E58BD5CC20C36D3AE3FF90 /* MultipartFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61775033C8B911B4A61A5FF6A5614481 /* MultipartFormData.swift */; };
+		63288B8C2FED3A5BB2E4FF9899C1FEAF /* MMLinearProgressView.h in Headers */ = {isa = PBXBuildFile; fileRef = D28163543D3E14AF1A445DB21492A128 /* MMLinearProgressView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6380C8946DF4140A5E0EF43187D4697B /* MMProgressHUDOverlayView.h in Headers */ = {isa = PBXBuildFile; fileRef = DAA2E841CE618A4EBA1CB68370CC731F /* MMProgressHUDOverlayView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6A1E548E32B0C695F3101BC6F3517AF5 /* MMDrawerBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5876E720144957FA278FAFF4F79D81B1 /* MMDrawerBarButtonItem.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		72CB49D7D09DB44426DEC24FAF3F0750 /* MMProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 550ECC1D71456DD2CD48F4B710C103FE /* MMProgressHUD.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		72DB130F4F9C8D1397F90ADD16324856 /* ParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5FFC2B10F1CABE72EC5DA18EB20BDF /* ParameterEncoding.swift */; };
+		7335036251C96059BA5D0B7E9647921F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4EC4B75BAE91861986227C1BE7B931E /* Foundation.framework */; };
+		74535925534751902951DC6EC7D453EB /* MMProgressHUD+Animations.m in Sources */ = {isa = PBXBuildFile; fileRef = D863EBB39E83443F970449D69712C78F /* MMProgressHUD+Animations.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		77C26BC1521673A74928099F47C00F02 /* Pods-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7B0137935886598A9336911BACCC7A84 /* Pods-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7F69489E58360EE67E9F81DF8D5CB500 /* Upload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7486B7C6A7A8C39FBFD2D58E900A45B5 /* Upload.swift */; };
-		7FD8627705ED6905ED78EE0673B7B5AB /* MMProgressHUDWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 70BDD6CB8545DC3C647E9149E05D3498 /* MMProgressHUDWindow.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		848D727D98A46259833217FD1E598960 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946E3C489F36148D23756CCA6ACBBA41 /* Request.swift */; };
-		86F6F2062F68B0DEC82173D70790BCEB /* MMProgressHUDWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = E1CB05166118623F0BCC615EFF6C10AD /* MMProgressHUDWindow.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		880B73DEDF3502C3F2FEF6036BACAD95 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4EC4B75BAE91861986227C1BE7B931E /* Foundation.framework */; };
-		8D34F01D2381279C100167FC47B14C8B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 383B04D6346D9E1836A31B2E067A821A /* CoreGraphics.framework */; };
+		790AE78F77A1B5060433324274DE1E17 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = B293C3671C4F9CFFD50510B0A750E07F /* Request.swift */; };
+		7A1B51634458010B34B795CDC92C676C /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99726023754393D8E497CA205981994B /* Alamofire.swift */; };
+		8400BD2A47CC8828B7E2FD2070E8EB72 /* Alamofire-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 94CFB7C985AFD13DB60EFD5ECE34D6FB /* Alamofire-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		892CB2790E13A810D719A910522F1851 /* MGSwipeTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 381CD6291D5E32544516E97644CF3337 /* MGSwipeTableCell.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		90EF20BB8DC0A183A97CEE5D4BE375EE /* SwiftyJSON-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A0D3575B7F9DE11C652ED4F55D4D976B /* SwiftyJSON-dummy.m */; };
-		92E54B2C056D5518F55CBBCCE3868E95 /* MMDrawerVisualState.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B2CCA833B2D8713FFF702B61ECE5AB3 /* MMDrawerVisualState.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		A0C9B126A8214D69A2A010432E653487 /* MMProgressHUD-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D41543090C67210C4A886FE688579F74 /* MMProgressHUD-dummy.m */; };
-		A4E78F9432AC93D063F09DEC88AE04D9 /* MMHud.h in Headers */ = {isa = PBXBuildFile; fileRef = A016E40D594A8069DC18E2FA7064AAC5 /* MMHud.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A8404E117CC8C84686F72F1FA614CE07 /* MMProgressHUD+Class.m in Sources */ = {isa = PBXBuildFile; fileRef = 465D9AD834C5A51BDB8CD78C426BA0C3 /* MMProgressHUD+Class.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		A88FFF2E6D84D42326C174E878CD164D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4EC4B75BAE91861986227C1BE7B931E /* Foundation.framework */; };
-		B3985AFF873B3F668475E6BC40F6A9C8 /* MMDrawerController-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 2549F97218192493CE27D465C4A457FB /* MMDrawerController-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B67DFCFEF2749B5A56E501DAE29C2C13 /* MMDrawerBarButtonItem.h in Headers */ = {isa = PBXBuildFile; fileRef = A08EDB22A292B8835538E073276E8F83 /* MMDrawerBarButtonItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B69275592A7C812407202B2A66842E2E /* Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F055C9B0333822CB584EDC7608A066 /* Download.swift */; };
-		B6ED7F661D08871735A833DB9A6693DF /* ServerTrustPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D24C9C5B99EB4CDC3C3604A52DCD948 /* ServerTrustPolicy.swift */; };
-		B8B5F6AF83E873D1922481B6DF7BB431 /* MMDrawerBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A102D368CE5C1A5962E1F281BAB7D067 /* MMDrawerBarButtonItem.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		B97A9112D1CDD6B45D373300B3A52234 /* MGSwipeTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FFA8BB748EC9808B37E06D31B4AAAC /* MGSwipeTableCell.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		C017FAE19A2BB624FDE9E08001888E27 /* MGSwipeTableCell-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 0657D71C65DD2F8B7C9627B2DB77A5E6 /* MGSwipeTableCell-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C36B24B43D27C9C1718906F412EA3C87 /* MMProgressHUDOverlayView.h in Headers */ = {isa = PBXBuildFile; fileRef = D6665387D572ADA987C7C2BAAE6BC311 /* MMProgressHUDOverlayView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C36C5E58D9E94EA1351193958EB72338 /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385FEBFCC1D35EDB27265536B84ED96A /* Manager.swift */; };
-		C66C15CB16511500F7075E0DD36BB5FA /* MMDrawerController.m in Sources */ = {isa = PBXBuildFile; fileRef = BDCCFE4C2AB5CD55C61E4CF7203DEAE6 /* MMDrawerController.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		C826D3D195B3FE60AE206D22BAF5971E /* MMDrawerController+Subclass.h in Headers */ = {isa = PBXBuildFile; fileRef = 0B5EF9D8E51B56A1EC7864634D513ED8 /* MMDrawerController+Subclass.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D0D6695C643988EA80C0D6D11187DEC9 /* ParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = F777AAB5A9EE71F53143409103FCF5A2 /* ParameterEncoding.swift */; };
-		D1DFC6C30EAA7C85314219FE26EFF22E /* MGSwipeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D7852F39F5A0429DD70746D8BC4455E4 /* MGSwipeButton.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		D47CEEE13F37A49C18F3EC99C580DA6A /* MMProgressHUD-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = DBF28D731D364BB83DE8469C25798CDD /* MMProgressHUD-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D541BDDC01F3FA807E02029736D68F3D /* MMLinearProgressView.h in Headers */ = {isa = PBXBuildFile; fileRef = 11421DE877EA85C594B5DE1F9FB4434D /* MMLinearProgressView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D66BB4ADA7254BA444F09487E9B463E8 /* MMProgressHUD.h in Headers */ = {isa = PBXBuildFile; fileRef = 5272A19B9522A8D88C6B6938F64850E0 /* MMProgressHUD.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D808B53D206DA37164C1AEFFC3874160 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4EC4B75BAE91861986227C1BE7B931E /* Foundation.framework */; };
-		D892683EF09AC14A05CEA877398A6CBA /* ResponseSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2D7DF8F3593E1F1857D218A012EA26 /* ResponseSerialization.swift */; };
-		DECD10E0FF0E3C2502CE04F70BFD1D3C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4EC4B75BAE91861986227C1BE7B931E /* Foundation.framework */; };
-		E3C9243EF9D555A884FBEB18659AC899 /* MMProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = E8C1A862355F7E0CA3428B44F5BAFBED /* MMProgressHUD.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		E95172E9DECEACBDD83FEB8D9CB90D8A /* MMDrawerController-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 46694F3F21D0CCBE16B69A642EA7A246 /* MMDrawerController-dummy.m */; };
+		9490309A9AC546CA76472D835E391ADA /* UIViewController+MMDrawerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 952CA414670BF7A22DFFFE9349778171 /* UIViewController+MMDrawerController.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		961E664809C533B134D592C0F7F36D50 /* MMProgressHUD+Class.m in Sources */ = {isa = PBXBuildFile; fileRef = BD94D4D4BA44FC4F0B6D7E65F290FCF2 /* MMProgressHUD+Class.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		9C83C2302B9EAE65F56E9193F7EF12A9 /* MGSwipeButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 58DF57894CFF1FD7C7200A01082558F6 /* MGSwipeButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9CDDC74A99F938C7CE3E89B090530167 /* MMRadialProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = FF0948F766D538878A39E3BA4BBDBC52 /* MMRadialProgressView.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		9F0DD6BEF7A16A09A5659AC7D57ED9FB /* MMProgressHUD-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = D09B95CEC7A33BD40FD28C78E923A60B /* MMProgressHUD-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A0A7DAE188E4F531A809717342C25F8D /* MMLinearProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C376702C8833FDE54F038C615074AEC /* MMLinearProgressView.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		AA8EA711761FBFD2274B6B3661575BC6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4EC4B75BAE91861986227C1BE7B931E /* Foundation.framework */; };
+		AB88A66AEFF2973623B88028BA18C7A7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4EC4B75BAE91861986227C1BE7B931E /* Foundation.framework */; };
+		AC3D76A00CE60B5F34F4C9E611F1965F /* MMDrawerVisualState.h in Headers */ = {isa = PBXBuildFile; fileRef = 7DF1D406D32F4897C60B6983AE1FFFA8 /* MMDrawerVisualState.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B8414D44A99092BB88FF7A7A3A535A48 /* MMProgressHUDWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 79C7252C256C36FF01E0D0B5272773A7 /* MMProgressHUDWindow.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		BF068CDF86E9C65647F27141C6A53B1F /* MMDrawerController-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = DD1A9F1B5DEAB21D63327AC7A2C54CD2 /* MMDrawerController-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C314CC9495192C162CC9985DF288CE8A /* MMDrawerController-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F68F04A4623A993C5210D12FA5C0AFC /* MMDrawerController-dummy.m */; };
+		C9EF0728769F6A1E596EAEA1F7D73EC4 /* MGSwipeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 491025D866EEF283C0C4752F316D0E58 /* MGSwipeButton.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		CA00D291713E63FBACC7BB2D34661D3C /* MGSwipeTableCell-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 95190CC42E68DEB5E91893B826E9275B /* MGSwipeTableCell-dummy.m */; };
+		CBE21A8707F6B7800FC823ABB39EABF9 /* Alamofire-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 702505643F6B89C6723DD4B82E50C23E /* Alamofire-dummy.m */; };
+		CC05EFB2A4CB88157C058602B30D5D73 /* MMProgressHUDCommon.h in Headers */ = {isa = PBXBuildFile; fileRef = 2AC63308E406FB6D16D74619E4A174C1 /* MMProgressHUDCommon.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		CEEE0017B8518FBA9FE11815ABC6E6A6 /* MMProgressView-Protocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 97C3940198EA07B2915C7FBDC372E164 /* MMProgressView-Protocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D042639D083BCCC86141227CAA04133E /* MMDrawerBarButtonItem.h in Headers */ = {isa = PBXBuildFile; fileRef = A00379447D48223D4893AE2A4972E124 /* MMDrawerBarButtonItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D04E930E8F914F56A3D26F54BBFAC2E7 /* MMProgressHUD.h in Headers */ = {isa = PBXBuildFile; fileRef = F33CB20BC072038A8946594FC1B42E77 /* MMProgressHUD.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D0BB704470166471F9E5CAF5883DF22A /* MMProgressHUDWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A28F6F55710F54A3D4AC518BCE993AF /* MMProgressHUDWindow.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		D5992911DF95DFC8383ADD00AEA6126A /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199B5D141463754892E5783820B69023 /* Validation.swift */; };
+		D8EBC60C709E40499DF4248565166E00 /* Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF9976E93E502F68FB283E753498047 /* Download.swift */; };
+		D95654FEDBB6092C75612796AD6E64C9 /* MMHud.h in Headers */ = {isa = PBXBuildFile; fileRef = AF319C65A1DA4953157AFFEFD43BFCA4 /* MMHud.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DF40CA90047F9F58EFC4FB31422A2B65 /* MMProgressHUDViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = FD31648B05E76BBD61EB83543B730263 /* MMProgressHUDViewController.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		E38CC06AD05B57155CC4DD9C4687C3E1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69015752CE545DA1EAEC598B69DDA742 /* CoreGraphics.framework */; };
+		E66EAB5AB97A7A7041E1B66C554311A1 /* UIViewController+MMDrawerController.h in Headers */ = {isa = PBXBuildFile; fileRef = B183A5B6073B094A282817E4F11CD606 /* UIViewController+MMDrawerController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA435178E5169BCFFB9EDFFED73E406A /* MGSwipeTableCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 2884C521F051C486CEFB0E2F3AB11C74 /* MGSwipeTableCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA682BE60B04B27615DBDFC4DD184005 /* MMProgressHUD-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B445CC3B15C306258EDD50BCEDE768CF /* MMProgressHUD-dummy.m */; };
+		EEDBB85D76F9587CA58FDCA32D55F7BD /* ServerTrustPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843620DC624958A2899E9A79C4A41EC0 /* ServerTrustPolicy.swift */; };
 		F120D78BC11473EEBDFE9355B2E7BD8A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4EC4B75BAE91861986227C1BE7B931E /* Foundation.framework */; };
-		F7789A9DD452EE0C6A5947255C96543C /* Alamofire-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 48B6D1A37554603901635DDEA80BE9D7 /* Alamofire-dummy.m */; };
-		FA4062773B92AB9758FB8AD25E812F33 /* MGSwipeTableCell-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 80902F2D9AC6CE2C8E61B28B24EA7F32 /* MGSwipeTableCell-dummy.m */; };
-		FF63BF18ED1996A77DEEC93D3E9045B1 /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09EA0DDAC7762747DED5A96EA96CC839 /* Alamofire.swift */; };
+		F5E73BF270194ABF1C9041C3EBD55142 /* Upload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5C58C3387CCBEF180030A94193A425 /* Upload.swift */; };
+		FCBE6A496CB243379A9923B451F5DCA6 /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF92DBEE69B5B44C4D321C9854C3939 /* Manager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		04DED74B0907A49BC2C1FED8364DB8DE /* PBXContainerItemProxy */ = {
+		674C815A7D6079B0E9F5535610C9667E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = BFAF832675DC3F46CC1EF016E57219B0;
+			remoteGlobalIDString = B4DC9B6F0197FF1545BFA32B666F4D3D;
 			remoteInfo = MMDrawerController;
 		};
-		0DC90F579119A5F779CFAF9DB7808003 /* PBXContainerItemProxy */ = {
+		6CF1CBD909900448AA764F26222D08F7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 02A0AD831D81372768E1D05096887F91;
+			remoteGlobalIDString = 68B8EF0003BEDB5DFDF48AD3545360A4;
 			remoteInfo = MMProgressHUD;
 		};
-		7C492A1BAC9B65DFF7361924AA291B04 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 5A48572371A97C86DF6FB8772F246165;
-			remoteInfo = Alamofire;
-		};
-		E921D58C1EA1FE6E05C2DBF373EE0338 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 289C3C28167E7E9D81C487118CBD7CEC;
-			remoteInfo = MGSwipeTableCell;
-		};
-		F7A53CC41AE82AC47AC3C1237E061952 /* PBXContainerItemProxy */ = {
+		7F9C6C842565357CFDA39ECD3C12F9B2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = B9A04D3C9B208813656510FDA8ADAE02;
 			remoteInfo = SwiftyJSON;
 		};
+		AD6EC17FED0EC4015A342A4E3F8FA2F4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F1BE2022EE74C520E600DFF4D4BA897F;
+			remoteInfo = MGSwipeTableCell;
+		};
+		E32AA466907C3C89D183C4BE221FC6D5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5AF58D1EBC19E9680D35AEC8CBDEAC1D;
+			remoteInfo = Alamofire;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		05DCA559C7C4B987DFCF6D2F6140F66A /* MGSwipeTableCell-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MGSwipeTableCell-prefix.pch"; sourceTree = "<group>"; };
-		0657D71C65DD2F8B7C9627B2DB77A5E6 /* MGSwipeTableCell-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MGSwipeTableCell-umbrella.h"; sourceTree = "<group>"; };
-		0707072078154F198E9A9BBD9E43C688 /* MMRadialProgressView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MMRadialProgressView.h; path = Source/MMRadialProgressView.h; sourceTree = "<group>"; };
-		09EA0DDAC7762747DED5A96EA96CC839 /* Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Alamofire.swift; path = Source/Alamofire.swift; sourceTree = "<group>"; };
-		0B5EF9D8E51B56A1EC7864634D513ED8 /* MMDrawerController+Subclass.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "MMDrawerController+Subclass.h"; path = "MMDrawerController/MMDrawerController+Subclass.h"; sourceTree = "<group>"; };
-		0D24C9C5B99EB4CDC3C3604A52DCD948 /* ServerTrustPolicy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ServerTrustPolicy.swift; path = Source/ServerTrustPolicy.swift; sourceTree = "<group>"; };
-		11421DE877EA85C594B5DE1F9FB4434D /* MMLinearProgressView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MMLinearProgressView.h; path = Source/MMLinearProgressView.h; sourceTree = "<group>"; };
+		0F68F04A4623A993C5210D12FA5C0AFC /* MMDrawerController-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "MMDrawerController-dummy.m"; sourceTree = "<group>"; };
 		15C399542C84391B90FE247E06BA3FC6 /* Alamofire.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Alamofire.modulemap; sourceTree = "<group>"; };
-		1EB90DD76F863422B3FE48662510B7B4 /* UIViewController+MMDrawerController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+MMDrawerController.m"; path = "MMDrawerController/UIViewController+MMDrawerController.m"; sourceTree = "<group>"; };
-		22D9F1046070B40558B78DF8326212C4 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2467B67D32CC11D893DFEBB0A52EBFBF /* MMProgressHUDViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MMProgressHUDViewController.m; path = Source/MMProgressHUDViewController.m; sourceTree = "<group>"; };
-		2549F97218192493CE27D465C4A457FB /* MMDrawerController-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MMDrawerController-umbrella.h"; sourceTree = "<group>"; };
-		25CF9205F0CFB5EDA9D592CD010E4834 /* MMDrawerVisualState.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MMDrawerVisualState.h; path = MMDrawerController/MMDrawerVisualState.h; sourceTree = "<group>"; };
-		27FFA8BB748EC9808B37E06D31B4AAAC /* MGSwipeTableCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MGSwipeTableCell.m; path = MGSwipeTableCell/MGSwipeTableCell.m; sourceTree = "<group>"; };
-		2A2D7DF8F3593E1F1857D218A012EA26 /* ResponseSerialization.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ResponseSerialization.swift; path = Source/ResponseSerialization.swift; sourceTree = "<group>"; };
-		2B2CCA833B2D8713FFF702B61ECE5AB3 /* MMDrawerVisualState.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MMDrawerVisualState.m; path = MMDrawerController/MMDrawerVisualState.m; sourceTree = "<group>"; };
+		199B5D141463754892E5783820B69023 /* Validation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Validation.swift; path = Source/Validation.swift; sourceTree = "<group>"; };
+		2884C521F051C486CEFB0E2F3AB11C74 /* MGSwipeTableCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MGSwipeTableCell.h; path = MGSwipeTableCell/MGSwipeTableCell.h; sourceTree = "<group>"; };
+		2A28F6F55710F54A3D4AC518BCE993AF /* MMProgressHUDWindow.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MMProgressHUDWindow.m; path = Source/MMProgressHUDWindow.m; sourceTree = "<group>"; };
+		2AC63308E406FB6D16D74619E4A174C1 /* MMProgressHUDCommon.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MMProgressHUDCommon.h; path = Source/MMProgressHUDCommon.h; sourceTree = "<group>"; };
 		2CAB5375775E2F45E5414055832A34D8 /* MMDrawerController-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MMDrawerController-prefix.pch"; sourceTree = "<group>"; };
-		30CC2F77F22FC9BA5C215AF5EBD1ADC3 /* MMProgressView-Protocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "MMProgressView-Protocol.h"; path = "Source/MMProgressView-Protocol.h"; sourceTree = "<group>"; };
+		2DA774A20D0B71721DFE75583DE59503 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		31F861572AEF58AF8E8738463397C601 /* SwiftyJSON.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = Source/SwiftyJSON.swift; sourceTree = "<group>"; };
 		33862F4C10064314CFBA1A923E2D87B6 /* Alamofire.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Alamofire.xcconfig; sourceTree = "<group>"; };
-		383B04D6346D9E1836A31B2E067A821A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
-		385FEBFCC1D35EDB27265536B84ED96A /* Manager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Manager.swift; path = Source/Manager.swift; sourceTree = "<group>"; };
-		3CDB11CA91162B7F46B4763605342E74 /* Alamofire-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Alamofire-Private.xcconfig"; sourceTree = "<group>"; };
+		381CD6291D5E32544516E97644CF3337 /* MGSwipeTableCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MGSwipeTableCell.m; path = MGSwipeTableCell/MGSwipeTableCell.m; sourceTree = "<group>"; };
+		3C376702C8833FDE54F038C615074AEC /* MMLinearProgressView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MMLinearProgressView.m; path = Source/MMLinearProgressView.m; sourceTree = "<group>"; };
 		3F207644180E3DEB1A354A80B51CCA53 /* SwiftyJSON.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = SwiftyJSON.modulemap; sourceTree = "<group>"; };
-		465D9AD834C5A51BDB8CD78C426BA0C3 /* MMProgressHUD+Class.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "MMProgressHUD+Class.m"; path = "Source/MMProgressHUD+Class.m"; sourceTree = "<group>"; };
-		46694F3F21D0CCBE16B69A642EA7A246 /* MMDrawerController-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "MMDrawerController-dummy.m"; sourceTree = "<group>"; };
+		4243BCBB019D30F73FDCA53A8C4FEC51 /* MMDrawerController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MMDrawerController.m; path = MMDrawerController/MMDrawerController.m; sourceTree = "<group>"; };
 		4736F09A3D28D1254395E52EF245238B /* SwiftyJSON.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftyJSON.xcconfig; sourceTree = "<group>"; };
 		47499EC4B406803EC496F7EC7830C4C8 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		47CF34E35FBDFA0966B1774088C0D073 /* MMProgressHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MMProgressHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		48B6D1A37554603901635DDEA80BE9D7 /* Alamofire-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Alamofire-dummy.m"; sourceTree = "<group>"; };
-		495B51BA1581CD5DF04753A068E07E34 /* MMHud.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MMHud.m; path = Source/MMHud.m; sourceTree = "<group>"; };
+		48613285AED645ABC1F320C4F8612E56 /* MMVectorImage.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MMVectorImage.m; path = Source/MMVectorImage.m; sourceTree = "<group>"; };
+		491025D866EEF283C0C4752F316D0E58 /* MGSwipeButton.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MGSwipeButton.m; path = MGSwipeTableCell/MGSwipeButton.m; sourceTree = "<group>"; };
+		4BF9976E93E502F68FB283E753498047 /* Download.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Download.swift; path = Source/Download.swift; sourceTree = "<group>"; };
 		4D3BA03B3589781FD384E830C4B5992E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Pods.release.xcconfig; sourceTree = "<group>"; };
-		5272A19B9522A8D88C6B6938F64850E0 /* MMProgressHUD.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MMProgressHUD.h; path = Source/MMProgressHUD.h; sourceTree = "<group>"; };
+		550ECC1D71456DD2CD48F4B710C103FE /* MMProgressHUD.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MMProgressHUD.m; path = Source/MMProgressHUD.m; sourceTree = "<group>"; };
+		5876E720144957FA278FAFF4F79D81B1 /* MMDrawerBarButtonItem.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MMDrawerBarButtonItem.m; path = MMDrawerController/MMDrawerBarButtonItem.m; sourceTree = "<group>"; };
+		58DF57894CFF1FD7C7200A01082558F6 /* MGSwipeButton.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MGSwipeButton.h; path = MGSwipeTableCell/MGSwipeButton.h; sourceTree = "<group>"; };
 		5A1166023571EC5B9F0C280448D844AA /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5A1FE05067526093C0A5D2D1927BF45D /* MGSwipeTableCell.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = MGSwipeTableCell.modulemap; sourceTree = "<group>"; };
-		62F055C9B0333822CB584EDC7608A066 /* Download.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Download.swift; path = Source/Download.swift; sourceTree = "<group>"; };
-		661CA22996333C80D056C2625B976E75 /* Alamofire-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alamofire-umbrella.h"; sourceTree = "<group>"; };
+		5F6197B0E3BE1A725A9EE65D151438B9 /* MGSwipeTableCell-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "MGSwipeTableCell-Private.xcconfig"; sourceTree = "<group>"; };
+		61775033C8B911B4A61A5FF6A5614481 /* MultipartFormData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MultipartFormData.swift; path = Source/MultipartFormData.swift; sourceTree = "<group>"; };
+		69015752CE545DA1EAEC598B69DDA742 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
+		69F6B170D3B7C7B124360FAB201F1E8D /* MMDrawerController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MMDrawerController.h; path = MMDrawerController/MMDrawerController.h; sourceTree = "<group>"; };
 		6A1AAAAB7139933A6D79406DB86D3348 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Pods.debug.xcconfig; sourceTree = "<group>"; };
-		6AFB187CDBA9EF7DFFAC6AF3C7C3BBFF /* MMDrawerController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MMDrawerController.h; path = MMDrawerController/MMDrawerController.h; sourceTree = "<group>"; };
-		6FC0BAFE293FDB3F7DCD9F9BDF92F0FE /* MultipartFormData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MultipartFormData.swift; path = Source/MultipartFormData.swift; sourceTree = "<group>"; };
-		70BDD6CB8545DC3C647E9149E05D3498 /* MMProgressHUDWindow.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MMProgressHUDWindow.h; path = Source/MMProgressHUDWindow.h; sourceTree = "<group>"; };
-		7486B7C6A7A8C39FBFD2D58E900A45B5 /* Upload.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Upload.swift; path = Source/Upload.swift; sourceTree = "<group>"; };
+		6E5C58C3387CCBEF180030A94193A425 /* Upload.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Upload.swift; path = Source/Upload.swift; sourceTree = "<group>"; };
+		702505643F6B89C6723DD4B82E50C23E /* Alamofire-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Alamofire-dummy.m"; sourceTree = "<group>"; };
+		71D556029C2B03FAB147716C4F896E3F /* ResponseSerialization.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ResponseSerialization.swift; path = Source/ResponseSerialization.swift; sourceTree = "<group>"; };
+		7502E79118B6F6C9114CDDDF48E365CB /* MGSwipeTableCell.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MGSwipeTableCell.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		79A9DEDC89FE8336BF5FEDAAF75BF7FC /* Pods.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Pods.modulemap; sourceTree = "<group>"; };
+		79C7252C256C36FF01E0D0B5272773A7 /* MMProgressHUDWindow.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MMProgressHUDWindow.h; path = Source/MMProgressHUDWindow.h; sourceTree = "<group>"; };
 		7B0137935886598A9336911BACCC7A84 /* Pods-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-umbrella.h"; sourceTree = "<group>"; };
 		7BDCE98AAE0B4E2EFC4110ACE70409C8 /* Pods-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-dummy.m"; sourceTree = "<group>"; };
-		7DE1109DFE79BA9E6DCF78162C8525E4 /* MGSwipeTableCell.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MGSwipeTableCell.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7BE1DF15276125D75E9AACCAFA3021C5 /* MMDrawerController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MMDrawerController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7DF1D406D32F4897C60B6983AE1FFFA8 /* MMDrawerVisualState.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MMDrawerVisualState.h; path = MMDrawerController/MMDrawerVisualState.h; sourceTree = "<group>"; };
 		7F97E9B65E9FE700BE5F28813455258A /* SwiftyJSON-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftyJSON-prefix.pch"; sourceTree = "<group>"; };
-		80902F2D9AC6CE2C8E61B28B24EA7F32 /* MGSwipeTableCell-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "MGSwipeTableCell-dummy.m"; sourceTree = "<group>"; };
-		84108C23E4DF7409519598FF2F41CD2C /* MMProgressHUDCommon.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MMProgressHUDCommon.h; path = Source/MMProgressHUDCommon.h; sourceTree = "<group>"; };
+		80124E9DB13945E9064312E4FBD18E3E /* MMRadialProgressView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MMRadialProgressView.h; path = Source/MMRadialProgressView.h; sourceTree = "<group>"; };
+		827E17A8E53E3F06DA17CA1DDB6D66F8 /* MMProgressHUDViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MMProgressHUDViewController.m; path = Source/MMProgressHUDViewController.m; sourceTree = "<group>"; };
+		843620DC624958A2899E9A79C4A41EC0 /* ServerTrustPolicy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ServerTrustPolicy.swift; path = Source/ServerTrustPolicy.swift; sourceTree = "<group>"; };
 		85E62DA073C367ACFC8C77B0B6180FD1 /* SwiftyJSON-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftyJSON-umbrella.h"; sourceTree = "<group>"; };
-		878974AC4758283F83384995C63BEBA6 /* MMDrawerController-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "MMDrawerController-Private.xcconfig"; sourceTree = "<group>"; };
 		87B213035BAC5F75386F62D3C75D2342 /* Pods-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-acknowledgements.plist"; sourceTree = "<group>"; };
-		882F0724CFF4509C872A3126ED78A2A6 /* MMProgressHUDOverlayView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MMProgressHUDOverlayView.m; path = Source/MMProgressHUDOverlayView.m; sourceTree = "<group>"; };
+		882EDF2B7A2056BB85D2AE7CF46B9F98 /* MMHud.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MMHud.m; path = Source/MMHud.m; sourceTree = "<group>"; };
 		89AD04E4F1E56CEB1F62E0B083C1581F /* SwiftyJSON-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "SwiftyJSON-Private.xcconfig"; sourceTree = "<group>"; };
-		946E3C489F36148D23756CCA6ACBBA41 /* Request.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Request.swift; path = Source/Request.swift; sourceTree = "<group>"; };
-		97586EA5DDC429D28C7DF9D48D381C6C /* MMVectorImage.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MMVectorImage.m; path = Source/MMVectorImage.m; sourceTree = "<group>"; };
-		98948424E1078235ECAE75DB0A1C4B20 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
-		997CA742AA5C2A9662931206B8AEF4F5 /* MMProgressHUDViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MMProgressHUDViewController.h; path = Source/MMProgressHUDViewController.h; sourceTree = "<group>"; };
+		923D26F14CDDC14D1E5621D66CEDD880 /* MMProgressHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MMProgressHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		94CFB7C985AFD13DB60EFD5ECE34D6FB /* Alamofire-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alamofire-umbrella.h"; sourceTree = "<group>"; };
+		95190CC42E68DEB5E91893B826E9275B /* MGSwipeTableCell-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "MGSwipeTableCell-dummy.m"; sourceTree = "<group>"; };
+		952CA414670BF7A22DFFFE9349778171 /* UIViewController+MMDrawerController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+MMDrawerController.m"; path = "MMDrawerController/UIViewController+MMDrawerController.m"; sourceTree = "<group>"; };
+		97C3940198EA07B2915C7FBDC372E164 /* MMProgressView-Protocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "MMProgressView-Protocol.h"; path = "Source/MMProgressView-Protocol.h"; sourceTree = "<group>"; };
+		982F6DA7013A3CDAF0E12AB182DFA250 /* MMProgressHUD-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "MMProgressHUD-Private.xcconfig"; sourceTree = "<group>"; };
+		99726023754393D8E497CA205981994B /* Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Alamofire.swift; path = Source/Alamofire.swift; sourceTree = "<group>"; };
 		99F6A61B609F5F5B50A783B4A6A4039A /* MMProgressHUD.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = MMProgressHUD.modulemap; sourceTree = "<group>"; };
-		A016E40D594A8069DC18E2FA7064AAC5 /* MMHud.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MMHud.h; path = Source/MMHud.h; sourceTree = "<group>"; };
-		A08EDB22A292B8835538E073276E8F83 /* MMDrawerBarButtonItem.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MMDrawerBarButtonItem.h; path = MMDrawerController/MMDrawerBarButtonItem.h; sourceTree = "<group>"; };
+		9A229D7830EA794E1E157FE1A9EA7645 /* MMDrawerController+Subclass.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "MMDrawerController+Subclass.h"; path = "MMDrawerController/MMDrawerController+Subclass.h"; sourceTree = "<group>"; };
+		9B0F3C4CE205796155ECA6151C1EDC5E /* MMProgressHUD+Animations.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "MMProgressHUD+Animations.h"; path = "Source/MMProgressHUD+Animations.h"; sourceTree = "<group>"; };
+		9B236422AAB5ACC776491A7FA467C53B /* MMProgressHUDOverlayView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MMProgressHUDOverlayView.m; path = Source/MMProgressHUDOverlayView.m; sourceTree = "<group>"; };
+		9BF92DBEE69B5B44C4D321C9854C3939 /* Manager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Manager.swift; path = Source/Manager.swift; sourceTree = "<group>"; };
+		A00379447D48223D4893AE2A4972E124 /* MMDrawerBarButtonItem.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MMDrawerBarButtonItem.h; path = MMDrawerController/MMDrawerBarButtonItem.h; sourceTree = "<group>"; };
 		A0D3575B7F9DE11C652ED4F55D4D976B /* SwiftyJSON-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SwiftyJSON-dummy.m"; sourceTree = "<group>"; };
-		A102D368CE5C1A5962E1F281BAB7D067 /* MMDrawerBarButtonItem.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MMDrawerBarButtonItem.m; path = MMDrawerController/MMDrawerBarButtonItem.m; sourceTree = "<group>"; };
-		A23664A19FE582B8647B2E64F31C8511 /* MMDrawerController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MMDrawerController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6BC89130EC1837482AEE2A8984C113A /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AB3A36491A6E150044AB6C3F0C37D808 /* MGSwipeTableCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MGSwipeTableCell.h; path = MGSwipeTableCell/MGSwipeTableCell.h; sourceTree = "<group>"; };
-		AEF47A2620A2890D4A25A9728B24EA0B /* UIViewController+MMDrawerController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIViewController+MMDrawerController.h"; path = "MMDrawerController/UIViewController+MMDrawerController.h"; sourceTree = "<group>"; };
-		AF1DAC34648E3FE4FC08BD6C2F9C6471 /* MGSwipeButton.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MGSwipeButton.h; path = MGSwipeTableCell/MGSwipeButton.h; sourceTree = "<group>"; };
-		B133D6CF94387E404898CAB156F1F2F4 /* MMProgressHUD-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "MMProgressHUD-Private.xcconfig"; sourceTree = "<group>"; };
+		A812ABA8E7A7E1D4038CEC03F54FF6DF /* MMVectorImage.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MMVectorImage.h; path = Source/MMVectorImage.h; sourceTree = "<group>"; };
+		AF319C65A1DA4953157AFFEFD43BFCA4 /* MMHud.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MMHud.h; path = Source/MMHud.h; sourceTree = "<group>"; };
+		B183A5B6073B094A282817E4F11CD606 /* UIViewController+MMDrawerController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIViewController+MMDrawerController.h"; path = "MMDrawerController/UIViewController+MMDrawerController.h"; sourceTree = "<group>"; };
+		B293C3671C4F9CFFD50510B0A750E07F /* Request.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Request.swift; path = Source/Request.swift; sourceTree = "<group>"; };
+		B445CC3B15C306258EDD50BCEDE768CF /* MMProgressHUD-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "MMProgressHUD-dummy.m"; sourceTree = "<group>"; };
 		BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		BDCCFE4C2AB5CD55C61E4CF7203DEAE6 /* MMDrawerController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MMDrawerController.m; path = MMDrawerController/MMDrawerController.m; sourceTree = "<group>"; };
+		BD94D4D4BA44FC4F0B6D7E65F290FCF2 /* MMProgressHUD+Class.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "MMProgressHUD+Class.m"; path = "Source/MMProgressHUD+Class.m"; sourceTree = "<group>"; };
 		BFF1F6048A589A3579CBE945BB75A5B0 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4C3F24BE5FCA8583EDBEA94ED6A81BF /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CBC0F7C552B739C909B650A0F42F7F38 /* Pods-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-resources.sh"; sourceTree = "<group>"; };
+		CBC7B53395F9C79306F91FDC3DA99580 /* MMDrawerController-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "MMDrawerController-Private.xcconfig"; sourceTree = "<group>"; };
+		CD6BA12BB000A47B357D5C95E714288A /* Alamofire-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Alamofire-Private.xcconfig"; sourceTree = "<group>"; };
+		CE0333F0B16104C1A20873A7B00580E6 /* MMDrawerVisualState.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MMDrawerVisualState.m; path = MMDrawerController/MMDrawerVisualState.m; sourceTree = "<group>"; };
 		D0405803033A2A777B8E4DFA0C1800ED /* Pods-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-acknowledgements.markdown"; sourceTree = "<group>"; };
+		D09B95CEC7A33BD40FD28C78E923A60B /* MMProgressHUD-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MMProgressHUD-umbrella.h"; sourceTree = "<group>"; };
+		D28163543D3E14AF1A445DB21492A128 /* MMLinearProgressView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MMLinearProgressView.h; path = Source/MMLinearProgressView.h; sourceTree = "<group>"; };
 		D3C9F4DFA8F55E82EAA88D3E5505B0C7 /* MGSwipeTableCell.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = MGSwipeTableCell.xcconfig; sourceTree = "<group>"; };
-		D41543090C67210C4A886FE688579F74 /* MMProgressHUD-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "MMProgressHUD-dummy.m"; sourceTree = "<group>"; };
-		D6665387D572ADA987C7C2BAAE6BC311 /* MMProgressHUDOverlayView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MMProgressHUDOverlayView.h; path = Source/MMProgressHUDOverlayView.h; sourceTree = "<group>"; };
-		D7852F39F5A0429DD70746D8BC4455E4 /* MGSwipeButton.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MGSwipeButton.m; path = MGSwipeTableCell/MGSwipeButton.m; sourceTree = "<group>"; };
-		D78A9932CD0846E02F09B2BBE8303444 /* MMLinearProgressView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MMLinearProgressView.m; path = Source/MMLinearProgressView.m; sourceTree = "<group>"; };
-		D8EEF4344E585E805797B0D30309EEE9 /* MGSwipeTableCell-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "MGSwipeTableCell-Private.xcconfig"; sourceTree = "<group>"; };
-		D9832E79FE0A45C1E429C6124EDD25ED /* MMVectorImage.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MMVectorImage.h; path = Source/MMVectorImage.h; sourceTree = "<group>"; };
-		DBF28D731D364BB83DE8469C25798CDD /* MMProgressHUD-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MMProgressHUD-umbrella.h"; sourceTree = "<group>"; };
+		D863EBB39E83443F970449D69712C78F /* MMProgressHUD+Animations.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "MMProgressHUD+Animations.m"; path = "Source/MMProgressHUD+Animations.m"; sourceTree = "<group>"; };
+		DAA2E841CE618A4EBA1CB68370CC731F /* MMProgressHUDOverlayView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MMProgressHUDOverlayView.h; path = Source/MMProgressHUDOverlayView.h; sourceTree = "<group>"; };
+		DD1A9F1B5DEAB21D63327AC7A2C54CD2 /* MMDrawerController-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MMDrawerController-umbrella.h"; sourceTree = "<group>"; };
+		DF5FFC2B10F1CABE72EC5DA18EB20BDF /* ParameterEncoding.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ParameterEncoding.swift; path = Source/ParameterEncoding.swift; sourceTree = "<group>"; };
 		E1B36DB4D8228C72D9F60C74320AAC88 /* MMDrawerController.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = MMDrawerController.xcconfig; sourceTree = "<group>"; };
-		E1CB05166118623F0BCC615EFF6C10AD /* MMProgressHUDWindow.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MMProgressHUDWindow.m; path = Source/MMProgressHUDWindow.m; sourceTree = "<group>"; };
 		E4EC4B75BAE91861986227C1BE7B931E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		E6B5271038603C5803FDCF43A30892F7 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E7F21354943D9F42A70697D5A5EF72E9 /* Pods-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-frameworks.sh"; sourceTree = "<group>"; };
 		E8446514FBAD26C0E18F24A5715AEF67 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E8C1A862355F7E0CA3428B44F5BAFBED /* MMProgressHUD.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MMProgressHUD.m; path = Source/MMProgressHUD.m; sourceTree = "<group>"; };
 		EAD651AA5EBF5A09D98CE572021AB6F4 /* MMProgressHUD-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MMProgressHUD-prefix.pch"; sourceTree = "<group>"; };
 		EB4CB50B42FA0112BD3CB968CB68AC93 /* SwiftyJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftyJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		EC4500C9BB4C99C3C05689A4A9E28505 /* MMProgressHUD+Animations.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "MMProgressHUD+Animations.m"; path = "Source/MMProgressHUD+Animations.m"; sourceTree = "<group>"; };
-		EC60FE8F45A793552B4991AEFCDD8BA1 /* MMProgressHUD+Animations.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "MMProgressHUD+Animations.h"; path = "Source/MMProgressHUD+Animations.h"; sourceTree = "<group>"; };
-		F139AAF869CC3612A5A294C298850F1B /* Validation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Validation.swift; path = Source/Validation.swift; sourceTree = "<group>"; };
-		F18B4D9E037619799E56127E28E46D96 /* MMRadialProgressView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MMRadialProgressView.m; path = Source/MMRadialProgressView.m; sourceTree = "<group>"; };
 		F2DBDEA5F85E50DA5E11F9B88D1B85E2 /* Alamofire-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alamofire-prefix.pch"; sourceTree = "<group>"; };
+		F33CB20BC072038A8946594FC1B42E77 /* MMProgressHUD.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MMProgressHUD.h; path = Source/MMProgressHUD.h; sourceTree = "<group>"; };
+		F4CE0584156ED39DE66657EDA4448587 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
 		F5DC8D91A7891D9C1D9D2D9807E21299 /* MMDrawerController.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = MMDrawerController.modulemap; sourceTree = "<group>"; };
-		F777AAB5A9EE71F53143409103FCF5A2 /* ParameterEncoding.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ParameterEncoding.swift; path = Source/ParameterEncoding.swift; sourceTree = "<group>"; };
+		FB0817F1F5C5272DCEF72E776DF46D0E /* MGSwipeTableCell-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MGSwipeTableCell-umbrella.h"; sourceTree = "<group>"; };
+		FD31648B05E76BBD61EB83543B730263 /* MMProgressHUDViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MMProgressHUDViewController.h; path = Source/MMProgressHUDViewController.h; sourceTree = "<group>"; };
+		FF0948F766D538878A39E3BA4BBDBC52 /* MMRadialProgressView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MMRadialProgressView.m; path = Source/MMRadialProgressView.m; sourceTree = "<group>"; };
 		FF79CD1D354BF002FE8A31E4F9064481 /* MMProgressHUD.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = MMProgressHUD.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -225,30 +225,30 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2D6A2C130B10D0540E90BAC5F05E365C /* Frameworks */ = {
+		406AE08A6C53C1FB899A5B187DD9B6D5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DECD10E0FF0E3C2502CE04F70BFD1D3C /* Foundation.framework in Frameworks */,
+				AB88A66AEFF2973623B88028BA18C7A7 /* Foundation.framework in Frameworks */,
+				2AC77FB510059C2ED7CF2915914F284F /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8273945B1D4C33A1E399B49D083D26AB /* Frameworks */ = {
+		7D533284FB55BF90650816958305EC1B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D34F01D2381279C100167FC47B14C8B /* CoreGraphics.framework in Frameworks */,
-				A88FFF2E6D84D42326C174E878CD164D /* Foundation.framework in Frameworks */,
-				60F7E974E6A62759903D45343A5D9CA2 /* QuartzCore.framework in Frameworks */,
+				3A4EE97F76440781DC4D2C866834FB13 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B7B0595A2FE86DCE7D53476344B54EF6 /* Frameworks */ = {
+		A91C2DE402A384DEB9F646DE0D0792E0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				880B73DEDF3502C3F2FEF6036BACAD95 /* Foundation.framework in Frameworks */,
-				4CD974529C5D022C03054EE8FFB3E381 /* QuartzCore.framework in Frameworks */,
+				E38CC06AD05B57155CC4DD9C4687C3E1 /* CoreGraphics.framework in Frameworks */,
+				7335036251C96059BA5D0B7E9647921F /* Foundation.framework in Frameworks */,
+				05988D9B434F2ED9CFF844A17916ECCF /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -260,11 +260,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E499BE541D1D84CE5C1877A3DCDAAD8F /* Frameworks */ = {
+		EB3F0ECD257AB29F4A4ADEB87878A0CB /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D808B53D206DA37164C1AEFFC3874160 /* Foundation.framework in Frameworks */,
+				AA8EA711761FBFD2274B6B3661575BC6 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,10 +277,10 @@
 				C4C3F24BE5FCA8583EDBEA94ED6A81BF /* Info.plist */,
 				99F6A61B609F5F5B50A783B4A6A4039A /* MMProgressHUD.modulemap */,
 				FF79CD1D354BF002FE8A31E4F9064481 /* MMProgressHUD.xcconfig */,
-				B133D6CF94387E404898CAB156F1F2F4 /* MMProgressHUD-Private.xcconfig */,
-				D41543090C67210C4A886FE688579F74 /* MMProgressHUD-dummy.m */,
+				982F6DA7013A3CDAF0E12AB182DFA250 /* MMProgressHUD-Private.xcconfig */,
+				B445CC3B15C306258EDD50BCEDE768CF /* MMProgressHUD-dummy.m */,
 				EAD651AA5EBF5A09D98CE572021AB6F4 /* MMProgressHUD-prefix.pch */,
-				DBF28D731D364BB83DE8469C25798CDD /* MMProgressHUD-umbrella.h */,
+				D09B95CEC7A33BD40FD28C78E923A60B /* MMProgressHUD-umbrella.h */,
 			);
 			name = "Support Files";
 			path = "../Target Support Files/MMProgressHUD";
@@ -309,8 +309,8 @@
 		2BAC3E8868947F2A1827AF1551FE1382 /* MMDrawerBarButtonItem */ = {
 			isa = PBXGroup;
 			children = (
-				A08EDB22A292B8835538E073276E8F83 /* MMDrawerBarButtonItem.h */,
-				A102D368CE5C1A5962E1F281BAB7D067 /* MMDrawerBarButtonItem.m */,
+				A00379447D48223D4893AE2A4972E124 /* MMDrawerBarButtonItem.h */,
+				5876E720144957FA278FAFF4F79D81B1 /* MMDrawerBarButtonItem.m */,
 			);
 			name = MMDrawerBarButtonItem;
 			sourceTree = "<group>";
@@ -318,10 +318,10 @@
 		2F8F6229A9B360AE1E60CB0A39F63DCE /* MGSwipeTableCell */ = {
 			isa = PBXGroup;
 			children = (
-				AF1DAC34648E3FE4FC08BD6C2F9C6471 /* MGSwipeButton.h */,
-				D7852F39F5A0429DD70746D8BC4455E4 /* MGSwipeButton.m */,
-				AB3A36491A6E150044AB6C3F0C37D808 /* MGSwipeTableCell.h */,
-				27FFA8BB748EC9808B37E06D31B4AAAC /* MGSwipeTableCell.m */,
+				58DF57894CFF1FD7C7200A01082558F6 /* MGSwipeButton.h */,
+				491025D866EEF283C0C4752F316D0E58 /* MGSwipeButton.m */,
+				2884C521F051C486CEFB0E2F3AB11C74 /* MGSwipeTableCell.h */,
+				381CD6291D5E32544516E97644CF3337 /* MGSwipeTableCell.m */,
 				513B077EFD609A1579540BB0B1437536 /* Support Files */,
 			);
 			path = MGSwipeTableCell;
@@ -332,10 +332,10 @@
 			children = (
 				15C399542C84391B90FE247E06BA3FC6 /* Alamofire.modulemap */,
 				33862F4C10064314CFBA1A923E2D87B6 /* Alamofire.xcconfig */,
-				3CDB11CA91162B7F46B4763605342E74 /* Alamofire-Private.xcconfig */,
-				48B6D1A37554603901635DDEA80BE9D7 /* Alamofire-dummy.m */,
+				CD6BA12BB000A47B357D5C95E714288A /* Alamofire-Private.xcconfig */,
+				702505643F6B89C6723DD4B82E50C23E /* Alamofire-dummy.m */,
 				F2DBDEA5F85E50DA5E11F9B88D1B85E2 /* Alamofire-prefix.pch */,
-				661CA22996333C80D056C2625B976E75 /* Alamofire-umbrella.h */,
+				94CFB7C985AFD13DB60EFD5ECE34D6FB /* Alamofire-umbrella.h */,
 				E6B5271038603C5803FDCF43A30892F7 /* Info.plist */,
 			);
 			name = "Support Files";
@@ -345,11 +345,11 @@
 		46C04A20FAC0A047875666081CD25474 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				6AFB187CDBA9EF7DFFAC6AF3C7C3BBFF /* MMDrawerController.h */,
-				BDCCFE4C2AB5CD55C61E4CF7203DEAE6 /* MMDrawerController.m */,
-				0B5EF9D8E51B56A1EC7864634D513ED8 /* MMDrawerController+Subclass.h */,
-				AEF47A2620A2890D4A25A9728B24EA0B /* UIViewController+MMDrawerController.h */,
-				1EB90DD76F863422B3FE48662510B7B4 /* UIViewController+MMDrawerController.m */,
+				69F6B170D3B7C7B124360FAB201F1E8D /* MMDrawerController.h */,
+				4243BCBB019D30F73FDCA53A8C4FEC51 /* MMDrawerController.m */,
+				9A229D7830EA794E1E157FE1A9EA7645 /* MMDrawerController+Subclass.h */,
+				B183A5B6073B094A282817E4F11CD606 /* UIViewController+MMDrawerController.h */,
+				952CA414670BF7A22DFFFE9349778171 /* UIViewController+MMDrawerController.m */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -360,10 +360,10 @@
 				A6BC89130EC1837482AEE2A8984C113A /* Info.plist */,
 				5A1FE05067526093C0A5D2D1927BF45D /* MGSwipeTableCell.modulemap */,
 				D3C9F4DFA8F55E82EAA88D3E5505B0C7 /* MGSwipeTableCell.xcconfig */,
-				D8EEF4344E585E805797B0D30309EEE9 /* MGSwipeTableCell-Private.xcconfig */,
-				80902F2D9AC6CE2C8E61B28B24EA7F32 /* MGSwipeTableCell-dummy.m */,
+				5F6197B0E3BE1A725A9EE65D151438B9 /* MGSwipeTableCell-Private.xcconfig */,
+				95190CC42E68DEB5E91893B826E9275B /* MGSwipeTableCell-dummy.m */,
 				05DCA559C7C4B987DFCF6D2F6140F66A /* MGSwipeTableCell-prefix.pch */,
-				0657D71C65DD2F8B7C9627B2DB77A5E6 /* MGSwipeTableCell-umbrella.h */,
+				FB0817F1F5C5272DCEF72E776DF46D0E /* MGSwipeTableCell-umbrella.h */,
 			);
 			name = "Support Files";
 			path = "../Target Support Files/MGSwipeTableCell";
@@ -372,9 +372,9 @@
 		5764799A2697346A2BA53BE1694037F5 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				383B04D6346D9E1836A31B2E067A821A /* CoreGraphics.framework */,
+				69015752CE545DA1EAEC598B69DDA742 /* CoreGraphics.framework */,
 				E4EC4B75BAE91861986227C1BE7B931E /* Foundation.framework */,
-				98948424E1078235ECAE75DB0A1C4B20 /* QuartzCore.framework */,
+				F4CE0584156ED39DE66657EDA4448587 /* QuartzCore.framework */,
 			);
 			name = iOS;
 			sourceTree = "<group>";
@@ -385,10 +385,10 @@
 				5A1166023571EC5B9F0C280448D844AA /* Info.plist */,
 				F5DC8D91A7891D9C1D9D2D9807E21299 /* MMDrawerController.modulemap */,
 				E1B36DB4D8228C72D9F60C74320AAC88 /* MMDrawerController.xcconfig */,
-				878974AC4758283F83384995C63BEBA6 /* MMDrawerController-Private.xcconfig */,
-				46694F3F21D0CCBE16B69A642EA7A246 /* MMDrawerController-dummy.m */,
+				CBC7B53395F9C79306F91FDC3DA99580 /* MMDrawerController-Private.xcconfig */,
+				0F68F04A4623A993C5210D12FA5C0AFC /* MMDrawerController-dummy.m */,
 				2CAB5375775E2F45E5414055832A34D8 /* MMDrawerController-prefix.pch */,
-				2549F97218192493CE27D465C4A457FB /* MMDrawerController-umbrella.h */,
+				DD1A9F1B5DEAB21D63327AC7A2C54CD2 /* MMDrawerController-umbrella.h */,
 			);
 			name = "Support Files";
 			path = "../Target Support Files/MMDrawerController";
@@ -447,16 +447,16 @@
 		9EBD4F0C341D758FBDBECB105C0FD98F /* Alamofire */ = {
 			isa = PBXGroup;
 			children = (
-				09EA0DDAC7762747DED5A96EA96CC839 /* Alamofire.swift */,
-				62F055C9B0333822CB584EDC7608A066 /* Download.swift */,
-				385FEBFCC1D35EDB27265536B84ED96A /* Manager.swift */,
-				6FC0BAFE293FDB3F7DCD9F9BDF92F0FE /* MultipartFormData.swift */,
-				F777AAB5A9EE71F53143409103FCF5A2 /* ParameterEncoding.swift */,
-				946E3C489F36148D23756CCA6ACBBA41 /* Request.swift */,
-				2A2D7DF8F3593E1F1857D218A012EA26 /* ResponseSerialization.swift */,
-				0D24C9C5B99EB4CDC3C3604A52DCD948 /* ServerTrustPolicy.swift */,
-				7486B7C6A7A8C39FBFD2D58E900A45B5 /* Upload.swift */,
-				F139AAF869CC3612A5A294C298850F1B /* Validation.swift */,
+				99726023754393D8E497CA205981994B /* Alamofire.swift */,
+				4BF9976E93E502F68FB283E753498047 /* Download.swift */,
+				9BF92DBEE69B5B44C4D321C9854C3939 /* Manager.swift */,
+				61775033C8B911B4A61A5FF6A5614481 /* MultipartFormData.swift */,
+				DF5FFC2B10F1CABE72EC5DA18EB20BDF /* ParameterEncoding.swift */,
+				B293C3671C4F9CFFD50510B0A750E07F /* Request.swift */,
+				71D556029C2B03FAB147716C4F896E3F /* ResponseSerialization.swift */,
+				843620DC624958A2899E9A79C4A41EC0 /* ServerTrustPolicy.swift */,
+				6E5C58C3387CCBEF180030A94193A425 /* Upload.swift */,
+				199B5D141463754892E5783820B69023 /* Validation.swift */,
 				4071AB9691F37274FE1FAD00D21018EA /* Support Files */,
 			);
 			path = Alamofire;
@@ -488,27 +488,27 @@
 		C315E6C041831A881AB89C5A9C133C47 /* MMProgressHUD */ = {
 			isa = PBXGroup;
 			children = (
-				A016E40D594A8069DC18E2FA7064AAC5 /* MMHud.h */,
-				495B51BA1581CD5DF04753A068E07E34 /* MMHud.m */,
-				11421DE877EA85C594B5DE1F9FB4434D /* MMLinearProgressView.h */,
-				D78A9932CD0846E02F09B2BBE8303444 /* MMLinearProgressView.m */,
-				5272A19B9522A8D88C6B6938F64850E0 /* MMProgressHUD.h */,
-				E8C1A862355F7E0CA3428B44F5BAFBED /* MMProgressHUD.m */,
-				EC60FE8F45A793552B4991AEFCDD8BA1 /* MMProgressHUD+Animations.h */,
-				EC4500C9BB4C99C3C05689A4A9E28505 /* MMProgressHUD+Animations.m */,
-				465D9AD834C5A51BDB8CD78C426BA0C3 /* MMProgressHUD+Class.m */,
-				84108C23E4DF7409519598FF2F41CD2C /* MMProgressHUDCommon.h */,
-				D6665387D572ADA987C7C2BAAE6BC311 /* MMProgressHUDOverlayView.h */,
-				882F0724CFF4509C872A3126ED78A2A6 /* MMProgressHUDOverlayView.m */,
-				997CA742AA5C2A9662931206B8AEF4F5 /* MMProgressHUDViewController.h */,
-				2467B67D32CC11D893DFEBB0A52EBFBF /* MMProgressHUDViewController.m */,
-				70BDD6CB8545DC3C647E9149E05D3498 /* MMProgressHUDWindow.h */,
-				E1CB05166118623F0BCC615EFF6C10AD /* MMProgressHUDWindow.m */,
-				30CC2F77F22FC9BA5C215AF5EBD1ADC3 /* MMProgressView-Protocol.h */,
-				0707072078154F198E9A9BBD9E43C688 /* MMRadialProgressView.h */,
-				F18B4D9E037619799E56127E28E46D96 /* MMRadialProgressView.m */,
-				D9832E79FE0A45C1E429C6124EDD25ED /* MMVectorImage.h */,
-				97586EA5DDC429D28C7DF9D48D381C6C /* MMVectorImage.m */,
+				AF319C65A1DA4953157AFFEFD43BFCA4 /* MMHud.h */,
+				882EDF2B7A2056BB85D2AE7CF46B9F98 /* MMHud.m */,
+				D28163543D3E14AF1A445DB21492A128 /* MMLinearProgressView.h */,
+				3C376702C8833FDE54F038C615074AEC /* MMLinearProgressView.m */,
+				F33CB20BC072038A8946594FC1B42E77 /* MMProgressHUD.h */,
+				550ECC1D71456DD2CD48F4B710C103FE /* MMProgressHUD.m */,
+				9B0F3C4CE205796155ECA6151C1EDC5E /* MMProgressHUD+Animations.h */,
+				D863EBB39E83443F970449D69712C78F /* MMProgressHUD+Animations.m */,
+				BD94D4D4BA44FC4F0B6D7E65F290FCF2 /* MMProgressHUD+Class.m */,
+				2AC63308E406FB6D16D74619E4A174C1 /* MMProgressHUDCommon.h */,
+				DAA2E841CE618A4EBA1CB68370CC731F /* MMProgressHUDOverlayView.h */,
+				9B236422AAB5ACC776491A7FA467C53B /* MMProgressHUDOverlayView.m */,
+				FD31648B05E76BBD61EB83543B730263 /* MMProgressHUDViewController.h */,
+				827E17A8E53E3F06DA17CA1DDB6D66F8 /* MMProgressHUDViewController.m */,
+				79C7252C256C36FF01E0D0B5272773A7 /* MMProgressHUDWindow.h */,
+				2A28F6F55710F54A3D4AC518BCE993AF /* MMProgressHUDWindow.m */,
+				97C3940198EA07B2915C7FBDC372E164 /* MMProgressView-Protocol.h */,
+				80124E9DB13945E9064312E4FBD18E3E /* MMRadialProgressView.h */,
+				FF0948F766D538878A39E3BA4BBDBC52 /* MMRadialProgressView.m */,
+				A812ABA8E7A7E1D4038CEC03F54FF6DF /* MMVectorImage.h */,
+				48613285AED645ABC1F320C4F8612E56 /* MMVectorImage.m */,
 				07A998ADCCA17AC9950AC02662E11D09 /* Support Files */,
 			);
 			path = MMProgressHUD;
@@ -517,10 +517,10 @@
 		CCA510CFBEA2D207524CDA0D73C3B561 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				22D9F1046070B40558B78DF8326212C4 /* Alamofire.framework */,
-				7DE1109DFE79BA9E6DCF78162C8525E4 /* MGSwipeTableCell.framework */,
-				A23664A19FE582B8647B2E64F31C8511 /* MMDrawerController.framework */,
-				47CF34E35FBDFA0966B1774088C0D073 /* MMProgressHUD.framework */,
+				2DA774A20D0B71721DFE75583DE59503 /* Alamofire.framework */,
+				7502E79118B6F6C9114CDDDF48E365CB /* MGSwipeTableCell.framework */,
+				7BE1DF15276125D75E9AACCAFA3021C5 /* MMDrawerController.framework */,
+				923D26F14CDDC14D1E5621D66CEDD880 /* MMProgressHUD.framework */,
 				BFF1F6048A589A3579CBE945BB75A5B0 /* Pods.framework */,
 				EB4CB50B42FA0112BD3CB968CB68AC93 /* SwiftyJSON.framework */,
 			);
@@ -537,8 +537,8 @@
 		FF51AD8607F70BF1AABDE71B7354312B /* MMDrawerVisualStates */ = {
 			isa = PBXGroup;
 			children = (
-				25CF9205F0CFB5EDA9D592CD010E4834 /* MMDrawerVisualState.h */,
-				2B2CCA833B2D8713FFF702B61ECE5AB3 /* MMDrawerVisualState.m */,
+				7DF1D406D32F4897C60B6983AE1FFFA8 /* MMDrawerVisualState.h */,
+				CE0333F0B16104C1A20873A7B00580E6 /* MMDrawerVisualState.m */,
 			);
 			name = MMDrawerVisualStates;
 			sourceTree = "<group>";
@@ -546,24 +546,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		0E872FA02B77795FC1B42B2B2EE40F1A /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				556A75792F95751311CC8BE245DC0CC4 /* MGSwipeButton.h in Headers */,
-				C017FAE19A2BB624FDE9E08001888E27 /* MGSwipeTableCell-umbrella.h in Headers */,
-				062A347E9002BC30120103139B05A39B /* MGSwipeTableCell.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		48BD2D4173029DF255D65364330FE3A8 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1189E0E89468E2CBD4EE974FDDDAA23F /* Alamofire-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		4CF421F0761BB5E234B9F719B1AFE76A /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -572,35 +554,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		79CB6F3409DBE6D5B64EC64DB30270E3 /* Headers */ = {
+		7016FEF341C91E07A454826691309330 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B67DFCFEF2749B5A56E501DAE29C2C13 /* MMDrawerBarButtonItem.h in Headers */,
-				C826D3D195B3FE60AE206D22BAF5971E /* MMDrawerController+Subclass.h in Headers */,
-				B3985AFF873B3F668475E6BC40F6A9C8 /* MMDrawerController-umbrella.h in Headers */,
-				4D1D72B96DDB1258C347EB91B4F32260 /* MMDrawerController.h in Headers */,
-				0FF57A1989215B3DFE6904F4BD263A12 /* MMDrawerVisualState.h in Headers */,
-				2A0638B848837542B62BA4A698900688 /* UIViewController+MMDrawerController.h in Headers */,
+				8400BD2A47CC8828B7E2FD2070E8EB72 /* Alamofire-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		98251AB574FEC1DF29079D3925CE2ADD /* Headers */ = {
+		A4DD6A84C9C3292BBD8179A3A520C4DF /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A4E78F9432AC93D063F09DEC88AE04D9 /* MMHud.h in Headers */,
-				D541BDDC01F3FA807E02029736D68F3D /* MMLinearProgressView.h in Headers */,
-				212F21ADAE83FD68CDDB9C93A8719EE4 /* MMProgressHUD+Animations.h in Headers */,
-				D47CEEE13F37A49C18F3EC99C580DA6A /* MMProgressHUD-umbrella.h in Headers */,
-				D66BB4ADA7254BA444F09487E9B463E8 /* MMProgressHUD.h in Headers */,
-				6AD3E68B630651BECA06334BAD5318D8 /* MMProgressHUDCommon.h in Headers */,
-				C36B24B43D27C9C1718906F412EA3C87 /* MMProgressHUDOverlayView.h in Headers */,
-				1364C6311F4FEC10061F5CE73405E0E1 /* MMProgressHUDViewController.h in Headers */,
-				7FD8627705ED6905ED78EE0673B7B5AB /* MMProgressHUDWindow.h in Headers */,
-				60DF1ACFF55984BE90D8C532673B7A86 /* MMProgressView-Protocol.h in Headers */,
-				4995EC95AF3CB71036E4CDDB777AC2CA /* MMRadialProgressView.h in Headers */,
-				1C437264E47A7F6A521DDFDF9B420C09 /* MMVectorImage.h in Headers */,
+				D042639D083BCCC86141227CAA04133E /* MMDrawerBarButtonItem.h in Headers */,
+				02383D5165197C04441B2048D1FBDBA4 /* MMDrawerController+Subclass.h in Headers */,
+				BF068CDF86E9C65647F27141C6A53B1F /* MMDrawerController-umbrella.h in Headers */,
+				3D1892C672A22C541D0E214229EE318B /* MMDrawerController.h in Headers */,
+				AC3D76A00CE60B5F34F4C9E611F1965F /* MMDrawerVisualState.h in Headers */,
+				E66EAB5AB97A7A7041E1B66C554311A1 /* UIViewController+MMDrawerController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -612,50 +583,45 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C1682ADB4EF4B01FB8F7A747D2CBC7DF /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9C83C2302B9EAE65F56E9193F7EF12A9 /* MGSwipeButton.h in Headers */,
+				2898EAECB68F3CE5B5AF08A012B84D2D /* MGSwipeTableCell-umbrella.h in Headers */,
+				EA435178E5169BCFFB9EDFFED73E406A /* MGSwipeTableCell.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EB5458F28D8FDEEAD163F953E33C6302 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D95654FEDBB6092C75612796AD6E64C9 /* MMHud.h in Headers */,
+				63288B8C2FED3A5BB2E4FF9899C1FEAF /* MMLinearProgressView.h in Headers */,
+				1B125E1BE0AC8A906A61FA673F5567F1 /* MMProgressHUD+Animations.h in Headers */,
+				9F0DD6BEF7A16A09A5659AC7D57ED9FB /* MMProgressHUD-umbrella.h in Headers */,
+				D04E930E8F914F56A3D26F54BBFAC2E7 /* MMProgressHUD.h in Headers */,
+				CC05EFB2A4CB88157C058602B30D5D73 /* MMProgressHUDCommon.h in Headers */,
+				6380C8946DF4140A5E0EF43187D4697B /* MMProgressHUDOverlayView.h in Headers */,
+				DF40CA90047F9F58EFC4FB31422A2B65 /* MMProgressHUDViewController.h in Headers */,
+				B8414D44A99092BB88FF7A7A3A535A48 /* MMProgressHUDWindow.h in Headers */,
+				CEEE0017B8518FBA9FE11815ABC6E6A6 /* MMProgressView-Protocol.h in Headers */,
+				36116470D7FA3F8F55DC2AF5720493B2 /* MMRadialProgressView.h in Headers */,
+				3BD9E251C516E799BBC227148C451C50 /* MMVectorImage.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		02A0AD831D81372768E1D05096887F91 /* MMProgressHUD */ = {
+		5AF58D1EBC19E9680D35AEC8CBDEAC1D /* Alamofire */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 21D0C93A903CE388164A7A4BA97AD543 /* Build configuration list for PBXNativeTarget "MMProgressHUD" */;
+			buildConfigurationList = 13AA7F94DF8FB9EE3BFF9E6C3ECD87DD /* Build configuration list for PBXNativeTarget "Alamofire" */;
 			buildPhases = (
-				2462064C9C61E43B663BF650D3E5EBD3 /* Sources */,
-				8273945B1D4C33A1E399B49D083D26AB /* Frameworks */,
-				98251AB574FEC1DF29079D3925CE2ADD /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = MMProgressHUD;
-			productName = MMProgressHUD;
-			productReference = 47CF34E35FBDFA0966B1774088C0D073 /* MMProgressHUD.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		289C3C28167E7E9D81C487118CBD7CEC /* MGSwipeTableCell */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = F9BEA06C04184537C41CDE438952090E /* Build configuration list for PBXNativeTarget "MGSwipeTableCell" */;
-			buildPhases = (
-				93875681F50D223788B79E0CBAF8D398 /* Sources */,
-				2D6A2C130B10D0540E90BAC5F05E365C /* Frameworks */,
-				0E872FA02B77795FC1B42B2B2EE40F1A /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = MGSwipeTableCell;
-			productName = MGSwipeTableCell;
-			productReference = 7DE1109DFE79BA9E6DCF78162C8525E4 /* MGSwipeTableCell.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		5A48572371A97C86DF6FB8772F246165 /* Alamofire */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C1173329FFFB77A6819145A9BFD9AAFF /* Build configuration list for PBXNativeTarget "Alamofire" */;
-			buildPhases = (
-				9F47CD3A255323B9CBCD02A359E4027A /* Sources */,
-				E499BE541D1D84CE5C1877A3DCDAAD8F /* Frameworks */,
-				48BD2D4173029DF255D65364330FE3A8 /* Headers */,
+				03966B64B478DA23810B20C14FEB0D20 /* Sources */,
+				EB3F0ECD257AB29F4A4ADEB87878A0CB /* Frameworks */,
+				7016FEF341C91E07A454826691309330 /* Headers */,
 			);
 			buildRules = (
 			);
@@ -663,7 +629,24 @@
 			);
 			name = Alamofire;
 			productName = Alamofire;
-			productReference = 22D9F1046070B40558B78DF8326212C4 /* Alamofire.framework */;
+			productReference = 2DA774A20D0B71721DFE75583DE59503 /* Alamofire.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		68B8EF0003BEDB5DFDF48AD3545360A4 /* MMProgressHUD */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 73B0F472F8A32B676BF74292249B5E43 /* Build configuration list for PBXNativeTarget "MMProgressHUD" */;
+			buildPhases = (
+				2F3C32F00AEE45BFF1095E021E528C22 /* Sources */,
+				A91C2DE402A384DEB9F646DE0D0792E0 /* Frameworks */,
+				EB5458F28D8FDEEAD163F953E33C6302 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MMProgressHUD;
+			productName = MMProgressHUD;
+			productReference = 923D26F14CDDC14D1E5621D66CEDD880 /* MMProgressHUD.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		960DC2C33C633AE9F85320FBF85640B9 /* Pods */ = {
@@ -677,15 +660,32 @@
 			buildRules = (
 			);
 			dependencies = (
-				F2A5E316E0AB3A38BE428D0B24E97B10 /* PBXTargetDependency */,
-				3927C44C664A6D034E68AC8FC660300E /* PBXTargetDependency */,
-				122A09039516A82956CC9FE609B612C5 /* PBXTargetDependency */,
-				0E128F9BD5E1377A1C9630892932B549 /* PBXTargetDependency */,
-				8EBBAD8F021E10A48BE1EA92604DB4A3 /* PBXTargetDependency */,
+				71DC93D884440D7C673F5D0FE54FA69A /* PBXTargetDependency */,
+				01847EFA43977B5BC0F538D9A0114FA6 /* PBXTargetDependency */,
+				A454868A136071AE099D96C338F6B282 /* PBXTargetDependency */,
+				E4CAB477886A4D16C5543CE55B1E6A8F /* PBXTargetDependency */,
+				DDB84814C08091164AA1DF2F5930B1D7 /* PBXTargetDependency */,
 			);
 			name = Pods;
 			productName = Pods;
 			productReference = BFF1F6048A589A3579CBE945BB75A5B0 /* Pods.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		B4DC9B6F0197FF1545BFA32B666F4D3D /* MMDrawerController */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F2DD232BADA5A6C30E2FED965084DD19 /* Build configuration list for PBXNativeTarget "MMDrawerController" */;
+			buildPhases = (
+				6D1D75E9E23D705E7190BB73470CE6C4 /* Sources */,
+				406AE08A6C53C1FB899A5B187DD9B6D5 /* Frameworks */,
+				A4DD6A84C9C3292BBD8179A3A520C4DF /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MMDrawerController;
+			productName = MMDrawerController;
+			productReference = 7BE1DF15276125D75E9AACCAFA3021C5 /* MMDrawerController.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		B9A04D3C9B208813656510FDA8ADAE02 /* SwiftyJSON */ = {
@@ -705,21 +705,21 @@
 			productReference = EB4CB50B42FA0112BD3CB968CB68AC93 /* SwiftyJSON.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		BFAF832675DC3F46CC1EF016E57219B0 /* MMDrawerController */ = {
+		F1BE2022EE74C520E600DFF4D4BA897F /* MGSwipeTableCell */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EA644015AB154EC293C577FA7BA14262 /* Build configuration list for PBXNativeTarget "MMDrawerController" */;
+			buildConfigurationList = 4BE1D0FF0F8BC6563E074071846E4134 /* Build configuration list for PBXNativeTarget "MGSwipeTableCell" */;
 			buildPhases = (
-				81635870E9ADBFF6B3E610BAE7E00F13 /* Sources */,
-				B7B0595A2FE86DCE7D53476344B54EF6 /* Frameworks */,
-				79CB6F3409DBE6D5B64EC64DB30270E3 /* Headers */,
+				9D114685F11590B94ABD0469F7523D02 /* Sources */,
+				7D533284FB55BF90650816958305EC1B /* Frameworks */,
+				C1682ADB4EF4B01FB8F7A747D2CBC7DF /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = MMDrawerController;
-			productName = MMDrawerController;
-			productReference = A23664A19FE582B8647B2E64F31C8511 /* MMDrawerController.framework */;
+			name = MGSwipeTableCell;
+			productName = MGSwipeTableCell;
+			productReference = 7502E79118B6F6C9114CDDDF48E365CB /* MGSwipeTableCell.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -743,10 +743,10 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				5A48572371A97C86DF6FB8772F246165 /* Alamofire */,
-				289C3C28167E7E9D81C487118CBD7CEC /* MGSwipeTableCell */,
-				BFAF832675DC3F46CC1EF016E57219B0 /* MMDrawerController */,
-				02A0AD831D81372768E1D05096887F91 /* MMProgressHUD */,
+				5AF58D1EBC19E9680D35AEC8CBDEAC1D /* Alamofire */,
+				F1BE2022EE74C520E600DFF4D4BA897F /* MGSwipeTableCell */,
+				B4DC9B6F0197FF1545BFA32B666F4D3D /* MMDrawerController */,
+				68B8EF0003BEDB5DFDF48AD3545360A4 /* MMProgressHUD */,
 				960DC2C33C633AE9F85320FBF85640B9 /* Pods */,
 				B9A04D3C9B208813656510FDA8ADAE02 /* SwiftyJSON */,
 			);
@@ -754,6 +754,24 @@
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
+		03966B64B478DA23810B20C14FEB0D20 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CBE21A8707F6B7800FC823ABB39EABF9 /* Alamofire-dummy.m in Sources */,
+				7A1B51634458010B34B795CDC92C676C /* Alamofire.swift in Sources */,
+				D8EBC60C709E40499DF4248565166E00 /* Download.swift in Sources */,
+				FCBE6A496CB243379A9923B451F5DCA6 /* Manager.swift in Sources */,
+				6160B33AF7E58BD5CC20C36D3AE3FF90 /* MultipartFormData.swift in Sources */,
+				72DB130F4F9C8D1397F90ADD16324856 /* ParameterEncoding.swift in Sources */,
+				790AE78F77A1B5060433324274DE1E17 /* Request.swift in Sources */,
+				1CF295337200B8984A29262945B630FF /* ResponseSerialization.swift in Sources */,
+				EEDBB85D76F9587CA58FDCA32D55F7BD /* ServerTrustPolicy.swift in Sources */,
+				F5E73BF270194ABF1C9041C3EBD55142 /* Upload.swift in Sources */,
+				D5992911DF95DFC8383ADD00AEA6126A /* Validation.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		0805A4294F9C45A0107A97B9DBFBCD0D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -762,33 +780,33 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2462064C9C61E43B663BF650D3E5EBD3 /* Sources */ = {
+		2F3C32F00AEE45BFF1095E021E528C22 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4D786C757F4A07480B25682E9228C6CC /* MMHud.m in Sources */,
-				13FEF77D9282E88336367C3695A57FEC /* MMLinearProgressView.m in Sources */,
-				2A9030729CDAA87628DDF1BC51CCB41A /* MMProgressHUD+Animations.m in Sources */,
-				A8404E117CC8C84686F72F1FA614CE07 /* MMProgressHUD+Class.m in Sources */,
-				A0C9B126A8214D69A2A010432E653487 /* MMProgressHUD-dummy.m in Sources */,
-				E3C9243EF9D555A884FBEB18659AC899 /* MMProgressHUD.m in Sources */,
-				04E272782951DE32BBAD831F8BBB1666 /* MMProgressHUDOverlayView.m in Sources */,
-				06630BB2F91524A177A75867AE36E9CE /* MMProgressHUDViewController.m in Sources */,
-				86F6F2062F68B0DEC82173D70790BCEB /* MMProgressHUDWindow.m in Sources */,
-				4D39DB61303D0D70A183CAF8BCB30254 /* MMRadialProgressView.m in Sources */,
-				07E8B3847D4588F026161EE017EEAAD1 /* MMVectorImage.m in Sources */,
+				495EF2A9EAF3C8B8A7B366D92D90A2DB /* MMHud.m in Sources */,
+				A0A7DAE188E4F531A809717342C25F8D /* MMLinearProgressView.m in Sources */,
+				74535925534751902951DC6EC7D453EB /* MMProgressHUD+Animations.m in Sources */,
+				961E664809C533B134D592C0F7F36D50 /* MMProgressHUD+Class.m in Sources */,
+				EA682BE60B04B27615DBDFC4DD184005 /* MMProgressHUD-dummy.m in Sources */,
+				72CB49D7D09DB44426DEC24FAF3F0750 /* MMProgressHUD.m in Sources */,
+				2F3824CE3A77CDCEE11C6A4CF401F29F /* MMProgressHUDOverlayView.m in Sources */,
+				3188F07FE3D188CA62739AAC3E5149D1 /* MMProgressHUDViewController.m in Sources */,
+				D0BB704470166471F9E5CAF5883DF22A /* MMProgressHUDWindow.m in Sources */,
+				9CDDC74A99F938C7CE3E89B090530167 /* MMRadialProgressView.m in Sources */,
+				5B80320FF07728B1C0FCB257FF97A031 /* MMVectorImage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		81635870E9ADBFF6B3E610BAE7E00F13 /* Sources */ = {
+		6D1D75E9E23D705E7190BB73470CE6C4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8B5F6AF83E873D1922481B6DF7BB431 /* MMDrawerBarButtonItem.m in Sources */,
-				E95172E9DECEACBDD83FEB8D9CB90D8A /* MMDrawerController-dummy.m in Sources */,
-				C66C15CB16511500F7075E0DD36BB5FA /* MMDrawerController.m in Sources */,
-				92E54B2C056D5518F55CBBCCE3868E95 /* MMDrawerVisualState.m in Sources */,
-				06BB797DBD712EECB7A71E4AD2702718 /* UIViewController+MMDrawerController.m in Sources */,
+				6A1E548E32B0C695F3101BC6F3517AF5 /* MMDrawerBarButtonItem.m in Sources */,
+				C314CC9495192C162CC9985DF288CE8A /* MMDrawerController-dummy.m in Sources */,
+				44C0D04E60ABC9C26196EE41799B788C /* MMDrawerController.m in Sources */,
+				533B5C605131310F14CF2E352D44DAD6 /* MMDrawerVisualState.m in Sources */,
+				9490309A9AC546CA76472D835E391ADA /* UIViewController+MMDrawerController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -801,66 +819,48 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		93875681F50D223788B79E0CBAF8D398 /* Sources */ = {
+		9D114685F11590B94ABD0469F7523D02 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D1DFC6C30EAA7C85314219FE26EFF22E /* MGSwipeButton.m in Sources */,
-				FA4062773B92AB9758FB8AD25E812F33 /* MGSwipeTableCell-dummy.m in Sources */,
-				B97A9112D1CDD6B45D373300B3A52234 /* MGSwipeTableCell.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9F47CD3A255323B9CBCD02A359E4027A /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F7789A9DD452EE0C6A5947255C96543C /* Alamofire-dummy.m in Sources */,
-				FF63BF18ED1996A77DEEC93D3E9045B1 /* Alamofire.swift in Sources */,
-				B69275592A7C812407202B2A66842E2E /* Download.swift in Sources */,
-				C36C5E58D9E94EA1351193958EB72338 /* Manager.swift in Sources */,
-				499514A1CFA5DF433AC0F582B085E4C5 /* MultipartFormData.swift in Sources */,
-				D0D6695C643988EA80C0D6D11187DEC9 /* ParameterEncoding.swift in Sources */,
-				848D727D98A46259833217FD1E598960 /* Request.swift in Sources */,
-				D892683EF09AC14A05CEA877398A6CBA /* ResponseSerialization.swift in Sources */,
-				B6ED7F661D08871735A833DB9A6693DF /* ServerTrustPolicy.swift in Sources */,
-				7F69489E58360EE67E9F81DF8D5CB500 /* Upload.swift in Sources */,
-				5CC1054EDAF2C75B4987C5636A3AC9F8 /* Validation.swift in Sources */,
+				C9EF0728769F6A1E596EAEA1F7D73EC4 /* MGSwipeButton.m in Sources */,
+				CA00D291713E63FBACC7BB2D34661D3C /* MGSwipeTableCell-dummy.m in Sources */,
+				892CB2790E13A810D719A910522F1851 /* MGSwipeTableCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		0E128F9BD5E1377A1C9630892932B549 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = MMProgressHUD;
-			target = 02A0AD831D81372768E1D05096887F91 /* MMProgressHUD */;
-			targetProxy = 0DC90F579119A5F779CFAF9DB7808003 /* PBXContainerItemProxy */;
-		};
-		122A09039516A82956CC9FE609B612C5 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = MMDrawerController;
-			target = BFAF832675DC3F46CC1EF016E57219B0 /* MMDrawerController */;
-			targetProxy = 04DED74B0907A49BC2C1FED8364DB8DE /* PBXContainerItemProxy */;
-		};
-		3927C44C664A6D034E68AC8FC660300E /* PBXTargetDependency */ = {
+		01847EFA43977B5BC0F538D9A0114FA6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = MGSwipeTableCell;
-			target = 289C3C28167E7E9D81C487118CBD7CEC /* MGSwipeTableCell */;
-			targetProxy = E921D58C1EA1FE6E05C2DBF373EE0338 /* PBXContainerItemProxy */;
+			target = F1BE2022EE74C520E600DFF4D4BA897F /* MGSwipeTableCell */;
+			targetProxy = AD6EC17FED0EC4015A342A4E3F8FA2F4 /* PBXContainerItemProxy */;
 		};
-		8EBBAD8F021E10A48BE1EA92604DB4A3 /* PBXTargetDependency */ = {
+		71DC93D884440D7C673F5D0FE54FA69A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Alamofire;
+			target = 5AF58D1EBC19E9680D35AEC8CBDEAC1D /* Alamofire */;
+			targetProxy = E32AA466907C3C89D183C4BE221FC6D5 /* PBXContainerItemProxy */;
+		};
+		A454868A136071AE099D96C338F6B282 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = MMDrawerController;
+			target = B4DC9B6F0197FF1545BFA32B666F4D3D /* MMDrawerController */;
+			targetProxy = 674C815A7D6079B0E9F5535610C9667E /* PBXContainerItemProxy */;
+		};
+		DDB84814C08091164AA1DF2F5930B1D7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = SwiftyJSON;
 			target = B9A04D3C9B208813656510FDA8ADAE02 /* SwiftyJSON */;
-			targetProxy = F7A53CC41AE82AC47AC3C1237E061952 /* PBXContainerItemProxy */;
+			targetProxy = 7F9C6C842565357CFDA39ECD3C12F9B2 /* PBXContainerItemProxy */;
 		};
-		F2A5E316E0AB3A38BE428D0B24E97B10 /* PBXTargetDependency */ = {
+		E4CAB477886A4D16C5543CE55B1E6A8F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = Alamofire;
-			target = 5A48572371A97C86DF6FB8772F246165 /* Alamofire */;
-			targetProxy = 7C492A1BAC9B65DFF7361924AA291B04 /* PBXContainerItemProxy */;
+			name = MMProgressHUD;
+			target = 68B8EF0003BEDB5DFDF48AD3545360A4 /* MMProgressHUD */;
+			targetProxy = 6CF1CBD909900448AA764F26222D08F7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -892,36 +892,9 @@
 			};
 			name = Release;
 		};
-		2DB0CF617A8F74347C998BFD0EEBDAD8 /* Release */ = {
+		3365E49BE71C6B1CF49B193B61E5A435 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3CDB11CA91162B7F46B4763605342E74 /* Alamofire-Private.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/Alamofire/Alamofire-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Alamofire/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Alamofire/Alamofire.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = Alamofire;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		3851FDD2ADC3AB6444C18D7EAE431ECA /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = D8EEF4344E585E805797B0D30309EEE9 /* MGSwipeTableCell-Private.xcconfig */;
+			baseConfigurationReference = 5F6197B0E3BE1A725A9EE65D151438B9 /* MGSwipeTableCell-Private.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -936,10 +909,38 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/MGSwipeTableCell/MGSwipeTableCell.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = MGSwipeTableCell;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		4276B5CA69F6269C39150F9584B8AF00 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CD6BA12BB000A47B357D5C95E714288A /* Alamofire-Private.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Alamofire/Alamofire-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Alamofire/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Alamofire/Alamofire.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = Alamofire;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -980,9 +981,9 @@
 			};
 			name = Release;
 		};
-		640283E5D62414DB2ADF4E838F189FDA /* Release */ = {
+		58ED319B0C979DDA19957C7E47B0464B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B133D6CF94387E404898CAB156F1F2F4 /* MMProgressHUD-Private.xcconfig */;
+			baseConfigurationReference = 5F6197B0E3BE1A725A9EE65D151438B9 /* MGSwipeTableCell-Private.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -991,25 +992,25 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/MMProgressHUD/MMProgressHUD-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/MMProgressHUD/Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/MGSwipeTableCell/MGSwipeTableCell-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/MGSwipeTableCell/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/MMProgressHUD/MMProgressHUD.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = MMProgressHUD;
+				MODULEMAP_FILE = "Target Support Files/MGSwipeTableCell/MGSwipeTableCell.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = MGSwipeTableCell;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Release;
+			name = Debug;
 		};
-		6B1FB4CC259C75ADBB24B79125BF1ECD /* Release */ = {
+		7FA52E54A53D6055509088B1715752D3 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 878974AC4758283F83384995C63BEBA6 /* MMDrawerController-Private.xcconfig */;
+			baseConfigurationReference = CBC7B53395F9C79306F91FDC3DA99580 /* MMDrawerController-Private.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -1024,7 +1025,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/MMDrawerController/MMDrawerController.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_NAME = MMDrawerController;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -1032,11 +1033,11 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Release;
+			name = Debug;
 		};
-		75A803AD9666F0DA217D98B0325BB306 /* Debug */ = {
+		9C1F78D040993AFD2B8681AC4029D8E4 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B133D6CF94387E404898CAB156F1F2F4 /* MMProgressHUD-Private.xcconfig */;
+			baseConfigurationReference = 982F6DA7013A3CDAF0E12AB182DFA250 /* MMProgressHUD-Private.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -1051,7 +1052,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/MMProgressHUD/MMProgressHUD.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = MMProgressHUD;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -1059,35 +1060,7 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Debug;
-		};
-		879D980904E5548BA0FF793C316FDD8A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3CDB11CA91162B7F46B4763605342E74 /* Alamofire-Private.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/Alamofire/Alamofire-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Alamofire/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Alamofire/Alamofire.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = Alamofire;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
+			name = Release;
 		};
 		A206EEFB93ED9EDF78AD03ADCBBC0728 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -1186,6 +1159,87 @@
 			};
 			name = Debug;
 		};
+		B6FDFEE2CAB3C579D21956489511E75E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CBC7B53395F9C79306F91FDC3DA99580 /* MMDrawerController-Private.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/MMDrawerController/MMDrawerController-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/MMDrawerController/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/MMDrawerController/MMDrawerController.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = MMDrawerController;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		B9EBB463814A70BBDECBED136BED2080 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CD6BA12BB000A47B357D5C95E714288A /* Alamofire-Private.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Alamofire/Alamofire-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Alamofire/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Alamofire/Alamofire.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = Alamofire;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		BDF064AAA51ACEDD2C016E9096282502 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 982F6DA7013A3CDAF0E12AB182DFA250 /* MMProgressHUD-Private.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/MMProgressHUD/MMProgressHUD-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/MMProgressHUD/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/MMProgressHUD/MMProgressHUD.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = MMProgressHUD;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 		E5377DE237F78092302F204F9A0B79CB /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4D3BA03B3589781FD384E830C4B5992E /* Pods.release.xcconfig */;
@@ -1215,68 +1269,14 @@
 			};
 			name = Release;
 		};
-		F801C247F9F9A08C763E228474AFDEB1 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = D8EEF4344E585E805797B0D30309EEE9 /* MGSwipeTableCell-Private.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/MGSwipeTableCell/MGSwipeTableCell-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/MGSwipeTableCell/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/MGSwipeTableCell/MGSwipeTableCell.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = MGSwipeTableCell;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		F83088C8E00E09056FCC0C2944F0EEBE /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 878974AC4758283F83384995C63BEBA6 /* MMDrawerController-Private.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/MMDrawerController/MMDrawerController-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/MMDrawerController/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/MMDrawerController/MMDrawerController.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = MMDrawerController;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		21D0C93A903CE388164A7A4BA97AD543 /* Build configuration list for PBXNativeTarget "MMProgressHUD" */ = {
+		13AA7F94DF8FB9EE3BFF9E6C3ECD87DD /* Build configuration list for PBXNativeTarget "Alamofire" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				75A803AD9666F0DA217D98B0325BB306 /* Debug */,
-				640283E5D62414DB2ADF4E838F189FDA /* Release */,
+				4276B5CA69F6269C39150F9584B8AF00 /* Debug */,
+				B9EBB463814A70BBDECBED136BED2080 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1286,6 +1286,15 @@
 			buildConfigurations = (
 				AA05AF9C3A14EE0E32F42C6E6D42D34F /* Debug */,
 				511103F7F15A7E8F83B268EA03462CAB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4BE1D0FF0F8BC6563E074071846E4134 /* Build configuration list for PBXNativeTarget "MGSwipeTableCell" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				58ED319B0C979DDA19957C7E47B0464B /* Debug */,
+				3365E49BE71C6B1CF49B193B61E5A435 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1308,29 +1317,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C1173329FFFB77A6819145A9BFD9AAFF /* Build configuration list for PBXNativeTarget "Alamofire" */ = {
+		73B0F472F8A32B676BF74292249B5E43 /* Build configuration list for PBXNativeTarget "MMProgressHUD" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				879D980904E5548BA0FF793C316FDD8A /* Debug */,
-				2DB0CF617A8F74347C998BFD0EEBDAD8 /* Release */,
+				BDF064AAA51ACEDD2C016E9096282502 /* Debug */,
+				9C1F78D040993AFD2B8681AC4029D8E4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EA644015AB154EC293C577FA7BA14262 /* Build configuration list for PBXNativeTarget "MMDrawerController" */ = {
+		F2DD232BADA5A6C30E2FED965084DD19 /* Build configuration list for PBXNativeTarget "MMDrawerController" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				F83088C8E00E09056FCC0C2944F0EEBE /* Debug */,
-				6B1FB4CC259C75ADBB24B79125BF1ECD /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		F9BEA06C04184537C41CDE438952090E /* Build configuration list for PBXNativeTarget "MGSwipeTableCell" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				3851FDD2ADC3AB6444C18D7EAE431ECA /* Debug */,
-				F801C247F9F9A08C763E228474AFDEB1 /* Release */,
+				7FA52E54A53D6055509088B1715752D3 /* Debug */,
+				B6FDFEE2CAB3C579D21956489511E75E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

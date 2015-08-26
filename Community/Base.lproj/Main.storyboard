@@ -78,7 +78,7 @@
         <!--Community View Controller-->
         <scene sceneID="0Fr-af-MS9">
             <objects>
-                <viewController id="W9F-GS-2YH" customClass="CommunityViewController" customModule="Community" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CommunityViewController" id="W9F-GS-2YH" customClass="CommunityViewController" customModule="Community" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="FbX-VL-OOu"/>
                         <viewControllerLayoutGuide type="bottom" id="JXa-py-eaz"/>
@@ -117,7 +117,7 @@
         <!--Logged Out Profile View Controller-->
         <scene sceneID="QFv-VC-rgV">
             <objects>
-                <viewController id="AOL-x8-i2E" customClass="LoggedOutProfileViewController" customModule="Community" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoggedOutProfileViewController" id="AOL-x8-i2E" customClass="LoggedOutProfileViewController" customModule="Community" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Y2R-hu-oXC"/>
                         <viewControllerLayoutGuide type="bottom" id="XNw-gl-T57"/>
@@ -642,7 +642,7 @@
         <!--Profile View Controller-->
         <scene sceneID="JPS-L5-Fut">
             <objects>
-                <viewController id="O6d-pE-TaK" customClass="ProfileViewController" customModule="Community" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfileViewController" id="O6d-pE-TaK" customClass="ProfileViewController" customModule="Community" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="srK-Lg-ixa"/>
                         <viewControllerLayoutGuide type="bottom" id="RYa-BT-YfH"/>
@@ -791,6 +791,6 @@
         <image name="Screen Shot 2015-08-19 at 5.02.11 PM" width="376" height="667"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="QNB-FD-O67"/>
+        <segue reference="bCF-Uj-7vy"/>
     </inferredMetricsTieBreakers>
 </document>

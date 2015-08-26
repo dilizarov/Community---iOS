@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MMDrawerController
 
 class SearchViewController: UIViewController, UITextFieldDelegate {
     
@@ -44,7 +45,19 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         self.view.endEditing(true)
         
-        self.performSegueWithIdentifier("goToCommunity", sender: self)
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let centerViewController = mainStoryboard.instantiateViewControllerWithIdentifier("CommunityViewController") as! UIViewController
+        let leftViewController = mainStoryboard.instantiateViewControllerWithIdentifier("LoggedOutProfileViewController") as! UIViewController
+
+        let drawerController = MMDrawerController(centerViewController: centerViewController, leftDrawerViewController: leftViewController)
+        
+        drawerController?.setMaximumLeftDrawerWidth(330, animated: true, completion: nil)
+        drawerController?.openDrawerGestureModeMask = .All
+        drawerController?.closeDrawerGestureModeMask = .All
+        drawerController.centerHiddenInteractionMode = .None
+        drawerController.setDrawerVisualStateBlock(MMDrawerVisualState.parallaxVisualStateBlockWithParallaxFactor(3)!)
+        
+        presentViewController(drawerController, animated: true, completion: nil)
         
         return false
     }
