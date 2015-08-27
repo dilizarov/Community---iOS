@@ -19,4 +19,30 @@ extension String {
         return self.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
     }
     
+    subscript (i: Int) -> Character {
+        
+        var index = (i < 0 ? self.endIndex : self.startIndex)
+        
+        return self[advance(index, i)]
+    }
+    
+    subscript(integerRange: Range<Int>) -> String {
+        let start = advance(startIndex, integerRange.startIndex)
+        let end = advance(startIndex, integerRange.endIndex)
+        let range = start..<end
+        return self[range]
+    }
+
+    
+    func removeEndingPunctuationAndMakeLowerCase() -> String {
+
+        var last = self[-1]
+        
+        if (last ==  "." || last == "?" || last == "!") {
+           return dropLast(self.lowercaseString)
+        } else {
+           return self.lowercaseString
+        }
+    }
+    
 }

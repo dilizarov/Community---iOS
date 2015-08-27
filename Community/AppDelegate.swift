@@ -22,13 +22,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         var centerViewController =  mainStoryboard.instantiateViewControllerWithIdentifier("SearchViewController") as! UIViewController
         
-        drawerController = MMDrawerController(centerViewController: centerViewController, leftDrawerViewController: mainStoryboard.instantiateViewControllerWithIdentifier("LoggedOutProfileViewController") as! UIViewController)
+        var leftViewIdentifier: String
+        
+        if (NSUserDefaults.standardUserDefaults().objectForKey("auth_token") != nil) {
+            leftViewIdentifier = "ProfileViewController"
+        } else {
+            leftViewIdentifier = "LoggedOutProfileViewController"
+        }
+
+        var leftViewController = mainStoryboard.instantiateViewControllerWithIdentifier(leftViewIdentifier) as! UIViewController
+        
+        drawerController = MMDrawerController(centerViewController: centerViewController, leftDrawerViewController: leftViewController)
         
         drawerController?.setMaximumLeftDrawerWidth(330, animated: true, completion: nil)
         drawerController?.openDrawerGestureModeMask = .All
         drawerController?.closeDrawerGestureModeMask = .All
         drawerController?.centerHiddenInteractionMode = .None
         drawerController?.setDrawerVisualStateBlock(MMDrawerVisualState.parallaxVisualStateBlockWithParallaxFactor(3)!)
+        
+        drawerController?.bouncePreviewForDrawerSide(.Left, distance: 0.1, completion: nil)
         
         self.window?.rootViewController = drawerController
         self.window?.makeKeyAndVisible()
