@@ -9,8 +9,9 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import Toast
 
-class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, PresentControllerDelegate {
+class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, PresentControllerDelegate, LeaveCommunityDelegate {
     
     var refreshControl: UIRefreshControl!
     
@@ -124,6 +125,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                             self.communities.append(json["communities"][i]["name"].string!)
                         }
                         
+                        self.errorLabel.alpha = 0
                         self.communitiesTable.reloadData()
                     } else {
                         var errorString = ""
@@ -160,10 +162,69 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         refreshControl.sendActionsForControlEvents(.ValueChanged)
     }
     
+    // Required as a Delegate. Otherwise, yes, it looks rather redundant
     func presentController(controller: UIViewController) {
         self.presentViewController(controller, animated: true, completion: nil)
     }
+    
+    func presentLeaveCommunityController(name: String, row: Int) {
+        var nameWithUnite = "&\(name)"
         
+        var confirmLeaveAlert = UIAlertController(title: "Leave \(nameWithUnite)", message: "Are you sure you want to leave?", preferredStyle: .Alert)
+        
+        let leaveAction = UIAlertAction(title: "Leave", style: .Destructive, handler: {
+            (alert: UIAlertAction!) in
+            
+            self.leaveCommunity(name, row: row)
+            
+        })
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Default, handler: nil)
+        
+        confirmLeaveAlert.addAction(leaveAction)
+        confirmLeaveAlert.addAction(cancelAction)
+        
+        self.presentViewController(confirmLeaveAlert, animated: true, completion: nil)
+    }
+    
+    func leaveCommunity(name: String, row: Int) {
+        if (name == communities[row]) {
+            communities.removeAtIndex(row)
+        } else {
+            communities = communities.filter( { return $0 != name } )
+        }
+        
+        communitiesTable.reloadData()
+
+        var userInfo = NSUserDefaults.standardUserDefaults()
+        
+        var params = [String : AnyObject]()
+        
+        params["user_id"] = userInfo.objectForKey("user_id") as! String
+        params["auth_token"] = userInfo.objectForKey("auth_token") as! String
+        
+        Alamofire.request(.DELETE, "https://infinite-lake-4056.herokuapp.com/api/v1/communities/\(name).json", parameters: params)
+            .responseJSON { request, response, jsonData, errors in
+                
+                if (response?.statusCode == 404 || errors != nil) {
+                    
+                    var arraySize = self.communities.count
+                    
+                    self.communities.insert(name, atIndex: (row > arraySize ? arraySize : row))
+                    self.communitiesTable.reloadData()
+                    
+                    if (response?.statusCode == 404) {
+                        self.view.makeToast("something went wrong :(", duration: NSTimeInterval(3), position: CSToastPositionCenter)
+                    } else {
+                        self.view.makeToast(errors?.localizedDescription.removeEndingPunctuationAndMakeLowerCase(), duration: NSTimeInterval(3), position: CSToastPositionCenter)
+                    }
+                    
+                }
+                
+        }
+
+    }
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if (notifs) {
             return communities2.count
@@ -177,15 +238,16 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         if (notifs) {
             if (self.communities2.count > indexPath.row) {
-                cell.configureViews(communities2[indexPath.row])
+                cell.configureViews(communities2[indexPath.row], row: indexPath.row)
             }
 
         } else {
             
             cell.presentControllerDelegate = self
+            cell.leaveCommunityDelegate = self
             
             if (self.communities.count > indexPath.row) {
-                cell.configureViews(communities[indexPath.row])
+                cell.configureViews(communities[indexPath.row], row: indexPath.row)
             }
         }
         

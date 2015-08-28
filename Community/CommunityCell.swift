@@ -8,16 +8,23 @@
 import UIKit
 import MGSwipeTableCell
 
+protocol LeaveCommunityDelegate {
+    func presentLeaveCommunityController(name: String, row: Int)
+}
+
 class CommunityCell: MGSwipeTableCell {
     
     var name: String!
+    var row: Int!
     
     var presentControllerDelegate: PresentControllerDelegate!
+    var leaveCommunityDelegate: LeaveCommunityDelegate!
     
     @IBOutlet var communityName: UILabel!
     
-    func configureViews(name: NSString) {
+    func configureViews(name: NSString, row: Int) {
         self.name = name as! String
+        self.row = row
         
         self.communityName.text = self.name
         
@@ -35,7 +42,15 @@ class CommunityCell: MGSwipeTableCell {
             return true
         })
         
-        self.rightButtons = [MGSwipeButton(title: "Leave", backgroundColor: UIColor.redColor()), shareButton]
+        var leaveButton = MGSwipeButton(title: "Leave", backgroundColor: UIColor.redColor(), callback: {
+            (sender: MGSwipeTableCell!) -> Bool in
+
+            self.leaveCommunityDelegate.presentLeaveCommunityController(name as String, row: row)
+            
+            return true
+        })
+        
+        self.rightButtons = [leaveButton, shareButton]
     }
     
     override func awakeFromNib() {

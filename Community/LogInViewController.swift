@@ -128,7 +128,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
                     var defaultError = errors?.localizedDescription
                     
                     if (defaultError != nil) {
-                        MMProgressHUD.dismissWithError(defaultError, afterDelay: NSTimeInterval(3))
+                        MMProgressHUD.dismissWithError(defaultError?.removeEndingPunctuationAndMakeLowerCase(), afterDelay: NSTimeInterval(3))
                     } else if let jsonData: AnyObject = jsonData {
                         let json = JSON(jsonData)
                         
