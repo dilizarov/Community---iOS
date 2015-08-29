@@ -67,13 +67,11 @@
                         <outlet property="profileButton" destination="VHw-su-vp4" id="hBu-hP-gl3"/>
                         <outlet property="search" destination="asj-yc-qGD" id="72U-0S-BUJ"/>
                         <segue destination="W9F-GS-2YH" kind="show" identifier="goToCommunity" id="TPw-Bz-ico"/>
-                        <segue destination="O6d-pE-TaK" kind="show" identifier="goToProfile" id="XBq-FX-RmG"/>
-                        <segue destination="AOL-x8-i2E" kind="show" identifier="goToLoggedOutProfile" id="41v-HS-T0u"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="58" y="383"/>
+            <point key="canvasLocation" x="70" y="383"/>
         </scene>
         <!--Community View Controller-->
         <scene sceneID="0Fr-af-MS9">
@@ -273,7 +271,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NUf-Io-JK5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="796.5" y="1136.5"/>
+            <point key="canvasLocation" x="756.5" y="1074.5"/>
         </scene>
         <!--Log In View Controller-->
         <scene sceneID="s20-Hb-9Us">
@@ -454,7 +452,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kBF-YX-bwA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="535.5" y="1906.5"/>
+            <point key="canvasLocation" x="537.5" y="1906.5"/>
         </scene>
         <!--Create Account View Controller-->
         <scene sceneID="sFW-cb-OgS">
@@ -637,7 +635,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fm2-TV-qXg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="954.5" y="1906.5"/>
+            <point key="canvasLocation" x="968.5" y="1906.5"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="JPS-L5-Fut">
@@ -651,7 +649,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="username" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3gv-5Z-GPW">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="test" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3gv-5Z-GPW">
                                 <rect key="frame" x="16" y="20" width="343" height="25"/>
                                 <animations/>
                                 <constraints>
@@ -786,25 +784,42 @@
                                     </mask>
                                 </variation>
                             </view>
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vWJ-uT-xsc">
+                                <rect key="frame" x="138" y="67" width="100" height="100"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="2jO-kt-p9y"/>
+                                    <constraint firstAttribute="height" constant="100" id="HJ0-if-KaM"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" red="0.018165555810000001" green="0.41620616300000002" blue="0.52175376559999997" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="RYa-BT-YfH" firstAttribute="top" secondItem="dmn-5D-LwT" secondAttribute="bottom" id="6v9-uD-ADk"/>
+                            <constraint firstItem="vWJ-uT-xsc" firstAttribute="centerX" secondItem="3gv-5Z-GPW" secondAttribute="centerX" id="845-5X-6IU"/>
                             <constraint firstItem="3gv-5Z-GPW" firstAttribute="trailing" secondItem="ySL-dB-Bhm" secondAttribute="trailingMargin" id="Ewq-yN-sLq"/>
                             <constraint firstItem="RYa-BT-YfH" firstAttribute="top" secondItem="UpD-c8-i3Z" secondAttribute="bottom" id="Gcn-uL-BSB"/>
+                            <constraint firstItem="vWJ-uT-xsc" firstAttribute="leading" secondItem="ySL-dB-Bhm" secondAttribute="leadingMargin" constant="122" id="M3U-0g-pcS"/>
                             <constraint firstItem="3gv-5Z-GPW" firstAttribute="top" secondItem="srK-Lg-ixa" secondAttribute="bottom" id="Ovg-xd-tcy"/>
                             <constraint firstItem="dmn-5D-LwT" firstAttribute="leading" secondItem="ySL-dB-Bhm" secondAttribute="leadingMargin" constant="-5" id="P8E-4H-gDS"/>
                             <constraint firstAttribute="trailingMargin" secondItem="dmn-5D-LwT" secondAttribute="trailing" constant="-5" id="Tm8-aE-lkT"/>
                             <constraint firstAttribute="trailingMargin" secondItem="UpD-c8-i3Z" secondAttribute="trailing" constant="-16" id="WrR-OB-WSg"/>
                             <constraint firstItem="UpD-c8-i3Z" firstAttribute="top" secondItem="ySL-dB-Bhm" secondAttribute="topMargin" id="Z8s-25-5wh"/>
+                            <constraint firstItem="vWJ-uT-xsc" firstAttribute="top" secondItem="3gv-5Z-GPW" secondAttribute="bottom" constant="22" id="k7U-xa-xHH"/>
                             <constraint firstItem="3gv-5Z-GPW" firstAttribute="leading" secondItem="ySL-dB-Bhm" secondAttribute="leadingMargin" id="scE-Xa-zaT"/>
                             <constraint firstItem="UpD-c8-i3Z" firstAttribute="leading" secondItem="ySL-dB-Bhm" secondAttribute="leadingMargin" constant="-16" id="ssd-BW-lna"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="M3U-0g-pcS"/>
+                            </mask>
+                        </variation>
                     </view>
                     <toolbarItems/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="avatarImage" destination="vWJ-uT-xsc" id="iuA-c8-NDM"/>
                         <outlet property="communitiesTable" destination="BUT-lp-P0x" id="8Ie-sT-vfR"/>
                         <outlet property="errorLabel" destination="ATS-8g-m4n" id="tXV-y7-QT2"/>
                         <outlet property="leftButton" destination="n5F-oN-nxN" id="nnx-wG-OxZ"/>
@@ -825,6 +840,6 @@
         <image name="Screen Shot 2015-08-19 at 5.02.11 PM" width="376" height="667"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="6sR-uC-Dq4"/>
+        <segue reference="QNB-FD-O67"/>
     </inferredMetricsTieBreakers>
 </document>

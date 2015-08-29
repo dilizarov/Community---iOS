@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		9A3D2C271B8AA0C400C10CC5 /* SearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3D2C261B8AA0C400C10CC5 /* SearchTextField.swift */; };
 		9A3D2C2B1B8BFD4F00C10CC5 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3D2C2A1B8BFD4E00C10CC5 /* Extensions.swift */; };
+		9A3DEDA31B9155BE00B90556 /* DKAssetGroupDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3DED9D1B9155BE00B90556 /* DKAssetGroupDetailVC.swift */; };
+		9A3DEDA41B9155BE00B90556 /* DKAssetGroupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3DED9E1B9155BE00B90556 /* DKAssetGroupVC.swift */; };
+		9A3DEDA51B9155BE00B90556 /* DKImagePickerController.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9A3DED9F1B9155BE00B90556 /* DKImagePickerController.bundle */; };
+		9A3DEDA61B9155BE00B90556 /* DKImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3DEDA01B9155BE00B90556 /* DKImagePickerController.swift */; };
+		9A3DEDA71B9155BE00B90556 /* DKImageResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3DEDA11B9155BE00B90556 /* DKImageResource.swift */; };
+		9A3DEDA81B9155BE00B90556 /* DKPopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3DEDA21B9155BE00B90556 /* DKPopoverViewController.swift */; };
 		9AA526861B89CF4C00900383 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AA526851B89CF4C00900383 /* QuartzCore.framework */; };
 		9AA6135A1B83B2B8004911C2 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA613591B83B2B8004911C2 /* ProfileViewController.swift */; };
 		9AA6135C1B83E17C004911C2 /* CommunityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA6135B1B83E17C004911C2 /* CommunityViewController.swift */; };
@@ -42,6 +48,12 @@
 		12BC73E1CC021A3521FB56B1 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		9A3D2C261B8AA0C400C10CC5 /* SearchTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTextField.swift; sourceTree = "<group>"; };
 		9A3D2C2A1B8BFD4E00C10CC5 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		9A3DED9D1B9155BE00B90556 /* DKAssetGroupDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DKAssetGroupDetailVC.swift; path = ../../../../DKImagePickerController/DKImagePickerController/DKAssetGroupDetailVC.swift; sourceTree = "<group>"; };
+		9A3DED9E1B9155BE00B90556 /* DKAssetGroupVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DKAssetGroupVC.swift; path = ../../../../DKImagePickerController/DKImagePickerController/DKAssetGroupVC.swift; sourceTree = "<group>"; };
+		9A3DED9F1B9155BE00B90556 /* DKImagePickerController.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = DKImagePickerController.bundle; path = ../../../../DKImagePickerController/DKImagePickerController/DKImagePickerController.bundle; sourceTree = "<group>"; };
+		9A3DEDA01B9155BE00B90556 /* DKImagePickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DKImagePickerController.swift; path = ../../../../DKImagePickerController/DKImagePickerController/DKImagePickerController.swift; sourceTree = "<group>"; };
+		9A3DEDA11B9155BE00B90556 /* DKImageResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DKImageResource.swift; path = ../../../../DKImagePickerController/DKImagePickerController/DKImageResource.swift; sourceTree = "<group>"; };
+		9A3DEDA21B9155BE00B90556 /* DKPopoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DKPopoverViewController.swift; path = ../../../../DKImagePickerController/DKImagePickerController/DKPopoverViewController.swift; sourceTree = "<group>"; };
 		9AA526851B89CF4C00900383 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		9AA613591B83B2B8004911C2 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		9AA6135B1B83E17C004911C2 /* CommunityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunityViewController.swift; sourceTree = "<group>"; };
@@ -91,6 +103,19 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		9A3DED9C1B9155AF00B90556 /* DKImagePickerController */ = {
+			isa = PBXGroup;
+			children = (
+				9A3DED9D1B9155BE00B90556 /* DKAssetGroupDetailVC.swift */,
+				9A3DED9E1B9155BE00B90556 /* DKAssetGroupVC.swift */,
+				9A3DED9F1B9155BE00B90556 /* DKImagePickerController.bundle */,
+				9A3DEDA01B9155BE00B90556 /* DKImagePickerController.swift */,
+				9A3DEDA11B9155BE00B90556 /* DKImageResource.swift */,
+				9A3DEDA21B9155BE00B90556 /* DKPopoverViewController.swift */,
+			);
+			name = DKImagePickerController;
+			sourceTree = "<group>";
+		};
 		9AAD203A1B82A22F0053F743 = {
 			isa = PBXGroup;
 			children = (
@@ -114,19 +139,15 @@
 		9AAD20451B82A22F0053F743 /* Community */ = {
 			isa = PBXGroup;
 			children = (
+				9A3DED9C1B9155AF00B90556 /* DKImagePickerController */,
+				9AD3B4B11B91283E00357860 /* ViewControllers */,
 				9A3D2C261B8AA0C400C10CC5 /* SearchTextField.swift */,
-				9AA613631B851FD6004911C2 /* CreateAccountViewController.swift */,
-				9AA613611B851F79004911C2 /* LogInViewController.swift */,
 				9AAD20481B82A22F0053F743 /* AppDelegate.swift */,
-				9AAD204A1B82A22F0053F743 /* SearchViewController.swift */,
 				9AAD204C1B82A22F0053F743 /* Main.storyboard */,
 				9AAD204F1B82A22F0053F743 /* Images.xcassets */,
 				9AAD20511B82A22F0053F743 /* LaunchScreen.xib */,
 				9AAD20461B82A22F0053F743 /* Supporting Files */,
-				9AA613591B83B2B8004911C2 /* ProfileViewController.swift */,
 				9AA6135F1B8464F0004911C2 /* CommunityCell.swift */,
-				9AA6135B1B83E17C004911C2 /* CommunityViewController.swift */,
-				9AA6135D1B83F572004911C2 /* LoggedOutProfileViewController.swift */,
 				9A3D2C2A1B8BFD4E00C10CC5 /* Extensions.swift */,
 				9AD3B4AF1B8E81D900357860 /* PresentControllerDelegate.swift */,
 			);
@@ -156,6 +177,19 @@
 				9AAD205D1B82A22F0053F743 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9AD3B4B11B91283E00357860 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				9AAD204A1B82A22F0053F743 /* SearchViewController.swift */,
+				9AA613591B83B2B8004911C2 /* ProfileViewController.swift */,
+				9AA6135B1B83E17C004911C2 /* CommunityViewController.swift */,
+				9AA6135D1B83F572004911C2 /* LoggedOutProfileViewController.swift */,
+				9AA613631B851FD6004911C2 /* CreateAccountViewController.swift */,
+				9AA613611B851F79004911C2 /* LogInViewController.swift */,
+			);
+			name = ViewControllers;
 			sourceTree = "<group>";
 		};
 		B5F817F0E7CB96DBA1F65791 /* Pods */ = {
@@ -253,6 +287,7 @@
 			files = (
 				9AAD204E1B82A22F0053F743 /* Main.storyboard in Resources */,
 				9AAD20531B82A22F0053F743 /* LaunchScreen.xib in Resources */,
+				9A3DEDA51B9155BE00B90556 /* DKImagePickerController.bundle in Resources */,
 				9AAD20501B82A22F0053F743 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -320,13 +355,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				9AA6135C1B83E17C004911C2 /* CommunityViewController.swift in Sources */,
+				9A3DEDA81B9155BE00B90556 /* DKPopoverViewController.swift in Sources */,
 				9AA6135A1B83B2B8004911C2 /* ProfileViewController.swift in Sources */,
+				9A3DEDA41B9155BE00B90556 /* DKAssetGroupVC.swift in Sources */,
 				9AD3B4B01B8E81D900357860 /* PresentControllerDelegate.swift in Sources */,
 				9AAD204B1B82A22F0053F743 /* SearchViewController.swift in Sources */,
 				9AA613621B851F79004911C2 /* LogInViewController.swift in Sources */,
+				9A3DEDA31B9155BE00B90556 /* DKAssetGroupDetailVC.swift in Sources */,
 				9AA613641B851FD6004911C2 /* CreateAccountViewController.swift in Sources */,
 				9A3D2C2B1B8BFD4F00C10CC5 /* Extensions.swift in Sources */,
+				9A3DEDA71B9155BE00B90556 /* DKImageResource.swift in Sources */,
 				9AA6135E1B83F572004911C2 /* LoggedOutProfileViewController.swift in Sources */,
+				9A3DEDA61B9155BE00B90556 /* DKImagePickerController.swift in Sources */,
 				9AAD20491B82A22F0053F743 /* AppDelegate.swift in Sources */,
 				9AA613601B8464F0004911C2 /* CommunityCell.swift in Sources */,
 				9A3D2C271B8AA0C400C10CC5 /* SearchTextField.swift in Sources */,

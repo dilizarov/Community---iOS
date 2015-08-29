@@ -12,6 +12,8 @@
 	<dict>
 		<key>2325991F9A98A2717394197AF763A642E288CC76</key>
 		<string>https://github.com/dilizarov/Community---iOS.git</string>
+		<key>B72F6B8903B5AB21511E873731000C39DE4F2EEE</key>
+		<string>https://github.com/zhangao0086/DKImagePickerController.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Community.xcworkspace</string>
@@ -19,6 +21,8 @@
 	<dict>
 		<key>2325991F9A98A2717394197AF763A642E288CC76</key>
 		<string>..</string>
+		<key>B72F6B8903B5AB21511E873731000C39DE4F2EEE</key>
+		<string>../../../../DKImagePickerController</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/dilizarov/Community---iOS.git</string>
@@ -35,6 +39,14 @@
 			<string>2325991F9A98A2717394197AF763A642E288CC76</string>
 			<key>IDESourceControlWCCName</key>
 			<string>Community</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>B72F6B8903B5AB21511E873731000C39DE4F2EEE</string>
+			<key>IDESourceControlWCCName</key>
+			<string>DKImagePickerController</string>
 		</dict>
 	</array>
 </dict>

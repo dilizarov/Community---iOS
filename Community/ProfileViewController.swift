@@ -10,9 +10,10 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import Toast
+import DKImagePickerController
 
 class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, PresentControllerDelegate, LeaveCommunityDelegate {
-    
+
     var refreshControl: UIRefreshControl!
     
     var communities = [NSString]()
@@ -28,6 +29,9 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     @IBOutlet var usernameLabel: UILabel!
     @IBOutlet var errorLabel: UILabel!
+    
+    @IBOutlet var avatarImage: UIImageView!
+    
     
     @IBOutlet var leftButton: UIButton!
     @IBAction func leftButtonPressed(sender: AnyObject) {
@@ -57,6 +61,20 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         setRunTimeTableViewParams()
         
         errorLabel.alpha = 0.0
+        
+        if (NSUserDefaults.standardUserDefaults().objectForKey("avatar_link") != nil) {
+            //        avatarImage.layer.cornerRadius = avatarImage.frame.size.height / 2
+            //        avatarImage.layer.masksToBounds = true
+            //        avatarImage.layer.borderColor = UIColor.whiteColor().CGColor
+            //        avatarImage.layer.borderWidth = 1
+        } else {
+            avatarImage.image = UIImage(named: "AvatarPlaceHolder")
+        }
+        
+        let singleTap = UITapGestureRecognizer(target: self, action: Selector("avatarImagePressed"))
+        singleTap.numberOfTapsRequired = 1
+        avatarImage.userInteractionEnabled = true
+        avatarImage.addGestureRecognizer(singleTap)
         
         setUpRefreshControl()
         
@@ -93,6 +111,45 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: Selector("handleRefresh"), forControlEvents: .ValueChanged)
         communitiesTable.addSubview(refreshControl)
+    }
+    
+    func avatarImagePressed() {
+        if (NSUserDefaults.standardUserDefaults().objectForKey("avatar_link") != nil) {
+            println("yip")
+        } else {
+//            let picker = UIImagePickerController()
+//            picker.delegate = self
+//            picker.allowsEditing = true
+//            picker.sourceType = .PhotoLibrary
+//            
+//            self.presentViewController(picker, animated: true, completion: nil)
+            
+            let pickerController = DKImagePickerController()
+            pickerController.didCancelled = {}
+            
+            pickerController.didSelectedAssets = { [unowned self] (assets: [DKAsset]) in
+                println("lal")
+            }
+            
+            pickerController.didCropImage =  { [unowned self] (image: UIImage) in
+                
+                self.avatarImage.layer.cornerRadius = self.avatarImage.frame.size.height / 2
+                self.avatarImage.layer.masksToBounds = true
+                self.avatarImage.layer.borderColor = UIColor.whiteColor().CGColor
+                self.avatarImage.layer.borderWidth = 1
+                self.avatarImage.contentMode = .ScaleAspectFit
+                self.avatarImage.clipsToBounds = true
+                
+                self.avatarImage.image = image
+            }
+            
+            pickerController.maxSelectableCount = 1
+            pickerController.assetType = .allPhotos
+            pickerController.allowMultipleType = false
+            
+            
+            self.presentViewController(pickerController, animated: true, completion: nil)
+        }
     }
     
     func handleRefresh() {
@@ -218,11 +275,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                     } else {
                         self.view.makeToast(errors?.localizedDescription.removeEndingPunctuationAndMakeLowerCase(), duration: NSTimeInterval(3), position: CSToastPositionCenter)
                     }
-                    
                 }
-                
-        }
-
+            }
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

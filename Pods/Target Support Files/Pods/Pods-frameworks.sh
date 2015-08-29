@@ -56,6 +56,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework 'Pods/MGSwipeTableCell.framework'
   install_framework 'Pods/MMDrawerController.framework'
   install_framework 'Pods/MMProgressHUD.framework'
+  install_framework 'Pods/RSKImageCropper.framework'
   install_framework 'Pods/SwiftyJSON.framework'
   install_framework 'Pods/Toast.framework'
 fi
@@ -64,6 +65,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'Pods/MGSwipeTableCell.framework'
   install_framework 'Pods/MMDrawerController.framework'
   install_framework 'Pods/MMProgressHUD.framework'
+  install_framework 'Pods/RSKImageCropper.framework'
   install_framework 'Pods/SwiftyJSON.framework'
   install_framework 'Pods/Toast.framework'
 fi

@@ -14,6 +14,7 @@ PODS:
   - MMDrawerController/Subclass (0.5.7):
     - MMDrawerController/Core
   - MMProgressHUD (0.3.1)
+  - RSKImageCropper (1.2.1)
   - SwiftyJSON (2.2.1)
   - Toast (2.4)
 
@@ -22,6 +23,7 @@ DEPENDENCIES:
   - MGSwipeTableCell (~> 1.5.1)
   - MMDrawerController (~> 0.5.7)
   - MMProgressHUD (~> 0.3.1)
+  - RSKImageCropper
   - SwiftyJSON (~> 2.2.1)
   - Toast (~> 2.4)
 
@@ -30,6 +32,7 @@ SPEC CHECKSUMS:
   MGSwipeTableCell: a51fa670c01f0aa048f12af040acebf315223137
   MMDrawerController: 7a4cf8e25596bf2434e03ce50d22a8608ddee6a1
   MMProgressHUD: dac2655d62d28e7d6dc28bf72d9531a4d4c62459
+  RSKImageCropper: e912419809d3a4eac47864d6fbc22f84c14879d5
   SwiftyJSON: ae2d0a3d68025d136602a33c4ee215091ced3e33
   Toast: 0773b8fc0e97352ca6054517bec7ebdd4110029d
 
