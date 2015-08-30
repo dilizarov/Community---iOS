@@ -42,6 +42,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     @IBOutlet var notifications: UIButton!
     @IBAction func notificationsButtonPressed(sender: AnyObject) {
+        
         notifs = true
         communitiesTable.setContentOffset(CGPointZero, animated: false)
 
@@ -115,40 +116,21 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func avatarImagePressed() {
         if (NSUserDefaults.standardUserDefaults().objectForKey("avatar_link") != nil) {
-            println("yip")
+            
+            var confirmAlert = UIAlertController(title: "Change Profile Picture", message: "Are you sure you want to change your profile picture?", preferredStyle: .Alert)
+            
+            var cancel = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+            
+            var confirm = UIAlertAction(title: "Change", style: .Default, handler: { alert in
+                self.chooseNewProfilePic()
+            })
+            
+            confirmAlert.addAction(cancel)
+            confirmAlert.addAction(confirm)
+            
+            self.presentViewController(confirmAlert, animated: true, completion: nil)
         } else {
-//            let picker = UIImagePickerController()
-//            picker.delegate = self
-//            picker.allowsEditing = true
-//            picker.sourceType = .PhotoLibrary
-//            
-//            self.presentViewController(picker, animated: true, completion: nil)
-            
-            let pickerController = DKImagePickerController()
-            pickerController.didCancelled = {}
-            
-            pickerController.didSelectedAssets = { [unowned self] (assets: [DKAsset]) in
-                println("lal")
-            }
-            
-            pickerController.didCropImage =  { [unowned self] (image: UIImage) in
-                
-                self.avatarImage.layer.cornerRadius = self.avatarImage.frame.size.height / 2
-                self.avatarImage.layer.masksToBounds = true
-                self.avatarImage.layer.borderColor = UIColor.whiteColor().CGColor
-                self.avatarImage.layer.borderWidth = 1
-                self.avatarImage.contentMode = .ScaleAspectFit
-                self.avatarImage.clipsToBounds = true
-                
-                self.avatarImage.image = image
-            }
-            
-            pickerController.maxSelectableCount = 1
-            pickerController.assetType = .allPhotos
-            pickerController.allowMultipleType = false
-            
-            
-            self.presentViewController(pickerController, animated: true, completion: nil)
+            chooseNewProfilePic()
         }
     }
     
@@ -277,6 +259,34 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                     }
                 }
             }
+    }
+    
+    func chooseNewProfilePic() {
+        let pickerController = DKImagePickerController()
+        pickerController.didCancelled = {}
+        
+        pickerController.didCropImage =  { [unowned self] (image: UIImage) in
+            
+            self.avatarImage.layer.cornerRadius = self.avatarImage.frame.size.height / 2
+            self.avatarImage.layer.masksToBounds = true
+            self.avatarImage.layer.borderColor = UIColor.whiteColor().CGColor
+            self.avatarImage.layer.borderWidth = 1
+            self.avatarImage.contentMode = .ScaleAspectFit
+            self.avatarImage.clipsToBounds = true
+            
+            var croppedImage = image.imageByScalingAspectFitSize(CGSizeMake(1000, 1000))
+            
+            var pngImageData = UIImagePNGRepresentation(croppedImage)
+            
+            self.avatarImage.image = UIImage(data: pngImageData)
+        }
+        
+        pickerController.maxSelectableCount = 1
+        pickerController.assetType = .allPhotos
+        pickerController.allowMultipleType = false
+        
+        
+        self.presentViewController(pickerController, animated: true, completion: nil)
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
