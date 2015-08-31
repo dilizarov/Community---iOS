@@ -57,8 +57,10 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework 'Pods/MMDrawerController.framework'
   install_framework 'Pods/MMProgressHUD.framework'
   install_framework 'Pods/RSKImageCropper.framework'
+  install_framework 'Pods/SDWebImage.framework'
   install_framework 'Pods/SwiftyJSON.framework'
   install_framework 'Pods/Toast.framework'
+  install_framework 'Pods/UIActivityIndicator_for_SDWebImage.framework'
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'Pods/Alamofire.framework'
@@ -66,6 +68,8 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'Pods/MMDrawerController.framework'
   install_framework 'Pods/MMProgressHUD.framework'
   install_framework 'Pods/RSKImageCropper.framework'
+  install_framework 'Pods/SDWebImage.framework'
   install_framework 'Pods/SwiftyJSON.framework'
   install_framework 'Pods/Toast.framework'
+  install_framework 'Pods/UIActivityIndicator_for_SDWebImage.framework'
 fi

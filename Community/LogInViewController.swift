@@ -210,6 +210,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         defaults.setObject(user["external_id"].string, forKey: "user_id")
         defaults.setObject(user["auth_token"].string, forKey: "auth_token")
         defaults.setObject(user["created_at"].string, forKey: "created_at")
+        defaults.setObject(user["avatar_url"].string, forKey: "avatar_url")
         
         defaults.synchronize()
     }
