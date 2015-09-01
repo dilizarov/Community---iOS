@@ -10,22 +10,29 @@ import UIKit
 import MMDrawerController
 
 class SearchViewController: UIViewController, UITextFieldDelegate {
+
+    // Dictates whether or not we have a NSNotification Observer viewing this
+    var observingSideViewAppeared: Bool = false
+    var observingCommunitySelected: Bool = false
     
-    var observingSideViewAppeared = false
+    // This drawerController is used and called from CommunityViewController
+    // via delegation so that CommunityViewController can have control over its side controller.
+    var drawerController: MMDrawerController?
+    
+    var delegate: AppDelegate!
     
     @IBOutlet var search: UITextField!
     
     @IBOutlet var profileButton: UIButton!
     @IBAction func profileButtonPressed(sender: AnyObject) {
-
-        var delegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        
         delegate.drawerController?.openDrawerSide(.Left, animated: true, completion: nil)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        delegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        
         search.layer.masksToBounds = false
         search.layer.cornerRadius = 8
         search.layer.shadowOffset = CGSizeMake(0, 5)
@@ -39,51 +46,82 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
+        // This handles removing the keyboard if it is up when one wants to view the side view.
         if (!observingSideViewAppeared) {
             observingSideViewAppeared = true
             NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("resignSearchKeyboard"), name: "sideViewAppeared", object: nil)
         }
-    }
-    
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
         
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: "sideViewAppeared", object: nil)
-        observingSideViewAppeared = false
-    }
-    
-    deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: "sideViewAppeared", object: nil)
-        observingSideViewAppeared = false
+        // This handles if community was selected in side view
+        if (!observingCommunitySelected) {
+            observingCommunitySelected = true
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("communitySelected:"), name: "communitySelected", object: nil)
+        }
     }
 
     func resignSearchKeyboard() {
         search.resignFirstResponder()
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func communitySelected(notification: NSNotification) {
+        if let info = notification.userInfo as? Dictionary<String, String> {
+            if let community = info["community"] {
+                delegate.drawerController?.closeDrawerAnimated(true, completion: { _ in
+                        self.search(community)
+                    }
+                )
+            }
+        }
     }
 
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        self.view.endEditing(true)
-        
+    func search(community: String) {
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let centerViewController = mainStoryboard.instantiateViewControllerWithIdentifier("CommunityViewController") as! UIViewController
+        let centerViewController = mainStoryboard.instantiateViewControllerWithIdentifier("CommunityViewController") as! CommunityViewController
         let leftViewController = mainStoryboard.instantiateViewControllerWithIdentifier("LoggedOutProfileViewController") as! UIViewController
-
-        let drawerController = MMDrawerController(centerViewController: centerViewController, leftDrawerViewController: leftViewController)
+        
+        centerViewController.community = community
+        centerViewController.delegate = self
+        
+        drawerController = MMDrawerController(centerViewController: centerViewController, leftDrawerViewController: leftViewController)
         
         drawerController?.setMaximumLeftDrawerWidth(330, animated: true, completion: nil)
         drawerController?.openDrawerGestureModeMask = .All
         drawerController?.closeDrawerGestureModeMask = .All
-        drawerController.centerHiddenInteractionMode = .None
-        drawerController.setDrawerVisualStateBlock(MMDrawerVisualState.parallaxVisualStateBlockWithParallaxFactor(3)!)
+        drawerController?.centerHiddenInteractionMode = .None
+        drawerController?.setDrawerVisualStateBlock(MMDrawerVisualState.parallaxVisualStateBlockWithParallaxFactor(3)!)
         
-        presentViewController(drawerController, animated: true, completion: nil)
+        presentViewController(drawerController!, animated: true, completion: nil)
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        
+        search(textField.text)
         
         return false
+    }
+
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "sideViewAppeared", object: nil)
+        observingSideViewAppeared = false
+        
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "communitySelected", object: nil)
+        observingCommunitySelected = false
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "sideViewAppeared", object: nil)
+        observingSideViewAppeared = false
+        
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "communitySelected", object: nil)
+        observingCommunitySelected = false
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
 
 }

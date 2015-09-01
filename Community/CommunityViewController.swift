@@ -10,4 +10,10 @@ import UIKit
 
 class CommunityViewController: UIViewController {
     
+    var community: String!
+    var delegate: SearchViewController!
+    
+    override func viewDidLoad() {
+        println(community)
+    }
 }

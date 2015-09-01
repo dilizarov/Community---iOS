@@ -457,6 +457,16 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        return
+        if (notifs) {
+            println("Touch")
+        } else {
+            if (self.communities.count > indexPath.row) {
+                
+                var userInfo = Dictionary<String, String>()
+                userInfo["community"] = communities[indexPath.row] as String
+    
+                NSNotificationCenter.defaultCenter().postNotificationName("communitySelected", object: self, userInfo: userInfo)
+            }
+        }
     }
 }
