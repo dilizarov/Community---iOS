@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import Toast
-import DKImagePickerController
+//import DKImagePickerController
 import SDWebImage
 import UIActivityIndicator_for_SDWebImage
 import MMProgressHUD

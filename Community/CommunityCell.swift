@@ -8,10 +8,6 @@
 import UIKit
 import MGSwipeTableCell
 
-protocol LeaveCommunityDelegate {
-    func presentLeaveCommunityController(name: String, row: Int)
-}
-
 class CommunityCell: MGSwipeTableCell {
     
     var name: String!

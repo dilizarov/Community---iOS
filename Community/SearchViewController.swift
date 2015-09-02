@@ -14,25 +14,23 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
     // Dictates whether or not we have a NSNotification Observer viewing this
     var observingSideViewAppeared: Bool = false
     var observingCommunitySelected: Bool = false
+    var observingPresentLogin: Bool = false
+    var observingPresentCreateAcc: Bool = false
     
-    // This drawerController is used and called from CommunityViewController
-    // via delegation so that CommunityViewController can have control over its side controller.
+    // This drawerController is used like the navigationController property.
+    // Calls upon the MMDrawerController that holds this
     var drawerController: MMDrawerController?
-    
-    var delegate: AppDelegate!
     
     @IBOutlet var search: UITextField!
     
     @IBOutlet var profileButton: UIButton!
     @IBAction func profileButtonPressed(sender: AnyObject) {
-        delegate.drawerController?.openDrawerSide(.Left, animated: true, completion: nil)
+        drawerController?.openDrawerSide(.Left, animated: true, completion: nil)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        delegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        
         search.layer.masksToBounds = false
         search.layer.cornerRadius = 8
         search.layer.shadowOffset = CGSizeMake(0, 5)
@@ -58,7 +56,7 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
             NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("communitySelected:"), name: "communitySelected", object: nil)
         }
     }
-
+    
     func resignSearchKeyboard() {
         search.resignFirstResponder()
     }
@@ -66,31 +64,34 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
     func communitySelected(notification: NSNotification) {
         if let info = notification.userInfo as? Dictionary<String, String> {
             if let community = info["community"] {
-                delegate.drawerController?.closeDrawerAnimated(true, completion: { _ in
-                        self.search(community)
-                    }
-                )
+                drawerController?.closeDrawerAnimated(true, completion: { _ in
+                    self.search(community)
+                })
             }
         }
     }
 
     func search(community: String) {
-        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let centerViewController = mainStoryboard.instantiateViewControllerWithIdentifier("CommunityViewController") as! CommunityViewController
-        let leftViewController = mainStoryboard.instantiateViewControllerWithIdentifier("LoggedOutProfileViewController") as! UIViewController
         
-        centerViewController.community = community
-        centerViewController.delegate = self
-        
-        drawerController = MMDrawerController(centerViewController: centerViewController, leftDrawerViewController: leftViewController)
-        
-        drawerController?.setMaximumLeftDrawerWidth(330, animated: true, completion: nil)
-        drawerController?.openDrawerGestureModeMask = .All
-        drawerController?.closeDrawerGestureModeMask = .All
-        drawerController?.centerHiddenInteractionMode = .None
-        drawerController?.setDrawerVisualStateBlock(MMDrawerVisualState.parallaxVisualStateBlockWithParallaxFactor(3)!)
-        
-        presentViewController(drawerController!, animated: true, completion: nil)
+        drawerController?.closeDrawerAnimated(true, completion: { _ in
+            let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let centerViewController = mainStoryboard.instantiateViewControllerWithIdentifier("CommunityViewController") as! CommunityViewController
+            let leftViewController = self.drawerController?.leftDrawerViewController
+            
+            let communityDC = MMDrawerController(centerViewController: centerViewController, leftDrawerViewController: leftViewController)
+            
+            communityDC?.setMaximumLeftDrawerWidth(330, animated: true, completion: nil)
+            communityDC?.openDrawerGestureModeMask = .All
+            communityDC?.closeDrawerGestureModeMask = .All
+            communityDC?.centerHiddenInteractionMode = .None
+            communityDC?.setDrawerVisualStateBlock(MMDrawerVisualState.parallaxVisualStateBlockWithParallaxFactor(3)!)
+            
+            centerViewController.community = community
+            centerViewController.drawerController = communityDC
+            
+            self.presentViewController(communityDC, animated: true, completion: nil)
+        })
+    
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -100,7 +101,7 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
         
         return false
     }
-
+    
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         

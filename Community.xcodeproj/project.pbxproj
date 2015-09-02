@@ -28,7 +28,7 @@
 		9AAD20501B82A22F0053F743 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9AAD204F1B82A22F0053F743 /* Images.xcassets */; };
 		9AAD20531B82A22F0053F743 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9AAD20511B82A22F0053F743 /* LaunchScreen.xib */; };
 		9AAD205F1B82A22F0053F743 /* CommunityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AAD205E1B82A22F0053F743 /* CommunityTests.swift */; };
-		9AD3B4B01B8E81D900357860 /* PresentControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD3B4AF1B8E81D900357860 /* PresentControllerDelegate.swift */; };
+		9AD3B4B01B8E81D900357860 /* Delegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD3B4AF1B8E81D900357860 /* Delegates.swift */; };
 		9CD1118C8AAD2ACAFAF5D95C /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11CFFFB983B375515C97E45F /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -71,7 +71,7 @@
 		9AAD20581B82A22F0053F743 /* CommunityTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CommunityTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AAD205D1B82A22F0053F743 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9AAD205E1B82A22F0053F743 /* CommunityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityTests.swift; sourceTree = "<group>"; };
-		9AD3B4AF1B8E81D900357860 /* PresentControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentControllerDelegate.swift; sourceTree = "<group>"; };
+		9AD3B4AF1B8E81D900357860 /* Delegates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Delegates.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,7 +149,7 @@
 				9AAD20461B82A22F0053F743 /* Supporting Files */,
 				9AA6135F1B8464F0004911C2 /* CommunityCell.swift */,
 				9A3D2C2A1B8BFD4E00C10CC5 /* Extensions.swift */,
-				9AD3B4AF1B8E81D900357860 /* PresentControllerDelegate.swift */,
+				9AD3B4AF1B8E81D900357860 /* Delegates.swift */,
 			);
 			path = Community;
 			sourceTree = "<group>";
@@ -358,7 +358,7 @@
 				9A3DEDA81B9155BE00B90556 /* DKPopoverViewController.swift in Sources */,
 				9AA6135A1B83B2B8004911C2 /* ProfileViewController.swift in Sources */,
 				9A3DEDA41B9155BE00B90556 /* DKAssetGroupVC.swift in Sources */,
-				9AD3B4B01B8E81D900357860 /* PresentControllerDelegate.swift in Sources */,
+				9AD3B4B01B8E81D900357860 /* Delegates.swift in Sources */,
 				9AAD204B1B82A22F0053F743 /* SearchViewController.swift in Sources */,
 				9AA613621B851F79004911C2 /* LogInViewController.swift in Sources */,
 				9A3DEDA31B9155BE00B90556 /* DKAssetGroupDetailVC.swift in Sources */,

@@ -13,14 +13,13 @@ import MMDrawerController
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var drawerController: MMDrawerController?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
         let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
         
-        var centerViewController =  mainStoryboard.instantiateViewControllerWithIdentifier("SearchViewController") as! UIViewController
+        let centerViewController =  mainStoryboard.instantiateViewControllerWithIdentifier("SearchViewController") as! SearchViewController
         
         var leftViewIdentifier: String
         
@@ -30,9 +29,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             leftViewIdentifier = "LoggedOutProfileViewController"
         }
 
-        var leftViewController = mainStoryboard.instantiateViewControllerWithIdentifier(leftViewIdentifier) as! UIViewController
+        let leftViewController = mainStoryboard.instantiateViewControllerWithIdentifier(leftViewIdentifier) as! UIViewController
         
-        drawerController = MMDrawerController(centerViewController: centerViewController, leftDrawerViewController: leftViewController)
+        let drawerController = MMDrawerController(centerViewController: centerViewController, leftDrawerViewController: leftViewController)
         
         drawerController?.setMaximumLeftDrawerWidth(330, animated: true, completion: nil)
         drawerController?.openDrawerGestureModeMask = .All
@@ -40,7 +39,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         drawerController?.centerHiddenInteractionMode = .None
         drawerController?.setDrawerVisualStateBlock(MMDrawerVisualState.parallaxVisualStateBlockWithParallaxFactor(3)!)
         
-        drawerController?.bouncePreviewForDrawerSide(.Left, distance: 0.1, completion: nil)
+        // This forces the side to layout itself properly.
+        drawerController?.bouncePreviewForDrawerSide(.Left, distance: 30, completion: nil)
+        
+        centerViewController.drawerController = drawerController
         
         self.window?.rootViewController = drawerController
         self.window?.makeKeyAndVisible()

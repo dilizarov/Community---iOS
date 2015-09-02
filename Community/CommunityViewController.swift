@@ -7,11 +7,18 @@
 //
 
 import UIKit
+import MMDrawerController
 
 class CommunityViewController: UIViewController {
     
     var community: String!
-    var delegate: SearchViewController!
+    var drawerController: MMDrawerController?
+    
+    @IBAction func searchButtonPressed(sender: AnyObject) {
+
+//        self.delegate.delegate.drawerController?.leftDrawerViewController = self.delegate.delegate.leftViewController
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
     
     override func viewDidLoad() {
         println(community)

@@ -11,3 +11,7 @@ import UIKit
 protocol PresentControllerDelegate {
     func presentController(controller: UIViewController)
 }
+
+protocol LeaveCommunityDelegate {
+    func presentLeaveCommunityController(name: String, row: Int)
+}

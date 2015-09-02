@@ -10,9 +10,10 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import MMProgressHUD
+import MMDrawerController
 
 class CreateAccountViewController: UIViewController, UITextFieldDelegate {
-    
+        
     @IBOutlet var usernameLabel: UILabel!
     @IBOutlet var emailLabel: UILabel!
     @IBOutlet var passwordLabel: UILabel!
@@ -85,6 +86,11 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
                 var delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC)))
                 
                 dispatch_after(delayTime, dispatch_get_main_queue(), {
+                    
+                    println(response)
+                    println(jsonData)
+                    println(errors)
+                    
                     var defaultError = errors?.localizedDescription
                     
                     if (defaultError != nil) {
@@ -95,7 +101,26 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
                         if (json["errors"] == nil) {
                             self.storeSessionData(json)
                             MMProgressHUD.sharedHUD().dismissAnimationCompletion = {
-                                self.performSegueWithIdentifier("successfullyCreatedAccount", sender: self)
+                             
+                                let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                                
+                                var centerViewController =  mainStoryboard.instantiateViewControllerWithIdentifier("SearchViewController") as! SearchViewController
+                                
+                                var leftViewController = mainStoryboard.instantiateViewControllerWithIdentifier("ProfileViewController") as! UIViewController
+                                
+                                let drawerController = MMDrawerController(centerViewController: centerViewController, leftDrawerViewController: leftViewController)
+                                
+                                drawerController?.setMaximumLeftDrawerWidth(330, animated: true, completion: nil)
+                                drawerController?.openDrawerGestureModeMask = .All
+                                drawerController?.closeDrawerGestureModeMask = .All
+                                drawerController?.centerHiddenInteractionMode = .None
+                                
+                                // This forces the side to layout itself properly.
+                                drawerController?.bouncePreviewForDrawerSide(.Left, distance: 30, completion: nil)
+                                
+                                centerViewController.drawerController = drawerController
+                                
+                                self.presentViewController(drawerController, animated: true, completion: nil)
                             }
                             
                             MMProgressHUD.dismissWithSuccess(":)")

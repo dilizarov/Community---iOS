@@ -10,6 +10,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import MMProgressHUD
+import MMDrawerController
 
 class LogInViewController: UIViewController, UITextFieldDelegate {
 
@@ -135,7 +136,26 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
                         if (json["errors"] == nil) {
                             self.storeSessionData(json)
                             MMProgressHUD.sharedHUD().dismissAnimationCompletion = {
-                                self.performSegueWithIdentifier("successfullyLoggedIn", sender: self)
+
+                                let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                                
+                                var centerViewController =  mainStoryboard.instantiateViewControllerWithIdentifier("SearchViewController") as! SearchViewController
+                                
+                                var leftViewController = mainStoryboard.instantiateViewControllerWithIdentifier("ProfileViewController") as! UIViewController
+                                
+                                let drawerController = MMDrawerController(centerViewController: centerViewController, leftDrawerViewController: leftViewController)
+                                
+                                drawerController?.setMaximumLeftDrawerWidth(330, animated: true, completion: nil)
+                                drawerController?.openDrawerGestureModeMask = .All
+                                drawerController?.closeDrawerGestureModeMask = .All
+                                drawerController?.centerHiddenInteractionMode = .None
+                                
+                                // This forces the side to layout itself properly.
+                                drawerController?.bouncePreviewForDrawerSide(.Left, distance: 30, completion: nil)
+
+                                centerViewController.drawerController = drawerController
+                                
+                                self.presentViewController(drawerController, animated: true, completion: nil)
                             }
                             
                             MMProgressHUD.dismissWithSuccess(":)")
