@@ -118,7 +118,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
                                 // This forces the side to layout itself properly.
                                 drawerController?.bouncePreviewForDrawerSide(.Left, distance: 30, completion: nil)
                                 
-                                centerViewController.drawerController = drawerController
+                              //  centerViewController.drawerController = drawerController
                                 
                                 self.presentViewController(drawerController, animated: true, completion: nil)
                             }

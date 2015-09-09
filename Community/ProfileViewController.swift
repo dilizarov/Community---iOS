@@ -62,7 +62,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     
-        giveTableViewRoundedTopLeftCorner()
+        giveTableViewRoundedTopCorners()
         setRunTimeTableViewParams()
         setupAvatarImage()
         
@@ -82,8 +82,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         NSNotificationCenter.defaultCenter().postNotificationName("sideViewAppeared", object: self)
     }
     
-    func giveTableViewRoundedTopLeftCorner() {
-        var maskPath = UIBezierPath(roundedRect: tableHolder.bounds, byRoundingCorners: UIRectCorner.TopLeft, cornerRadii: CGSizeMake(5.0, 5.0))
+    func giveTableViewRoundedTopCorners() {
+        var maskPath = UIBezierPath(roundedRect: tableHolder.bounds, byRoundingCorners: UIRectCorner.TopLeft | UIRectCorner.TopRight, cornerRadii: CGSizeMake(5.0, 5.0))
         
         var maskLayer = CAShapeLayer()
         maskLayer.frame = tableHolder.bounds
@@ -468,5 +468,14 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                 NSNotificationCenter.defaultCenter().postNotificationName("communitySelected", object: self, userInfo: userInfo)
             }
         }
+    }
+        
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
 }

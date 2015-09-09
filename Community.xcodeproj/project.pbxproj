@@ -15,6 +15,8 @@
 		9A3DEDA61B9155BE00B90556 /* DKImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3DEDA01B9155BE00B90556 /* DKImagePickerController.swift */; };
 		9A3DEDA71B9155BE00B90556 /* DKImageResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3DEDA11B9155BE00B90556 /* DKImageResource.swift */; };
 		9A3DEDA81B9155BE00B90556 /* DKPopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3DEDA21B9155BE00B90556 /* DKPopoverViewController.swift */; };
+		9A5566081B9FB60F005DDBA3 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5566071B9FB60F005DDBA3 /* PostCell.swift */; };
+		9A55660C1B9FD955005DDBA3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A55660A1B9FD955005DDBA3 /* Main.storyboard */; };
 		9AA526861B89CF4C00900383 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AA526851B89CF4C00900383 /* QuartzCore.framework */; };
 		9AA6135A1B83B2B8004911C2 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA613591B83B2B8004911C2 /* ProfileViewController.swift */; };
 		9AA6135C1B83E17C004911C2 /* CommunityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA6135B1B83E17C004911C2 /* CommunityViewController.swift */; };
@@ -24,7 +26,6 @@
 		9AA613641B851FD6004911C2 /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA613631B851FD6004911C2 /* CreateAccountViewController.swift */; };
 		9AAD20491B82A22F0053F743 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AAD20481B82A22F0053F743 /* AppDelegate.swift */; };
 		9AAD204B1B82A22F0053F743 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AAD204A1B82A22F0053F743 /* SearchViewController.swift */; };
-		9AAD204E1B82A22F0053F743 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9AAD204C1B82A22F0053F743 /* Main.storyboard */; };
 		9AAD20501B82A22F0053F743 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9AAD204F1B82A22F0053F743 /* Images.xcassets */; };
 		9AAD20531B82A22F0053F743 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9AAD20511B82A22F0053F743 /* LaunchScreen.xib */; };
 		9AAD205F1B82A22F0053F743 /* CommunityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AAD205E1B82A22F0053F743 /* CommunityTests.swift */; };
@@ -54,6 +55,8 @@
 		9A3DEDA01B9155BE00B90556 /* DKImagePickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DKImagePickerController.swift; path = ../../../../DKImagePickerController/DKImagePickerController/DKImagePickerController.swift; sourceTree = "<group>"; };
 		9A3DEDA11B9155BE00B90556 /* DKImageResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DKImageResource.swift; path = ../../../../DKImagePickerController/DKImagePickerController/DKImageResource.swift; sourceTree = "<group>"; };
 		9A3DEDA21B9155BE00B90556 /* DKPopoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DKPopoverViewController.swift; path = ../../../../DKImagePickerController/DKImagePickerController/DKPopoverViewController.swift; sourceTree = "<group>"; };
+		9A5566071B9FB60F005DDBA3 /* PostCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostCell.swift; path = ../PostCell.swift; sourceTree = "<group>"; };
+		9A55660B1B9FD955005DDBA3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9AA526851B89CF4C00900383 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		9AA613591B83B2B8004911C2 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		9AA6135B1B83E17C004911C2 /* CommunityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunityViewController.swift; sourceTree = "<group>"; };
@@ -65,7 +68,6 @@
 		9AAD20471B82A22F0053F743 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9AAD20481B82A22F0053F743 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9AAD204A1B82A22F0053F743 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
-		9AAD204D1B82A22F0053F743 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9AAD204F1B82A22F0053F743 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		9AAD20521B82A22F0053F743 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		9AAD20581B82A22F0053F743 /* CommunityTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CommunityTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -139,11 +141,12 @@
 		9AAD20451B82A22F0053F743 /* Community */ = {
 			isa = PBXGroup;
 			children = (
+				9A55660A1B9FD955005DDBA3 /* Main.storyboard */,
+				9A5566071B9FB60F005DDBA3 /* PostCell.swift */,
 				9A3DED9C1B9155AF00B90556 /* DKImagePickerController */,
 				9AD3B4B11B91283E00357860 /* ViewControllers */,
 				9A3D2C261B8AA0C400C10CC5 /* SearchTextField.swift */,
 				9AAD20481B82A22F0053F743 /* AppDelegate.swift */,
-				9AAD204C1B82A22F0053F743 /* Main.storyboard */,
 				9AAD204F1B82A22F0053F743 /* Images.xcassets */,
 				9AAD20511B82A22F0053F743 /* LaunchScreen.xib */,
 				9AAD20461B82A22F0053F743 /* Supporting Files */,
@@ -285,10 +288,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9AAD204E1B82A22F0053F743 /* Main.storyboard in Resources */,
 				9AAD20531B82A22F0053F743 /* LaunchScreen.xib in Resources */,
 				9A3DEDA51B9155BE00B90556 /* DKImagePickerController.bundle in Resources */,
 				9AAD20501B82A22F0053F743 /* Images.xcassets in Resources */,
+				9A55660C1B9FD955005DDBA3 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -358,6 +361,7 @@
 				9A3DEDA81B9155BE00B90556 /* DKPopoverViewController.swift in Sources */,
 				9AA6135A1B83B2B8004911C2 /* ProfileViewController.swift in Sources */,
 				9A3DEDA41B9155BE00B90556 /* DKAssetGroupVC.swift in Sources */,
+				9A5566081B9FB60F005DDBA3 /* PostCell.swift in Sources */,
 				9AD3B4B01B8E81D900357860 /* Delegates.swift in Sources */,
 				9AAD204B1B82A22F0053F743 /* SearchViewController.swift in Sources */,
 				9AA613621B851F79004911C2 /* LogInViewController.swift in Sources */,
@@ -392,10 +396,10 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		9AAD204C1B82A22F0053F743 /* Main.storyboard */ = {
+		9A55660A1B9FD955005DDBA3 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				9AAD204D1B82A22F0053F743 /* Base */,
+				9A55660B1B9FD955005DDBA3 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
