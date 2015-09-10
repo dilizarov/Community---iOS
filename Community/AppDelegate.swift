@@ -41,7 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         drawerController?.openDrawerGestureModeMask = .All
         drawerController?.closeDrawerGestureModeMask = .All
         drawerController?.centerHiddenInteractionMode = .None
-        drawerController?.showsShadow = false
+        drawerController?.showsShadow = true
         drawerController?.setDrawerVisualStateBlock(MMDrawerVisualState.parallaxVisualStateBlockWithParallaxFactor(3)!)
         
         // This forces the side to layout itself properly.

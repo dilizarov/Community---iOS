@@ -119,7 +119,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         singleTap.numberOfTapsRequired = 1
         avatarImage.userInteractionEnabled = true
         avatarImage.addGestureRecognizer(singleTap)
-        
     }
     
     func setAvatarImage() {

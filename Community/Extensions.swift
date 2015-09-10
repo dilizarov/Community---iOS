@@ -46,6 +46,121 @@ extension String {
         }
     }
     
+    func toNSDate() -> NSDate {
+        
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        formatter.timeZone = NSTimeZone(forSecondsFromGMT: 0)
+        formatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+        
+        return formatter.dateFromString(self)!
+    }
+}
+
+extension NSDate {
+    func yearsFrom(date:NSDate) -> Int{
+        return NSCalendar.currentCalendar().components(NSCalendarUnit.CalendarUnitYear, fromDate: date, toDate: self, options: nil).year
+    }
+    
+    func monthsFrom(date:NSDate) -> Int{
+        return NSCalendar.currentCalendar().components(NSCalendarUnit.CalendarUnitMonth, fromDate: date, toDate: self, options: nil).month
+    }
+    
+    func weeksFrom(date:NSDate) -> Int{
+        return NSCalendar.currentCalendar().components(NSCalendarUnit.CalendarUnitWeekOfYear, fromDate: date, toDate: self, options: nil).weekOfYear
+    }
+    
+    func daysFrom(date:NSDate) -> Int{
+        return NSCalendar.currentCalendar().components(NSCalendarUnit.CalendarUnitDay, fromDate: date, toDate: self, options: nil).day
+    }
+    
+    func hoursFrom(date:NSDate) -> Int{
+        return NSCalendar.currentCalendar().components(NSCalendarUnit.CalendarUnitHour, fromDate: date, toDate: self, options: nil).hour
+    }
+    
+    func minutesFrom(date:NSDate) -> Int{
+        return NSCalendar.currentCalendar().components(NSCalendarUnit.CalendarUnitMinute, fromDate: date, toDate: self, options: nil).minute
+    }
+    
+    func secondsFrom(date:NSDate) -> Int{
+        return NSCalendar.currentCalendar().components(NSCalendarUnit.CalendarUnitSecond, fromDate: date, toDate: self, options: nil).second
+    }
+    
+    func offsetFrom(date:NSDate) -> String {
+        
+        if yearsFrom(date) > 0 {
+            var num = yearsFrom(date)
+            return num > 1 ? "\(num) years" : "1 year"
+        } else if weeksFrom(date) > 0 {
+            var num = weeksFrom(date)
+            return num > 1 ? "\(num) weeks" : "1 week"
+        } else if daysFrom(date) > 0 {
+            var num = daysFrom(date)
+            return num > 1 ? "\(num) days" : "1 day"
+        } else if hoursFrom(date) > 0 {
+            var num = hoursFrom(date)
+            return num > 1 ? "\(num) hours" : "1 hour"
+        } else if minutesFrom(date) > 0 {
+            return "\(minutesFrom(date)) min"
+        } else if secondsFrom(date) > 0 {
+            return "\(secondsFrom(date)) sec"
+        } else {
+            return "1 sec"
+        }
+        
+    }
+    
+    func minusDays(days: Int) -> NSDate {
+        var dateComponents = NSDateComponents()
+        dateComponents.day = -days
+        return NSCalendar.currentCalendar().dateByAddingComponents(dateComponents, toDate: self, options: nil)!
+        
+    }
+    
+    func stringFromDate() -> String {
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        formatter.timeZone = NSTimeZone(forSecondsFromGMT: 0)
+        formatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+        
+        return formatter.stringFromDate(self)
+    }
+}
+
+extension Int {
+    func toThousandsString() -> String {
+        if self < 1000 {
+            return "\(self)"
+        } else if self < 10000 {
+            var numberFormatter = NSNumberFormatter()
+            numberFormatter.numberStyle = .DecimalStyle
+            return numberFormatter.stringFromNumber(self)!
+        } else {
+            
+            var div = Double(self)/1000.0
+            
+            var strDiv = "\(div)"
+            
+            var dotIndex = -1
+            
+            for var i = 0; i < NSString(string: strDiv).length; i++ {
+                if strDiv[i] == "." {
+                    dotIndex = i
+                    break
+                }
+            }
+            
+            if dotIndex == 2 {
+                if strDiv[3] != "0" {
+                    return "\(strDiv[0...3])k"
+                } else {
+                    return "\(strDiv[0...1])k"
+                }
+            } else {
+                return "\(strDiv[0...dotIndex - 1])k"
+            }
+        }
+    }
 }
 
 extension UIImage {
