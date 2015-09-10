@@ -19,6 +19,7 @@ PODS:
     - SDWebImage/Core (= 3.7.3)
   - SDWebImage/Core (3.7.3)
   - SwiftyJSON (2.2.1)
+  - SZTextView (1.2.1)
   - Toast (2.4)
   - UIActivityIndicator-for-SDWebImage (1.2):
     - SDWebImage (~> 3.7)
@@ -31,6 +32,7 @@ DEPENDENCIES:
   - RSKImageCropper (~> 1.2)
   - SDWebImage (~> 3.7)
   - SwiftyJSON (~> 2.2.1)
+  - SZTextView (~> 1.2)
   - Toast (~> 2.4)
   - UIActivityIndicator-for-SDWebImage (~> 1.2)
 
@@ -42,6 +44,7 @@ SPEC CHECKSUMS:
   RSKImageCropper: e912419809d3a4eac47864d6fbc22f84c14879d5
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
   SwiftyJSON: ae2d0a3d68025d136602a33c4ee215091ced3e33
+  SZTextView: 906df45afd3c1b24fc5252088d5ef8061513c238
   Toast: 0773b8fc0e97352ca6054517bec7ebdd4110029d
   UIActivityIndicator-for-SDWebImage: 7bf7ebbf0ed1747dedc0d6e949c4603a6d0f9e0c
 

@@ -28,12 +28,13 @@ class PostCell: UITableViewCell {
     @IBOutlet var cardView: UIView!
     
     @IBOutlet var titleUpperConstraint: NSLayoutConstraint!
-    
     @IBOutlet var bodyUpperConstraint: NSLayoutConstraint!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        self.layoutIfNeeded()
     }
 
     func configureViews(post: Post) {
@@ -103,8 +104,10 @@ class PostCell: UITableViewCell {
         super.layoutSubviews()
         self.cardSetup()
         self.avatarSetup()
-        self.postBody.lineBreakMode = .ByWordWrapping
         self.postTitle.lineBreakMode = .ByWordWrapping
+        self.postBody.lineBreakMode = .ByWordWrapping
+        self.postTitle.sizeToFit()
+        self.postBody.sizeToFit()
     }
     
     override func prepareForReuse() {

@@ -37,20 +37,26 @@ class CommunityViewController: UIViewController, UITableViewDelegate, UITableVie
     // Used to mitigate background fetching first time around
     var fetchedOnce = false
     
+    var initiallyLoaded = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setInfiniteScrollVals()
         setupNavBar()
         setupRefreshControl()
+        setupWritePostButton()
         
         communityFeed.rowHeight = UITableViewAutomaticDimension
-        
-        requestPostsAndPopulateFeed(false, page: nil, completionHandler: nil, changingCommunities: false)
     }
     
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if (!initiallyLoaded) {
+            requestPostsAndPopulateFeed(false, page: nil, completionHandler: nil, changingCommunities: false)
+            initiallyLoaded = true
+        }
     }
     
     func setInfiniteScrollVals() {
@@ -93,10 +99,28 @@ class CommunityViewController: UIViewController, UITableViewDelegate, UITableVie
     func setupRefreshControl() {
         refreshControl = UIRefreshControl()
         refreshControl.tintColor = UIColor.whiteColor()
+        refreshControl.tintColorDidChange()
         refreshControl.addTarget(self, action: Selector("handleRefresh"), forControlEvents: .ValueChanged)
 
         communityFeed.addSubview(refreshControl)
         communityFeed.sendSubviewToBack(refreshControl)        
+    }
+    
+    func setupWritePostButton() {
+        var customView = UIView(frame: CGRectMake(0, 0, communityFeed.frame.width, 60))
+        
+        var button: UIButton = UIButton.buttonWithType(.System) as! UIButton
+        button.backgroundColor = UIColor.whiteColor()
+        button.layer.cornerRadius = 5.0
+        button.clipsToBounds = true
+        button.frame = CGRectMake(8, 10, 40, 40)
+        button.setImage(UIImage(named: "Pencil"), forState: .Normal)
+        button.tintColor = UIColor(red: 0.7, green: 0.7, blue: 0.7, alpha: 1.0)
+        customView.addSubview(button)
+        
+        button.addTarget(self, action: Selector("writePost"), forControlEvents: .TouchUpInside)
+        
+        communityFeed.tableHeaderView = customView
     }
     
     func goSearch() {
@@ -105,6 +129,14 @@ class CommunityViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func handleRefresh() {
         requestPostsAndPopulateFeed(true, page: nil, completionHandler: nil, changingCommunities: false)
+    }
+    
+    func writePost() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        var writePostVC = storyboard.instantiateViewControllerWithIdentifier("WritePostViewController") as! WritePostViewController
+        
+        self.presentViewController(writePostVC, animated: true, completion: nil)
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -125,8 +157,7 @@ class CommunityViewController: UIViewController, UITableViewDelegate, UITableVie
             cell.configureViews(posts[indexPath.row])
         }
         
-        // The following is used to mitigate iOS Bug when scrolling up.
-        
+        // The following is used to mitigate iOS Bug when scrolling up.        
         var visibleIndexPaths = communityFeed.indexPathsForVisibleRows() as! [NSIndexPath]
         
         var dequeuedRow = visibleIndexPaths[0].row - 1
@@ -137,9 +168,21 @@ class CommunityViewController: UIViewController, UITableViewDelegate, UITableVie
             var dequeuedPost = posts[dequeuedRow]
             
             if cachedHeights[dequeuedPost.id] == nil && cell.bounds.height != 0.0 {
-                cachedHeights[dequeuedPost.id] = cell.bounds.height
+                var const = CGFloat(12 + 44 + 12 + 20 + 18 + 10)
+                
+                if let title = dequeuedPost.title {
+                    const = const + 10
+                    const = const + cell.postTitle.frame.size.height
+                }
+                
+                const = const + cell.postBody.frame.size.height
+                
+                // body height
+                cachedHeights[dequeuedPost.id] = const
             }
         }
+        
+        cell.layoutIfNeeded()
         
         return cell
     }
@@ -154,7 +197,7 @@ class CommunityViewController: UIViewController, UITableViewDelegate, UITableVie
             }
         }
         
-        return UITableViewAutomaticDimension
+        return 200
     }
     
     func requestPostsAndPopulateFeed(refreshing: Bool, page: Int?, completionHandler: ((UIBackgroundFetchResult) -> Void)?, changingCommunities: Bool) {
@@ -210,7 +253,7 @@ class CommunityViewController: UIViewController, UITableViewDelegate, UITableVie
                             var rand = Int(arc4random_uniform(UInt32(3)))
                             
                             if rand == 1 || (page == nil && i == 1){
-                                post.title = "This is the title that we've always been waiting for for our whole lives"
+                                post.title = "I love Irene :3"
                             }
 
                             
@@ -304,7 +347,7 @@ class CommunityViewController: UIViewController, UITableViewDelegate, UITableVie
     func startLoading() {
         //errorLabel.alpha = 0.0
         self.refreshControl.beginRefreshing()
-        //refreshControl.sendActionsForControlEvents(.ValueChanged)
+        refreshControl.sendActionsForControlEvents(.ValueChanged)
     }
     
     override func viewDidDisappear(animated: Bool) {

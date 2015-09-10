@@ -19,6 +19,7 @@
 		9A55660C1B9FD955005DDBA3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A55660A1B9FD955005DDBA3 /* Main.storyboard */; };
 		9A55660E1BA0168D005DDBA3 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A55660D1BA0168C005DDBA3 /* Post.swift */; };
 		9A5566111BA048E2005DDBA3 /* UIRefreshControl+UITableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A5566101BA048E2005DDBA3 /* UIRefreshControl+UITableView.m */; };
+		9A5566141BA16F18005DDBA3 /* WritePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5566131BA16F16005DDBA3 /* WritePostViewController.swift */; };
 		9AA526861B89CF4C00900383 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AA526851B89CF4C00900383 /* QuartzCore.framework */; };
 		9AA6135A1B83B2B8004911C2 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA613591B83B2B8004911C2 /* ProfileViewController.swift */; };
 		9AA6135C1B83E17C004911C2 /* CommunityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA6135B1B83E17C004911C2 /* CommunityViewController.swift */; };
@@ -63,6 +64,7 @@
 		9A55660F1BA048C7005DDBA3 /* UIRefreshControl+UITableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIRefreshControl+UITableView.h"; sourceTree = "<group>"; };
 		9A5566101BA048E2005DDBA3 /* UIRefreshControl+UITableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIRefreshControl+UITableView.m"; path = "../UIRefreshControl+UITableView.m"; sourceTree = "<group>"; };
 		9A5566121BA049EE005DDBA3 /* Community-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Community-Bridging-Header.h"; sourceTree = "<group>"; };
+		9A5566131BA16F16005DDBA3 /* WritePostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WritePostViewController.swift; path = ../WritePostViewController.swift; sourceTree = "<group>"; };
 		9AA526851B89CF4C00900383 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		9AA613591B83B2B8004911C2 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		9AA6135B1B83E17C004911C2 /* CommunityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunityViewController.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 		9AAD20451B82A22F0053F743 /* Community */ = {
 			isa = PBXGroup;
 			children = (
+				9A5566131BA16F16005DDBA3 /* WritePostViewController.swift */,
 				9A5566101BA048E2005DDBA3 /* UIRefreshControl+UITableView.m */,
 				9A55660A1B9FD955005DDBA3 /* Main.storyboard */,
 				9A5566071B9FB60F005DDBA3 /* PostCell.swift */,
@@ -375,6 +378,7 @@
 				9A5566111BA048E2005DDBA3 /* UIRefreshControl+UITableView.m in Sources */,
 				9AD3B4B01B8E81D900357860 /* Delegates.swift in Sources */,
 				9AAD204B1B82A22F0053F743 /* SearchViewController.swift in Sources */,
+				9A5566141BA16F18005DDBA3 /* WritePostViewController.swift in Sources */,
 				9AA613621B851F79004911C2 /* LogInViewController.swift in Sources */,
 				9A3DEDA31B9155BE00B90556 /* DKAssetGroupDetailVC.swift in Sources */,
 				9AA613641B851FD6004911C2 /* CreateAccountViewController.swift in Sources */,
