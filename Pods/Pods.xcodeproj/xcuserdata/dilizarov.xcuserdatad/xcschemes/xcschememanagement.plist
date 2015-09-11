@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>HexColors.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>MGSwipeTableCell.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -72,7 +77,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>2CBBDC72B51986D8A46A7F89E6B089C4</key>
+		<key>354F3FB4483C909BCD329AA33E7403C4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -82,12 +87,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>66B894F61E218951D52E4EAC33437441</key>
+		<key>66BF01CAEABCDA88C71DC420706183E9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9AD9F345C45FFABEF1B93BBDCB07C5CA</key>
+		<key>6F9B47010EEFBA2D9E317458982FBC71</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>70DEA973352CD11826903639F201316B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>79F5F7BA16542A3766C70AC42300E2C5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -97,22 +112,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>AEA3FDAB67A4DE5FF83A9F6114C6E3EE</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>B9A04D3C9B208813656510FDA8ADAE02</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F727698723A05620B7AD34E5CB000DC5</key>
+		<key>C050B7E23613511A257978704676AF28</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F839C95ED297431B38E1A40CA7B66460</key>
+		<key>EC3091BBCEEECB36674BBCCC197C8098</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -10,6 +10,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import Toast
+import HexColors
 
 class CommunityViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -17,9 +18,12 @@ class CommunityViewController: UIViewController, UITableViewDelegate, UITableVie
     var communityTitle: String?
     var posts = [Post]()
     
+    var navBar: UINavigationBar!
+    var leftButtonOptions = [String : UIBarButtonItem]()
+    
     // Used to mitigate iOS bug with dynamic UITablieViewCell heights and jumpiness
     // when scrolling up
-    var cachedHeights = [String: CGFloat]()
+    var cachedHeights = [Int: CGFloat]()
     
     @IBOutlet var communityFeed: UITableView!
     
@@ -74,22 +78,40 @@ class CommunityViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func setupNavBar() {
-        var navBar: UINavigationBar = UINavigationBar(frame: CGRectMake(0, 0, self.view.bounds.width, 64))
+        navBar = UINavigationBar(frame: CGRectMake(0, 0, self.view.bounds.width, 64))
         
         navBar.barTintColor = UIColor.whiteColor()
         navBar.translucent = false
         
+        navBar.titleTextAttributes = [ NSForegroundColorAttributeName : UIColor.darkGrayColor() ]
+        
         self.view.addSubview(navBar)
         
-        var buttonLeft = UIBarButtonItem(title: "Wow", style: .Plain, target: self, action: Selector("LLLL"))
-        buttonLeft.tintColor = UIColor.blueColor()
+        var settingsButton = UIBarButtonItem(image: UIImage(named: "Settings"), style: .Plain, target: self, action: nil)
+        settingsButton.tintColor = UIColor(hexString: "056A85")
         
-        var buttonRight = UIBarButtonItem(title: "Search", style: .Plain, target: self, action: Selector("goSearch"))
-        buttonRight.tintColor = UIColor.blueColor()
+        var joinButton = UIBarButtonItem(title: "Join", style: .Plain, target: self, action: Selector("processJoin"))
+        joinButton.tintColor = UIColor(hexString: "056A85")
+        
+        var loadIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 22, 22))
+        loadIndicator.stopAnimating()
+        loadIndicator.hidesWhenStopped = true
+        loadIndicator.activityIndicatorViewStyle = .Gray
+        
+        var loadButton = UIBarButtonItem(customView: loadIndicator)
+        
+        leftButtonOptions["settings"] = settingsButton
+        leftButtonOptions["join"] = joinButton
+        leftButtonOptions["load"] = loadButton
+        
+        var searchButton = UIBarButtonItem(image: UIImage(named: "Search"), style: .Plain, target: self, action: Selector("goSearch"))
+        searchButton.tintColor = UIColor(hexString: "056A85")
         
         var navigationItem = UINavigationItem()
-        navigationItem.rightBarButtonItem = buttonRight
-        navigationItem.leftBarButtonItem = buttonLeft
+        navigationItem.rightBarButtonItem = searchButton
+        
+        //Check if join or settings later.
+        navigationItem.leftBarButtonItem = joinButton
         
         navigationItem.title = communityTitle
         
@@ -127,6 +149,11 @@ class CommunityViewController: UIViewController, UITableViewDelegate, UITableVie
         self.navigationController?.popViewControllerAnimated(true)
     }
     
+    func processJoin() {
+        (leftButtonOptions["load"]!.customView as! UIActivityIndicatorView).startAnimating()
+        navBar.topItem!.leftBarButtonItem = leftButtonOptions["load"]
+    }
+    
     func handleRefresh() {
         requestPostsAndPopulateFeed(true, page: nil, completionHandler: nil, changingCommunities: false)
     }
@@ -157,47 +184,22 @@ class CommunityViewController: UIViewController, UITableViewDelegate, UITableVie
             cell.configureViews(posts[indexPath.row])
         }
         
-        // The following is used to mitigate iOS Bug when scrolling up.        
-        var visibleIndexPaths = communityFeed.indexPathsForVisibleRows() as! [NSIndexPath]
-        
-        var dequeuedRow = visibleIndexPaths[0].row - 1
-        
-        //dequeuedRow + 1 != indexPath.row makes sure we're scrolling down, not up.
-        
-        if dequeuedRow >= 0 && dequeuedRow < posts.count && (dequeuedRow + 1 != indexPath.row) {
-            var dequeuedPost = posts[dequeuedRow]
-            
-            if cachedHeights[dequeuedPost.id] == nil && cell.bounds.height != 0.0 {
-                var const = CGFloat(12 + 44 + 12 + 20 + 18 + 10)
-                
-                if let title = dequeuedPost.title {
-                    const = const + 10
-                    const = const + cell.postTitle.frame.size.height
-                }
-                
-                const = const + cell.postBody.frame.size.height
-                
-                // body height
-                cachedHeights[dequeuedPost.id] = const
-            }
-        }
-        
         cell.layoutIfNeeded()
         
         return cell
     }
     
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        self.cachedHeights[indexPath.row] = cell.frame.size.height        
+    }
+    
     func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
-        if indexPath.row >= 0 && indexPath.row < posts.count {
-            var post = posts[indexPath.row]
-            
-            if let height = cachedHeights[post.id] {
-                return height
-            }
+        if let height = cachedHeights[indexPath.row] {
+            return height
+        } else {
+            return 200
         }
-        
-        return 200
     }
     
     func requestPostsAndPopulateFeed(refreshing: Bool, page: Int?, completionHandler: ((UIBackgroundFetchResult) -> Void)?, changingCommunities: Bool) {
@@ -253,7 +255,7 @@ class CommunityViewController: UIViewController, UITableViewDelegate, UITableVie
                             var rand = Int(arc4random_uniform(UInt32(3)))
                             
                             if rand == 1 || (page == nil && i == 1){
-                                post.title = "I love Irene :3"
+                                post.title = "I weq weerw qwe qewrwlerkwr qlr lqwe r qwer qwler qwelrk wer kwlr lwer qwekrqwer qwr lqwer qlw rwerwerw rqwrqw erq rwqerkqwe rlwqr qwler qler qkw rlqwer qlwer qwler qlw rlekr qwelrkq ewqlwer qelwr qwerqwerqwerqwe :3"
                             }
 
                             

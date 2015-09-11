@@ -53,6 +53,7 @@ code_sign_if_enabled() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework 'Pods/Alamofire.framework'
+  install_framework 'Pods/HexColors.framework'
   install_framework 'Pods/MGSwipeTableCell.framework'
   install_framework 'Pods/MMDrawerController.framework'
   install_framework 'Pods/MMProgressHUD.framework'
@@ -65,6 +66,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'Pods/Alamofire.framework'
+  install_framework 'Pods/HexColors.framework'
   install_framework 'Pods/MGSwipeTableCell.framework'
   install_framework 'Pods/MMDrawerController.framework'
   install_framework 'Pods/MMProgressHUD.framework'
