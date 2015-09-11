@@ -18,8 +18,8 @@ class CommunityCell: MGSwipeTableCell {
     
     @IBOutlet var communityName: UILabel!
     
-    func configureViews(name: NSString, row: Int) {
-        self.name = name as! String
+    func configureViews(community: JoinedCommunity, row: Int) {
+        self.name = community.name
         self.row = row
         
         self.communityName.text = self.name
@@ -41,7 +41,7 @@ class CommunityCell: MGSwipeTableCell {
         var leaveButton = MGSwipeButton(title: "Leave", backgroundColor: UIColor.redColor(), callback: {
             (sender: MGSwipeTableCell!) -> Bool in
 
-            self.leaveCommunityDelegate.presentLeaveCommunityController(name as String, row: row)
+            self.leaveCommunityDelegate.presentLeaveCommunityController(community, row: row)
             
             return true
         })

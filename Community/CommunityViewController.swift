@@ -11,6 +11,7 @@ import Alamofire
 import SwiftyJSON
 import Toast
 import HexColors
+import RealmSwift
 
 class CommunityViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -152,6 +153,39 @@ class CommunityViewController: UIViewController, UITableViewDelegate, UITableVie
     func processJoin() {
         (leftButtonOptions["load"]!.customView as! UIActivityIndicatorView).startAnimating()
         navBar.topItem!.leftBarButtonItem = leftButtonOptions["load"]
+        
+        var userInfo = NSUserDefaults.standardUserDefaults()
+        
+        var params = [String: AnyObject]()
+        params["user_id"] = userInfo.objectForKey("user_id") as! String
+        params["auth_token"] = userInfo.objectForKey("auth_token") as! String
+        params["community"] = communityTitle!
+        
+        Alamofire.request(.POST, "https://infinite-lake-4056.herokuapp.com/api/v1/communities.json", parameters: params)
+            .responseJSON { request, response, jsonData, errors in
+                
+                if (response?.statusCode > 299 || errors != nil) {
+                    if (response?.statusCode > 299) {
+                        //something went wrong
+                    } else {
+                        //localizedDescription
+                    }
+                    
+                    self.navBar.topItem!.leftBarButtonItem = self.leftButtonOptions["join"]
+                } else {
+                    self.navBar.topItem!.leftBarButtonItem = self.leftButtonOptions["settings"]
+                    
+                    let realm = Realm(path: String.realmUserPath!)
+                    var community = JoinedCommunity()
+                    community.name = self.communityTitle!
+                    
+                    realm.write {
+                        realm.add(community)
+                    }
+                }
+                
+                (self.leftButtonOptions["load"]!.customView as! UIActivityIndicatorView).stopAnimating()
+        }
     }
     
     func handleRefresh() {
@@ -213,6 +247,7 @@ class CommunityViewController: UIViewController, UITableViewDelegate, UITableVie
         var params = [String: AnyObject]()
         params["user_id"] = userInfo.objectForKey("user_id") as! String
         params["auth_token"] = userInfo.objectForKey("auth_token") as! String
+        params["community"] = communityTitle!
         
         if (!refreshing) {
             if page != nil {
@@ -225,7 +260,7 @@ class CommunityViewController: UIViewController, UITableViewDelegate, UITableVie
             }
         }
         
-        Alamofire.request(.GET, "https://infinite-lake-4056.herokuapp.com/api/v1/communities/\(communityTitle!)/posts.json", parameters: params)
+        Alamofire.request(.GET, "https://infinite-lake-4056.herokuapp.com/api/v1/posts.json", parameters: params)
             .responseJSON { request, response, jsonData, errors in
                 
                 var defaultError = errors?.localizedDescription

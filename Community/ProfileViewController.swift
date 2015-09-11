@@ -14,16 +14,18 @@ import Toast
 import SDWebImage
 import UIActivityIndicator_for_SDWebImage
 import MMProgressHUD
+import RealmSwift
 
 
 class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, PresentControllerDelegate, LeaveCommunityDelegate {
 
     var refreshControl: UIRefreshControl!
     
-    var communities = [NSString]()
+    var communities = [JoinedCommunity]()
     var communities2 = [NSString]()
     var notifs = false
     
+    var initialLoad = true
     //We use a table holder to get past some
     //rounded corner issues that happen when 
     //applying rounded corners directly to
@@ -80,6 +82,15 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         super.viewWillAppear(true)
         
         NSNotificationCenter.defaultCenter().postNotificationName("sideViewAppeared", object: self)
+        
+        let realm = Realm(path: String.realmUserPath!)
+        if (!initialLoad && realm.objects(JoinedCommunity).count > communities.count) {
+            communities = map(realm.objects(JoinedCommunity).sorted("nameLowercase", ascending: true)) { $0 }
+            
+            communitiesTable.reloadData()
+        }
+        
+        initialLoad = false
     }
     
     func giveTableViewRoundedTopCorners() {
@@ -194,7 +205,9 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         var params = [String : AnyObject]()
         
-        params["user_id"] = userInfo.objectForKey("user_id") as! String
+        var user_id = userInfo.objectForKey("user_id") as! String
+        
+        params["user_id"] = user_id
         params["auth_token"] = userInfo.objectForKey("auth_token") as! String
         
         Alamofire.request(.GET, "https://infinite-lake-4056.herokuapp.com/api/v1/communities.json", parameters: params)
@@ -211,7 +224,34 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                     if (json["errors"] == nil) {
                         self.communities = []
                         for var i = 0; i < json["communities"].count; i++ {
-                            self.communities.append(json["communities"][i]["name"].string!)
+                            var jsonCommunity = json["communities"][i]
+                            
+                            var community = JoinedCommunity()
+                            
+                            community.name = jsonCommunity["name"].string!
+                            
+                            if let username = jsonCommunity["user"]["username"].string {
+                                community.username = username
+                            }
+                            
+                            if let avatar_url = jsonCommunity["avatar_url"].string {
+                                community.avatar_url = avatar_url
+                            }
+                            
+                            self.communities.append(community)
+                            
+                            println(community)
+                        }
+                        
+                        let realm = Realm(path: String.realmUserPath!)
+                        realm.write {
+                            // Delete because we don't need data on 
+                            // communities one may have left.
+                            realm.delete(realm.objects(JoinedCommunity))
+                            
+                            for community in self.communities {
+                                realm.add(community, update: true)
+                            }
                         }
                         
                         self.errorLabel.alpha = 0
@@ -256,15 +296,15 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.presentViewController(controller, animated: true, completion: nil)
     }
     
-    func presentLeaveCommunityController(name: String, row: Int) {
-        var nameWithUnite = "&\(name)"
+    func presentLeaveCommunityController(community: JoinedCommunity, row: Int) {
+        var nameWithUnite = "&\(community.name)"
         
         var confirmLeaveAlert = UIAlertController(title: "Leave \(nameWithUnite)", message: "Are you sure you want to leave?", preferredStyle: .Alert)
         
         let leaveAction = UIAlertAction(title: "Leave", style: .Destructive, handler: {
             (alert: UIAlertAction!) in
             
-            self.leaveCommunity(name, row: row)
+            self.leaveCommunity(community, row: row)
             
         })
         
@@ -276,11 +316,11 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.presentViewController(confirmLeaveAlert, animated: true, completion: nil)
     }
     
-    func leaveCommunity(name: String, row: Int) {
-        if (name == communities[row]) {
+    func leaveCommunity(community: JoinedCommunity, row: Int) {
+        if (community.name == communities[row].name) {
             communities.removeAtIndex(row)
         } else {
-            communities = communities.filter( { return $0 != name } )
+            communities = communities.filter( { return $0.name != community.name } )
         }
         
         communitiesTable.reloadData()
@@ -292,14 +332,14 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         params["user_id"] = userInfo.objectForKey("user_id") as! String
         params["auth_token"] = userInfo.objectForKey("auth_token") as! String
         
-        Alamofire.request(.DELETE, "https://infinite-lake-4056.herokuapp.com/api/v1/communities/\(name).json", parameters: params)
+        Alamofire.request(.DELETE, "https://infinite-lake-4056.herokuapp.com/api/v1/communities/\(community.name).json", parameters: params)
             .responseJSON { request, response, jsonData, errors in
                 
                 if (response?.statusCode == 404 || errors != nil) {
                     
                     var arraySize = self.communities.count
                     
-                    self.communities.insert(name, atIndex: (row > arraySize ? arraySize : row))
+                    self.communities.insert(community, atIndex: (row > arraySize ? arraySize : row))
                     self.communitiesTable.reloadData()
                     
                     if (response?.statusCode == 404) {
@@ -439,15 +479,14 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         if (notifs) {
             if (self.communities2.count > indexPath.row) {
-                cell.configureViews(communities2[indexPath.row], row: indexPath.row)
+                //cell.configureViews(communities2[indexPath.row], row: indexPath.row)
             }
 
         } else {
-            
             cell.presentControllerDelegate = self
             cell.leaveCommunityDelegate = self
             
-            if (self.communities.count > indexPath.row) {
+            if (communities.count > indexPath.row) {
                 cell.configureViews(communities[indexPath.row], row: indexPath.row)
             }
         }
@@ -459,12 +498,13 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         if (notifs) {
             println("Touch")
         } else {
-            if (self.communities.count > indexPath.row) {
+            if (communities.count > indexPath.row) {
                 
                 var userInfo = Dictionary<String, String>()
-                userInfo["community"] = communities[indexPath.row] as String
-    
+                userInfo["community"] = communities[indexPath.row].name
+                
                 NSNotificationCenter.defaultCenter().postNotificationName("communitySelected", object: self, userInfo: userInfo)
+
             }
         }
     }

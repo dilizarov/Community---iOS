@@ -55,6 +55,19 @@ extension String {
         
         return formatter.dateFromString(self)!
     }
+    
+    static var realmUserPath: String? {
+        var optional_user_id = NSUserDefaults.standardUserDefaults().objectForKey("user_id") as? String
+        
+        if let user_id = optional_user_id {
+            var documentsDirectory = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! NSString
+            var customRealmPath = documentsDirectory.stringByAppendingPathComponent("\(user_id).realm")
+            
+            return customRealmPath
+        } else {
+            return nil
+        }
+    }
 }
 
 extension NSDate {

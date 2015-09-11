@@ -39,6 +39,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Realm.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>RealmSwift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>SDWebImage.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -67,6 +77,11 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>10845198053E6B4C1CB0DB2377D456CA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>242B036909E6998D733E8BB3EB41ACE9</key>
 		<dict>
 			<key>primary</key>
@@ -77,32 +92,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>354F3FB4483C909BCD329AA33E7403C4</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>479CDF19D7F0F65B2137192812E62858</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>66BF01CAEABCDA88C71DC420706183E9</key>
+		<key>5727C75959EB183CA894DE76134B6EE1</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6F9B47010EEFBA2D9E317458982FBC71</key>
+		<key>7FBAF6B824C4A0F2851F4951F94F65CF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>70DEA973352CD11826903639F201316B</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>79F5F7BA16542A3766C70AC42300E2C5</key>
+		<key>962CA63AC672A9991E4FC53878A8D980</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -112,17 +117,32 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>ADF5773EB8EE2D0DF52D8DDAEA0FAC21</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>B9A04D3C9B208813656510FDA8ADAE02</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C050B7E23613511A257978704676AF28</key>
+		<key>E2C817F0EDB102BB6A8E590746DC1BAF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>EC3091BBCEEECB36674BBCCC197C8098</key>
+		<key>ED5A7D13EABC96251A6E614CD7C0083D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F2196AFA0B8A7452BD0B00C228A9EB5F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F71A8B54F804BA5BFC3C61283E5DBFD9</key>
 		<dict>
 			<key>primary</key>
 			<true/>

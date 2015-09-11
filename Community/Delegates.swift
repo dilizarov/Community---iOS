@@ -13,5 +13,5 @@ protocol PresentControllerDelegate {
 }
 
 protocol LeaveCommunityDelegate {
-    func presentLeaveCommunityController(name: String, row: Int)
+    func presentLeaveCommunityController(community: JoinedCommunity, row: Int)
 }

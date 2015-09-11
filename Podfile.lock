@@ -15,6 +15,11 @@ PODS:
   - MMDrawerController/Subclass (0.5.7):
     - MMDrawerController/Core
   - MMProgressHUD (0.3.1)
+  - Realm (0.95.0):
+    - Realm/Headers (= 0.95.0)
+  - Realm/Headers (0.95.0)
+  - RealmSwift (0.95.0):
+    - Realm (= 0.95.0)
   - RSKImageCropper (1.2.1)
   - SDWebImage (3.7.3):
     - SDWebImage/Core (= 3.7.3)
@@ -31,6 +36,7 @@ DEPENDENCIES:
   - MGSwipeTableCell (~> 1.5.1)
   - MMDrawerController (~> 0.5.7)
   - MMProgressHUD (~> 0.3.1)
+  - RealmSwift (~> 0.95)
   - RSKImageCropper (~> 1.2)
   - SDWebImage (~> 3.7)
   - SwiftyJSON (~> 2.2.1)
@@ -44,6 +50,8 @@ SPEC CHECKSUMS:
   MGSwipeTableCell: a51fa670c01f0aa048f12af040acebf315223137
   MMDrawerController: 7a4cf8e25596bf2434e03ce50d22a8608ddee6a1
   MMProgressHUD: dac2655d62d28e7d6dc28bf72d9531a4d4c62459
+  Realm: bbb171b96728ea136ed5cd354dca2a3d6529923c
+  RealmSwift: 35eeb642bf0b43dedfe363451ba3288d0e72ebb9
   RSKImageCropper: e912419809d3a4eac47864d6fbc22f84c14879d5
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
   SwiftyJSON: ae2d0a3d68025d136602a33c4ee215091ced3e33
