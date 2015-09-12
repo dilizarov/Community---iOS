@@ -56,18 +56,6 @@ extension String {
         return formatter.dateFromString(self)!
     }
     
-    static var realmUserPath: String? {
-        var optional_user_id = NSUserDefaults.standardUserDefaults().objectForKey("user_id") as? String
-        
-        if let user_id = optional_user_id {
-            var documentsDirectory = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! NSString
-            var customRealmPath = documentsDirectory.stringByAppendingPathComponent("\(user_id).realm")
-            
-            return customRealmPath
-        } else {
-            return nil
-        }
-    }
 }
 
 extension NSDate {
@@ -300,4 +288,36 @@ extension UIImage {
     func imageByScalingAspectFitSize(newSize: CGSize) -> UIImage {
         return imageByScalingToSize(newSize, contentMode: .ScaleAspectFit)!
     }
+}
+
+
+extension UIRefreshControl {
+
+    // Fix tint and showing UIRefreshControl when starting in code.
+    func beginRefreshingProgrammatically() -> Void {
+        var delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0.05 * Double(NSEC_PER_SEC)))
+        
+        dispatch_after(delayTime, dispatch_get_main_queue(), {
+            self.beginRefreshing()
+            
+            var tableView = self.getParentTableViewOfView(self)
+            if let table = tableView {
+                table.setContentOffset(CGPointMake(0, table.contentOffset.y-self.frame.size.height), animated: true)
+            }
+        })
+    }
+    
+    func getParentTableViewOfView(view: UIView) -> UITableView? {
+        
+        if let table = view.superview as? UITableView {
+            return table
+        }
+        
+        if let superview = view.superview {
+            return getParentTableViewOfView(superview)
+        }
+        
+        return nil
+    }
+    
 }

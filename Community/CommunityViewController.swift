@@ -53,15 +53,17 @@ class CommunityViewController: UIViewController, UITableViewDelegate, UITableVie
         setupWritePostButton()
         
         communityFeed.rowHeight = UITableViewAutomaticDimension
+        
+        requestPostsAndPopulateFeed(false, page: nil, completionHandler: nil, changingCommunities: false)
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        if (!initiallyLoaded) {
-            requestPostsAndPopulateFeed(false, page: nil, completionHandler: nil, changingCommunities: false)
-            initiallyLoaded = true
-        }
+//        if (!initiallyLoaded) {
+//            requestPostsAndPopulateFeed(false, page: nil, completionHandler: nil, changingCommunities: false)
+//            initiallyLoaded = true
+//        }
     }
     
     func setInfiniteScrollVals() {
@@ -126,7 +128,7 @@ class CommunityViewController: UIViewController, UITableViewDelegate, UITableVie
         refreshControl.addTarget(self, action: Selector("handleRefresh"), forControlEvents: .ValueChanged)
 
         communityFeed.addSubview(refreshControl)
-        communityFeed.sendSubviewToBack(refreshControl)        
+//        communityFeed.sendSubviewToBack(refreshControl)        
     }
     
     func setupWritePostButton() {
@@ -175,7 +177,7 @@ class CommunityViewController: UIViewController, UITableViewDelegate, UITableVie
                 } else {
                     self.navBar.topItem!.leftBarButtonItem = self.leftButtonOptions["settings"]
                     
-                    let realm = Realm(path: String.realmUserPath!)
+                    let realm = Realm()
                     var community = JoinedCommunity()
                     community.name = self.communityTitle!
                     
@@ -346,7 +348,9 @@ class CommunityViewController: UIViewController, UITableViewDelegate, UITableVie
     func scrollViewDidScroll(scrollView: UIScrollView) {
         
         // Either we've reached the end of the list, or we're still on the first page.
+        println("before \(posts.count)")
         if reachedEndOfList! || posts.count < 15 { return }
+        println("after \(posts.count)")
         
         if posts.count < preloadPostCount {
             preloadPostCount = posts.count
@@ -383,7 +387,7 @@ class CommunityViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func startLoading() {
         //errorLabel.alpha = 0.0
-        self.refreshControl.beginRefreshing()
+        self.refreshControl.beginRefreshingProgrammatically()
         refreshControl.sendActionsForControlEvents(.ValueChanged)
     }
     

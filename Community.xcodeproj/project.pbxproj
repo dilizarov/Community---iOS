@@ -18,7 +18,6 @@
 		9A5566081B9FB60F005DDBA3 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5566071B9FB60F005DDBA3 /* PostCell.swift */; };
 		9A55660C1B9FD955005DDBA3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A55660A1B9FD955005DDBA3 /* Main.storyboard */; };
 		9A55660E1BA0168D005DDBA3 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A55660D1BA0168C005DDBA3 /* Post.swift */; };
-		9A5566111BA048E2005DDBA3 /* UIRefreshControl+UITableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A5566101BA048E2005DDBA3 /* UIRefreshControl+UITableView.m */; };
 		9A5566141BA16F18005DDBA3 /* WritePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5566131BA16F16005DDBA3 /* WritePostViewController.swift */; };
 		9A5566161BA2C512005DDBA3 /* JoinedCommunity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5566151BA2C511005DDBA3 /* JoinedCommunity.swift */; };
 		9AA526861B89CF4C00900383 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AA526851B89CF4C00900383 /* QuartzCore.framework */; };
@@ -62,8 +61,6 @@
 		9A5566071B9FB60F005DDBA3 /* PostCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostCell.swift; path = ../PostCell.swift; sourceTree = "<group>"; };
 		9A55660B1B9FD955005DDBA3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9A55660D1BA0168C005DDBA3 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
-		9A55660F1BA048C7005DDBA3 /* UIRefreshControl+UITableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIRefreshControl+UITableView.h"; sourceTree = "<group>"; };
-		9A5566101BA048E2005DDBA3 /* UIRefreshControl+UITableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIRefreshControl+UITableView.m"; path = "../UIRefreshControl+UITableView.m"; sourceTree = "<group>"; };
 		9A5566121BA049EE005DDBA3 /* Community-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Community-Bridging-Header.h"; sourceTree = "<group>"; };
 		9A5566131BA16F16005DDBA3 /* WritePostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WritePostViewController.swift; path = ../WritePostViewController.swift; sourceTree = "<group>"; };
 		9A5566151BA2C511005DDBA3 /* JoinedCommunity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinedCommunity.swift; sourceTree = "<group>"; };
@@ -151,7 +148,6 @@
 		9AAD20451B82A22F0053F743 /* Community */ = {
 			isa = PBXGroup;
 			children = (
-				9A5566101BA048E2005DDBA3 /* UIRefreshControl+UITableView.m */,
 				9A55660A1B9FD955005DDBA3 /* Main.storyboard */,
 				9A5566071B9FB60F005DDBA3 /* PostCell.swift */,
 				9A3DED9C1B9155AF00B90556 /* DKImagePickerController */,
@@ -165,7 +161,6 @@
 				9A3D2C2A1B8BFD4E00C10CC5 /* Extensions.swift */,
 				9AD3B4AF1B8E81D900357860 /* Delegates.swift */,
 				9A55660D1BA0168C005DDBA3 /* Post.swift */,
-				9A55660F1BA048C7005DDBA3 /* UIRefreshControl+UITableView.h */,
 				9A5566121BA049EE005DDBA3 /* Community-Bridging-Header.h */,
 				9A5566151BA2C511005DDBA3 /* JoinedCommunity.swift */,
 			);
@@ -378,7 +373,6 @@
 				9AA6135A1B83B2B8004911C2 /* ProfileViewController.swift in Sources */,
 				9A3DEDA41B9155BE00B90556 /* DKAssetGroupVC.swift in Sources */,
 				9A5566081B9FB60F005DDBA3 /* PostCell.swift in Sources */,
-				9A5566111BA048E2005DDBA3 /* UIRefreshControl+UITableView.m in Sources */,
 				9AD3B4B01B8E81D900357860 /* Delegates.swift in Sources */,
 				9AAD204B1B82A22F0053F743 /* SearchViewController.swift in Sources */,
 				9A5566141BA16F18005DDBA3 /* WritePostViewController.swift in Sources */,

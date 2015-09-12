@@ -16,7 +16,6 @@ import UIActivityIndicator_for_SDWebImage
 import MMProgressHUD
 import RealmSwift
 
-
 class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, PresentControllerDelegate, LeaveCommunityDelegate {
 
     var refreshControl: UIRefreshControl!
@@ -38,7 +37,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     @IBOutlet var avatarImage: UIImageView!
 
-    
     @IBOutlet var leftButton: UIButton!
     @IBAction func leftButtonPressed(sender: AnyObject) {
         notifs = false
@@ -80,15 +78,14 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
+    NSNotificationCenter.defaultCenter().postNotificationName("sideViewAppeared", object: self)
         
-        NSNotificationCenter.defaultCenter().postNotificationName("sideViewAppeared", object: self)
-        
-        let realm = Realm(path: String.realmUserPath!)
-        if (!initialLoad && realm.objects(JoinedCommunity).count > communities.count) {
-            communities = map(realm.objects(JoinedCommunity).sorted("nameLowercase", ascending: true)) { $0 }
-            
-            communitiesTable.reloadData()
-        }
+//        let realm = Realm()
+//        if initialLoad {
+//            startLoading()
+//        } else if realm.objects(JoinedCommunity).count > communities.count {
+//            communities = Array(realm.objects(JoinedCommunity).sorted("nameLowercase", ascending: true))
+//        }
         
         initialLoad = false
     }
@@ -113,6 +110,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     func setupRefreshControl() {
         refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: Selector("handleRefresh"), forControlEvents: .ValueChanged)
+        
         communitiesTable.addSubview(refreshControl)
     }
     
@@ -243,7 +241,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                             println(community)
                         }
                         
-                        let realm = Realm(path: String.realmUserPath!)
+                        let realm = Realm()
                         realm.write {
                             // Delete because we don't need data on 
                             // communities one may have left.
@@ -287,7 +285,19 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func startLoading() {
         errorLabel.alpha = 0.0
-        self.refreshControl.beginRefreshing()
+        self.refreshControl.beginRefreshingProgrammatically()
+        
+        // This is necessary because of a bug, apparently.
+        // I haven't explored why this isn't necessary for CommunityViewController
+        // http://stackoverflow.com/questions/16120797/uirefreshcontrol-not-showing-spiny-when-calling-beginrefreshing-and-contentoffse
+        
+//        println(self.communitiesTable.contentOffset.y)
+//        if (self.communitiesTable.contentOffset.y == 0) {
+//            UIView.animateWithDuration(0.25, delay: 0, options: .BeginFromCurrentState, animations: {
+//                    self.communitiesTable.contentOffset = CGPointMake(0, -self.refreshControl.frame.size.height)
+//                }, completion: nil)
+//        }
+        
         refreshControl.sendActionsForControlEvents(.ValueChanged)
     }
     

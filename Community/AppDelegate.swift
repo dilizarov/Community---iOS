@@ -8,6 +8,7 @@
 
 import UIKit
 import MMDrawerController
+import RealmSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,6 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        configureRealm()
         
         let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
         
@@ -53,6 +56,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
+    func configureRealm() {
+        
+        var optional_user_id = NSUserDefaults.standardUserDefaults().objectForKey("user_id") as? String
+        
+        var documentsDirectory = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! NSString
+        
+        var customRealmPath: String
+        
+        if let user_id = optional_user_id {
+            customRealmPath = documentsDirectory.stringByAppendingPathComponent("\(user_id).realm")
+        } else {
+            customRealmPath = documentsDirectory.stringByAppendingPathComponent("logged_out.realm")
+        }
+        
+        var config = Realm.Configuration()
+        config.path = customRealmPath
+        config.schemaVersion = 1
+        config.migrationBlock = {
+            migration, oldSchemaVersion in
+            if (oldSchemaVersion < 1) {
+                
+            }
+            println("migrated")
+        }
+        
+        Realm.Configuration.defaultConfiguration = config
+        
+        let realm = Realm()
+    }
+    
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
