@@ -31,7 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var leftViewIdentifier: String
         
         if (NSUserDefaults.standardUserDefaults().objectForKey("auth_token") != nil) {
-            leftViewIdentifier = "ProfileViewController"
+            leftViewIdentifier = "ProfileCopyViewController"
         } else {
             leftViewIdentifier = "LoggedOutProfileViewController"
         }

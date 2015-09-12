@@ -20,6 +20,8 @@
 		9A55660E1BA0168D005DDBA3 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A55660D1BA0168C005DDBA3 /* Post.swift */; };
 		9A5566141BA16F18005DDBA3 /* WritePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5566131BA16F16005DDBA3 /* WritePostViewController.swift */; };
 		9A5566161BA2C512005DDBA3 /* JoinedCommunity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5566151BA2C511005DDBA3 /* JoinedCommunity.swift */; };
+		9A55661B1BA41C0D005DDBA3 /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A55661A1BA41C0D005DDBA3 /* ProfileTableViewController.swift */; };
+		9A55661D1BA41C8C005DDBA3 /* ProfileCopyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A55661C1BA41C8C005DDBA3 /* ProfileCopyViewController.swift */; };
 		9AA526861B89CF4C00900383 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AA526851B89CF4C00900383 /* QuartzCore.framework */; };
 		9AA6135A1B83B2B8004911C2 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA613591B83B2B8004911C2 /* ProfileViewController.swift */; };
 		9AA6135C1B83E17C004911C2 /* CommunityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA6135B1B83E17C004911C2 /* CommunityViewController.swift */; };
@@ -64,6 +66,8 @@
 		9A5566121BA049EE005DDBA3 /* Community-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Community-Bridging-Header.h"; sourceTree = "<group>"; };
 		9A5566131BA16F16005DDBA3 /* WritePostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WritePostViewController.swift; path = ../WritePostViewController.swift; sourceTree = "<group>"; };
 		9A5566151BA2C511005DDBA3 /* JoinedCommunity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinedCommunity.swift; sourceTree = "<group>"; };
+		9A55661A1BA41C0D005DDBA3 /* ProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileTableViewController.swift; path = ../ProfileTableViewController.swift; sourceTree = "<group>"; };
+		9A55661C1BA41C8C005DDBA3 /* ProfileCopyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileCopyViewController.swift; sourceTree = "<group>"; };
 		9AA526851B89CF4C00900383 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		9AA613591B83B2B8004911C2 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		9AA6135B1B83E17C004911C2 /* CommunityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunityViewController.swift; sourceTree = "<group>"; };
@@ -195,6 +199,8 @@
 		9AD3B4B11B91283E00357860 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				9A55661C1BA41C8C005DDBA3 /* ProfileCopyViewController.swift */,
+				9A55661A1BA41C0D005DDBA3 /* ProfileTableViewController.swift */,
 				9A5566131BA16F16005DDBA3 /* WritePostViewController.swift */,
 				9AAD204A1B82A22F0053F743 /* SearchViewController.swift */,
 				9AA613591B83B2B8004911C2 /* ProfileViewController.swift */,
@@ -368,6 +374,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A55661B1BA41C0D005DDBA3 /* ProfileTableViewController.swift in Sources */,
 				9AA6135C1B83E17C004911C2 /* CommunityViewController.swift in Sources */,
 				9A3DEDA81B9155BE00B90556 /* DKPopoverViewController.swift in Sources */,
 				9AA6135A1B83B2B8004911C2 /* ProfileViewController.swift in Sources */,
@@ -386,6 +393,7 @@
 				9AAD20491B82A22F0053F743 /* AppDelegate.swift in Sources */,
 				9A55660E1BA0168D005DDBA3 /* Post.swift in Sources */,
 				9A5566161BA2C512005DDBA3 /* JoinedCommunity.swift in Sources */,
+				9A55661D1BA41C8C005DDBA3 /* ProfileCopyViewController.swift in Sources */,
 				9AA613601B8464F0004911C2 /* CommunityCell.swift in Sources */,
 				9A3D2C271B8AA0C400C10CC5 /* SearchTextField.swift in Sources */,
 			);

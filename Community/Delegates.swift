@@ -15,3 +15,15 @@ protocol PresentControllerDelegate {
 protocol LeaveCommunityDelegate {
     func presentLeaveCommunityController(community: JoinedCommunity, row: Int)
 }
+
+@objc protocol ProfileTableDelegate {
+    
+    optional func handleRefresh()
+    optional func beginInitialLoad()
+    
+    func failureRequestJoinedCommunities(error: String)
+    func successRequestJoinedCommunities()
+    
+    func spreadToast(string: String)
+    
+}
