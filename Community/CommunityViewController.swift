@@ -184,6 +184,13 @@ class CommunityViewController: UIViewController, UITableViewDelegate, UITableVie
                     realm.write {
                         realm.add(community)
                     }
+                    
+                    var appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                    var leftVC = appDelegate.drawerController!.leftDrawerViewController as? ProfileViewController
+                    
+                    if let profileVC = leftVC {
+                        profileVC.tableViewController.triggerRealmReload = true
+                    }
                 }
                 
                 (self.leftButtonOptions["load"]!.customView as! UIActivityIndicatorView).stopAnimating()
@@ -386,11 +393,11 @@ class CommunityViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func startLoading() {
-        //errorLabel.alpha = 0.0
-        self.refreshControl.beginRefreshingProgrammatically()
-        refreshControl.sendActionsForControlEvents(.ValueChanged)
-    }
-    
+//        //errorLabel.alpha = 0.0
+//        self.refreshControl.beginRefreshingProgrammatically()
+//        refreshControl.sendActionsForControlEvents(.ValueChanged)
+   }
+//    
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
         

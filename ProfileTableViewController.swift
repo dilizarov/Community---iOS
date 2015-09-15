@@ -17,11 +17,10 @@ class ProfileTableViewController: UITableViewController, PresentControllerDelega
     
     var communities = [JoinedCommunity]()
     
-    var initialLoad = false
+    var triggerRealmReload = false
     
     @IBAction func handleRefresh(sender: AnyObject) {
         delegate.handleRefresh?()
-        
         requestJoinedCommunitiesAndPopulateList()
     }
     
@@ -29,28 +28,26 @@ class ProfileTableViewController: UITableViewController, PresentControllerDelega
         super.viewDidLoad()
         
         setRuntimeTableViewParams()
-        beginInitialLoad()
+       // beginInitialLoad()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
         
         let realm = Realm()
-        if !initialLoad && realm.objects(JoinedCommunity).count > communities.count {
+        if triggerRealmReload && realm.objects(JoinedCommunity).count > communities.count {
             communities = Array(realm.objects(JoinedCommunity
                 ).sorted("nameLowercase", ascending: true))
             
             tableView.reloadData()
+            triggerRealmReload = false
         }
-        
-        initialLoad = false
     }
     
     func setRuntimeTableViewParams() {
         tableView.tableHeaderView = UIView(frame: CGRectMake(0,0,0,30))
-        tableView.tableFooterView = UIView(frame: CGRectZero)
         tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 64
+        tableView.estimatedRowHeight = 200
     }
     
     func beginInitialLoad() {
@@ -228,5 +225,9 @@ class ProfileTableViewController: UITableViewController, PresentControllerDelega
             
             NSNotificationCenter.defaultCenter().postNotificationName("communitySelected", object: self, userInfo: userInfo)
         }
+    }
+    
+    override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 71
     }
 }

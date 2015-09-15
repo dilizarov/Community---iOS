@@ -79,7 +79,7 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
     }
     
     func goToCommunityVC(community: String, animated: Bool) {
-        var communityVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("CommunityViewController") as! CommunityViewController
+        var communityVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("CommunityCopyViewController") as! CommunityCopyViewController
         
         communityVC.communityTitle = community
         

@@ -291,33 +291,33 @@ extension UIImage {
 }
 
 
-extension UIRefreshControl {
-
-    // Fix tint and showing UIRefreshControl when starting in code.
-    func beginRefreshingProgrammatically() -> Void {
-        var delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0.05 * Double(NSEC_PER_SEC)))
-        
-        dispatch_after(delayTime, dispatch_get_main_queue(), {
-            self.beginRefreshing()
-            
-            var tableView = self.getParentTableViewOfView(self)
-            if let table = tableView {
-                table.setContentOffset(CGPointMake(0, table.contentOffset.y-self.frame.size.height), animated: true)
-            }
-        })
-    }
-    
-    func getParentTableViewOfView(view: UIView) -> UITableView? {
-        
-        if let table = view.superview as? UITableView {
-            return table
-        }
-        
-        if let superview = view.superview {
-            return getParentTableViewOfView(superview)
-        }
-        
-        return nil
-    }
-    
-}
+//extension UIRefreshControl {
+//
+//    // Fix tint and showing UIRefreshControl when starting in code.
+//    func beginRefreshingProgrammatically() -> Void {
+//        var delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0.05 * Double(NSEC_PER_SEC)))
+//        
+//        dispatch_after(delayTime, dispatch_get_main_queue(), {
+//            self.beginRefreshing()
+//            
+//            var tableView = self.getParentTableViewOfView(self)
+//            if let table = tableView {
+//                table.setContentOffset(CGPointMake(0, table.contentOffset.y-self.frame.size.height), animated: true)
+//            }
+//        })
+//    }
+//    
+//    func getParentTableViewOfView(view: UIView) -> UITableView? {
+//        
+//        if let table = view.superview as? UITableView {
+//            return table
+//        }
+//        
+//        if let superview = view.superview {
+//            return getParentTableViewOfView(superview)
+//        }
+//        
+//        return nil
+//    }
+//    
+//}

@@ -31,7 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var leftViewIdentifier: String
         
         if (NSUserDefaults.standardUserDefaults().objectForKey("auth_token") != nil) {
-            leftViewIdentifier = "ProfileCopyViewController"
+            leftViewIdentifier = "ProfileViewController"
         } else {
             leftViewIdentifier = "LoggedOutProfileViewController"
         }
@@ -75,10 +75,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         config.schemaVersion = 1
         config.migrationBlock = {
             migration, oldSchemaVersion in
-            if (oldSchemaVersion < 1) {
-                
+            if (oldSchemaVersion < 1) {                
             }
-            println("migrated")
         }
         
         Realm.Configuration.defaultConfiguration = config
