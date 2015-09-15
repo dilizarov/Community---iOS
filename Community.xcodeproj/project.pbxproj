@@ -9,12 +9,6 @@
 /* Begin PBXBuildFile section */
 		9A3D2C271B8AA0C400C10CC5 /* SearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3D2C261B8AA0C400C10CC5 /* SearchTextField.swift */; };
 		9A3D2C2B1B8BFD4F00C10CC5 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3D2C2A1B8BFD4E00C10CC5 /* Extensions.swift */; };
-		9A3DEDA31B9155BE00B90556 /* DKAssetGroupDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3DED9D1B9155BE00B90556 /* DKAssetGroupDetailVC.swift */; };
-		9A3DEDA41B9155BE00B90556 /* DKAssetGroupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3DED9E1B9155BE00B90556 /* DKAssetGroupVC.swift */; };
-		9A3DEDA51B9155BE00B90556 /* DKImagePickerController.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9A3DED9F1B9155BE00B90556 /* DKImagePickerController.bundle */; };
-		9A3DEDA61B9155BE00B90556 /* DKImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3DEDA01B9155BE00B90556 /* DKImagePickerController.swift */; };
-		9A3DEDA71B9155BE00B90556 /* DKImageResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3DEDA11B9155BE00B90556 /* DKImageResource.swift */; };
-		9A3DEDA81B9155BE00B90556 /* DKPopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3DEDA21B9155BE00B90556 /* DKPopoverViewController.swift */; };
 		9A5566081B9FB60F005DDBA3 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5566071B9FB60F005DDBA3 /* PostCell.swift */; };
 		9A55660C1B9FD955005DDBA3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A55660A1B9FD955005DDBA3 /* Main.storyboard */; };
 		9A55660E1BA0168D005DDBA3 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A55660D1BA0168C005DDBA3 /* Post.swift */; };
@@ -24,6 +18,12 @@
 		9A55661D1BA41C8C005DDBA3 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A55661C1BA41C8C005DDBA3 /* ProfileViewController.swift */; };
 		9A5566511BA78A2C005DDBA3 /* CommunityCopyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5566501BA78A2C005DDBA3 /* CommunityCopyViewController.swift */; };
 		9A5566531BA78E94005DDBA3 /* CommunityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5566521BA78E94005DDBA3 /* CommunityTableViewController.swift */; };
+		9A55665A1BA7E4FB005DDBA3 /* DKAssetGroupDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5566541BA7E4FB005DDBA3 /* DKAssetGroupDetailVC.swift */; };
+		9A55665B1BA7E4FB005DDBA3 /* DKAssetGroupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5566551BA7E4FB005DDBA3 /* DKAssetGroupVC.swift */; };
+		9A55665C1BA7E4FB005DDBA3 /* DKImagePickerController.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9A5566561BA7E4FB005DDBA3 /* DKImagePickerController.bundle */; };
+		9A55665D1BA7E4FB005DDBA3 /* DKImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5566571BA7E4FB005DDBA3 /* DKImagePickerController.swift */; };
+		9A55665E1BA7E4FB005DDBA3 /* DKImageResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5566581BA7E4FB005DDBA3 /* DKImageResource.swift */; };
+		9A55665F1BA7E4FB005DDBA3 /* DKPopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5566591BA7E4FB005DDBA3 /* DKPopoverViewController.swift */; };
 		9AA526861B89CF4C00900383 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AA526851B89CF4C00900383 /* QuartzCore.framework */; };
 		9AA6135C1B83E17C004911C2 /* CommunityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA6135B1B83E17C004911C2 /* CommunityViewController.swift */; };
 		9AA6135E1B83F572004911C2 /* LoggedOutProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA6135D1B83F572004911C2 /* LoggedOutProfileViewController.swift */; };
@@ -55,12 +55,6 @@
 		12BC73E1CC021A3521FB56B1 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		9A3D2C261B8AA0C400C10CC5 /* SearchTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTextField.swift; sourceTree = "<group>"; };
 		9A3D2C2A1B8BFD4E00C10CC5 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		9A3DED9D1B9155BE00B90556 /* DKAssetGroupDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DKAssetGroupDetailVC.swift; path = ../../../../../DKImagePickerController/DKImagePickerController/DKAssetGroupDetailVC.swift; sourceTree = "<group>"; };
-		9A3DED9E1B9155BE00B90556 /* DKAssetGroupVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DKAssetGroupVC.swift; path = ../../../../../DKImagePickerController/DKImagePickerController/DKAssetGroupVC.swift; sourceTree = "<group>"; };
-		9A3DED9F1B9155BE00B90556 /* DKImagePickerController.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = DKImagePickerController.bundle; path = ../../../../../DKImagePickerController/DKImagePickerController/DKImagePickerController.bundle; sourceTree = "<group>"; };
-		9A3DEDA01B9155BE00B90556 /* DKImagePickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DKImagePickerController.swift; path = ../../../../../DKImagePickerController/DKImagePickerController/DKImagePickerController.swift; sourceTree = "<group>"; };
-		9A3DEDA11B9155BE00B90556 /* DKImageResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DKImageResource.swift; path = ../../../../../DKImagePickerController/DKImagePickerController/DKImageResource.swift; sourceTree = "<group>"; };
-		9A3DEDA21B9155BE00B90556 /* DKPopoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DKPopoverViewController.swift; path = ../../../../../DKImagePickerController/DKImagePickerController/DKPopoverViewController.swift; sourceTree = "<group>"; };
 		9A5566071B9FB60F005DDBA3 /* PostCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		9A55660B1B9FD955005DDBA3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9A55660D1BA0168C005DDBA3 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
@@ -71,6 +65,12 @@
 		9A55661C1BA41C8C005DDBA3 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		9A5566501BA78A2C005DDBA3 /* CommunityCopyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunityCopyViewController.swift; sourceTree = "<group>"; };
 		9A5566521BA78E94005DDBA3 /* CommunityTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunityTableViewController.swift; sourceTree = "<group>"; };
+		9A5566541BA7E4FB005DDBA3 /* DKAssetGroupDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DKAssetGroupDetailVC.swift; sourceTree = "<group>"; };
+		9A5566551BA7E4FB005DDBA3 /* DKAssetGroupVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DKAssetGroupVC.swift; sourceTree = "<group>"; };
+		9A5566561BA7E4FB005DDBA3 /* DKImagePickerController.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = DKImagePickerController.bundle; sourceTree = "<group>"; };
+		9A5566571BA7E4FB005DDBA3 /* DKImagePickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DKImagePickerController.swift; sourceTree = "<group>"; };
+		9A5566581BA7E4FB005DDBA3 /* DKImageResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DKImageResource.swift; sourceTree = "<group>"; };
+		9A5566591BA7E4FB005DDBA3 /* DKPopoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DKPopoverViewController.swift; sourceTree = "<group>"; };
 		9AA526851B89CF4C00900383 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		9AA6135B1B83E17C004911C2 /* CommunityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunityViewController.swift; sourceTree = "<group>"; };
 		9AA6135D1B83F572004911C2 /* LoggedOutProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggedOutProfileViewController.swift; sourceTree = "<group>"; };
@@ -121,12 +121,12 @@
 		9A3DED9C1B9155AF00B90556 /* DKImagePickerController */ = {
 			isa = PBXGroup;
 			children = (
-				9A3DED9D1B9155BE00B90556 /* DKAssetGroupDetailVC.swift */,
-				9A3DED9E1B9155BE00B90556 /* DKAssetGroupVC.swift */,
-				9A3DED9F1B9155BE00B90556 /* DKImagePickerController.bundle */,
-				9A3DEDA01B9155BE00B90556 /* DKImagePickerController.swift */,
-				9A3DEDA11B9155BE00B90556 /* DKImageResource.swift */,
-				9A3DEDA21B9155BE00B90556 /* DKPopoverViewController.swift */,
+				9A5566541BA7E4FB005DDBA3 /* DKAssetGroupDetailVC.swift */,
+				9A5566551BA7E4FB005DDBA3 /* DKAssetGroupVC.swift */,
+				9A5566561BA7E4FB005DDBA3 /* DKImagePickerController.bundle */,
+				9A5566571BA7E4FB005DDBA3 /* DKImagePickerController.swift */,
+				9A5566581BA7E4FB005DDBA3 /* DKImageResource.swift */,
+				9A5566591BA7E4FB005DDBA3 /* DKPopoverViewController.swift */,
 			);
 			path = DKImagePickerController;
 			sourceTree = "<group>";
@@ -309,9 +309,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				9AAD20531B82A22F0053F743 /* LaunchScreen.xib in Resources */,
-				9A3DEDA51B9155BE00B90556 /* DKImagePickerController.bundle in Resources */,
 				9AAD20501B82A22F0053F743 /* Images.xcassets in Resources */,
 				9A55660C1B9FD955005DDBA3 /* Main.storyboard in Resources */,
+				9A55665C1BA7E4FB005DDBA3 /* DKImagePickerController.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -377,27 +377,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A55665B1BA7E4FB005DDBA3 /* DKAssetGroupVC.swift in Sources */,
 				9A55661B1BA41C0D005DDBA3 /* ProfileTableViewController.swift in Sources */,
 				9AA6135C1B83E17C004911C2 /* CommunityViewController.swift in Sources */,
-				9A3DEDA81B9155BE00B90556 /* DKPopoverViewController.swift in Sources */,
-				9A3DEDA41B9155BE00B90556 /* DKAssetGroupVC.swift in Sources */,
 				9A5566531BA78E94005DDBA3 /* CommunityTableViewController.swift in Sources */,
+				9A55665A1BA7E4FB005DDBA3 /* DKAssetGroupDetailVC.swift in Sources */,
 				9A5566081B9FB60F005DDBA3 /* PostCell.swift in Sources */,
 				9AD3B4B01B8E81D900357860 /* Delegates.swift in Sources */,
+				9A55665E1BA7E4FB005DDBA3 /* DKImageResource.swift in Sources */,
 				9AAD204B1B82A22F0053F743 /* SearchViewController.swift in Sources */,
 				9A5566141BA16F18005DDBA3 /* WritePostViewController.swift in Sources */,
 				9AA613621B851F79004911C2 /* LogInViewController.swift in Sources */,
-				9A3DEDA31B9155BE00B90556 /* DKAssetGroupDetailVC.swift in Sources */,
 				9AA613641B851FD6004911C2 /* CreateAccountViewController.swift in Sources */,
 				9A3D2C2B1B8BFD4F00C10CC5 /* Extensions.swift in Sources */,
-				9A3DEDA71B9155BE00B90556 /* DKImageResource.swift in Sources */,
 				9AA6135E1B83F572004911C2 /* LoggedOutProfileViewController.swift in Sources */,
-				9A3DEDA61B9155BE00B90556 /* DKImagePickerController.swift in Sources */,
+				9A55665D1BA7E4FB005DDBA3 /* DKImagePickerController.swift in Sources */,
 				9AAD20491B82A22F0053F743 /* AppDelegate.swift in Sources */,
 				9A55660E1BA0168D005DDBA3 /* Post.swift in Sources */,
 				9A5566511BA78A2C005DDBA3 /* CommunityCopyViewController.swift in Sources */,
 				9A5566161BA2C512005DDBA3 /* JoinedCommunity.swift in Sources */,
 				9A55661D1BA41C8C005DDBA3 /* ProfileViewController.swift in Sources */,
+				9A55665F1BA7E4FB005DDBA3 /* DKPopoverViewController.swift in Sources */,
 				9AA613601B8464F0004911C2 /* CommunityCell.swift in Sources */,
 				9A3D2C271B8AA0C400C10CC5 /* SearchTextField.swift in Sources */,
 			);
