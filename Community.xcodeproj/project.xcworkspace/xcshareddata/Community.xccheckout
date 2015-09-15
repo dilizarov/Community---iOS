@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>A017E359-E220-47E3-BFD5-1B31BF80F85E</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Community</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>2325991F9A98A2717394197AF763A642E288CC76</key>
+		<string>https://github.com/dilizarov/Community---iOS.git</string>
+		<key>B72F6B8903B5AB21511E873731000C39DE4F2EEE</key>
+		<string>https://github.com/zhangao0086/DKImagePickerController.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Community.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>2325991F9A98A2717394197AF763A642E288CC76</key>
+		<string>../..</string>
+		<key>B72F6B8903B5AB21511E873731000C39DE4F2EEE</key>
+		<string>../../../../../DKImagePickerController</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/dilizarov/Community---iOS.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>2325991F9A98A2717394197AF763A642E288CC76</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>2325991F9A98A2717394197AF763A642E288CC76</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Community</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>B72F6B8903B5AB21511E873731000C39DE4F2EEE</string>
+			<key>IDESourceControlWCCName</key>
+			<string>DKImagePickerController</string>
+		</dict>
+	</array>
+</dict>
+</plist>

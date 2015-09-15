@@ -55,22 +55,22 @@
 		12BC73E1CC021A3521FB56B1 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		9A3D2C261B8AA0C400C10CC5 /* SearchTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTextField.swift; sourceTree = "<group>"; };
 		9A3D2C2A1B8BFD4E00C10CC5 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		9A3DED9D1B9155BE00B90556 /* DKAssetGroupDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DKAssetGroupDetailVC.swift; path = ../../../../DKImagePickerController/DKImagePickerController/DKAssetGroupDetailVC.swift; sourceTree = "<group>"; };
-		9A3DED9E1B9155BE00B90556 /* DKAssetGroupVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DKAssetGroupVC.swift; path = ../../../../DKImagePickerController/DKImagePickerController/DKAssetGroupVC.swift; sourceTree = "<group>"; };
-		9A3DED9F1B9155BE00B90556 /* DKImagePickerController.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = DKImagePickerController.bundle; path = ../../../../DKImagePickerController/DKImagePickerController/DKImagePickerController.bundle; sourceTree = "<group>"; };
-		9A3DEDA01B9155BE00B90556 /* DKImagePickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DKImagePickerController.swift; path = ../../../../DKImagePickerController/DKImagePickerController/DKImagePickerController.swift; sourceTree = "<group>"; };
-		9A3DEDA11B9155BE00B90556 /* DKImageResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DKImageResource.swift; path = ../../../../DKImagePickerController/DKImagePickerController/DKImageResource.swift; sourceTree = "<group>"; };
-		9A3DEDA21B9155BE00B90556 /* DKPopoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DKPopoverViewController.swift; path = ../../../../DKImagePickerController/DKImagePickerController/DKPopoverViewController.swift; sourceTree = "<group>"; };
-		9A5566071B9FB60F005DDBA3 /* PostCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostCell.swift; path = ../PostCell.swift; sourceTree = "<group>"; };
+		9A3DED9D1B9155BE00B90556 /* DKAssetGroupDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DKAssetGroupDetailVC.swift; path = ../../../../../DKImagePickerController/DKImagePickerController/DKAssetGroupDetailVC.swift; sourceTree = "<group>"; };
+		9A3DED9E1B9155BE00B90556 /* DKAssetGroupVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DKAssetGroupVC.swift; path = ../../../../../DKImagePickerController/DKImagePickerController/DKAssetGroupVC.swift; sourceTree = "<group>"; };
+		9A3DED9F1B9155BE00B90556 /* DKImagePickerController.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = DKImagePickerController.bundle; path = ../../../../../DKImagePickerController/DKImagePickerController/DKImagePickerController.bundle; sourceTree = "<group>"; };
+		9A3DEDA01B9155BE00B90556 /* DKImagePickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DKImagePickerController.swift; path = ../../../../../DKImagePickerController/DKImagePickerController/DKImagePickerController.swift; sourceTree = "<group>"; };
+		9A3DEDA11B9155BE00B90556 /* DKImageResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DKImageResource.swift; path = ../../../../../DKImagePickerController/DKImagePickerController/DKImageResource.swift; sourceTree = "<group>"; };
+		9A3DEDA21B9155BE00B90556 /* DKPopoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DKPopoverViewController.swift; path = ../../../../../DKImagePickerController/DKImagePickerController/DKPopoverViewController.swift; sourceTree = "<group>"; };
+		9A5566071B9FB60F005DDBA3 /* PostCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		9A55660B1B9FD955005DDBA3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9A55660D1BA0168C005DDBA3 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		9A5566121BA049EE005DDBA3 /* Community-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Community-Bridging-Header.h"; sourceTree = "<group>"; };
-		9A5566131BA16F16005DDBA3 /* WritePostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WritePostViewController.swift; path = ../WritePostViewController.swift; sourceTree = "<group>"; };
+		9A5566131BA16F16005DDBA3 /* WritePostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WritePostViewController.swift; sourceTree = "<group>"; };
 		9A5566151BA2C511005DDBA3 /* JoinedCommunity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinedCommunity.swift; sourceTree = "<group>"; };
-		9A55661A1BA41C0D005DDBA3 /* ProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileTableViewController.swift; path = ../ProfileTableViewController.swift; sourceTree = "<group>"; };
+		9A55661A1BA41C0D005DDBA3 /* ProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
 		9A55661C1BA41C8C005DDBA3 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		9A5566501BA78A2C005DDBA3 /* CommunityCopyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunityCopyViewController.swift; sourceTree = "<group>"; };
-		9A5566521BA78E94005DDBA3 /* CommunityTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommunityTableViewController.swift; path = ../CommunityTableViewController.swift; sourceTree = "<group>"; };
+		9A5566521BA78E94005DDBA3 /* CommunityTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunityTableViewController.swift; sourceTree = "<group>"; };
 		9AA526851B89CF4C00900383 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		9AA6135B1B83E17C004911C2 /* CommunityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunityViewController.swift; sourceTree = "<group>"; };
 		9AA6135D1B83F572004911C2 /* LoggedOutProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggedOutProfileViewController.swift; sourceTree = "<group>"; };
@@ -128,7 +128,7 @@
 				9A3DEDA11B9155BE00B90556 /* DKImageResource.swift */,
 				9A3DEDA21B9155BE00B90556 /* DKPopoverViewController.swift */,
 			);
-			name = DKImagePickerController;
+			path = DKImagePickerController;
 			sourceTree = "<group>";
 		};
 		9AAD203A1B82A22F0053F743 = {
@@ -136,9 +136,9 @@
 			children = (
 				9AAD20451B82A22F0053F743 /* Community */,
 				9AAD205B1B82A22F0053F743 /* CommunityTests */,
-				9AAD20441B82A22F0053F743 /* Products */,
-				B5F817F0E7CB96DBA1F65791 /* Pods */,
 				766893C32D3850291B651045 /* Frameworks */,
+				B5F817F0E7CB96DBA1F65791 /* Pods */,
+				9AAD20441B82A22F0053F743 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -154,21 +154,21 @@
 		9AAD20451B82A22F0053F743 /* Community */ = {
 			isa = PBXGroup;
 			children = (
-				9A55660A1B9FD955005DDBA3 /* Main.storyboard */,
-				9A5566071B9FB60F005DDBA3 /* PostCell.swift */,
 				9A3DED9C1B9155AF00B90556 /* DKImagePickerController */,
-				9AD3B4B11B91283E00357860 /* ViewControllers */,
-				9A3D2C261B8AA0C400C10CC5 /* SearchTextField.swift */,
-				9AAD20481B82A22F0053F743 /* AppDelegate.swift */,
-				9AAD204F1B82A22F0053F743 /* Images.xcassets */,
-				9AAD20511B82A22F0053F743 /* LaunchScreen.xib */,
 				9AAD20461B82A22F0053F743 /* Supporting Files */,
-				9AA6135F1B8464F0004911C2 /* CommunityCell.swift */,
-				9A3D2C2A1B8BFD4E00C10CC5 /* Extensions.swift */,
-				9AD3B4AF1B8E81D900357860 /* Delegates.swift */,
-				9A55660D1BA0168C005DDBA3 /* Post.swift */,
+				9AD3B4B11B91283E00357860 /* ViewControllers */,
+				9AAD20481B82A22F0053F743 /* AppDelegate.swift */,
 				9A5566121BA049EE005DDBA3 /* Community-Bridging-Header.h */,
+				9AA6135F1B8464F0004911C2 /* CommunityCell.swift */,
+				9AD3B4AF1B8E81D900357860 /* Delegates.swift */,
+				9A3D2C2A1B8BFD4E00C10CC5 /* Extensions.swift */,
+				9AAD204F1B82A22F0053F743 /* Images.xcassets */,
 				9A5566151BA2C511005DDBA3 /* JoinedCommunity.swift */,
+				9AAD20511B82A22F0053F743 /* LaunchScreen.xib */,
+				9A55660A1B9FD955005DDBA3 /* Main.storyboard */,
+				9A55660D1BA0168C005DDBA3 /* Post.swift */,
+				9A5566071B9FB60F005DDBA3 /* PostCell.swift */,
+				9A3D2C261B8AA0C400C10CC5 /* SearchTextField.swift */,
 			);
 			path = Community;
 			sourceTree = "<group>";
@@ -178,14 +178,14 @@
 			children = (
 				9AAD20471B82A22F0053F743 /* Info.plist */,
 			);
-			name = "Supporting Files";
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		9AAD205B1B82A22F0053F743 /* CommunityTests */ = {
 			isa = PBXGroup;
 			children = (
-				9AAD205E1B82A22F0053F743 /* CommunityTests.swift */,
 				9AAD205C1B82A22F0053F743 /* Supporting Files */,
+				9AAD205E1B82A22F0053F743 /* CommunityTests.swift */,
 			);
 			path = CommunityTests;
 			sourceTree = "<group>";
@@ -195,24 +195,24 @@
 			children = (
 				9AAD205D1B82A22F0053F743 /* Info.plist */,
 			);
-			name = "Supporting Files";
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		9AD3B4B11B91283E00357860 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				9A5566521BA78E94005DDBA3 /* CommunityTableViewController.swift */,
 				9A5566501BA78A2C005DDBA3 /* CommunityCopyViewController.swift */,
-				9A55661C1BA41C8C005DDBA3 /* ProfileViewController.swift */,
-				9A55661A1BA41C0D005DDBA3 /* ProfileTableViewController.swift */,
-				9A5566131BA16F16005DDBA3 /* WritePostViewController.swift */,
-				9AAD204A1B82A22F0053F743 /* SearchViewController.swift */,
+				9A5566521BA78E94005DDBA3 /* CommunityTableViewController.swift */,
 				9AA6135B1B83E17C004911C2 /* CommunityViewController.swift */,
-				9AA6135D1B83F572004911C2 /* LoggedOutProfileViewController.swift */,
 				9AA613631B851FD6004911C2 /* CreateAccountViewController.swift */,
 				9AA613611B851F79004911C2 /* LogInViewController.swift */,
+				9AA6135D1B83F572004911C2 /* LoggedOutProfileViewController.swift */,
+				9A55661A1BA41C0D005DDBA3 /* ProfileTableViewController.swift */,
+				9A55661C1BA41C8C005DDBA3 /* ProfileViewController.swift */,
+				9AAD204A1B82A22F0053F743 /* SearchViewController.swift */,
+				9A5566131BA16F16005DDBA3 /* WritePostViewController.swift */,
 			);
-			name = ViewControllers;
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		B5F817F0E7CB96DBA1F65791 /* Pods */ = {
@@ -428,6 +428,7 @@
 				9A55660B1B9FD955005DDBA3 /* Base */,
 			);
 			name = Main.storyboard;
+			path = .;
 			sourceTree = "<group>";
 		};
 		9AAD20511B82A22F0053F743 /* LaunchScreen.xib */ = {
@@ -436,6 +437,7 @@
 				9AAD20521B82A22F0053F743 /* Base */,
 			);
 			name = LaunchScreen.xib;
+			path = .;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -530,7 +532,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: David Ilizarov (D4RM9QEJDK)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
-				INFOPLIST_FILE = Community/Info.plist;
+				INFOPLIST_FILE = "Community/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -547,7 +549,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: David Ilizarov (D4RM9QEJDK)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
-				INFOPLIST_FILE = Community/Info.plist;
+				INFOPLIST_FILE = "Community/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -568,7 +570,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = CommunityTests/Info.plist;
+				INFOPLIST_FILE = "CommunityTests/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Community.app/Community";
@@ -583,7 +585,7 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = CommunityTests/Info.plist;
+				INFOPLIST_FILE = "CommunityTests/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Community.app/Community";
