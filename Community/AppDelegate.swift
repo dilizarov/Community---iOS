@@ -49,7 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // This forces the side to layout itself properly.
         drawerController?.bouncePreviewForDrawerSide(.Left, distance: 30, completion: nil)
-                
+        
         self.window?.rootViewController = drawerController
         self.window?.makeKeyAndVisible()
         

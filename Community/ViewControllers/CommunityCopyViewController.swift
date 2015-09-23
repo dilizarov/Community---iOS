@@ -13,9 +13,9 @@ import Toast
 import HexColors
 import RealmSwift
 
-class CommunityCopyViewController: UIViewController {
+class CommunityCopyViewController: UIViewController, CommunityTableDelegate {
     
-    var refreshControl: UIRefreshControl!
+//    var refreshControl: UIRefreshControl!
     var communityTitle: String?
     //var posts = [Post]()
     
@@ -51,6 +51,7 @@ class CommunityCopyViewController: UIViewController {
         
         setInfiniteScrollVals()
         setupNavBar()
+        verifyJoinOrSettings()
 //        setupRefreshControl()
         //setupWritePostButton()
         
@@ -92,7 +93,7 @@ class CommunityCopyViewController: UIViewController {
         
         self.view.addSubview(navBar)
         
-        var settingsButton = UIBarButtonItem(image: UIImage(named: "Settings"), style: .Plain, target: self, action: nil)
+        var settingsButton = UIBarButtonItem(image: UIImage(named: "Settings"), style: .Plain, target: self, action: Selector("goToSettings"))
         settingsButton.tintColor = UIColor(hexString: "056A85")
         
         var joinButton = UIBarButtonItem(title: "Join", style: .Plain, target: self, action: Selector("processJoin"))
@@ -115,12 +116,52 @@ class CommunityCopyViewController: UIViewController {
         var navigationItem = UINavigationItem()
         navigationItem.rightBarButtonItem = searchButton
         
-        //Check if join or settings later.
-        navigationItem.leftBarButtonItem = joinButton
+        loadIndicator.startAnimating()
+        navigationItem.leftBarButtonItem = loadButton
         
         navigationItem.title = communityTitle
         
         navBar.pushNavigationItem(navigationItem, animated: false)
+    }
+    
+    func verifyJoinOrSettings() {
+        
+        var userInfo = NSUserDefaults.standardUserDefaults()
+        
+        var params = [String: AnyObject]()
+        params["user_id"] = userInfo.objectForKey("user_id") as! String
+        params["auth_token"] = userInfo.objectForKey("auth_token") as! String
+        params["community"] = communityTitle!
+        
+        Alamofire.request(.GET, "https://infinite-lake-4056.herokuapp.com/api/v1/communities/show.json", parameters: params)
+            .responseJSON { request, response, jsonData, errors in
+                if response?.statusCode == 200 {
+                    self.navBar.topItem!.leftBarButtonItem = self.leftButtonOptions["settings"]
+                    
+                    let json = JSON(jsonData!)["community"]
+                    let realm = Realm()
+                    
+                    var community = JoinedCommunity()
+                    community.name = json["name"].stringValue
+                    
+                    if let username = json["user"]["username"].string {
+                        community.username = username
+                    }
+                    
+                    if let avatar_url = json["user"]["avatar_url"].string {
+                        community.avatar_url = avatar_url
+                    }
+                    
+                    realm.write {
+                        realm.add(community, update: true)
+                    }
+                } else {
+                    self.navBar.topItem!.leftBarButtonItem = self.leftButtonOptions["join"]
+                }
+                
+                (self.leftButtonOptions["load"]!.customView as! UIActivityIndicatorView).stopAnimating()
+            }
+        
     }
     
     func goSearch() {
@@ -157,7 +198,7 @@ class CommunityCopyViewController: UIViewController {
                     community.name = self.communityTitle!
                     
                     realm.write {
-                        realm.add(community)
+                        realm.add(community, update: true)
                     }
                     
                     var appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -176,6 +217,9 @@ class CommunityCopyViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
         var writePostVC = storyboard.instantiateViewControllerWithIdentifier("WritePostViewController") as! WritePostViewController
+        
+        writePostVC.communityName = communityTitle
+        writePostVC.delegate = self.tableViewController
         
         self.presentViewController(writePostVC, animated: true, completion: nil)
     }
@@ -333,12 +377,22 @@ class CommunityCopyViewController: UIViewController {
 //        refreshControl.sendActionsForControlEvents(.ValueChanged)
 //    }
     
+    func goToSettings() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        var settingsVC = storyboard.instantiateViewControllerWithIdentifier("CommunitySettingsViewController") as! CommunitySettingsViewController
+        
+        settingsVC.communityName = communityTitle
+        
+        self.presentViewController(settingsVC, animated: true, completion: nil)
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "communityEmbedTVC" {
             tableViewController = segue.destinationViewController as! CommunityTableViewController
             
             tableViewController.communityTitle = self.communityTitle
-            
+            tableViewController.delegate = self
         }
     }
     

@@ -27,3 +27,15 @@ protocol LeaveCommunityDelegate {
     func spreadToast(string: String)
     
 }
+
+protocol UpdateFeedWithLatestPostDelegate {
+    
+    func updateFeedWithLatestPost(post: Post)
+    
+}
+
+protocol CommunityTableDelegate {
+    
+    func writePost()
+    
+}

@@ -16,9 +16,9 @@ import MMProgressHUD
 
 class ProfileViewController: UIViewController, ProfileTableDelegate {
     
-    var tableViewController: ProfileTableViewController!
+    var tableViewController: TestTableViewController!
     
-    var communities = [JoinedCommunity]()
+    //var communities = [JoinedCommunity]()
     
     var initialLoad = true
 
@@ -32,6 +32,7 @@ class ProfileViewController: UIViewController, ProfileTableDelegate {
     @IBOutlet var errorLabel: UILabel!
     
     @IBOutlet var avatarImage: UIImageView!
+    var avatarImageError = false
     
     @IBOutlet var leftButton: UIButton!
     @IBAction func leftButtonPressed(sender: AnyObject) {
@@ -110,14 +111,12 @@ class ProfileViewController: UIViewController, ProfileTableDelegate {
                         
                         self.view.makeToast("Could not download profile picture", duration: NSTimeInterval(3), position: CSToastPositionCenter)
                         
-                        self.avatarImage.image = self.avatarImage.image?.imageWithRenderingMode(.AlwaysTemplate)
-                        
-                        self.avatarImage.tintColor = UIColor.redColor()
+                        self.avatarImageError = true
+                        self.avatarImage.image = UIImage(named: "AvatarPlaceHolderError")
                         self.avatarImage.layer.borderColor = UIColor.redColor().CGColor
-                        self.avatarImage.alpha = 0.4
                     }
                 },
-                usingActivityIndicatorStyle: .Gray
+                usingActivityIndicatorStyle: .White
             )
             
         } else {
@@ -129,7 +128,7 @@ class ProfileViewController: UIViewController, ProfileTableDelegate {
     func avatarImagePressed() {
         if let avatar_url = NSUserDefaults.standardUserDefaults().objectForKey("avatar_url") as? String {
             
-            if avatarImage.tintColor == UIColor.redColor() {
+            if avatarImageError {
                 retrySetAvatarImage()
             } else {
                 var confirmAlert = UIAlertController(title: "Change Profile Picture", message: "Are you sure you want to change your profile picture?", preferredStyle: .Alert)
@@ -150,10 +149,9 @@ class ProfileViewController: UIViewController, ProfileTableDelegate {
     }
     
     func retrySetAvatarImage() {
-        self.avatarImage.image = self.avatarImage.image?.imageWithRenderingMode(.AlwaysOriginal)
-        self.avatarImage.tintColor = UIColor.whiteColor()
+        self.avatarImage.image = UIImage(named: "AvatarPlaceHolder")
         self.avatarImage.layer.borderColor = UIColor.whiteColor().CGColor
-        self.avatarImage.alpha = 1.0
+        avatarImageError = false
         setAvatarImage()
     }
     
@@ -290,7 +288,7 @@ class ProfileViewController: UIViewController, ProfileTableDelegate {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "profileEmbedTVC" {
-            tableViewController = segue.destinationViewController as! ProfileTableViewController
+            tableViewController = segue.destinationViewController as! TestTableViewController
             tableViewController.delegate = self
         }
     }

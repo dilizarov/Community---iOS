@@ -9,6 +9,7 @@
 import UIKit
 import SDWebImage
 import UIActivityIndicator_for_SDWebImage
+import Alamofire
 
 class PostCell: UITableViewCell {
 
@@ -20,6 +21,9 @@ class PostCell: UITableViewCell {
     @IBOutlet var repliesCount: UILabel!
     @IBOutlet var likesCount: UILabel!
     
+    @IBOutlet var likeImage: UIImageView!
+    
+    @IBOutlet var likeClickSpace: UIView!
     // This acts both as either a title or a body.
     // If a title is given, use title, otherwise body.
     @IBOutlet var postBody: UILabel!
@@ -32,11 +36,10 @@ class PostCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
         
         self.layoutIfNeeded()
     }
-
+    
     func configureViews(post: Post) {
         self.post = post
         
@@ -46,11 +49,6 @@ class PostCell: UITableViewCell {
             showTitle()
         }
         
-        var ints = [2, 11, 932, 4324, 53125, 355599, 9231343, 87654327, 827345129]
-        
-        var randomIndexOne = Int(arc4random_uniform(UInt32(ints.count-1)))
-        var randomIndexTwo = Int(arc4random_uniform(UInt32(ints.count-1)))
-        
         self.username.text = post.username
 
         if let title = post.title {
@@ -59,9 +57,64 @@ class PostCell: UITableViewCell {
         
         self.postBody.text = post.body
         self.timestamp.text = post.timestamp
-        self.likesCount.text = ints[randomIndexOne].toThousandsString()
-        self.repliesCount.text = ints[randomIndexTwo].toThousandsString()
+        self.likesCount.text = post.likeCount.toThousandsString()
+        self.repliesCount.text = post.repliesCount.toThousandsString()
+        
+        if post.liked {
+            likeImage.image = UIImage(named: "Liked")
+        } else {
+            likeImage.image = UIImage(named: "Like")
+        }
+        
         setupAvatarImage()
+        setupLikeGesture()
+    }
+    
+    func setupLikeGesture() {
+        let singleTap = UITapGestureRecognizer(target: self, action: Selector("processLike"))
+        singleTap.numberOfTapsRequired = 1
+        likeClickSpace.addGestureRecognizer(singleTap)
+    }
+    
+    func processLike() {
+       toggleLike()
+        
+        var userInfo = NSUserDefaults.standardUserDefaults()
+        
+        var params = [String: AnyObject]()
+        params["user_id"] = userInfo.objectForKey("user_id") as! String
+        params["auth_token"] = userInfo.objectForKey("auth_token") as! String
+        
+        if !post.liked { params["dislike"] = true }
+        
+        Alamofire.request(.GET, "https://infinite-lake-4056.herokuapp.com/api/v1/posts/\(post.id)/like.json", parameters: params)
+            .responseJSON { request, response, jsonData, errors in
+                
+                if (response?.statusCode > 299 || errors != nil) {
+                    if (response?.statusCode > 299) {
+                        //something went wrong
+                    } else {
+                        //localizedDescription
+                    }
+                    
+                    self.toggleLike()
+                    // maybe use toast.
+                }
+            }
+    }
+    
+    func toggleLike() {
+        if post.liked {
+            post.liked = false
+            post.likeCount -= 1
+            likeImage.image = UIImage(named: "Like")
+        } else {
+            post.liked = true
+            post.likeCount += 1
+            likeImage.image = UIImage(named: "Liked")
+        }
+        
+        self.likesCount.text = post.likeCount.toThousandsString()
     }
     
     func setupAvatarImage() {

@@ -24,6 +24,17 @@
 		9A55665D1BA7E4FB005DDBA3 /* DKImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5566571BA7E4FB005DDBA3 /* DKImagePickerController.swift */; };
 		9A55665E1BA7E4FB005DDBA3 /* DKImageResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5566581BA7E4FB005DDBA3 /* DKImageResource.swift */; };
 		9A55665F1BA7E4FB005DDBA3 /* DKPopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5566591BA7E4FB005DDBA3 /* DKPopoverViewController.swift */; };
+		9A5566651BA7FD5C005DDBA3 /* TestTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5566641BA7FD5C005DDBA3 /* TestTableViewController.swift */; };
+		9A5566971BAA0708005DDBA3 /* CommunitySettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5566961BAA0707005DDBA3 /* CommunitySettingsViewController.swift */; };
+		9A5566991BACB722005DDBA3 /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5566981BACB722005DDBA3 /* CommentsViewController.swift */; };
+		9A55669B1BACC10E005DDBA3 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A55669A1BACC10E005DDBA3 /* CommentCell.swift */; };
+		9A55669D1BACD00A005DDBA3 /* CommentPostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A55669C1BACD00A005DDBA3 /* CommentPostCell.swift */; };
+		9A55669F1BAD19DD005DDBA3 /* CommentsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A55669E1BAD19DC005DDBA3 /* CommentsTableViewController.swift */; };
+		9A5566AA1BAD3CD6005DDBA3 /* PHFComposeBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A5566A31BAD3CD6005DDBA3 /* PHFComposeBarView.m */; };
+		9A5566AB1BAD3CD6005DDBA3 /* PHFComposeBarView_Button.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A5566A51BAD3CD6005DDBA3 /* PHFComposeBarView_Button.m */; };
+		9A5566AC1BAD3CD6005DDBA3 /* PHFComposeBarView_TextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A5566A71BAD3CD6005DDBA3 /* PHFComposeBarView_TextView.m */; };
+		9A5566AD1BAD3CD6005DDBA3 /* PHFDelegateChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A5566A91BAD3CD6005DDBA3 /* PHFDelegateChain.m */; };
+		9A5566B11BAEAE07005DDBA3 /* TopRoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5566B01BAEAE07005DDBA3 /* TopRoundedView.swift */; };
 		9AA526861B89CF4C00900383 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AA526851B89CF4C00900383 /* QuartzCore.framework */; };
 		9AA6135C1B83E17C004911C2 /* CommunityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA6135B1B83E17C004911C2 /* CommunityViewController.swift */; };
 		9AA6135E1B83F572004911C2 /* LoggedOutProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA6135D1B83F572004911C2 /* LoggedOutProfileViewController.swift */; };
@@ -35,6 +46,12 @@
 		9AAD20501B82A22F0053F743 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9AAD204F1B82A22F0053F743 /* Images.xcassets */; };
 		9AAD20531B82A22F0053F743 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9AAD20511B82A22F0053F743 /* LaunchScreen.xib */; };
 		9AAD205F1B82A22F0053F743 /* CommunityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AAD205E1B82A22F0053F743 /* CommunityTests.swift */; };
+		9AC6220B1BB0FFF000347F8D /* ContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC6220A1BB0FFF000347F8D /* ContainerView.swift */; };
+		9AC622171BB222D200347F8D /* EKAvoidingInsetCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AC6220E1BB222D100347F8D /* EKAvoidingInsetCalculator.m */; };
+		9AC622181BB222D200347F8D /* EKKeyboardAvoidingProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AC622101BB222D100347F8D /* EKKeyboardAvoidingProvider.m */; };
+		9AC622191BB222D200347F8D /* EKKeyboardFrameListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AC622121BB222D100347F8D /* EKKeyboardFrameListener.m */; };
+		9AC6221A1BB222D200347F8D /* NSObject+EKKeyboardAvoiding.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AC622141BB222D100347F8D /* NSObject+EKKeyboardAvoiding.m */; };
+		9AC6221B1BB222D200347F8D /* UIScrollView+EKKeyboardAvoiding.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AC622161BB222D100347F8D /* UIScrollView+EKKeyboardAvoiding.m */; };
 		9AD3B4B01B8E81D900357860 /* Delegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD3B4AF1B8E81D900357860 /* Delegates.swift */; };
 		9CD1118C8AAD2ACAFAF5D95C /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11CFFFB983B375515C97E45F /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
@@ -71,6 +88,21 @@
 		9A5566571BA7E4FB005DDBA3 /* DKImagePickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DKImagePickerController.swift; sourceTree = "<group>"; };
 		9A5566581BA7E4FB005DDBA3 /* DKImageResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DKImageResource.swift; sourceTree = "<group>"; };
 		9A5566591BA7E4FB005DDBA3 /* DKPopoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DKPopoverViewController.swift; sourceTree = "<group>"; };
+		9A5566641BA7FD5C005DDBA3 /* TestTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestTableViewController.swift; sourceTree = "<group>"; };
+		9A5566961BAA0707005DDBA3 /* CommunitySettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommunitySettingsViewController.swift; path = ../../CommunitySettingsViewController.swift; sourceTree = "<group>"; };
+		9A5566981BACB722005DDBA3 /* CommentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
+		9A55669A1BACC10E005DDBA3 /* CommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommentCell.swift; path = ../CommentCell.swift; sourceTree = "<group>"; };
+		9A55669C1BACD00A005DDBA3 /* CommentPostCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommentPostCell.swift; path = ../CommentPostCell.swift; sourceTree = "<group>"; };
+		9A55669E1BAD19DC005DDBA3 /* CommentsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsTableViewController.swift; sourceTree = "<group>"; };
+		9A5566A21BAD3CD6005DDBA3 /* PHFComposeBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHFComposeBarView.h; sourceTree = "<group>"; };
+		9A5566A31BAD3CD6005DDBA3 /* PHFComposeBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHFComposeBarView.m; sourceTree = "<group>"; };
+		9A5566A41BAD3CD6005DDBA3 /* PHFComposeBarView_Button.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHFComposeBarView_Button.h; sourceTree = "<group>"; };
+		9A5566A51BAD3CD6005DDBA3 /* PHFComposeBarView_Button.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHFComposeBarView_Button.m; sourceTree = "<group>"; };
+		9A5566A61BAD3CD6005DDBA3 /* PHFComposeBarView_TextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHFComposeBarView_TextView.h; sourceTree = "<group>"; };
+		9A5566A71BAD3CD6005DDBA3 /* PHFComposeBarView_TextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHFComposeBarView_TextView.m; sourceTree = "<group>"; };
+		9A5566A81BAD3CD6005DDBA3 /* PHFDelegateChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHFDelegateChain.h; sourceTree = "<group>"; };
+		9A5566A91BAD3CD6005DDBA3 /* PHFDelegateChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHFDelegateChain.m; sourceTree = "<group>"; };
+		9A5566B01BAEAE07005DDBA3 /* TopRoundedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopRoundedView.swift; sourceTree = "<group>"; };
 		9AA526851B89CF4C00900383 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		9AA6135B1B83E17C004911C2 /* CommunityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunityViewController.swift; sourceTree = "<group>"; };
 		9AA6135D1B83F572004911C2 /* LoggedOutProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggedOutProfileViewController.swift; sourceTree = "<group>"; };
@@ -86,6 +118,17 @@
 		9AAD20581B82A22F0053F743 /* CommunityTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CommunityTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AAD205D1B82A22F0053F743 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9AAD205E1B82A22F0053F743 /* CommunityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityTests.swift; sourceTree = "<group>"; };
+		9AC6220A1BB0FFF000347F8D /* ContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerView.swift; sourceTree = "<group>"; };
+		9AC6220D1BB222D100347F8D /* EKAvoidingInsetCalculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EKAvoidingInsetCalculator.h; sourceTree = "<group>"; };
+		9AC6220E1BB222D100347F8D /* EKAvoidingInsetCalculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EKAvoidingInsetCalculator.m; sourceTree = "<group>"; };
+		9AC6220F1BB222D100347F8D /* EKKeyboardAvoidingProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EKKeyboardAvoidingProvider.h; sourceTree = "<group>"; };
+		9AC622101BB222D100347F8D /* EKKeyboardAvoidingProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EKKeyboardAvoidingProvider.m; sourceTree = "<group>"; };
+		9AC622111BB222D100347F8D /* EKKeyboardFrameListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EKKeyboardFrameListener.h; sourceTree = "<group>"; };
+		9AC622121BB222D100347F8D /* EKKeyboardFrameListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EKKeyboardFrameListener.m; sourceTree = "<group>"; };
+		9AC622131BB222D100347F8D /* NSObject+EKKeyboardAvoiding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+EKKeyboardAvoiding.h"; sourceTree = "<group>"; };
+		9AC622141BB222D100347F8D /* NSObject+EKKeyboardAvoiding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+EKKeyboardAvoiding.m"; sourceTree = "<group>"; };
+		9AC622151BB222D100347F8D /* UIScrollView+EKKeyboardAvoiding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+EKKeyboardAvoiding.h"; sourceTree = "<group>"; };
+		9AC622161BB222D100347F8D /* UIScrollView+EKKeyboardAvoiding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+EKKeyboardAvoiding.m"; sourceTree = "<group>"; };
 		9AD3B4AF1B8E81D900357860 /* Delegates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Delegates.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -131,6 +174,37 @@
 			path = DKImagePickerController;
 			sourceTree = "<group>";
 		};
+		9A5566A11BAD3C94005DDBA3 /* PHFComposeBar */ = {
+			isa = PBXGroup;
+			children = (
+				9A5566AF1BAD3D30005DDBA3 /* PHFDelegateChain */,
+				9A5566AE1BAD3D1A005DDBA3 /* PHFComposeBarView */,
+			);
+			name = PHFComposeBar;
+			sourceTree = "<group>";
+		};
+		9A5566AE1BAD3D1A005DDBA3 /* PHFComposeBarView */ = {
+			isa = PBXGroup;
+			children = (
+				9A5566A21BAD3CD6005DDBA3 /* PHFComposeBarView.h */,
+				9A5566A31BAD3CD6005DDBA3 /* PHFComposeBarView.m */,
+				9A5566A41BAD3CD6005DDBA3 /* PHFComposeBarView_Button.h */,
+				9A5566A51BAD3CD6005DDBA3 /* PHFComposeBarView_Button.m */,
+				9A5566A61BAD3CD6005DDBA3 /* PHFComposeBarView_TextView.h */,
+				9A5566A71BAD3CD6005DDBA3 /* PHFComposeBarView_TextView.m */,
+			);
+			name = PHFComposeBarView;
+			sourceTree = "<group>";
+		};
+		9A5566AF1BAD3D30005DDBA3 /* PHFDelegateChain */ = {
+			isa = PBXGroup;
+			children = (
+				9A5566A81BAD3CD6005DDBA3 /* PHFDelegateChain.h */,
+				9A5566A91BAD3CD6005DDBA3 /* PHFDelegateChain.m */,
+			);
+			name = PHFDelegateChain;
+			sourceTree = "<group>";
+		};
 		9AAD203A1B82A22F0053F743 = {
 			isa = PBXGroup;
 			children = (
@@ -154,6 +228,12 @@
 		9AAD20451B82A22F0053F743 /* Community */ = {
 			isa = PBXGroup;
 			children = (
+				9AC6220C1BB2228200347F8D /* EKKeyboardAvoiding */,
+				9AC6220A1BB0FFF000347F8D /* ContainerView.swift */,
+				9A5566B01BAEAE07005DDBA3 /* TopRoundedView.swift */,
+				9A5566A11BAD3C94005DDBA3 /* PHFComposeBar */,
+				9A55669C1BACD00A005DDBA3 /* CommentPostCell.swift */,
+				9A55669A1BACC10E005DDBA3 /* CommentCell.swift */,
 				9A3DED9C1B9155AF00B90556 /* DKImagePickerController */,
 				9AAD20461B82A22F0053F743 /* Supporting Files */,
 				9AD3B4B11B91283E00357860 /* ViewControllers */,
@@ -198,9 +278,30 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		9AC6220C1BB2228200347F8D /* EKKeyboardAvoiding */ = {
+			isa = PBXGroup;
+			children = (
+				9AC6220D1BB222D100347F8D /* EKAvoidingInsetCalculator.h */,
+				9AC6220E1BB222D100347F8D /* EKAvoidingInsetCalculator.m */,
+				9AC6220F1BB222D100347F8D /* EKKeyboardAvoidingProvider.h */,
+				9AC622101BB222D100347F8D /* EKKeyboardAvoidingProvider.m */,
+				9AC622111BB222D100347F8D /* EKKeyboardFrameListener.h */,
+				9AC622121BB222D100347F8D /* EKKeyboardFrameListener.m */,
+				9AC622131BB222D100347F8D /* NSObject+EKKeyboardAvoiding.h */,
+				9AC622141BB222D100347F8D /* NSObject+EKKeyboardAvoiding.m */,
+				9AC622151BB222D100347F8D /* UIScrollView+EKKeyboardAvoiding.h */,
+				9AC622161BB222D100347F8D /* UIScrollView+EKKeyboardAvoiding.m */,
+			);
+			name = EKKeyboardAvoiding;
+			sourceTree = "<group>";
+		};
 		9AD3B4B11B91283E00357860 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				9A55669E1BAD19DC005DDBA3 /* CommentsTableViewController.swift */,
+				9A5566981BACB722005DDBA3 /* CommentsViewController.swift */,
+				9A5566961BAA0707005DDBA3 /* CommunitySettingsViewController.swift */,
+				9A5566641BA7FD5C005DDBA3 /* TestTableViewController.swift */,
 				9A5566501BA78A2C005DDBA3 /* CommunityCopyViewController.swift */,
 				9A5566521BA78E94005DDBA3 /* CommunityTableViewController.swift */,
 				9AA6135B1B83E17C004911C2 /* CommunityViewController.swift */,
@@ -379,27 +480,44 @@
 			files = (
 				9A55665B1BA7E4FB005DDBA3 /* DKAssetGroupVC.swift in Sources */,
 				9A55661B1BA41C0D005DDBA3 /* ProfileTableViewController.swift in Sources */,
+				9AC622181BB222D200347F8D /* EKKeyboardAvoidingProvider.m in Sources */,
 				9AA6135C1B83E17C004911C2 /* CommunityViewController.swift in Sources */,
 				9A5566531BA78E94005DDBA3 /* CommunityTableViewController.swift in Sources */,
 				9A55665A1BA7E4FB005DDBA3 /* DKAssetGroupDetailVC.swift in Sources */,
+				9AC6220B1BB0FFF000347F8D /* ContainerView.swift in Sources */,
 				9A5566081B9FB60F005DDBA3 /* PostCell.swift in Sources */,
+				9AC622191BB222D200347F8D /* EKKeyboardFrameListener.m in Sources */,
+				9A5566B11BAEAE07005DDBA3 /* TopRoundedView.swift in Sources */,
 				9AD3B4B01B8E81D900357860 /* Delegates.swift in Sources */,
 				9A55665E1BA7E4FB005DDBA3 /* DKImageResource.swift in Sources */,
+				9AC6221A1BB222D200347F8D /* NSObject+EKKeyboardAvoiding.m in Sources */,
 				9AAD204B1B82A22F0053F743 /* SearchViewController.swift in Sources */,
 				9A5566141BA16F18005DDBA3 /* WritePostViewController.swift in Sources */,
 				9AA613621B851F79004911C2 /* LogInViewController.swift in Sources */,
 				9AA613641B851FD6004911C2 /* CreateAccountViewController.swift in Sources */,
+				9A5566AD1BAD3CD6005DDBA3 /* PHFDelegateChain.m in Sources */,
 				9A3D2C2B1B8BFD4F00C10CC5 /* Extensions.swift in Sources */,
 				9AA6135E1B83F572004911C2 /* LoggedOutProfileViewController.swift in Sources */,
+				9A5566AA1BAD3CD6005DDBA3 /* PHFComposeBarView.m in Sources */,
+				9A55669B1BACC10E005DDBA3 /* CommentCell.swift in Sources */,
+				9A5566991BACB722005DDBA3 /* CommentsViewController.swift in Sources */,
 				9A55665D1BA7E4FB005DDBA3 /* DKImagePickerController.swift in Sources */,
 				9AAD20491B82A22F0053F743 /* AppDelegate.swift in Sources */,
 				9A55660E1BA0168D005DDBA3 /* Post.swift in Sources */,
+				9A55669F1BAD19DD005DDBA3 /* CommentsTableViewController.swift in Sources */,
 				9A5566511BA78A2C005DDBA3 /* CommunityCopyViewController.swift in Sources */,
 				9A5566161BA2C512005DDBA3 /* JoinedCommunity.swift in Sources */,
 				9A55661D1BA41C8C005DDBA3 /* ProfileViewController.swift in Sources */,
+				9A5566AB1BAD3CD6005DDBA3 /* PHFComposeBarView_Button.m in Sources */,
+				9AC622171BB222D200347F8D /* EKAvoidingInsetCalculator.m in Sources */,
+				9A5566971BAA0708005DDBA3 /* CommunitySettingsViewController.swift in Sources */,
+				9A5566AC1BAD3CD6005DDBA3 /* PHFComposeBarView_TextView.m in Sources */,
 				9A55665F1BA7E4FB005DDBA3 /* DKPopoverViewController.swift in Sources */,
+				9AC6221B1BB222D200347F8D /* UIScrollView+EKKeyboardAvoiding.m in Sources */,
 				9AA613601B8464F0004911C2 /* CommunityCell.swift in Sources */,
+				9A55669D1BACD00A005DDBA3 /* CommentPostCell.swift in Sources */,
 				9A3D2C271B8AA0C400C10CC5 /* SearchTextField.swift in Sources */,
+				9A5566651BA7FD5C005DDBA3 /* TestTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -35,7 +35,7 @@ DEPENDENCIES:
   - HexColors (~> 2.3)
   - MGSwipeTableCell (~> 1.5.1)
   - MMDrawerController (~> 0.5.7)
-  - MMProgressHUD (~> 0.3.1)
+  - MMProgressHUD (~> 0.3)
   - RealmSwift (~> 0.95)
   - RSKImageCropper (~> 1.2)
   - SDWebImage (~> 3.7)

@@ -10,9 +10,9 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-class CommunityTableViewController: UITableViewController {
+class CommunityTableViewController: UITableViewController, UpdateFeedWithLatestPostDelegate {
 
-    //var delegate: CommunityTableDelegate!
+    var delegate: CommunityTableDelegate!
     
     var posts = [Post]()
     var cachedHeights = [Int: CGFloat]()
@@ -74,6 +74,17 @@ class CommunityTableViewController: UITableViewController {
         self.tableView.tableHeaderView = customView
     }
     
+    func writePost() {
+        delegate.writePost()
+    }
+    
+    func updateFeedWithLatestPost(post: Post) {
+        posts.insert(post, atIndex: 0)
+        self.tableView.setContentOffset(CGPointZero, animated: true)
+        
+        tableView.reloadData()
+    }
+    
     func animateInitialLoad() {
         // The contentOffset pertains to a bug in iOS 7/8 where
         // the refreshControl isn't the tintColor set on it during
@@ -88,7 +99,15 @@ class CommunityTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if self.posts.count > indexPath.row {
-            println(posts[indexPath.row])
+            var post = posts[indexPath.row]
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let commentsVC = storyboard.instantiateViewControllerWithIdentifier("CommentsViewController") as! CommentsViewController
+         
+            
+            commentsVC.post = post
+            
+            self.presentViewController(commentsVC, animated: true, completion: nil)
         }
     }
     
@@ -169,10 +188,11 @@ class CommunityTableViewController: UITableViewController {
                             
                             var rand = Int(arc4random_uniform(UInt32(3)))
                             
-                            if rand == 1 || (page == nil && i == 1){
-                                post.title = "I weq weerw qwe qewrwlerkwr qlr lqwe r qwer qwler qwelrk wer kwlr lwer qwekrqwer qwr lqwer qlw rwerwerw rqwrqw erq rwqerkqwe rlwqr qwler qler qkw rlqwer qlwer qwler qlw rlekr qwelrkq ewqlwer qelwr qwerqwerqwerqwe :3"
+                            if rand == 1 || (page == nil && i == 1) {
+                                if post.title == nil {
+                                    post.title = "I weq weerw qwe qewrwlerkwr qlr lqwe r qwer qwler qwelrk wer kwlr lwer qwekrqwer qwr lqwer qlw rwerwerw rqwrqw erq rwqerkqwe rlwqr qwler qler qkw rlqwer qlwer qwler qlw rlekr qwelrkq ewqlwer qelwr qwerqwerqwerqwe :3"
+                                }
                             }
-                            
                             
                             if (i == 0 && (self.infiniteScrollTimeBuffer.isEmpty || refreshing)) {
                                 self.infiniteScrollTimeBuffer = NSDate(timeIntervalSince1970: (post.timeCreated.timeIntervalSince1970 * 1000 + 1)/1000).stringFromDate()
@@ -181,7 +201,7 @@ class CommunityTableViewController: UITableViewController {
                             self.posts.append(post)
                         }
                         
-                        var delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(1.0 * Double(NSEC_PER_SEC)))
+                        var delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0.25 * Double(NSEC_PER_SEC)))
                         
                         dispatch_after(delayTime, dispatch_get_main_queue(), {
                             if completionHandler != nil {

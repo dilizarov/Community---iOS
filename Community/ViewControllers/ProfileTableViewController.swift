@@ -27,8 +27,8 @@ class ProfileTableViewController: UITableViewController, PresentControllerDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setRuntimeTableViewParams()
-       // beginInitialLoad()
+       setRuntimeTableViewParams()
+       beginInitialLoad()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -115,7 +115,7 @@ class ProfileTableViewController: UITableViewController, PresentControllerDelega
                                 community.username = username
                             }
                             
-                            if let avatar_url = jsonCommunity["avatar_url"].string {
+                            if let avatar_url = jsonCommunity["user"]["avatar_url"].string {
                                 community.avatar_url = avatar_url
                             }
                             
@@ -152,7 +152,7 @@ class ProfileTableViewController: UITableViewController, PresentControllerDelega
                 
                 // We add a delay between ending the refresh and reloading data because otherwise the animation won't
                 // be smooth and from then on, refreshing looks clunky.
-                var delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0.25 * Double(NSEC_PER_SEC)))
+                var delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(5.0 * Double(NSEC_PER_SEC)))
                 
                 dispatch_after(delayTime, dispatch_get_main_queue(), {
                     self.refreshControl!.endRefreshing()
@@ -225,9 +225,5 @@ class ProfileTableViewController: UITableViewController, PresentControllerDelega
             
             NSNotificationCenter.defaultCenter().postNotificationName("communitySelected", object: self, userInfo: userInfo)
         }
-    }
-    
-    override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 71
     }
 }

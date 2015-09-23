@@ -18,6 +18,10 @@ class CommunityCell: MGSwipeTableCell {
     
     @IBOutlet var communityName: UILabel!
     
+    func configureView(name: String) {
+        self.communityName.text = name
+    }
+    
     func configureViews(community: JoinedCommunity, row: Int) {
         self.name = community.name
         self.row = row
