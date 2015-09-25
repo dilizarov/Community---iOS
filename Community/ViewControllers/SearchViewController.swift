@@ -44,6 +44,7 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
         search.delegate = self
     }
     
+    
     func setupAvatar() {
         avatar.layer.cornerRadius = self.avatar.frame.size.height / 2
         avatar.layer.masksToBounds = true

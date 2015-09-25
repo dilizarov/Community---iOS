@@ -133,7 +133,7 @@ internal class DKAssetGroupDetailVC: UICollectionViewController, UINavigationCon
             
             imageView.frame = self.bounds
             self.contentView.addSubview(imageView)
-            self.contentView.addSubview(checkView)
+            //self.contentView.addSubview(checkView)
         }
         
         required init(coder aDecoder: NSCoder) {
@@ -323,7 +323,7 @@ internal class DKAssetGroupDetailVC: UICollectionViewController, UINavigationCon
         self.view.backgroundColor = UIColor.whiteColor()
         
         self.collectionView!.backgroundColor = UIColor.whiteColor()
-        self.collectionView!.allowsMultipleSelection = true
+        self.collectionView!.allowsMultipleSelection = imagePickerController?.maxSelectableCount > 1
         self.collectionView!.registerClass(DKImageCameraCell.self, forCellWithReuseIdentifier: DKImageCameraIdentifier)
         self.collectionView!.registerClass(DKAssetCell.self, forCellWithReuseIdentifier: DKImageAssetIdentifier)
         self.collectionView!.registerClass(DKVideoAssetCell.self, forCellWithReuseIdentifier: DKVideoAssetIdentifier)
@@ -442,8 +442,9 @@ internal class DKAssetGroupDetailVC: UICollectionViewController, UINavigationCon
         
         cell.thumbnail = asset.thumbnailImage
         
+        
         if let index = find(self.imagePickerController!.selectedAssets, asset) {
-            cell.selected = true
+            cell.selected = true && imagePickerController?.maxSelectableCount > 1
             cell.checkView.checkLabel.text = "\(index + 1)"
             collectionView!.selectItemAtIndexPath(indexPath, animated: false, scrollPosition: UICollectionViewScrollPosition.None)
         } else {
@@ -487,31 +488,35 @@ internal class DKAssetGroupDetailVC: UICollectionViewController, UINavigationCon
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         NSNotificationCenter.defaultCenter().postNotificationName(DKImageSelectedNotification, object: imageAssets[indexPath.row - 1])
         
-        let cell = collectionView.cellForItemAtIndexPath(indexPath) as! DKAssetCell
-        cell.checkView.checkLabel.text = "\(self.imagePickerController!.selectedAssets.count)"
+        if imagePickerController!.maxSelectableCount > 1 {
+            let cell = collectionView.cellForItemAtIndexPath(indexPath) as! DKAssetCell
+            cell.checkView.checkLabel.text = "\(self.imagePickerController!.selectedAssets.count)"
+        }
     }
     
     override func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
-        let removedAsset = imageAssets[indexPath.row - 1] as! DKAsset
-        let removedIndex = find(self.imagePickerController!.selectedAssets, removedAsset)!
+        if imagePickerController?.maxSelectableCount > 1 {
+            let removedAsset = imageAssets[indexPath.row - 1] as! DKAsset
+            let removedIndex = find(self.imagePickerController!.selectedAssets, removedAsset)!
     
-        /// Minimize the number of cycles.
-        let indexPathsForSelectedItems = collectionView.indexPathsForSelectedItems() as! [NSIndexPath]
-        let indexPathsForVisibleItems = collectionView.indexPathsForVisibleItems() as! [NSIndexPath]
+            /// Minimize the number of cycles.
+            let indexPathsForSelectedItems = collectionView.indexPathsForSelectedItems() as! [NSIndexPath]
+            let indexPathsForVisibleItems = collectionView.indexPathsForVisibleItems() as! [NSIndexPath]
         
-        let intersect = Set(indexPathsForVisibleItems).intersect(Set(indexPathsForSelectedItems))
+            let intersect = Set(indexPathsForVisibleItems).intersect(Set(indexPathsForSelectedItems))
 
-        for selectedIndexPath in intersect {
-            let selectedAsset = imageAssets[selectedIndexPath.row - 1] as! DKAsset
-            let selectedIndex = find(self.imagePickerController!.selectedAssets, selectedAsset)!
+            for selectedIndexPath in intersect {
+                let selectedAsset = imageAssets[selectedIndexPath.row - 1] as! DKAsset
+                let selectedIndex = find(self.imagePickerController!.selectedAssets, selectedAsset)!
             
-            if selectedIndex > removedIndex {
-                let cell = collectionView.cellForItemAtIndexPath(selectedIndexPath) as! DKAssetCell
-                cell.checkView.checkLabel.text = "\(cell.checkView.checkLabel.text!.toInt()! - 1)"
+                if selectedIndex > removedIndex {
+                    let cell = collectionView.cellForItemAtIndexPath(selectedIndexPath) as! DKAssetCell
+                    cell.checkView.checkLabel.text = "\(cell.checkView.checkLabel.text!.toInt()! - 1)"
+                }
             }
-        }
         
-        NSNotificationCenter.defaultCenter().postNotificationName(DKImageUnselectedNotification, object: imageAssets[indexPath.row - 1])
+            NSNotificationCenter.defaultCenter().postNotificationName(DKImageUnselectedNotification, object: imageAssets[indexPath.row - 1])
+        }
     }
     
     // MARK: - UIImagePickerControllerDelegate methods

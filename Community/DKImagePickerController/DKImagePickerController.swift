@@ -215,7 +215,9 @@ public class DKImagePickerController: UINavigationController, RSKImageCropViewCo
 
         if let asset = noti.object as? DKAsset {
 
-            selectedAssets.append(asset)
+            if maxSelectableCount < 1 {
+                selectedAssets.append(asset)
+            }
             
             var scale: CGFloat = 1.0
             

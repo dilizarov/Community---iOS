@@ -47,8 +47,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         drawerController?.showsShadow = true
         drawerController?.setDrawerVisualStateBlock(MMDrawerVisualState.parallaxVisualStateBlockWithParallaxFactor(3)!)
         
-        // This forces the side to layout itself properly.
-        drawerController?.bouncePreviewForDrawerSide(.Left, distance: 30, completion: nil)
+       
+            // This forces the side to layout itself properly.
+        drawerController?.bouncePreviewForDrawerSide(.Left, distance: 10, completion: nil)
         
         self.window?.rootViewController = drawerController
         self.window?.makeKeyAndVisible()
