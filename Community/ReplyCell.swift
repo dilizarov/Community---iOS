@@ -1,25 +1,35 @@
+//
+//  ReplyCell.swift
+//  
+//
+//  Created by David Ilizarov on 9/18/15.
+//
+//
+
 import UIKit
 import SDWebImage
 import UIActivityIndicator_for_SDWebImage
 import Alamofire
 
-class CommentPostCell: UITableViewCell {
-    
-    var post: Post!
+class ReplyCell: UITableViewCell {
+
+    var reply: Reply!
+    var last = false
     
     @IBOutlet var avatarImage: UIImageView!
     @IBOutlet var username: UILabel!
     @IBOutlet var timestamp: UILabel!
     @IBOutlet var likesCount: UILabel!
-
+    
     @IBOutlet var likeImage: UIImageView!
+    
     @IBOutlet var likeClickSpace: UIView!
+    @IBOutlet var replyBody: UILabel!
     
-    @IBOutlet var postBody: UILabel!
-    @IBOutlet var postTitle: UILabel!
-    
-    @IBOutlet var titleUpperConstraint: NSLayoutConstraint!
-    @IBOutlet var bodyUpperConstraint: NSLayoutConstraint!
+    @IBOutlet var leadingUsernameSuperViewConstraint: NSLayoutConstraint!
+    @IBOutlet var leadingUsernameAvatarConstraint: NSLayoutConstraint!
+    @IBOutlet var leadingReplySuperViewConstraint: NSLayoutConstraint!
+    @IBOutlet var leadingReplyAvatarConstraint: NSLayoutConstraint!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -30,42 +40,49 @@ class CommentPostCell: UITableViewCell {
     override func drawRect(rect: CGRect) {
         super.drawRect(rect)
         
-        var maskPath = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: UIRectCorner.TopLeft | UIRectCorner.TopRight, cornerRadii: CGSizeMake(5.0, 5.0))
+        var size: CGSize!
         
+        if last { size = CGSizeMake(5.0, 5.0) }
+        else { size = CGSizeMake(0.0, 0.0) }
+
+        var maskPath = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: UIRectCorner.BottomLeft | UIRectCorner.BottomRight, cornerRadii: size)
+                
         var maskLayer = CAShapeLayer()
         maskLayer.frame = self.bounds
         maskLayer.path = maskPath.CGPath
-        
+                
         self.layer.mask = maskLayer
     }
     
-    func configureViews(post: Post) {
-        self.post = post
+    func configureViews(reply: Reply, last: Bool) {
+        self.reply = reply
+        self.last = last
         
-        if (post.title == nil) {
-            hideTitle()
+        if let url = reply.avatarUrl {
+            showAvatar()
+            processAvatarImage(url)
         } else {
-            showTitle()
+            hideAvatar()
         }
         
-        self.username.text = post.username
-        
-        if let title = post.title {
-            self.postTitle.text = title
-        }
-        
-        self.postBody.text = post.body
-        self.timestamp.text = post.timestamp
-        self.likesCount.text = post.likeCount.toThousandsString()
-        
-        if post.liked {
+        self.username.text = reply.username
+        self.replyBody.text = reply.body
+        self.timestamp.text = reply.timestamp
+        self.likesCount.text = reply.likeCount.toThousandsString()
+    
+        if reply.liked {
             likeImage.image = UIImage(named: "Liked")
         } else {
             likeImage.image = UIImage(named: "Like")
         }
         
-        setupAvatarImage()
         setupLikeGesture()
+    }
+    
+    func processAvatarImage(url: String) {
+        self.avatarImage.setImageWithURL(NSURL(string: url), placeholderImage: UIImage(named: "AvatarPlaceHolder"), options: SDWebImageOptions.RetryFailed, completed: { (image: UIImage!, error: NSError!, cacheType: SDImageCacheType, imageURL: NSURL!) -> Void in
+            
+            }, usingActivityIndicatorStyle: .Gray)
     }
     
     func setupLikeGesture() {
@@ -83,9 +100,9 @@ class CommentPostCell: UITableViewCell {
         params["user_id"] = userInfo.objectForKey("user_id") as! String
         params["auth_token"] = userInfo.objectForKey("auth_token") as! String
         
-        if !post.liked { params["dislike"] = true }
+        if !reply.liked { params["dislike"] = true }
         
-        Alamofire.request(.GET, "https://infinite-lake-4056.herokuapp.com/api/v1/posts/\(post.id)/like.json", parameters: params)
+        Alamofire.request(.GET, "https://infinite-lake-4056.herokuapp.com/api/v1/replies/\(reply.id)/like.json", parameters: params)
             .responseJSON { request, response, jsonData, errors in
                 
                 if (response?.statusCode > 299 || errors != nil) {
@@ -102,27 +119,19 @@ class CommentPostCell: UITableViewCell {
     }
     
     func toggleLike() {
-        if post.liked {
-            post.liked = false
-            post.likeCount -= 1
+        if reply.liked {
+            reply.liked = false
+            reply.likeCount -= 1
             likeImage.image = UIImage(named: "Like")
         } else {
-            post.liked = true
-            post.likeCount += 1
+            reply.liked = true
+            reply.likeCount += 1
             likeImage.image = UIImage(named: "Liked")
         }
         
-        self.likesCount.text = post.likeCount.toThousandsString()
+        self.likesCount.text = reply.likeCount.toThousandsString()
     }
-    
-    func setupAvatarImage() {
-        if let url = post.avatarUrl {
-            self.avatarImage.setImageWithURL(NSURL(string: url), placeholderImage: UIImage(named: "AvatarPlaceHolder"), options: SDWebImageOptions.RetryFailed, completed: { (image: UIImage!, error: NSError!, cacheType: SDImageCacheType, imageURL: NSURL!) -> Void in
-                
-                }, usingActivityIndicatorStyle: .Gray)
-        }
-        
-    }
+
     
     func avatarSetup() {
         self.avatarImage.layer.cornerRadius = self.avatarImage.frame.size.height / 2
@@ -131,39 +140,42 @@ class CommentPostCell: UITableViewCell {
         self.avatarImage.clipsToBounds = true
     }
     
-    func hideTitle() {
-        self.bodyUpperConstraint.priority = 999
-        self.titleUpperConstraint.priority = 500
-        self.postTitle.alpha = 0.0
+    func showAvatar() {
+        self.leadingReplyAvatarConstraint.priority = 999
+        self.leadingReplySuperViewConstraint.priority = 500
+        self.leadingUsernameAvatarConstraint.priority = 999
+        self.leadingUsernameSuperViewConstraint.priority = 500
+        self.avatarImage.alpha = 1.0
         self.layoutIfNeeded()
     }
     
-    func showTitle() {
-        self.titleUpperConstraint.priority = 999
-        self.bodyUpperConstraint.priority = 500
-        self.postTitle.alpha = 1.0
+    func hideAvatar() {
+        self.leadingReplyAvatarConstraint.priority = 500
+        self.leadingReplySuperViewConstraint.priority = 999
+        self.leadingUsernameAvatarConstraint.priority = 500
+        self.leadingUsernameSuperViewConstraint.priority = 999
+        self.avatarImage.alpha = 0.0
         self.layoutIfNeeded()
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
         self.avatarSetup()
-        self.postTitle.lineBreakMode = .ByWordWrapping
-        self.postBody.lineBreakMode = .ByWordWrapping
-        self.postTitle.sizeToFit()
-        self.postBody.sizeToFit()
+        
+        self.replyBody.lineBreakMode = .ByWordWrapping
+        self.replyBody.sizeToFit()
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        
         self.avatarImage.sd_cancelCurrentImageLoad()
     }
     
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        
+
         // Configure the view for the selected state
     }
-    
+
 }

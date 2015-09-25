@@ -16,18 +16,6 @@ protocol LeaveCommunityDelegate {
     func presentLeaveCommunityController(community: JoinedCommunity, row: Int)
 }
 
-@objc protocol ProfileTableDelegate {
-    
-    optional func handleRefresh()
-    optional func beginInitialLoad()
-    
-    func failureRequestJoinedCommunities(error: String)
-    func successRequestJoinedCommunities()
-    
-    func spreadToast(string: String)
-    
-}
-
 protocol UpdateFeedWithLatestPostDelegate {
     
     func updateFeedWithLatestPost(post: Post)
@@ -37,5 +25,12 @@ protocol UpdateFeedWithLatestPostDelegate {
 protocol CommunityTableDelegate {
     
     func writePost()
+}
+
+protocol RepliesTableDelegate {
+    
+    func startLoading()
+    func stopLoading()
+    func stopRefreshing()
     
 }

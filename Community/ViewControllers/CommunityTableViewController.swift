@@ -42,7 +42,6 @@ class CommunityTableViewController: UITableViewController, UpdateFeedWithLatestP
         
         tableView.rowHeight = UITableViewAutomaticDimension
         requestPostsAndPopulateFeed(false, page: nil, completionHandler: nil, changingCommunities: false)
-
     }
     
     func setInfiniteScrollVars() {
@@ -102,12 +101,12 @@ class CommunityTableViewController: UITableViewController, UpdateFeedWithLatestP
             var post = posts[indexPath.row]
             
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let commentsVC = storyboard.instantiateViewControllerWithIdentifier("CommentsViewController") as! CommentsViewController
+            let repliesVC = storyboard.instantiateViewControllerWithIdentifier("RepliesViewController") as! RepliesViewController
          
             
-            commentsVC.post = post
+            repliesVC.post = post
             
-            self.presentViewController(commentsVC, animated: true, completion: nil)
+            self.presentViewController(repliesVC, animated: true, completion: nil)
         }
     }
     
@@ -185,14 +184,6 @@ class CommunityTableViewController: UITableViewController, UpdateFeedWithLatestP
                             var jsonPost = json["posts"][i]
                             
                             var post = Post(id: jsonPost["external_id"].stringValue, username: jsonPost["user"]["username"].stringValue, body: jsonPost["body"].stringValue, title: jsonPost["title"].string, repliesCount: jsonPost["replies_count"].intValue, likeCount: jsonPost["likes"].intValue, liked: jsonPost["liked"].boolValue, timeCreated: jsonPost["created_at"].stringValue, avatarUrl: jsonPost["user"]["avatar_url"].string)
-                            
-                            var rand = Int(arc4random_uniform(UInt32(3)))
-                            
-                            if rand == 1 || (page == nil && i == 1) {
-                                if post.title == nil {
-                                    post.title = "I weq weerw qwe qewrwlerkwr qlr lqwe r qwer qwler qwelrk wer kwlr lwer qwekrqwer qwr lqwer qlw rwerwerw rqwrqw erq rwqerkqwe rlwqr qwler qler qkw rlqwer qlwer qwler qlw rlekr qwelrkq ewqlwer qelwr qwerqwerqwerqwe :3"
-                                }
-                            }
                             
                             if (i == 0 && (self.infiniteScrollTimeBuffer.isEmpty || refreshing)) {
                                 self.infiniteScrollTimeBuffer = NSDate(timeIntervalSince1970: (post.timeCreated.timeIntervalSince1970 * 1000 + 1)/1000).stringFromDate()

@@ -1,35 +1,22 @@
-//
-//  PostCell.swift
-//  
-//
-//  Created by David Ilizarov on 9/8/15.
-//
-//
-
 import UIKit
 import SDWebImage
 import UIActivityIndicator_for_SDWebImage
 import Alamofire
 
-class PostCell: UITableViewCell {
-
+class ReplyPostCell: UITableViewCell {
+    
     var post: Post!
     
     @IBOutlet var avatarImage: UIImageView!
     @IBOutlet var username: UILabel!
     @IBOutlet var timestamp: UILabel!
-    @IBOutlet var repliesCount: UILabel!
     @IBOutlet var likesCount: UILabel!
-    
+
     @IBOutlet var likeImage: UIImageView!
-    
     @IBOutlet var likeClickSpace: UIView!
-    // This acts both as either a title or a body.
-    // If a title is given, use title, otherwise body.
+    
     @IBOutlet var postBody: UILabel!
     @IBOutlet var postTitle: UILabel!
-    
-    @IBOutlet var cardView: UIView!
     
     @IBOutlet var titleUpperConstraint: NSLayoutConstraint!
     @IBOutlet var bodyUpperConstraint: NSLayoutConstraint!
@@ -38,6 +25,18 @@ class PostCell: UITableViewCell {
         super.awakeFromNib()
         
         self.layoutIfNeeded()
+    }
+    
+    override func drawRect(rect: CGRect) {
+        super.drawRect(rect)
+        
+        var maskPath = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: UIRectCorner.TopLeft | UIRectCorner.TopRight, cornerRadii: CGSizeMake(5.0, 5.0))
+        
+        var maskLayer = CAShapeLayer()
+        maskLayer.frame = self.bounds
+        maskLayer.path = maskPath.CGPath
+        
+        self.layer.mask = maskLayer
     }
     
     func configureViews(post: Post) {
@@ -50,7 +49,7 @@ class PostCell: UITableViewCell {
         }
         
         self.username.text = post.username
-
+        
         if let title = post.title {
             self.postTitle.text = title
         }
@@ -58,7 +57,6 @@ class PostCell: UITableViewCell {
         self.postBody.text = post.body
         self.timestamp.text = post.timestamp
         self.likesCount.text = post.likeCount.toThousandsString()
-        self.repliesCount.text = post.repliesCount.toThousandsString()
         
         if post.liked {
             likeImage.image = UIImage(named: "Liked")
@@ -66,7 +64,7 @@ class PostCell: UITableViewCell {
             likeImage.image = UIImage(named: "Like")
         }
         
-        setAvatarImage()
+        setupAvatarImage()
         setupLikeGesture()
     }
     
@@ -77,7 +75,7 @@ class PostCell: UITableViewCell {
     }
     
     func processLike() {
-       toggleLike()
+        toggleLike()
         
         var userInfo = NSUserDefaults.standardUserDefaults()
         
@@ -100,7 +98,7 @@ class PostCell: UITableViewCell {
                     self.toggleLike()
                     // maybe use toast.
                 }
-            }
+        }
     }
     
     func toggleLike() {
@@ -117,19 +115,13 @@ class PostCell: UITableViewCell {
         self.likesCount.text = post.likeCount.toThousandsString()
     }
     
-    func setAvatarImage() {
+    func setupAvatarImage() {
         if let url = post.avatarUrl {
             self.avatarImage.setImageWithURL(NSURL(string: url), placeholderImage: UIImage(named: "AvatarPlaceHolder"), options: SDWebImageOptions.RetryFailed, completed: { (image: UIImage!, error: NSError!, cacheType: SDImageCacheType, imageURL: NSURL!) -> Void in
                 
                 }, usingActivityIndicatorStyle: .Gray)
         }
-
-    }
-    
-    func cardSetup() {
-        self.cardView.alpha = 1.0
-        self.cardView.layer.masksToBounds = false
-        self.cardView.layer.cornerRadius = 5.0
+        
     }
     
     func avatarSetup() {
@@ -155,7 +147,7 @@ class PostCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        self.cardSetup()
+        
         self.avatarSetup()
         self.postTitle.lineBreakMode = .ByWordWrapping
         self.postBody.lineBreakMode = .ByWordWrapping
@@ -170,8 +162,8 @@ class PostCell: UITableViewCell {
     
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
-
+    
 }

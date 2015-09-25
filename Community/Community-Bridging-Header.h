@@ -8,3 +8,4 @@
 
 #import "PHFComposeBarView.h"
 #import "PHFDelegateChain.h"
+#import "UIScrollView+EKKeyboardAvoiding.h"

@@ -33,6 +33,7 @@ extern NSString *const PHFComposeBarViewFrameEndUserInfoKey;          // NSValue
 @property (assign, nonatomic) BOOL autoAdjustTopOffset;
 
 @property (strong, nonatomic, readonly) UIButton *button;
+@property (strong, nonatomic, readonly) UIActivityIndicatorView *loadIndicator;
 
 // Default is a blue matching that from iMessage (RGB: 0, 122, 255).
 @property (strong, nonatomic) UIColor *buttonTintColor UI_APPEARANCE_SELECTOR;
@@ -76,7 +77,8 @@ extern NSString *const PHFComposeBarViewFrameEndUserInfoKey;          // NSValue
 @property (strong, nonatomic) UIImage *utilityButtonImage UI_APPEARANCE_SELECTOR;
 
 - (void)setText:(NSString *)text animated:(BOOL)animated;
-
+- (void)startLoading;
+- (void)stopLoading;
 @end
 
 

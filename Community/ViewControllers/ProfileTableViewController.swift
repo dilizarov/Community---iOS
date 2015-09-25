@@ -1,11 +1,3 @@
-//
-//  ProfileTableViewController.swift
-//  
-//
-//  Created by David Ilizarov on 9/12/15.
-//
-//
-
 import UIKit
 import Alamofire
 import SwiftyJSON
@@ -13,22 +5,28 @@ import RealmSwift
 
 class ProfileTableViewController: UITableViewController, PresentControllerDelegate, LeaveCommunityDelegate {
     
-    var delegate: ProfileTableDelegate!
+    // The states that this controller has to adhere too can not be thrown into
+    // a delegate, which means this is tightly coupled with ProfileViewController
+    // but seeing as how this is literally embed in it, it can pass.
+    var delegate: ProfileViewController!
     
     var communities = [JoinedCommunity]()
+    
+    var settings = ["Log out"]
     
     var triggerRealmReload = false
     
     @IBAction func handleRefresh(sender: AnyObject) {
-        delegate.handleRefresh?()
+        delegate.handleRefresh()
         requestJoinedCommunitiesAndPopulateList()
     }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-       setRuntimeTableViewParams()
-       beginInitialLoad()
+        setRuntimeTableViewParams()
+        beginInitialLoad()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -46,13 +44,13 @@ class ProfileTableViewController: UITableViewController, PresentControllerDelega
     
     func setRuntimeTableViewParams() {
         tableView.tableHeaderView = UIView(frame: CGRectMake(0,0,0,30))
+        // This is so that the tableView separator is only under filled cells.
+        tableView.tableFooterView = UIView(frame: CGRectZero)
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 200
     }
     
     func beginInitialLoad() {
-        delegate.beginInitialLoad?()
-        
         self.refreshControl!.beginRefreshing()
         self.refreshControl!.sendActionsForControlEvents(.ValueChanged)
     }
@@ -115,7 +113,7 @@ class ProfileTableViewController: UITableViewController, PresentControllerDelega
                                 community.username = username
                             }
                             
-                            if let avatar_url = jsonCommunity["user"]["avatar_url"].string {
+                            if let avatar_url = jsonCommunity["avatar_url"].string {
                                 community.avatar_url = avatar_url
                             }
                             
@@ -152,14 +150,14 @@ class ProfileTableViewController: UITableViewController, PresentControllerDelega
                 
                 // We add a delay between ending the refresh and reloading data because otherwise the animation won't
                 // be smooth and from then on, refreshing looks clunky.
-                var delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(5.0 * Double(NSEC_PER_SEC)))
+                var delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0.25 * Double(NSEC_PER_SEC)))
                 
                 dispatch_after(delayTime, dispatch_get_main_queue(), {
                     self.refreshControl!.endRefreshing()
                 })
         }
     }
-
+    
     func leaveCommunity(community: JoinedCommunity, row: Int) {
         if (community.name == communities[row].name) {
             communities.removeAtIndex(row)
@@ -199,31 +197,75 @@ class ProfileTableViewController: UITableViewController, PresentControllerDelega
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return communities.count
+        if delegate.currentState == ProfileViewController.State.Communities {
+            return communities.count
+        } else if delegate.currentState == ProfileViewController.State.Notifications {
+            return communities.count
+        } else {
+            return settings.count
+        }
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = self.tableView.dequeueReusableCellWithIdentifier("communityCell") as! CommunityCell
-        
-        cell.presentControllerDelegate = self
-        cell.leaveCommunityDelegate = self
-        
-        if (communities.count > indexPath.row) {
-            cell.configureViews(communities[indexPath.row], row: indexPath.row)
-        }
-        
-        return cell
-    }
-
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if (communities.count > indexPath.row) {
-            var userInfo = Dictionary<String, String>()
-            userInfo["community"] = communities[indexPath.row].name
+        if delegate.currentState == ProfileViewController.State.Communities {
+            let cell = self.tableView.dequeueReusableCellWithIdentifier("communityCell") as! CommunityCell
             
-            NSNotificationCenter.defaultCenter().postNotificationName("communitySelected", object: self, userInfo: userInfo)
+            cell.presentControllerDelegate = self
+            cell.leaveCommunityDelegate = self
+            
+            if (communities.count > indexPath.row) {
+                cell.configureViews(communities[indexPath.row], row: indexPath.row)
+            }
+            
+            return cell
+        //} else if delegate.currentState == ProfileViewController.State.Notifications {
+        //    return communities.count
+        } else {
+            let cell = self.tableView.dequeueReusableCellWithIdentifier("settingCell") as! UITableViewCell
+            
+            if (settings.count > indexPath.row) {
+                (cell.viewWithTag(5) as! UILabel).text = settings[indexPath.row]
+            }
+            
+            return cell
+        }
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        if delegate.currentState == ProfileViewController.State.Communities {
+            if (communities.count > indexPath.row) {
+                var userInfo = Dictionary<String, String>()
+                userInfo["community"] = communities[indexPath.row].name
+                
+                NSNotificationCenter.defaultCenter().postNotificationName("communitySelected", object: self, userInfo: userInfo)
+            }
+            //} else if delegate.currentState == ProfileViewController.State.Notifications {
+            //    return communities.count
+        } else {
+            if (settings.count > indexPath.row) {
+               
+                if settings[indexPath.row] == "Log out" {
+                    
+                    
+                    var logoutAlert = UIAlertController(title: "Log Out", message: "Are you sure you want to log out?", preferredStyle: .Alert)
+                    
+                    let logoutAction = UIAlertAction(title: "Log Out", style: .Destructive, handler: {
+                        (alert: UIAlertAction!) in
+                        println("logout")
+                    })
+                    
+                    let cancelAction = UIAlertAction(title: "Cancel", style: .Default, handler: nil)
+                    
+                    logoutAlert.addAction(logoutAction)
+                    logoutAlert.addAction(cancelAction)
+                    
+                    self.presentViewController(logoutAlert, animated: true, completion: nil)
+                }
+            }
         }
     }
 }

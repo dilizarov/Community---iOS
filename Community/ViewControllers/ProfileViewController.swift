@@ -13,20 +13,24 @@ import Toast
 import SDWebImage
 import UIActivityIndicator_for_SDWebImage
 import MMProgressHUD
+import RealmSwift
 
-class ProfileViewController: UIViewController, ProfileTableDelegate {
+class ProfileViewController: UIViewController {
     
-    var tableViewController: TestTableViewController!
+    enum State {
+        case Communities, Notifications, Settings
+    }
     
-    //var communities = [JoinedCommunity]()
+    var currentState = State.Communities
+    
+    var tableViewController: ProfileTableViewController!
     
     var initialLoad = true
 
-    //We use a table holder to get past some
-    //rounded corner issues that happen when
-    //applying rounded corners directly to
-    //the table
-    @IBOutlet var tableHolder: UIView!
+    @IBOutlet var tableHolder: RoundedView!
+    @IBOutlet var viewingCommunities: RoundedView!
+    @IBOutlet var viewingNotifications: RoundedView!
+    @IBOutlet var viewingSettings: RoundedView!
     
     @IBOutlet var usernameLabel: UILabel!
     @IBOutlet var errorLabel: UILabel!
@@ -34,53 +38,26 @@ class ProfileViewController: UIViewController, ProfileTableDelegate {
     @IBOutlet var avatarImage: UIImageView!
     var avatarImageError = false
     
-    @IBOutlet var leftButton: UIButton!
-    @IBAction func leftButtonPressed(sender: AnyObject) {
-        println("Communities")
-//        notifs = false
-//        communitiesTable.setContentOffset(CGPointZero, animated: false)
-//        communitiesTable.reloadData()
-    }
-    
-    @IBOutlet var notifications: UIButton!
-    @IBAction func notificationsButtonPressed(sender: AnyObject) {
-        println("Notifs")
-//        notifs = true
-//        communitiesTable.setContentOffset(CGPointZero, animated: false)
-//        
-//        communitiesTable.reloadData()
-    }
-    
-    @IBOutlet var settings: UIButton!
-    @IBAction func settingsPressed(sender: AnyObject) {
-        println("Settings")
-    }
+    @IBOutlet var communitiesImage: UIImageView!
+    @IBOutlet var notificationsImage: UIImageView!
+    @IBOutlet var settingsImage: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        giveTableViewRoundedTopCorners()
         setupAvatarImage()
+        setupRoundedViews()
+        setDataViewedTapGestures()
         
         errorLabel.alpha = 0.0
-        
         usernameLabel.text = (NSUserDefaults.standardUserDefaults().objectForKey("username") as! String)
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
+        
         NSNotificationCenter.defaultCenter().postNotificationName("sideViewAppeared", object: self)
-    }
-    
-    func giveTableViewRoundedTopCorners() {
-        var maskPath = UIBezierPath(roundedRect: tableHolder.bounds, byRoundingCorners: UIRectCorner.TopLeft | UIRectCorner.TopRight, cornerRadii: CGSizeMake(5.0, 5.0))
-        
-        var maskLayer = CAShapeLayer()
-        maskLayer.frame = tableHolder.bounds
-        maskLayer.path = maskPath.CGPath
-        
-        tableHolder.layer.mask = maskLayer
     }
     
     func setupAvatarImage() {
@@ -97,6 +74,42 @@ class ProfileViewController: UIViewController, ProfileTableDelegate {
         singleTap.numberOfTapsRequired = 1
         avatarImage.userInteractionEnabled = true
         avatarImage.addGestureRecognizer(singleTap)
+    }
+    
+    func setupRoundedViews() {
+        tableHolder.cornersMask = UIRectCorner.TopRight | UIRectCorner.TopLeft
+
+        var viewingIndicators = [viewingCommunities, viewingNotifications, viewingSettings]
+        
+        for var i = 0; i < viewingIndicators.count; i++ {
+            viewingIndicators[i].cornersMask = UIRectCorner.BottomRight | UIRectCorner.BottomLeft
+            
+            if i != 0 {
+                viewingIndicators[i].alpha = 0.0
+            }
+        }
+    }
+    
+    func setDataViewedTapGestures() {
+        // Apparently every single image needs its own UITapGestureRecognizer.
+        // Bleh
+        
+        let communitiesTap = UITapGestureRecognizer(target: self, action: Selector("communitiesImageTapped"))
+        communitiesTap.numberOfTapsRequired = 1
+
+        let notificationsTap = UITapGestureRecognizer(target: self, action: Selector("notificationsImageTapped"))
+        notificationsTap.numberOfTapsRequired = 1
+
+        let settingsTap = UITapGestureRecognizer(target: self, action: Selector("settingsImageTapped"))
+        settingsTap.numberOfTapsRequired = 1
+        
+        communitiesImage.userInteractionEnabled = true
+        notificationsImage.userInteractionEnabled = true
+        settingsImage.userInteractionEnabled = true
+        
+        communitiesImage.addGestureRecognizer(communitiesTap)
+        notificationsImage.addGestureRecognizer(notificationsTap)
+        settingsImage.addGestureRecognizer(settingsTap)
     }
     
     func setAvatarImage() {
@@ -122,7 +135,6 @@ class ProfileViewController: UIViewController, ProfileTableDelegate {
         } else {
             avatarImage.image = UIImage(named: "AvatarPlaceHolder")
         }
-        
     }
     
     func avatarImagePressed() {
@@ -146,6 +158,47 @@ class ProfileViewController: UIViewController, ProfileTableDelegate {
         } else {
             chooseNewProfilePic()
         }
+    }
+    
+    func communitiesImageTapped() {
+        if currentState == .Communities { return }
+        
+        UIView.animateWithDuration(0.25, animations: {
+            self.viewingNotifications.alpha = 0.0
+            self.viewingSettings.alpha = 0.0
+            self.viewingCommunities.alpha = 1.0
+            
+        })
+        
+        currentState = .Communities
+        tableViewController.tableView.reloadData()
+    }
+    
+    func notificationsImageTapped() {
+        if currentState == .Notifications { return }
+        
+        UIView.animateWithDuration(0.25, animations: {
+            self.viewingSettings.alpha = 0.0
+            self.viewingCommunities.alpha = 0.0
+            self.viewingNotifications.alpha = 1.0
+
+        })
+        
+        currentState = .Notifications
+        tableViewController.tableView.reloadData()
+    }
+    
+    func settingsImageTapped() {
+        if currentState == .Settings { return }
+        
+        UIView.animateWithDuration(0.25, animations: {
+            self.viewingCommunities.alpha = 0.0
+            self.viewingNotifications.alpha = 0.0
+            self.viewingSettings.alpha = 1.0
+        })
+        
+        currentState = .Settings
+        tableViewController.tableView.reloadData()
     }
     
     func retrySetAvatarImage() {
@@ -260,6 +313,8 @@ class ProfileViewController: UIViewController, ProfileTableDelegate {
                                         userInfo.setObject(avatar_url, forKey: "avatar_url")
                                         SDImageCache.sharedImageCache().storeImage(image, forKey: avatar_url!)
                                         MMProgressHUD.dismissWithSuccess(":)")
+                                        
+                                        NSNotificationCenter.defaultCenter().postNotificationName("avatarChanged", object: nil)
                                     } else {
                                         var errorString = ""
                                         
@@ -288,7 +343,7 @@ class ProfileViewController: UIViewController, ProfileTableDelegate {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "profileEmbedTVC" {
-            tableViewController = segue.destinationViewController as! TestTableViewController
+            tableViewController = segue.destinationViewController as! ProfileTableViewController
             tableViewController.delegate = self
         }
     }

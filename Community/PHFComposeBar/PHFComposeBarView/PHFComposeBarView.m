@@ -252,6 +252,17 @@ static CGFloat kTextViewToSuperviewHeightDelta;
     [self handleTextViewChangeAnimated:animated];
 }
 
+- (void)startLoading {
+    [[self button] setAlpha: 0.0f];
+    [[self loadIndicator] startAnimating];
+}
+
+- (void)stopLoading {
+    [[self button] setAlpha: 1.0f];
+    [[self loadIndicator] stopAnimating];
+}
+
+
 #pragma mark - Internal Properties
 
 // The top line is placed below the background view in order to brighten the
@@ -308,6 +319,23 @@ static CGFloat kTextViewToSuperviewHeightDelta;
     }
     
     return _button;
+}
+
+@synthesize loadIndicator = _loadIndicator;
+- (UIActivityIndicatorView *)loadIndicator {
+    if (!_loadIndicator) {
+        
+        UIButton *rightButton = [self button];
+        
+        _loadIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake([rightButton frame].origin.x + [rightButton frame].size.width / 2.0f - [rightButton frame].size.height / 2.0f, [rightButton frame].origin.y, [rightButton frame].size.height, [rightButton frame].size.height)];
+        
+        [_loadIndicator setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleTopMargin];
+        
+        _loadIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
+        _loadIndicator.hidesWhenStopped = true;
+    }
+    
+    return _loadIndicator;
 }
 
 @synthesize charCountLabel = _charCountLabel;
@@ -556,6 +584,7 @@ static CGFloat kTextViewToSuperviewHeightDelta;
 - (void)resizeButton {
     CGRect previousButtonFrame = [[self button] frame];
     CGRect newButtonFrame = previousButtonFrame;
+    
     CGRect textContainerFrame = [[self textContainer] frame];
     CGRect charCountLabelFrame = [[self charCountLabel] frame];
     
@@ -617,6 +646,8 @@ static CGFloat kTextViewToSuperviewHeightDelta;
     [self addSubview:[self textContainer]];
     
     [self resizeButton];
+    
+    [self addSubview:[self loadIndicator]];
 }
 
 - (void)setupDelegateChainForTextView {
