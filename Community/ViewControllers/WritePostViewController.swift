@@ -151,10 +151,10 @@ class WritePostViewController: UIViewController, UITextViewDelegate {
         params["auth_token"] = userInfo.objectForKey("auth_token") as! String
         params["user_id"] = userInfo.objectForKey("user_id") as! String
         
-        var post : [String: AnyObject] = [ "body" : postTextView.text, "community" : communityName]
+        var post : [String: AnyObject] = [ "body" : postTextView.text.strip(), "community" : communityName.strip()]
         
         if (titleField.text != "") {
-            post["title"] = titleField.text
+            post["title"] = titleField.text.strip()
         }
         
         params["post"] = post

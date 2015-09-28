@@ -315,12 +315,11 @@ class CommunitySettingsViewController: UIViewController {
         var params = [String: AnyObject]()
         params["user_id"] = user_id
         params["auth_token"] = auth_token
-        params["community"] = communityName
+        params["community"] = communityName.strip()
         
         var delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC)))
         
         if (defaultSwitch.on) {
-            println("default")
             params["default"] = true
             Alamofire.request(.PUT, "https://infinite-lake-4056.herokuapp.com/api/v1/communities/update.json", parameters: params, encoding: .JSON)
                 .responseJSON { request, response, jsonData, errors in
@@ -365,14 +364,9 @@ class CommunitySettingsViewController: UIViewController {
                     })
                 }
         } else if croppedNewImage != nil {
-            println("cropped")
             var imageData = UIImagePNGRepresentation(croppedNewImage!)
             
-            println(user_id)
-            println(auth_token)
-            println(communityName)
-
-            var url = "https://infinite-lake-4056.herokuapp.com/api/v1/communities/update.json?user_id=\(user_id)&auth_token=\(auth_token)&community=\(communityName)&username=\(latestCommunityUsername.strip())"
+            var url = "https://infinite-lake-4056.herokuapp.com/api/v1/communities/update.json?user_id=\(user_id)&auth_token=\(auth_token)&community=\(communityName.strip())&username=\(latestCommunityUsername.strip())"
             
             Alamofire.upload(.PUT, URLString: url.stringByAddingPercentEncodingWithAllowedCharacters(.URLQueryAllowedCharacterSet())!,
                 multipartFormData: { multipartFormData in
@@ -440,7 +434,6 @@ class CommunitySettingsViewController: UIViewController {
                 }
             )
         } else {
-            println("username")
             params["username"] = latestCommunityUsername.strip()
             Alamofire.request(.PUT, "https://infinite-lake-4056.herokuapp.com/api/v1/communities/update.json", parameters: params, encoding: .JSON)
                 .responseJSON { request, response, jsonData, errors in

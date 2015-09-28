@@ -76,7 +76,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
         
         var params = [String: AnyObject]()
         
-        var user = [ "username" : usernameText, "email" : emailText, "password" : passwordText]
+        var user = [ "username" : usernameText.strip(), "email" : emailText.strip(), "password" : passwordText]
         
         params["user"] = user
         

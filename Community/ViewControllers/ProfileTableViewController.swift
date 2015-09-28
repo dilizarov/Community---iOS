@@ -59,6 +59,7 @@ class ProfileTableViewController: UITableViewController, PresentControllerDelega
         self.presentViewController(controller, animated: true, completion: nil)
     }
     
+    //TODO
     func presentLeaveCommunityController(community: JoinedCommunity, row: Int) {
         var nameWithUnite = "&\(community.name)"
         
@@ -236,8 +237,9 @@ class ProfileTableViewController: UITableViewController, PresentControllerDelega
         
         params["user_id"] = userInfo.objectForKey("user_id") as! String
         params["auth_token"] = userInfo.objectForKey("auth_token") as! String
+        params["community"] = community.name.strip()
         
-        Alamofire.request(.DELETE, "https://infinite-lake-4056.herokuapp.com/api/v1/communities/\(community.name).json", parameters: params)
+        Alamofire.request(.DELETE, "https://infinite-lake-4056.herokuapp.com/api/v1/communities.json", parameters: params)
             .responseJSON { request, response, jsonData, errors in
                 
                 if (response?.statusCode == 404 || errors != nil) {

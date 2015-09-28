@@ -64,7 +64,7 @@ class CommunityViewController: UIViewController, CommunityTableDelegate {
                 tableViewController.posts = []
                 tableViewController.tableView.reloadData()
                 tableViewController.setInfiniteScrollVars()
-                tableViewController.requestPostsAndPopulateFeed(false, page: nil, completionHandler: nil, changingCommunities: false)
+                tableViewController.requestPostsAndPopulateFeed(false, page: nil)
                 
                 (UIApplication.sharedApplication().delegate as! AppDelegate).drawerController?.closeDrawerAnimated(true, completion: nil)
             }
@@ -123,7 +123,7 @@ class CommunityViewController: UIViewController, CommunityTableDelegate {
         var params = [String: AnyObject]()
         params["user_id"] = userInfo.objectForKey("user_id") as! String
         params["auth_token"] = userInfo.objectForKey("auth_token") as! String
-        params["community"] = communityTitle!
+        params["community"] = communityTitle!.strip()
         
         Alamofire.request(.GET, "https://infinite-lake-4056.herokuapp.com/api/v1/communities/show.json", parameters: params)
             .responseJSON { request, response, jsonData, errors in
@@ -169,7 +169,7 @@ class CommunityViewController: UIViewController, CommunityTableDelegate {
         var params = [String: AnyObject]()
         params["user_id"] = userInfo.objectForKey("user_id") as! String
         params["auth_token"] = userInfo.objectForKey("auth_token") as! String
-        params["community"] = communityTitle!
+        params["community"] = communityTitle!.strip()
         
         Alamofire.request(.POST, "https://infinite-lake-4056.herokuapp.com/api/v1/communities.json", parameters: params)
             .responseJSON { request, response, jsonData, errors in

@@ -116,7 +116,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         
         var params = [String: AnyObject]()
         
-        var user = [ "email" : emailText, "password" : passwordText ]
+        var user = [ "email" : emailText.strip(), "password" : passwordText ]
         
         params["user"] = user
         
@@ -136,7 +136,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
                         if (json["errors"] == nil) {
                             self.storeSessionData(json)
                             MMProgressHUD.sharedHUD().dismissAnimationCompletion = {
-
+//TODO Fix
                                 let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
                                 
                                 var centerViewController =  mainStoryboard.instantiateViewControllerWithIdentifier("SearchViewController") as! SearchViewController

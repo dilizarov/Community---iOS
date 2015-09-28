@@ -176,7 +176,7 @@ class CommunityTableViewController: UITableViewController, UpdateFeedWithLatestP
         var params = [String: AnyObject]()
         params["user_id"] = userInfo.objectForKey("user_id") as! String
         params["auth_token"] = userInfo.objectForKey("auth_token") as! String
-        params["community"] = communityTitle!
+        params["community"] = communityTitle!.strip()
         
         Alamofire.request(.GET, "https://infinite-lake-4056.herokuapp.com/api/v1/posts.json", parameters: params)
             .responseJSON { request, response, jsonData, errors in
@@ -236,7 +236,7 @@ class CommunityTableViewController: UITableViewController, UpdateFeedWithLatestP
         var params = [String: AnyObject]()
         params["user_id"] = userInfo.objectForKey("user_id") as! String
         params["auth_token"] = userInfo.objectForKey("auth_token") as! String
-        params["community"] = communityTitle!
+        params["community"] = communityTitle!.strip()
         
         if (!refreshing) {
             if page != nil {

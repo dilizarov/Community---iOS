@@ -149,7 +149,7 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         self.view.endEditing(true)
         
-        search(textField.text)
+        search(textField.text.strip())
         
         return false
     }
