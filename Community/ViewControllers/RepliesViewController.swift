@@ -75,6 +75,14 @@ class RepliesViewController: UIViewController, PHFComposeBarViewDelegate, Replie
         self.containerView.addGestureRecognizer(tapGesture)
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if !loadIndicator.isAnimating() && navBar.topItem!.rightBarButtonItem != rightButtonOptions["load"] {
+            tableViewController.tableView.reloadData()
+        }
+    }
+    
     func keyboardDisappear() {
         self.containerView.customInputView.resignFirstResponder()
     }
@@ -150,7 +158,10 @@ class RepliesViewController: UIViewController, PHFComposeBarViewDelegate, Replie
                         
                         var reply = Reply(id: jsonReply["external_id"].stringValue, username: jsonReply["user"]["username"].stringValue, body: jsonReply["body"].stringValue, likeCount: jsonReply["likes"].intValue, liked: jsonReply["liked"].boolValue, timeCreated: jsonReply["created_at"].stringValue, avatarUrl: jsonReply["user"]["avatar_url"].string)
                         
+                        self.post.repliesCount += 1
+                        
                         self.tableViewController.replies.append(reply)
+                        self.tableViewController.emptyOrErrorDescription = nil
                         self.tableViewController.tableView.reloadData()
                         
                         let delay = 0.2 * Double(NSEC_PER_SEC)
@@ -167,6 +178,10 @@ class RepliesViewController: UIViewController, PHFComposeBarViewDelegate, Replie
                     
                 }
         }
+    }
+    
+    func performBackgroundFetch(completionHandler: (UIBackgroundFetchResult) -> Void) {
+        tableViewController.performBackgroundFetch(completionHandler)
     }
     
     func refresh() {

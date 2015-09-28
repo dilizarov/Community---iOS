@@ -33,7 +33,7 @@ class ProfileTableViewController: UITableViewController, PresentControllerDelega
         super.viewWillAppear(true)
         
         let realm = Realm()
-        if triggerRealmReload && realm.objects(JoinedCommunity).count > communities.count {
+        if triggerRealmReload {
             communities = Array(realm.objects(JoinedCommunity
                 ).sorted("nameLowercase", ascending: true))
             
@@ -79,6 +79,64 @@ class ProfileTableViewController: UITableViewController, PresentControllerDelega
         self.presentViewController(confirmLeaveAlert, animated: true, completion: nil)
     }
     
+    func performBackgroundFetch() {
+        var userInfo = NSUserDefaults.standardUserDefaults()
+        
+        var params = [String : AnyObject]()
+        
+        var user_id = userInfo.objectForKey("user_id") as! String
+        
+        params["user_id"] = user_id
+        params["auth_token"] = userInfo.objectForKey("auth_token") as! String
+        
+        Alamofire.request(.GET, "https://infinite-lake-4056.herokuapp.com/api/v1/communities.json", parameters: params)
+            .responseJSON { request, response, jsonData, errors in
+                
+                if let jsonData: AnyObject = jsonData {
+                    let json = JSON(jsonData)
+                    
+                    if (json["errors"] == nil) {
+                        self.communities = []
+                        for var i = 0; i < json["communities"].count; i++ {
+                            var jsonCommunity = json["communities"][i]
+                            
+                            var community = JoinedCommunity()
+                            
+                            community.name = jsonCommunity["name"].string!
+                            
+                            if let username = jsonCommunity["user"]["username"].string {
+                                community.username = username
+                            }
+                            
+                            if let avatar_url = jsonCommunity["avatar_url"].string {
+                                community.avatar_url = avatar_url
+                            }
+                            
+                            self.communities.append(community)
+                            
+                            //                            var name = community.name
+                            //                            var unicode = map(Array(community.name.unicodeScalars)) { NSString(format: "%04X", $0.value) }
+                            //
+                            //                            println("\(name) \(unicode)")
+                        }
+                        
+                        let realm = Realm()
+                        realm.write {
+                            // Delete because we don't need data on
+                            // communities one may have left.
+                            realm.delete(realm.objects(JoinedCommunity))
+                            
+                            for community in self.communities {
+                                realm.add(community, update: true)
+                            }
+                        }
+                        
+                        self.triggerRealmReload = true
+                    }
+                }
+        }
+    }
+    
     func requestJoinedCommunitiesAndPopulateList() {
         
         var userInfo = NSUserDefaults.standardUserDefaults()
@@ -118,6 +176,11 @@ class ProfileTableViewController: UITableViewController, PresentControllerDelega
                             }
                             
                             self.communities.append(community)
+                            
+//                            var name = community.name
+//                            var unicode = map(Array(community.name.unicodeScalars)) { NSString(format: "%04X", $0.value) }
+//                            
+//                            println("\(name) \(unicode)")
                         }
                         
                         let realm = Realm()

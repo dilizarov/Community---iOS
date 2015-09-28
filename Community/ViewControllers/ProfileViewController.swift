@@ -163,12 +163,9 @@ class ProfileViewController: UIViewController {
     func communitiesImageTapped() {
         if currentState == .Communities { return }
         
-        UIView.animateWithDuration(0.25, animations: {
-            self.viewingNotifications.alpha = 0.0
-            self.viewingSettings.alpha = 0.0
-            self.viewingCommunities.alpha = 1.0
-            
-        })
+        self.viewingNotifications.alpha = 0.0
+        self.viewingSettings.alpha = 0.0
+        self.viewingCommunities.alpha = 1.0
         
         currentState = .Communities
         tableViewController.tableView.reloadData()
@@ -177,13 +174,10 @@ class ProfileViewController: UIViewController {
     func notificationsImageTapped() {
         if currentState == .Notifications { return }
         
-        UIView.animateWithDuration(0.25, animations: {
-            self.viewingSettings.alpha = 0.0
-            self.viewingCommunities.alpha = 0.0
-            self.viewingNotifications.alpha = 1.0
+        self.viewingSettings.alpha = 0.0
+        self.viewingCommunities.alpha = 0.0
+        self.viewingNotifications.alpha = 1.0
 
-        })
-        
         currentState = .Notifications
         tableViewController.tableView.reloadData()
     }
@@ -191,12 +185,10 @@ class ProfileViewController: UIViewController {
     func settingsImageTapped() {
         if currentState == .Settings { return }
         
-        UIView.animateWithDuration(0.25, animations: {
-            self.viewingCommunities.alpha = 0.0
-            self.viewingNotifications.alpha = 0.0
-            self.viewingSettings.alpha = 1.0
-        })
-        
+        self.viewingCommunities.alpha = 0.0
+        self.viewingNotifications.alpha = 0.0
+        self.viewingSettings.alpha = 1.0
+    
         currentState = .Settings
         tableViewController.tableView.reloadData()
     }
@@ -245,6 +237,10 @@ class ProfileViewController: UIViewController {
         pickerController.allowMultipleType = false
         
         self.presentViewController(pickerController, animated: true, completion: nil)
+    }
+    
+    func performBackgroundFetch() {
+        tableViewController.performBackgroundFetch()
     }
     
     func uploadImageData(imageData: NSData) {

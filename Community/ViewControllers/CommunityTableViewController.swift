@@ -17,6 +17,8 @@ class CommunityTableViewController: UITableViewController, UpdateFeedWithLatestP
     var posts = [Post]()
     var cachedHeights = [Int: CGFloat]()
     
+    var emptyOrErrorDescription: String?
+    
     var communityTitle: String?
     
     // Infinite Scroll Solution
@@ -30,8 +32,10 @@ class CommunityTableViewController: UITableViewController, UpdateFeedWithLatestP
     var infiniteScrollTimeBuffer: String!
     var lastTimeLoading: NSDate!
     
+    var backgroundRefreshed: Bool = false
+    
     @IBAction func handleRefresh(sender: AnyObject) {
-        requestPostsAndPopulateFeed(true, page: nil, completionHandler: nil, changingCommunities: false)
+        requestPostsAndPopulateFeed(true, page: nil)
     }
     
     override func viewDidLoad() {
@@ -41,7 +45,22 @@ class CommunityTableViewController: UITableViewController, UpdateFeedWithLatestP
         setupWritePostButton()
         
         tableView.rowHeight = UITableViewAutomaticDimension
-        requestPostsAndPopulateFeed(false, page: nil, completionHandler: nil, changingCommunities: false)
+        requestPostsAndPopulateFeed(false, page: nil)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // This if-statement is important to ensure we don't interfere with potential clash in double reloadDatas.
+        if !refreshControl!.refreshing {
+            
+            if backgroundRefreshed {
+                self.tableView.setContentOffset(CGPointZero, animated: false)
+                backgroundRefreshed = false
+            }
+            
+            self.tableView.reloadData()
+        }
     }
     
     func setInfiniteScrollVars() {
@@ -78,6 +97,8 @@ class CommunityTableViewController: UITableViewController, UpdateFeedWithLatestP
     }
     
     func updateFeedWithLatestPost(post: Post) {
+        self.emptyOrErrorDescription = nil
+        
         posts.insert(post, atIndex: 0)
         self.tableView.setContentOffset(CGPointZero, animated: true)
         
@@ -93,7 +114,11 @@ class CommunityTableViewController: UITableViewController, UpdateFeedWithLatestP
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.posts.count
+        if emptyOrErrorDescription != nil {
+            return 1
+        } else {
+            return self.posts.count
+        }
     }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -111,15 +136,26 @@ class CommunityTableViewController: UITableViewController, UpdateFeedWithLatestP
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier("communityPost", forIndexPath: indexPath) as! PostCell
         
-        if self.posts.count > indexPath.row {
-            cell.configureViews(posts[indexPath.row])
+        if emptyOrErrorDescription != nil {
+            var cell = tableView.dequeueReusableCellWithIdentifier("noPosts") as! NoPostsCell
+            
+            cell.configureView(emptyOrErrorDescription!)
+            
+            cell.layoutIfNeeded()
+            
+            return cell
+        } else {
+            var cell = tableView.dequeueReusableCellWithIdentifier("communityPost", forIndexPath: indexPath) as! PostCell
+        
+            if self.posts.count > indexPath.row {
+                cell.configureViews(posts[indexPath.row])
+            }
+        
+            cell.layoutIfNeeded()
+        
+            return cell
         }
-        
-        cell.layoutIfNeeded()
-        
-        return cell
     }
     
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
@@ -134,7 +170,62 @@ class CommunityTableViewController: UITableViewController, UpdateFeedWithLatestP
         }
     }
     
-    func requestPostsAndPopulateFeed(refreshing: Bool, page: Int?, completionHandler: ((UIBackgroundFetchResult) -> Void)?, changingCommunities: Bool) {
+    func performBackgroundFetch(completionHandler: (UIBackgroundFetchResult) -> Void) {
+        var userInfo = NSUserDefaults.standardUserDefaults()
+        
+        var params = [String: AnyObject]()
+        params["user_id"] = userInfo.objectForKey("user_id") as! String
+        params["auth_token"] = userInfo.objectForKey("auth_token") as! String
+        params["community"] = communityTitle!
+        
+        Alamofire.request(.GET, "https://infinite-lake-4056.herokuapp.com/api/v1/posts.json", parameters: params)
+            .responseJSON { request, response, jsonData, errors in
+                
+                if let jsonData: AnyObject = jsonData {
+                    let json = JSON(jsonData)
+                    
+                    if (json["errors"] == nil) {
+                        
+                        self.setInfiniteScrollVars()
+                        
+                        self.posts = []
+                        self.cachedHeights.removeAll(keepCapacity: false)
+                        
+                        if (json["posts"].count < 15) {
+                            self.reachedEndOfList = true
+                        }
+                        
+                        for var i = 0; i < json["posts"].count; i++ {
+                            var jsonPost = json["posts"][i]
+                            
+                            var post = Post(id: jsonPost["external_id"].stringValue, username: jsonPost["user"]["username"].stringValue, body: jsonPost["body"].stringValue, title: jsonPost["title"].string, repliesCount: jsonPost["replies_count"].intValue, likeCount: jsonPost["likes"].intValue, liked: jsonPost["liked"].boolValue, timeCreated: jsonPost["created_at"].stringValue, avatarUrl: jsonPost["user"]["avatar_url"].string)
+                            
+                            if (i == 0) {
+                                self.infiniteScrollTimeBuffer = NSDate(timeIntervalSince1970: (post.timeCreated.timeIntervalSince1970 * 1000 + 1)/1000).stringFromDate()
+                            }
+                            
+                            self.posts.append(post)
+                        }
+                        
+                        self.backgroundRefreshed = true
+                        
+                        if self.posts.count == 0 {
+                            self.emptyOrErrorDescription = "No one has posted in this community. Maybe you can be the first post!"
+                            completionHandler(.NoData)
+                        } else {
+                            self.emptyOrErrorDescription = nil
+                            completionHandler(.NewData)
+                        }
+                    }
+                } else {
+                    completionHandler(.Failed)
+                }
+        }
+    }
+    
+    func requestPostsAndPopulateFeed(refreshing: Bool, page: Int?) {
+        
+        self.emptyOrErrorDescription = nil
         
         if !refreshing && page == nil {
             animateInitialLoad()
@@ -164,10 +255,9 @@ class CommunityTableViewController: UITableViewController, UpdateFeedWithLatestP
                 var defaultError = errors?.localizedDescription
                 
                 if (defaultError != nil) {
-                    
+                    self.emptyOrErrorDescription = defaultError
                 } else if let jsonData: AnyObject = jsonData {
                     let json = JSON(jsonData)
-                    println(json)
                     
                     if (json["errors"] == nil) {
                         if (refreshing) {
@@ -192,46 +282,41 @@ class CommunityTableViewController: UITableViewController, UpdateFeedWithLatestP
                             self.posts.append(post)
                         }
                         
-                        var delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0.25 * Double(NSEC_PER_SEC)))
-                        
-                        dispatch_after(delayTime, dispatch_get_main_queue(), {
-                            if completionHandler != nil {
-                                self.tableView.setContentOffset(CGPointZero, animated: false)
-                            } else {
-                                self.tableView.reloadData()
-                            }
-                            
-                            // noPostsText
-                            if self.posts.count == 0 {
-                                
-                            } else {
-                                
-                            }
-                            
-                            if refreshing {
-                                self.currentPage = 2
-                            }
-                            
-                            dispatch_after(delayTime, dispatch_get_main_queue(), {
-                                self.refreshControl!.endRefreshing()
-                                self.toggleLoadingFooter(false)
-                            })
-                            
-                            self.reachedEndOfCallback = true
-                            //self.fetchedOnce = true
-                            
-                            if completionHandler != nil {
-                                completionHandler!(UIBackgroundFetchResult.NewData)
-                            }
-                        })
+                        if self.posts.count == 0 {
+                            self.emptyOrErrorDescription = "No one has posted in this community. Maybe you can be the first post!"
+                        }
                         
                     } else {
+                        self.emptyOrErrorDescription = ""
                         
+                        for var i = 0; i < json["errors"].count; i++ {
+                            if (i != 0) { self.emptyOrErrorDescription = self.emptyOrErrorDescription! + "\n\n" }
+                            self.emptyOrErrorDescription = self.emptyOrErrorDescription! + json["errors"][i].string!
+                        }
                     }
-                } else {
+            } else {
                     
+            }
+                
+            var delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0.25 * Double(NSEC_PER_SEC)))
+            
+            dispatch_after(delayTime, dispatch_get_main_queue(), {
+                
+                self.tableView.reloadData()
+                
+                if refreshing {
+                    self.currentPage = 2
                 }
-        }
+                
+                dispatch_after(delayTime, dispatch_get_main_queue(), {
+                    self.refreshControl!.endRefreshing()
+                    self.toggleLoadingFooter(false)
+                })
+                
+                self.reachedEndOfCallback = true
+            })
+                
+            }
     }
     
     
@@ -292,7 +377,7 @@ class CommunityTableViewController: UITableViewController, UpdateFeedWithLatestP
 
                 toggleLoadingFooter(true)
                 
-                requestPostsAndPopulateFeed(false, page: currentPage, completionHandler: nil, changingCommunities: false)
+                requestPostsAndPopulateFeed(false, page: currentPage)
             }
         }
     }

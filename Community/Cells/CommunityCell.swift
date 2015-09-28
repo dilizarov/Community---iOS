@@ -50,7 +50,28 @@ class CommunityCell: MGSwipeTableCell {
             return true
         })
         
+        var optionsButton = MGSwipeButton(title: "Settings", backgroundColor: UIColor.darkGrayColor(), callback: {
+            (sender: MGSwipeTableCell!) -> Bool in
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                
+            var settingsVC = storyboard.instantiateViewControllerWithIdentifier("CommunitySettingsViewController") as! CommunitySettingsViewController
+                
+            settingsVC.communityName = self.name
+                
+            self.presentControllerDelegate.presentController(settingsVC)
+
+            return true
+        })
+        
         self.rightButtons = [leaveButton, shareButton]
+        self.leftButtons = [optionsButton]
+        
+        var leftExpansionSettings = MGSwipeExpansionSettings()
+        leftExpansionSettings.fillOnTrigger = true
+        leftExpansionSettings.buttonIndex = 0
+        
+        self.leftExpansion = leftExpansionSettings
     }
     
     override func awakeFromNib() {

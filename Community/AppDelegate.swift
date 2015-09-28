@@ -20,39 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         configureRealm()
-        
-        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        
-        let searchViewController = mainStoryboard.instantiateViewControllerWithIdentifier("SearchViewController") as! SearchViewController
-        
-        let navigationController = UINavigationController(rootViewController: searchViewController)
-        navigationController.navigationBarHidden = true
-        
-        var leftViewIdentifier: String
-        
-        if (NSUserDefaults.standardUserDefaults().objectForKey("auth_token") != nil) {
-            leftViewIdentifier = "ProfileViewController"
-        } else {
-            leftViewIdentifier = "LoggedOutProfileViewController"
-        }
-
-        let leftViewController = mainStoryboard.instantiateViewControllerWithIdentifier(leftViewIdentifier) as! UIViewController
-        
-        drawerController = MMDrawerController(centerViewController: navigationController, leftDrawerViewController: leftViewController)
-        
-        drawerController?.setMaximumLeftDrawerWidth(UIScreen.mainScreen().bounds.size.width, animated: true, completion: nil)
-        drawerController?.openDrawerGestureModeMask = .All
-        drawerController?.closeDrawerGestureModeMask = .All
-        drawerController?.centerHiddenInteractionMode = .None
-        drawerController?.showsShadow = true
-        drawerController?.setDrawerVisualStateBlock(MMDrawerVisualState.parallaxVisualStateBlockWithParallaxFactor(3)!)
-        
-       
-            // This forces the side to layout itself properly.
-        drawerController?.bouncePreviewForDrawerSide(.Left, distance: 10, completion: nil)
-        
-        self.window?.rootViewController = drawerController
-        self.window?.makeKeyAndVisible()
+        configureLaunchState()
+        application.setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalMinimum)
         
         return true
     }
@@ -83,6 +52,65 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Realm.Configuration.defaultConfiguration = config
         
         let realm = Realm()
+    }
+    
+    func configureLaunchState() {
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        let searchViewController = mainStoryboard.instantiateViewControllerWithIdentifier("SearchViewController") as! SearchViewController
+        
+        let navigationController = UINavigationController(rootViewController: searchViewController)
+        navigationController.navigationBarHidden = true
+        
+        var leftViewIdentifier: String
+        
+        if (NSUserDefaults.standardUserDefaults().objectForKey("auth_token") != nil) {
+            leftViewIdentifier = "ProfileViewController"
+        } else {
+            leftViewIdentifier = "LoggedOutProfileViewController"
+        }
+        
+        let leftViewController = mainStoryboard.instantiateViewControllerWithIdentifier(leftViewIdentifier) as! UIViewController
+        
+        drawerController = MMDrawerController(centerViewController: navigationController, leftDrawerViewController: leftViewController)
+        
+        drawerController?.setMaximumLeftDrawerWidth(UIScreen.mainScreen().bounds.size.width, animated: true, completion: nil)
+        drawerController?.openDrawerGestureModeMask = .All
+        drawerController?.closeDrawerGestureModeMask = .All
+        drawerController?.centerHiddenInteractionMode = .None
+        drawerController?.showsShadow = true
+        drawerController?.setDrawerVisualStateBlock(MMDrawerVisualState.parallaxVisualStateBlockWithParallaxFactor(3)!)
+        
+        
+        // This forces the side to layout itself properly.
+        drawerController?.bouncePreviewForDrawerSide(.Left, distance: 10, completion: nil)
+        
+        println(drawerController?.leftDrawerViewController)
+        println(drawerController?.centerViewController)
+        println((drawerController?.centerViewController as! UINavigationController).visibleViewController)
+            
+        self.window?.rootViewController = drawerController
+        self.window?.makeKeyAndVisible()
+    }
+    
+    func application(application: UIApplication, performFetchWithCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
+        if let drawer = drawerController {
+            let profileVC = drawer.leftDrawerViewController as! ProfileViewController
+            let navigationVC = drawer.centerViewController as! UINavigationController
+            
+            // We don't use the completionHandler in this method.
+            profileVC.performBackgroundFetch()
+            
+            if let communityVC = navigationVC.visibleViewController as? CommunityViewController {
+                if let repliesVC = communityVC.presentedViewController as? RepliesViewController {
+                    repliesVC.performBackgroundFetch(completionHandler)
+                } else {
+                    communityVC.performBackgroundFetch(completionHandler)
+                }
+            }
+        } else {
+            completionHandler(UIBackgroundFetchResult.NoData)
+        }
     }
     
     func applicationWillResignActive(application: UIApplication) {

@@ -15,31 +15,14 @@ import RealmSwift
 
 class CommunityViewController: UIViewController, CommunityTableDelegate {
     
-//    var refreshControl: UIRefreshControl!
     var communityTitle: String?
-    //var posts = [Post]()
+    
+    var observingCommunitySelected: Bool = false
     
     var tableViewController: CommunityTableViewController!
     
     var navBar: UINavigationBar!
     var leftButtonOptions = [String : UIBarButtonItem]()
-    
-    // Used to mitigate iOS bug with dynamic UITablieViewCell heights and jumpiness
-    // when scrolling up
-//    var cachedHeights = [Int: CGFloat]()
-    
-  //  @IBOutlet var communityFeed: UITableView!
-    
-    // Infinite Scroll Solution
-    var infiniteScrollBufferCount: Int!
-    var reachedEndOfList: Bool!
-    var reachedEndofCallback: Bool!
-    var isLoading: Bool!
-    var problemsLoading: Bool!
-    var preloadPostCount: Int!
-    var currentPage: Int!
-    var infiniteScrollTimeBuffer: String!
-    var lastTimeLoading: NSDate!
     
     // Used to mitigate background fetching first time around
     var fetchedOnce = false
@@ -49,38 +32,43 @@ class CommunityViewController: UIViewController, CommunityTableDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setInfiniteScrollVals()
         setupNavBar()
         verifyJoinOrSettings()
-//        setupRefreshControl()
-        //setupWritePostButton()
-        
-        //communityFeed.rowHeight = UITableViewAutomaticDimension
-        
-      //  requestPostsAndPopulateFeed(false, page: nil, completionHandler: nil, changingCommunities: false)
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
-        //        if (!initiallyLoaded) {
-        //            requestPostsAndPopulateFeed(false, page: nil, completionHandler: nil, changingCommunities: false)
-        //            initiallyLoaded = true
-        //        }
+     
+        // This handles if community was selected in side view
+        if (!observingCommunitySelected) {
+            observingCommunitySelected = true
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("communitySelected:"), name: "communitySelected", object: nil)
+        }
+
     }
     
-    func setInfiniteScrollVals() {
-        // Begin fetching 3 posts before the bottom
-        infiniteScrollBufferCount = 3
-        reachedEndOfList = false
-        reachedEndofCallback = false
-        isLoading = false
-        problemsLoading = false
-        preloadPostCount = 0
-        //We initialize currentPage to 2 because we load page 1.
-        //Infinite scrolling takes over for pages 2+
-        currentPage = 2
-        infiniteScrollTimeBuffer = ""
+    func communitySelected(notification: NSNotification) {
+        if let info = notification.userInfo as? Dictionary<String, String> {
+            if let community = info["community"] {
+                
+                communityTitle = community
+
+                navBar.topItem?.title = communityTitle
+                (self.leftButtonOptions["load"]!.customView as! UIActivityIndicatorView).startAnimating()
+                navBar.topItem?.leftBarButtonItem = self.leftButtonOptions["load"]
+                verifyJoinOrSettings()
+                
+                tableViewController.communityTitle = self.communityTitle
+                
+                tableViewController.emptyOrErrorDescription = nil
+                tableViewController.posts = []
+                tableViewController.tableView.reloadData()
+                tableViewController.setInfiniteScrollVars()
+                tableViewController.requestPostsAndPopulateFeed(false, page: nil, completionHandler: nil, changingCommunities: false)
+                
+                (UIApplication.sharedApplication().delegate as! AppDelegate).drawerController?.closeDrawerAnimated(true, completion: nil)
+            }
+        }
     }
     
     func setupNavBar() {
@@ -122,6 +110,10 @@ class CommunityViewController: UIViewController, CommunityTableDelegate {
         navigationItem.title = communityTitle
         
         navBar.pushNavigationItem(navigationItem, animated: false)
+    }
+    
+    func performBackgroundFetch(completionHandler: (UIBackgroundFetchResult) -> Void) {
+        tableViewController.performBackgroundFetch(completionHandler)
     }
     
     func verifyJoinOrSettings() {
@@ -243,13 +235,16 @@ class CommunityViewController: UIViewController, CommunityTableDelegate {
         }
     }
     
-    override func viewDidDisappear(animated: Bool) {
-        super.viewDidDisappear(animated)
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
         
-        println("community disappeared")
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "communitySelected", object: nil)
+        observingCommunitySelected = false
     }
     
     deinit {
-        println("community deinit")
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "communitySelected", object: nil)
+        observingCommunitySelected = false
     }
+
 }

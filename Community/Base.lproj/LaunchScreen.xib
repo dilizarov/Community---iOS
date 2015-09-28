@@ -18,24 +18,25 @@
                         <constraint firstAttribute="width" constant="50" id="lDW-Vo-CXI"/>
                     </constraints>
                 </imageView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E0N-U7-i2I">
-                    <rect key="frame" x="36" y="261" width="248" height="46"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="community" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MoA-Fu-7kX">
+                    <rect key="frame" x="60" y="184" width="200" height="50"/>
                     <animations/>
-                    <color key="backgroundColor" red="0.018165555810000001" green="0.41620616300000002" blue="0.52175376559999997" alpha="1" colorSpace="calibratedRGB"/>
-                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="46" id="Aai-E7-10J"/>
+                        <constraint firstAttribute="height" constant="50" id="ZzA-tp-ywm"/>
                     </constraints>
-                </view>
+                    <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                    <color key="textColor" red="0.018165555810000001" green="0.41620616300000002" blue="0.52175376559999997" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="E0N-U7-i2I" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="261" id="0IY-8C-DCk"/>
                 <constraint firstItem="eV2-1P-af2" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="5ZV-xS-Mhc"/>
-                <constraint firstItem="E0N-U7-i2I" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="36" id="YGX-Yb-1Hi"/>
+                <constraint firstItem="MoA-Fu-7kX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="60" id="5u5-dF-ofk"/>
                 <constraint firstItem="eV2-1P-af2" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="32" id="bqa-kZ-ktj"/>
-                <constraint firstAttribute="trailing" secondItem="E0N-U7-i2I" secondAttribute="trailing" constant="36" id="sRM-TP-TzY"/>
+                <constraint firstAttribute="trailing" secondItem="MoA-Fu-7kX" secondAttribute="trailing" constant="60" id="nD4-RO-owz"/>
+                <constraint firstItem="MoA-Fu-7kX" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="184" id="qD5-Lf-DwG"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>

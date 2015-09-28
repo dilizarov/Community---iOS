@@ -15,12 +15,12 @@ class RepliesTableViewController: UITableViewController {
     var post: Post!
     var atBottom = false
     
+    var emptyOrErrorDescription: String?
+    
     var delegate: RepliesTableDelegate!
     
-    // Optional because the first element is a placeholder.
+    // Optional because the first element is a placeholder (nil).
     var replies = [Reply?]()
-    
-    //var replies = ["placeholder", "wow", "this", "is", "a", "comment", "for the ages", "YEP YEP YEP YEP AEWPTOMA AWET AWT AMWT LAWT WLT LAWKE GAWL GALW KT", "WETATAWTAWTE AWT AWTAWTAWT'W ,", "WATLQWT QT AE", "waegla gaew gal;kw g wlegka wjgwgwalg we gka fkjwaef akwjef jwaekf kwae fkajwe fjka gke wkag awgja;g ", "wgnkawg akwgl gwa gawl gaj aw fkwa eawjlq rj wreqoiradfa", "k wawlgnaw wefiebf wk kw vka k wkjf wek gkjaw ge g tewr oiqweuroaweurpasf pasfu pfu pup aupurp awu pwetu p uoa uputapwutwout waputpawu tpaweut pwue tpuatpueawpt uawpt uawpetu wtu we tuowu ouut oewutpawut pawuetp aup upasue tuwpghgoah oghao ahohhqtwej la", "wow", "this", "is", "a", "comment", "for the ages", "YEP YEP YEP YEP AEWPTOMA AWET AWT AMWT LAWT WLT LAWKE GAWL GALW KT", "WETATAWTAWTE AWT AWTAWTAWT'W ,", "WATLQWT QT AE", "waegla gaew gal;kw g wlegka wjgwgwalg we gka fkjwaef akwjef jwaekf kwae fkajwe fjka gke wkag awgja;g ", "wgnkawg akwgl gwa gawl gaj aw fkwa eawjlq rj wreqoiradfa", "k wawlgnaw wefiebf wk kw vka k wkjf wek gkjaw ge g tewr oiqweuroaweurpasf pasfu pfu pup aupurp awu pwetu p uoa uputapwutwout waputpawu tpaweut pwue tpuatpueawpt uawpt uawpetu wtu we tuowu ouut oewutpawut pawuetp aup upasue tuwpghgoah oghao ahohhqtwej la", "wow", "this", "is", "a", "comment", "for the ages", "YEP YEP YEP YEP AEWPTOMA AWET AWT AMWT LAWT WLT LAWKE GAWL GALW KT", "WETATAWTAWTE AWT AWTAWTAWT'W ,", "WATLQWT QT AE", "waegla gaew gal;kw g wlegka wjgwgwalg we gka fkjwaef akwjef jwaekf kwae fkajwe fjka gke wkag awgja;g ", "wgnkawg akwgl gwa gawl gaj aw fkwa eawjlq rj wreqoiradfa", "k wawlgnaw wefiebf wk kw vka k wkjf wek gkjaw ge g tewr oiqweuroaweurpasf pasfu pfu pup aupurp awu pwetu p uoa uputapwutwout waputpawu tpaweut pwue tpuatpueawpt uawpt uawpetu wtu we tuowu ouut oewutpawut pawuetp aup upasue tuwpghgoah oghao ahohhqtwej la", "wow", "this", "is", "a", "comment", "for the ages"]
     
     var cachedHeights = [Int: CGFloat]()
     
@@ -62,7 +62,48 @@ class RepliesTableViewController: UITableViewController {
         }
     }
     
+    func performBackgroundFetch(completionHandler: (UIBackgroundFetchResult) -> Void) {
+        var userInfo = NSUserDefaults.standardUserDefaults()
+        
+        var params = [String: AnyObject]()
+        params["user_id"] = userInfo.objectForKey("user_id") as! String
+        params["auth_token"] = userInfo.objectForKey("auth_token") as! String
+        
+        Alamofire.request(.GET, "https://infinite-lake-4056.herokuapp.com/api/v1/posts/\(post.id)/replies.json", parameters: params)
+            .responseJSON { request, response, jsonData, errors in
+                
+                if let jsonData: AnyObject = jsonData {
+                    let json = JSON(jsonData)
+                    
+                    if (json["errors"] == nil) {
+                        self.replies = [nil]
+                        
+                        self.post.repliesCount = json["replies"].count
+                        for var i = 0; i < json["replies"].count; i++ {
+                            var jsonReply = json["replies"][i]
+                            
+                            var reply = Reply(id: jsonReply["external_id"].stringValue, username: jsonReply["user"]["username"].stringValue, body: jsonReply["body"].stringValue, likeCount: jsonReply["likes"].intValue, liked: jsonReply["liked"].boolValue, timeCreated: jsonReply["created_at"].stringValue, avatarUrl: jsonReply["user"]["avatar_url"].string)
+                            
+                            self.replies.append(reply)
+                        }
+                        
+                        if self.replies.count == 1 {
+                            self.emptyOrErrorDescription = "No replies"
+                            completionHandler(.NoData)
+                        } else {
+                            self.emptyOrErrorDescription = nil
+                            completionHandler(.NewData)
+                        }
+                    }
+                } else {
+                    completionHandler(.Failed)
+                }
+        }
+    }
+    
     func requestRepliesAndPopulateFeed(refreshing: Bool) {
+        
+        self.emptyOrErrorDescription = nil
         
         if !refreshing {
             delegate.startLoading()
@@ -76,44 +117,52 @@ class RepliesTableViewController: UITableViewController {
         
         Alamofire.request(.GET, "https://infinite-lake-4056.herokuapp.com/api/v1/posts/\(post.id)/replies.json", parameters: params)
             .responseJSON { request, response, jsonData, errors in
-            
+                
                 var defaultError = errors?.localizedDescription
                 
                 if defaultError != nil {
-                    
+                    self.emptyOrErrorDescription = defaultError
                 } else if let jsonData: AnyObject = jsonData {
                     let json = JSON(jsonData)
                     
                     if (json["errors"] == nil) {
                         self.replies = [nil]
                         
+                        self.post.repliesCount = json["replies"].count
                         for var i = 0; i < json["replies"].count; i++ {
                             var jsonReply = json["replies"][i]
                             
                             var reply = Reply(id: jsonReply["external_id"].stringValue, username: jsonReply["user"]["username"].stringValue, body: jsonReply["body"].stringValue, likeCount: jsonReply["likes"].intValue, liked: jsonReply["liked"].boolValue, timeCreated: jsonReply["created_at"].stringValue, avatarUrl: jsonReply["user"]["avatar_url"].string)
                             
                             self.replies.append(reply)
-                            self.replies.append(reply)
-                            self.replies.append(reply)
-                            self.replies.append(reply)
-                            self.replies.append(reply)
-                            self.replies.append(reply)
-                            self.replies.append(reply)
-                            self.replies.append(reply)
                         }
-                    }
-                    
+                        
+                        if self.replies.count == 1 {
+                            self.emptyOrErrorDescription = "No replies"
+                        }
+                    } else {
+                        self.emptyOrErrorDescription = ""
+                        
+                        for var i = 0; i < json["errors"].count; i++ {
+                            if (i != 0) { self.emptyOrErrorDescription = self.emptyOrErrorDescription! + "\n\n" }
+                            self.emptyOrErrorDescription = self.emptyOrErrorDescription! + json["errors"][i].string!
+                        }
 
-                    dispatch_async(dispatch_get_main_queue(), {
-                        if refreshing {
-                            self.delegate.stopRefreshing()
-                            self.scrollToBottom()
-                        } else {
-                            self.delegate.stopLoading()
-                        }
-                        self.tableView.reloadData()
-                    })
+                    }
+                } else {
+                    
                 }
+
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.tableView.reloadData()
+                    
+                    if refreshing {
+                        self.delegate.stopRefreshing()
+                        if (self.emptyOrErrorDescription == nil) { self.scrollToBottom() }
+                    } else {
+                        self.delegate.stopLoading()
+                    }
+                })
             }
     }
     
@@ -135,7 +184,12 @@ class RepliesTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.replies.count
+        
+        if emptyOrErrorDescription != nil {
+            return 2
+        } else {
+            return self.replies.count
+        }
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -146,6 +200,16 @@ class RepliesTableViewController: UITableViewController {
             cell.configureViews(self.post)
             
             cell.layoutIfNeeded()
+            
+            return cell
+        } else if emptyOrErrorDescription != nil {
+            var cell = tableView.dequeueReusableCellWithIdentifier("noReplies") as! NoRepliesCell
+            
+            cell.configureView(emptyOrErrorDescription!)
+            
+            cell.setNeedsDisplay()
+            cell.layoutIfNeeded()
+            
             return cell
         } else {
             var cell = tableView.dequeueReusableCellWithIdentifier("replyCell", forIndexPath: indexPath) as! ReplyCell
@@ -158,29 +222,7 @@ class RepliesTableViewController: UITableViewController {
             
             cell.setNeedsDisplay()
             cell.layoutIfNeeded()
-            
-//            // initial height
-//            
-//            var replyString = NSString(string: reply!.body)
-//            
-//            var width: CGFloat
-//
-//            if let url = reply!.avatarUrl {
-//                width = self.tableView.bounds.width - (16 + 12 + 44 + 16)
-//            } else {
-//                width = self.tableView.bounds.width - (16 + 12)
-//            }
-//            
-//            var font = cell.replyBody.font
-//            
-//            let constraintRect = CGSizeMake(width, CGFloat.max)
-//                
-//            let boundingBox = replyString.boundingRectWithSize(constraintRect, options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: [NSFontAttributeName: font], context: nil)
-//            
-//            println("boundingBox: \(boundingBox)")
-//            
-//            initialScrollHeights[indexPath.row] = boundingBox.height + 50
-            
+
             return cell
         }
     }
@@ -202,27 +244,30 @@ class RepliesTableViewController: UITableViewController {
     // doesn't kick in until after the initial scroll. The initial scroll requires our funny scrollViewDidEndScrollingAnimation.
     func scrollToBottom() {
         if !atBottom {
-//            self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: self.replies.count - 1, inSection: 0), atScrollPosition: .Bottom, animated: true)
+            self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: self.replies.count - 1, inSection: 0), atScrollPosition: .Bottom, animated: true)
+         
             
-            let count = self.tableView.numberOfRowsInSection(0)
-            let currentContentOffset = self.tableView.contentOffset;
+//      Another hacky solution that doesn't work when have a ton of rows... (over 100). Welp
             
-            for(var i = 0; i<count; i++){
-                self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: i, inSection: 0), atScrollPosition: .Bottom, animated: false)
-            }
-            
-            let endContentOffset = self.tableView.contentOffset
-            
-            self.tableView.setContentOffset(currentContentOffset, animated: false);
-            self.tableView.setContentOffset(endContentOffset, animated: true)
+//            let count = self.tableView.numberOfRowsInSection(0)
+//            let currentContentOffset = self.tableView.contentOffset;
+//            
+//            for(var i = 0; i<count; i++){
+//                self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: i, inSection: 0), atScrollPosition: .Bottom, animated: false)
+//            }
+//            
+//            let endContentOffset = self.tableView.contentOffset
+//            
+//            self.tableView.setContentOffset(currentContentOffset, animated: false);
+//            self.tableView.setContentOffset(endContentOffset, animated: true)
         }
     }
     
-//    override func scrollViewDidEndScrollingAnimation(scrollView: UIScrollView) {
-//        if !atBottom {
-//            self.tableView.setContentOffset(CGPointMake(0, tableView.contentOffset.y + 226), animated: true)
-//        }
-//    }
+    override func scrollViewDidEndScrollingAnimation(scrollView: UIScrollView) {
+        if !atBottom {
+            self.tableView.setContentOffset(CGPointMake(0, tableView.contentOffset.y + 226), animated: true)
+        }
+    }
     
     override func scrollViewDidScroll(scrollView: UIScrollView) {
         atBottom = scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.frame.size.height)
