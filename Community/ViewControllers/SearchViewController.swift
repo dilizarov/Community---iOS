@@ -12,6 +12,8 @@ import UIActivityIndicator_for_SDWebImage
 
 class SearchViewController: UIViewController, UITextFieldDelegate {
 
+    var headingToCommunity: String?
+    
     // Dictates whether or not we have a NSNotification Observer viewing this
     var observingSideViewAppeared: Bool = false
     var observingCommunitySelected: Bool = false
@@ -22,15 +24,51 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
     var viewDisappeared: Bool = false
     var avatarImageError = false
     
+    var firstAppearance: Bool = true
+    
+    @IBOutlet var communityLabel: UILabel!
     @IBOutlet var search: UITextField!
     @IBOutlet var avatar: UIImageView!
+    
+    var originalFrame: CGRect!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Overlays where the LaunchScreen label is.
+        originalFrame = communityLabel.frame
+
+        search.alpha = 0
+        
         setupSearchLook()
         setupAvatar()
         setAvatar()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        communityLabel.frame.origin.y = communityLabel.frame.origin.y + 77
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if firstAppearance {
+            firstAppearance = false
+            UIView.animateWithDuration(0.25, delay: 0, options: UIViewAnimationOptions.CurveEaseIn | UIViewAnimationOptions.BeginFromCurrentState, animations: {
+                
+                self.communityLabel.transform = CGAffineTransformMakeTranslation(0, -77)
+                self.search.alpha = 1
+                
+                }, completion: nil)
+        }
+        
+        if headingToCommunity != nil {
+            search.text = headingToCommunity
+            search(headingToCommunity!)
+            headingToCommunity = nil
+        }
     }
     
     func setupSearchLook() {

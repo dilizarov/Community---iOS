@@ -1,4 +1,5 @@
 import UIKit
+import Foundation
 import Alamofire
 import SwiftyJSON
 import RealmSwift
@@ -59,9 +60,9 @@ class ProfileTableViewController: UITableViewController, PresentControllerDelega
         self.presentViewController(controller, animated: true, completion: nil)
     }
     
-    //TODO
     func presentLeaveCommunityController(community: JoinedCommunity, row: Int) {
-        var nameWithUnite = "&\(community.name)"
+        
+        var nameWithUnite = "&" + community.name.strip().lowercaseString.stringByReplacingOccurrencesOfString(" ", withString: "_")
         
         var confirmLeaveAlert = UIAlertController(title: "Leave \(nameWithUnite)", message: "Are you sure you want to leave?", preferredStyle: .Alert)
         
@@ -172,16 +173,12 @@ class ProfileTableViewController: UITableViewController, PresentControllerDelega
                                 community.username = username
                             }
                             
-                            if let avatar_url = jsonCommunity["avatar_url"].string {
+                            if let avatar_url = jsonCommunity["user"]["avatar_url"].string {
                                 community.avatar_url = avatar_url
                             }
                             
                             self.communities.append(community)
                             
-//                            var name = community.name
-//                            var unicode = map(Array(community.name.unicodeScalars)) { NSString(format: "%04X", $0.value) }
-//                            
-//                            println("\(name) \(unicode)")
                         }
                         
                         let realm = Realm()
@@ -239,7 +236,7 @@ class ProfileTableViewController: UITableViewController, PresentControllerDelega
         params["auth_token"] = userInfo.objectForKey("auth_token") as! String
         params["community"] = community.name.strip()
         
-        Alamofire.request(.DELETE, "https://infinite-lake-4056.herokuapp.com/api/v1/communities.json", parameters: params)
+        Alamofire.request(.DELETE, "https://infinite-lake-4056.herokuapp.com/api/v1/communities/destroy.json", parameters: params)
             .responseJSON { request, response, jsonData, errors in
                 
                 if (response?.statusCode == 404 || errors != nil) {

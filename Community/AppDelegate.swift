@@ -9,6 +9,8 @@
 import UIKit
 import MMDrawerController
 import RealmSwift
+import KeychainSwift
+import IQKeyboardManagerSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,6 +20,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        IQKeyboardManager.sharedManager().enable = true
+        IQKeyboardManager.sharedManager().shouldResignOnTouchOutside = true
+        IQKeyboardManager.sharedManager().enableAutoToolbar = false
+        
+        IQKeyboardManager.sharedManager().disableInViewControllerClass(RepliesViewController)
+        IQKeyboardManager.sharedManager().disableInViewControllerClass(RepliesTableViewController)
         
         configureRealm()
         configureLaunchState()
@@ -55,15 +64,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func configureLaunchState() {
+        let keychain = KeychainSwift()
+        
+        if let has_opened_app_before = keychain.get("logged_out_auth_token") {
+            configureUsualLaunch(nil)
+        } else {
+            configureWelcomeLaunch()
+        }
+    }
+    
+    func configureUsualLaunch(community: String?) {
         let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
         
         let searchViewController = mainStoryboard.instantiateViewControllerWithIdentifier("SearchViewController") as! SearchViewController
+        
+        searchViewController.headingToCommunity = community
         
         let navigationController = UINavigationController(rootViewController: searchViewController)
         navigationController.navigationBarHidden = true
         
         var leftViewIdentifier: String
         
+        //TODO
         if (NSUserDefaults.standardUserDefaults().objectForKey("auth_token") != nil) {
             leftViewIdentifier = "ProfileViewController"
         } else {
@@ -85,11 +107,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // This forces the side to layout itself properly.
         drawerController?.bouncePreviewForDrawerSide(.Left, distance: 10, completion: nil)
         
-        println(drawerController?.leftDrawerViewController)
-        println(drawerController?.centerViewController)
-        println((drawerController?.centerViewController as! UINavigationController).visibleViewController)
-            
         self.window?.rootViewController = drawerController
+        self.window?.makeKeyAndVisible()
+    }
+    
+    func configureWelcomeLaunch() {
+        let welcomeStoryboard = UIStoryboard(name: "Welcome", bundle: nil)
+        
+        let rootVC = welcomeStoryboard.instantiateInitialViewController() as! UIViewController
+        
+        self.window?.rootViewController = rootVC
         self.window?.makeKeyAndVisible()
     }
     

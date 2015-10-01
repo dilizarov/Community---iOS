@@ -14,6 +14,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>IQKeyboardManagerSwift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>KeychainSwift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>MGSwipeTableCell.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -64,6 +74,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>TextFieldEffects.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Toast.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -77,16 +92,6 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>0474CD545445EF825B5F9819BCAC80F4</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>08CD0FF67A7A58ED68C00F30E524AD06</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>10845198053E6B4C1CB0DB2377D456CA</key>
 		<dict>
 			<key>primary</key>
@@ -102,7 +107,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>46F52FE907228BE1C903863EC43640D8</key>
+		<key>37600D952D2785759874E33A7A12174B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -112,12 +117,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>54A3C098756E0211E2D9FA6D444FBBD6</key>
+		<key>62B9DC1B8BD6F0572AA4EDE318166FD1</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>94E4779F7BBAE846CEE5DCB0DBF9A1F1</key>
+		<key>6A9608E5400B4920410846855A211997</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>825247917E13850DFEE6B183EB75EAC5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>972F3E34748AEFCE9B5326FB0785928B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -127,7 +142,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>ADF5773EB8EE2D0DF52D8DDAEA0FAC21</key>
+		<key>ADF29C0846BE97BB6DDC3062F6AAAAE8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -137,12 +152,27 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C71291901C75845B5E9CEDCE9BCAE658</key>
+		<key>C42DF45614227C252416A5BC380AE49A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F2D07EC9A458F20E08AD9D9386B59487</key>
+		<key>C92A282C68F94A0CACB4A1F2AC751A2E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E04052B55E1B444AD34376084D9AEF03</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F510AB5BC77C28CEADD5C0432202247C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F7ED902DA9B8C7F94554D537AB6765C7</key>
 		<dict>
 			<key>primary</key>
 			<true/>

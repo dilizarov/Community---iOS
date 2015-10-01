@@ -75,6 +75,8 @@ class CommunitySettingsViewController: UIViewController {
         let realm = Realm()
         joinedCommunity = realm.objectForPrimaryKey(JoinedCommunity.self, key: communityName)
 
+        usernameField.tintColor = UIColor(hexString: "056A85")
+        
         settingsHolder.layer.cornerRadius = 5.0
         setupNavBar()
         setupAvatarImage()

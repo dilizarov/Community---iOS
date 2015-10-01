@@ -54,6 +54,8 @@ code_sign_if_enabled() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework 'Pods/Alamofire.framework'
   install_framework 'Pods/HexColors.framework'
+  install_framework 'Pods/IQKeyboardManagerSwift.framework'
+  install_framework 'Pods/KeychainSwift.framework'
   install_framework 'Pods/MGSwipeTableCell.framework'
   install_framework 'Pods/MMDrawerController.framework'
   install_framework 'Pods/MMProgressHUD.framework'
@@ -63,12 +65,15 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework 'Pods/SDWebImage.framework'
   install_framework 'Pods/SZTextView.framework'
   install_framework 'Pods/SwiftyJSON.framework'
+  install_framework 'Pods/TextFieldEffects.framework'
   install_framework 'Pods/Toast.framework'
   install_framework 'Pods/UIActivityIndicator_for_SDWebImage.framework'
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'Pods/Alamofire.framework'
   install_framework 'Pods/HexColors.framework'
+  install_framework 'Pods/IQKeyboardManagerSwift.framework'
+  install_framework 'Pods/KeychainSwift.framework'
   install_framework 'Pods/MGSwipeTableCell.framework'
   install_framework 'Pods/MMDrawerController.framework'
   install_framework 'Pods/MMProgressHUD.framework'
@@ -78,6 +83,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'Pods/SDWebImage.framework'
   install_framework 'Pods/SZTextView.framework'
   install_framework 'Pods/SwiftyJSON.framework'
+  install_framework 'Pods/TextFieldEffects.framework'
   install_framework 'Pods/Toast.framework'
   install_framework 'Pods/UIActivityIndicator_for_SDWebImage.framework'
 fi

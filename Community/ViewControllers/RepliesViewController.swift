@@ -10,7 +10,7 @@ import UIKit
 import SDWebImage
 import UIActivityIndicator_for_SDWebImage
 import Alamofire
-import EKKeyboardAvoiding
+//import EKKeyboardAvoiding
 import SwiftyJSON
 
 class RepliesViewController: UIViewController, PHFComposeBarViewDelegate, RepliesTableDelegate {
@@ -41,6 +41,7 @@ class RepliesViewController: UIViewController, PHFComposeBarViewDelegate, Replie
         composeBarView.delegate = self
         
         composeBarView.buttonTintColor = UIColor(hexString: "056A85")
+        composeBarView.textView.tintColor = UIColor(hexString: "056A85")
         composeBarView.textView.backgroundColor = UIColor.whiteColor()
         
         return composeBarView

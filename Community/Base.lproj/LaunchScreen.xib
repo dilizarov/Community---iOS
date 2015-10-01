@@ -10,16 +10,8 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AvatarPlaceHolderGray" translatesAutoresizingMaskIntoConstraints="NO" id="eV2-1P-af2">
-                    <rect key="frame" x="16" y="32" width="50" height="50"/>
-                    <animations/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="50" id="9Q1-zJ-nD3"/>
-                        <constraint firstAttribute="width" constant="50" id="lDW-Vo-CXI"/>
-                    </constraints>
-                </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="community" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MoA-Fu-7kX">
-                    <rect key="frame" x="60" y="184" width="200" height="50"/>
+                    <rect key="frame" x="60" y="261" width="200" height="50"/>
                     <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="ZzA-tp-ywm"/>
@@ -32,18 +24,13 @@
             <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="eV2-1P-af2" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="5ZV-xS-Mhc"/>
                 <constraint firstItem="MoA-Fu-7kX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="60" id="5u5-dF-ofk"/>
-                <constraint firstItem="eV2-1P-af2" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="32" id="bqa-kZ-ktj"/>
                 <constraint firstAttribute="trailing" secondItem="MoA-Fu-7kX" secondAttribute="trailing" constant="60" id="nD4-RO-owz"/>
-                <constraint firstItem="MoA-Fu-7kX" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="184" id="qD5-Lf-DwG"/>
+                <constraint firstItem="MoA-Fu-7kX" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="261" id="qD5-Lf-DwG"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
             <point key="canvasLocation" x="500" y="321"/>
         </view>
     </objects>
-    <resources>
-        <image name="AvatarPlaceHolderGray" width="101" height="101"/>
-    </resources>
 </document>

@@ -39,6 +39,9 @@ class WritePostViewController: UIViewController, UITextViewDelegate {
 
         setupNavBar()
         
+        titleField.tintColor = UIColor(hexString: "056A85")
+        postTextView.tintColor = UIColor(hexString: "056A85")
+        
         let realm = Realm()
         joinedCommunity = realm.objectForPrimaryKey(JoinedCommunity.self, key: communityName)
         
