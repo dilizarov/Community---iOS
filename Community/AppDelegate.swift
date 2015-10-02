@@ -66,11 +66,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func configureLaunchState() {
         let keychain = KeychainSwift()
         
-        if let has_opened_app_before = keychain.get("logged_out_auth_token") {
-            configureUsualLaunch(nil)
-        } else {
-            configureWelcomeLaunch()
-        }
+//        if let has_opened_app_before = keychain.get("meta_auth_token") {
+//            configureUsualLaunch(nil)
+//        } else {
+//            configureWelcomeLaunch()
+//        }
+        
+        configureWelcomeLaunch()
     }
     
     func configureUsualLaunch(community: String?) {

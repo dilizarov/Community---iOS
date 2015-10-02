@@ -286,16 +286,12 @@ class CommunitySettingsViewController: UIViewController {
         var saveButton = rightButtonOptions["save"]!
         
         if originalState == .Default && defaultSwitch.on {
-            println("a")
             saveButton.enabled = false
         } else if originalState == .Default && !defaultSwitch.on {
-            println("b")
             saveButton.enabled = true
         } else if originalState == .Community && defaultSwitch.on {
-            println("c")
             saveButton.enabled = true
         } else if originalState == .Community && !defaultSwitch.on {
-            println("d")
             if communityUsername == latestCommunityUsername &&
                ((communityAvatarUrl == defaultAvatarUrl && latestCommunityAvatarState == .Default) ||
                (originalAvatarState == .Community && latestCommunityAvatarState == .Community)) {

@@ -31,7 +31,7 @@
         <!--Great, let us set you up :)-->
         <scene sceneID="gHJ-Zo-fwP">
             <objects>
-                <viewController id="4Zc-0n-RsE" sceneMemberID="viewController">
+                <viewController id="4Zc-0n-RsE" customClass="UsernameGeneratorViewController" customModule="Community" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cMf-DX-SNC"/>
                         <viewControllerLayoutGuide type="bottom" id="V6g-6c-B0x"/>
@@ -49,11 +49,17 @@
                                 <state key="normal" title="Request another username">
                                     <color key="titleColor" red="0.018165555810000001" green="0.41620616300000002" blue="0.52175376559999997" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <state key="disabled">
+                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="5"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="requestButtonPressed:" destination="4Zc-0n-RsE" eventType="touchUpInside" id="RGl-l4-bOg"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a2Y-y0-X0i">
                                 <rect key="frame" x="16" y="237" width="288" height="138"/>
@@ -115,13 +121,17 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Great, let us set you up :)" id="46U-CX-4KQ">
-                        <barButtonItem key="rightBarButtonItem" title="Next" id="kXo-ej-ONk">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Next" id="kXo-ej-ONk">
                             <connections>
                                 <segue destination="dT0-f1-PV6" kind="show" id="0AO-gx-LAk"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="generatedUsername" destination="a2Y-y0-X0i" id="jgN-DU-uQ0"/>
+                        <outlet property="requestButton" destination="V9a-N5-86X" id="4j1-I0-CyJ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k4f-Xb-fu0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
