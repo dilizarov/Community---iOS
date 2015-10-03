@@ -10,7 +10,9 @@ import UIKit
 
 class ImportantDocumentsViewController: UIViewController {
     
-    // Since this is the root VC, we store these values here so that when going back and forth between the stack, this persists through instances of our create account VC
+    // Since this is the root VC, we store these values here so that when going back and forth
+    // between the stack, this persists through instances of our create account VC
+    // typedConfirmPassword is purposely left out.
     var typedUsername: String?
     var typedEmail: String?
     var typedPassword: String?

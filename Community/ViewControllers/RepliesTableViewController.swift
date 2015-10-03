@@ -63,13 +63,8 @@ class RepliesTableViewController: UITableViewController {
     }
     
     func performBackgroundFetch(completionHandler: (UIBackgroundFetchResult) -> Void) {
-        var userInfo = NSUserDefaults.standardUserDefaults()
         
-        var params = [String: AnyObject]()
-        params["user_id"] = userInfo.objectForKey("user_id") as! String
-        params["auth_token"] = userInfo.objectForKey("auth_token") as! String
-        
-        Alamofire.request(.GET, "https://infinite-lake-4056.herokuapp.com/api/v1/posts/\(post.id)/replies.json", parameters: params)
+        Alamofire.request(Router.GetReplies(post_id: post.id))
             .responseJSON { request, response, jsonData, errors in
                 
                 if let jsonData: AnyObject = jsonData {
@@ -109,13 +104,7 @@ class RepliesTableViewController: UITableViewController {
             delegate.startLoading()
         }
         
-        var userInfo = NSUserDefaults.standardUserDefaults()
-        
-        var params = [String: AnyObject]()
-        params["user_id"] = userInfo.objectForKey("user_id") as! String
-        params["auth_token"] = userInfo.objectForKey("auth_token") as! String
-        
-        Alamofire.request(.GET, "https://infinite-lake-4056.herokuapp.com/api/v1/posts/\(post.id)/replies.json", parameters: params)
+        Alamofire.request(Router.GetReplies(post_id: post.id))
             .responseJSON { request, response, jsonData, errors in
                 
                 var defaultError = errors?.localizedDescription

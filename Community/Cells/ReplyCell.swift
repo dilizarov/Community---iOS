@@ -94,15 +94,7 @@ class ReplyCell: UITableViewCell {
     func processLike() {
         toggleLike()
         
-        var userInfo = NSUserDefaults.standardUserDefaults()
-        
-        var params = [String: AnyObject]()
-        params["user_id"] = userInfo.objectForKey("user_id") as! String
-        params["auth_token"] = userInfo.objectForKey("auth_token") as! String
-        
-        if !reply.liked { params["dislike"] = true }
-        
-        Alamofire.request(.GET, "https://infinite-lake-4056.herokuapp.com/api/v1/replies/\(reply.id)/like.json", parameters: params)
+        Alamofire.request(Router.LikeReply(reply_id: reply.id, dislike: !reply.liked))
             .responseJSON { request, response, jsonData, errors in
                 
                 if (response?.statusCode > 299 || errors != nil) {

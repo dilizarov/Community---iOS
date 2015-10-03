@@ -22,7 +22,6 @@ class ProfileTableViewController: UITableViewController, PresentControllerDelega
         requestJoinedCommunitiesAndPopulateList()
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -70,7 +69,6 @@ class ProfileTableViewController: UITableViewController, PresentControllerDelega
             (alert: UIAlertAction!) in
             
             self.leaveCommunity(community, row: row)
-            
         })
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .Default, handler: nil)
@@ -82,16 +80,8 @@ class ProfileTableViewController: UITableViewController, PresentControllerDelega
     }
     
     func performBackgroundFetch() {
-        var userInfo = NSUserDefaults.standardUserDefaults()
         
-        var params = [String : AnyObject]()
-        
-        var user_id = userInfo.objectForKey("user_id") as! String
-        
-        params["user_id"] = user_id
-        params["auth_token"] = userInfo.objectForKey("auth_token") as! String
-        
-        Alamofire.request(.GET, "https://infinite-lake-4056.herokuapp.com/api/v1/communities.json", parameters: params)
+        Alamofire.request(Router.GetCommunities)
             .responseJSON { request, response, jsonData, errors in
                 
                 if let jsonData: AnyObject = jsonData {
@@ -141,16 +131,7 @@ class ProfileTableViewController: UITableViewController, PresentControllerDelega
     
     func requestJoinedCommunitiesAndPopulateList() {
         
-        var userInfo = NSUserDefaults.standardUserDefaults()
-        
-        var params = [String : AnyObject]()
-        
-        var user_id = userInfo.objectForKey("user_id") as! String
-        
-        params["user_id"] = user_id
-        params["auth_token"] = userInfo.objectForKey("auth_token") as! String
-        
-        Alamofire.request(.GET, "https://infinite-lake-4056.herokuapp.com/api/v1/communities.json", parameters: params)
+        Alamofire.request(Router.GetCommunities)
             .responseJSON { request, response, jsonData, errors in
                 
                 var defaultError = errors?.localizedDescription
@@ -228,15 +209,7 @@ class ProfileTableViewController: UITableViewController, PresentControllerDelega
         
         tableView.reloadData()
         
-        var userInfo = NSUserDefaults.standardUserDefaults()
-        
-        var params = [String : AnyObject]()
-        
-        params["user_id"] = userInfo.objectForKey("user_id") as! String
-        params["auth_token"] = userInfo.objectForKey("auth_token") as! String
-        params["community"] = community.name.strip()
-        
-        Alamofire.request(.DELETE, "https://infinite-lake-4056.herokuapp.com/api/v1/communities/destroy.json", parameters: params)
+        Alamofire.request(Router.LeaveCommunity(community: community.name.strip()))
             .responseJSON { request, response, jsonData, errors in
                 
                 if (response?.statusCode == 404 || errors != nil) {

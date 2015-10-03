@@ -31,8 +31,6 @@ class CommunitySettingsViewController: UIViewController {
     var communityName: String!
     var joinedCommunity: JoinedCommunity!
     
-    var userDefaults: NSUserDefaults!
-    
     var communityUsername: String!
     var communityAvatarUrl: String!
     var defaultUsername: String!
@@ -69,8 +67,6 @@ class CommunitySettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        userDefaults = NSUserDefaults.standardUserDefaults()
         
         let realm = Realm()
         joinedCommunity = realm.objectForPrimaryKey(JoinedCommunity.self, key: communityName)
@@ -143,8 +139,8 @@ class CommunitySettingsViewController: UIViewController {
         latestCommunityUsername = communityUsername
         communityAvatarUrl = joinedCommunity!.avatar_url
         
-        defaultUsername = userDefaults.objectForKey("username") as! String
-        var avatarUrl = userDefaults.objectForKey("avatar_url") as? String
+        defaultUsername = Session.get(.Username)
+        var avatarUrl = Session.get(.AvatarUrl)
         
         if let url = avatarUrl {
             defaultAvatarUrl = url
@@ -307,19 +303,13 @@ class CommunitySettingsViewController: UIViewController {
         MMProgressHUD.setPresentationStyle(.Balloon)
         MMProgressHUD.show()
         
-        var user_id = userDefaults.objectForKey("user_id") as! String
-        var auth_token = userDefaults.objectForKey("auth_token") as! String
-        
-        var params = [String: AnyObject]()
-        params["user_id"] = user_id
-        params["auth_token"] = auth_token
-        params["community"] = communityName.strip()
+//        var user_id = userDefaults.objectForKey("user_id") as! String
+//        var auth_token = userDefaults.objectForKey("auth_token") as! String
         
         var delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC)))
         
         if (defaultSwitch.on) {
-            params["default"] = true
-            Alamofire.request(.PUT, "https://infinite-lake-4056.herokuapp.com/api/v1/communities/update.json", parameters: params, encoding: .JSON)
+            Alamofire.request(Router.UpdateCommunitySettings(community: communityName.strip(), dfault: true, username: nil))
                 .responseJSON { request, response, jsonData, errors in
                     
                     dispatch_after(delayTime, dispatch_get_main_queue(), {
@@ -364,7 +354,7 @@ class CommunitySettingsViewController: UIViewController {
         } else if croppedNewImage != nil {
             var imageData = UIImagePNGRepresentation(croppedNewImage!)
             
-            var url = "https://infinite-lake-4056.herokuapp.com/api/v1/communities/update.json?user_id=\(user_id)&auth_token=\(auth_token)&community=\(communityName.strip())&username=\(latestCommunityUsername.strip())"
+            var url = Router.baseURLString + "/communities/update.json?user_id=\(Session.getUserId()!)&auth_token=\(Session.getAuthToken()!)&community=\(communityName.strip())&username=\(latestCommunityUsername.strip())"
             
             Alamofire.upload(.PUT, URLString: url.stringByAddingPercentEncodingWithAllowedCharacters(.URLQueryAllowedCharacterSet())!,
                 multipartFormData: { multipartFormData in
@@ -389,8 +379,6 @@ class CommunitySettingsViewController: UIViewController {
                                         var community = realm.objectForPrimaryKey(JoinedCommunity.self, key: self.communityName)
                                         
                                         var username = ""
-                                        
-                                        println("hi")
                                         
                                         if json["community"]["user"]["username"].stringValue != self.defaultUsername {
                                             username = json["community"]["user"]["username"].stringValue
@@ -432,8 +420,7 @@ class CommunitySettingsViewController: UIViewController {
                 }
             )
         } else {
-            params["username"] = latestCommunityUsername.strip()
-            Alamofire.request(.PUT, "https://infinite-lake-4056.herokuapp.com/api/v1/communities/update.json", parameters: params, encoding: .JSON)
+            Alamofire.request(Router.UpdateCommunitySettings(community: communityName.strip(), dfault: false, username: latestCommunityUsername.strip()))
                 .responseJSON { request, response, jsonData, errors in
                 
                     dispatch_after(delayTime, dispatch_get_main_queue(), {

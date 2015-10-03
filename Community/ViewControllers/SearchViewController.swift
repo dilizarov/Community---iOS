@@ -98,7 +98,7 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
     func setAvatar() {
         avatar.sd_cancelCurrentImageLoad()
         
-        if let avatar_url = NSUserDefaults.standardUserDefaults().objectForKey("avatar_url") as? String {
+        if let avatar_url = Session.get(.AvatarUrl) {
             
             avatar.setImageWithURL(
                 NSURL(string: avatar_url),

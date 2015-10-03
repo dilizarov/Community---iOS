@@ -51,7 +51,7 @@ class ProfileViewController: UIViewController {
         setDataViewedTapGestures()
         
         errorLabel.alpha = 0.0
-        usernameLabel.text = (NSUserDefaults.standardUserDefaults().objectForKey("username") as! String)
+        usernameLabel.text = Session.get(.Username)!
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -113,7 +113,7 @@ class ProfileViewController: UIViewController {
     }
     
     func setAvatarImage() {
-        if let avatar_url = NSUserDefaults.standardUserDefaults().objectForKey("avatar_url") as? String {
+        if let avatar_url = Session.get(.AvatarUrl) {
             
             avatarImage.setImageWithURL(
                 NSURL(string: avatar_url),
@@ -138,7 +138,7 @@ class ProfileViewController: UIViewController {
     }
     
     func avatarImagePressed() {
-        if let avatar_url = NSUserDefaults.standardUserDefaults().objectForKey("avatar_url") as? String {
+        if let avatar_url = Session.get(.AvatarUrl) {
             
             if avatarImageError {
                 retrySetAvatarImage()
@@ -201,7 +201,7 @@ class ProfileViewController: UIViewController {
     }
     
     func handleRefresh() {
-        if let avatar_url = NSUserDefaults.standardUserDefaults().objectForKey("avatar_url") as? String {
+        if let avatar_url = Session.get(.AvatarUrl) {
             if avatarImage.tintColor == UIColor.redColor() { retrySetAvatarImage() }
         }
     }
@@ -249,13 +249,8 @@ class ProfileViewController: UIViewController {
         MMProgressHUD.setPresentationStyle(.Balloon)
         MMProgressHUD.show()
         
-        var userInfo = NSUserDefaults.standardUserDefaults()
-        
-        var user_id    = userInfo.objectForKey("user_id") as! String
-        var auth_token = userInfo.objectForKey("auth_token") as! String
-        
         Alamofire.upload(.POST,
-            URLString: "https://infinite-lake-4056.herokuapp.com/api/v1/users/\(user_id)/profile_pic.json?auth_token=\(auth_token)",
+            URLString: "https://infinite-lake-4056.herokuapp.com/api/v1/users/\(Session.get(.UserId)!)/profile_pic.json?auth_token=\(Session.get(.AuthToken))",
             multipartFormData: { multipartFormData in
                 multipartFormData.appendBodyPart(data: imageData, name: "avatar", fileName: "avatar_img.png", mimeType: "image/png")
             },
@@ -306,7 +301,8 @@ class ProfileViewController: UIViewController {
                                         
                                         self.avatarImage.image = image
                                         
-                                        userInfo.setObject(avatar_url, forKey: "avatar_url")
+                                        Session.set(avatar_url!, key: .AvatarUrl)
+                                        
                                         SDImageCache.sharedImageCache().storeImage(image, forKey: avatar_url!)
                                         MMProgressHUD.dismissWithSuccess(":)")
                                         
@@ -328,7 +324,6 @@ class ProfileViewController: UIViewController {
                             
                         case .Failure (let encodingError):
                             //Realistically, I don't expect this to ever trigger, but I guess if the user uses some very weird image format...
-                            //But yeah, should never trigger.
                             MMProgressHUD.dismissWithError("Having difficulty with this image :(", afterDelay: NSTimeInterval(3))
                         }
                     }

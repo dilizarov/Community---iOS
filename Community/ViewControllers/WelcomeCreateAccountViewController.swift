@@ -9,6 +9,9 @@
 import UIKit
 import TextFieldEffects
 import IQKeyboardManagerSwift
+import MMProgressHUD
+import Alamofire
+import SwiftyJSON
 
 class WelcomeCreateAccountViewController: UIViewController, UITextFieldDelegate {
     
@@ -17,6 +20,58 @@ class WelcomeCreateAccountViewController: UIViewController, UITextFieldDelegate 
     @IBOutlet var emailField: HoshiTextField!
     @IBOutlet var passwordField: HoshiTextField!
     @IBOutlet var passwordConfirmField: HoshiTextField!
+    
+    @IBOutlet var accountCreatedLabel: UILabel!
+    
+    @IBAction func createAccountAction(sender: AnyObject) {
+        MMProgressHUD.sharedHUD().overlayMode = .Linear
+        MMProgressHUD.setPresentationStyle(.Balloon)
+        MMProgressHUD.show()
+        
+        Alamofire.request(Router.Register(username: usernameField.text!.strip(), email: emailField.text!.strip(), password: passwordField.text!))
+            .responseJSON { request, response, jsonData, errors in
+                // We delay by 1 second to keep a very smooth animation.
+                var delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC)))
+                
+                dispatch_after(delayTime, dispatch_get_main_queue(), {
+                    
+                    var defaultError = errors?.localizedDescription
+                    
+                    if (defaultError != nil) {
+                        MMProgressHUD.dismissWithError(defaultError?.removeEndingPunctuationAndMakeLowerCase(), afterDelay: NSTimeInterval(3))
+                    } else if let jsonData: AnyObject = jsonData {
+                        let json = JSON(jsonData)
+                        
+                        if (json["errors"] == nil) {
+                            self.storeSessionData(json)
+                            MMProgressHUD.sharedHUD().dismissAnimationCompletion = {
+
+                                self.resignTextFieldResponders()
+                                self.setAccountCreatedView()
+                                // THe username we made you will apply if you ever log out.
+                                self.performSegueWithIdentifier("showShare", sender: self)
+                            }
+                            
+                            MMProgressHUD.dismissWithSuccess(":)")
+                        } else {
+                            var errorString = ""
+                            
+                            for var i = 0; i < json["errors"].count; i++ {
+                                if (i != 0) { errorString += "\n\n" }
+                                
+                                errorString += json["errors"][i].string!
+                            }
+                            
+                            MMProgressHUD.dismissWithError(errorString, afterDelay: NSTimeInterval(3))
+                        }
+                    } else {
+                        // Realistically, should never trigger, but should always handle dismissing the HUD.
+                        MMProgressHUD.dismissWithError(":(")
+                    }
+                })
+        }
+
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +98,32 @@ class WelcomeCreateAccountViewController: UIViewController, UITextFieldDelegate 
         self.emailField.addTarget(self, action: Selector("textFieldDidChange"), forControlEvents: .EditingChanged)
         self.passwordField.addTarget(self, action: Selector("textFieldDidChange"), forControlEvents: .EditingChanged)
         self.passwordConfirmField.addTarget(self, action: Selector("textFieldDidChange"), forControlEvents: .EditingChanged)
+        
+        if Session.loggedIn() {
+            setAccountCreatedView()
+        } else {
+            setCreateAccountView()
+        }
+    }
+    
+    func setAccountCreatedView() {
+        usernameField.alpha = 0
+        emailField.alpha = 0
+        passwordField.alpha = 0
+        passwordConfirmField.alpha = 0
+        createAccountButton.alpha = 0
+        accountCreatedLabel.alpha = 1
+        navigationItem.rightBarButtonItem?.title = "Next"
+    }
+    
+    func setCreateAccountView() {
+        accountCreatedLabel.alpha = 0
+        usernameField.alpha = 1
+        emailField.alpha = 1
+        passwordField.alpha = 1
+        passwordConfirmField.alpha = 1
+        createAccountButton.alpha = 1
+        navigationItem.rightBarButtonItem?.title = "Skip"
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -60,29 +141,6 @@ class WelcomeCreateAccountViewController: UIViewController, UITextFieldDelegate 
         
         return true
     }
-    
-//    func textFieldDidBeginEditing(textField: UITextField) {
-//        
-//        if (textField == passwordField || textField == passwordConfirmField) {
-//            passwordShowButton.enabled = true
-//            confirmShowButton.enabled = true
-//            
-//            passwordShowButton.alpha = 1.0
-//            confirmShowButton.alpha = 1.0
-//        } else {
-//            passwordShowButton.alpha = 0.0
-//            confirmShowButton.alpha = 0.0
-//            
-//            passwordShowButton.enabled = false
-//            confirmShowButton.enabled = false
-//            
-//            passwordField.secureTextEntry = true
-//            passwordConfirmField.secureTextEntry = true
-//            
-//            passwordShowButton.setTitle("Show", forState: .Normal)
-//            confirmShowButton.setTitle("Show", forState: .Normal)
-//        }
-//    }
     
     // We check all fields and if the fields meet the criteria, we activate create account button.
     func textFieldDidChange() {
@@ -133,7 +191,23 @@ class WelcomeCreateAccountViewController: UIViewController, UITextFieldDelegate 
         }
     }
     
+    func resignTextFieldResponders() {
+        usernameField.resignFirstResponder()
+        emailField.resignFirstResponder()
+        passwordField.resignFirstResponder()
+        passwordConfirmField.resignFirstResponder()
+    }
     
+    func storeSessionData(jsonData: JSON) {
+        var user = jsonData["user"]
+        
+        Session.login(user["username"].string!,
+            email: user["email"].string!,
+            user_id: user["external_id"].string!,
+            auth_token: user["auth_token"].string!,
+            created_at: user["created_at"].string!,
+            avatar_url: nil)
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

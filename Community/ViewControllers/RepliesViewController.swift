@@ -10,7 +10,6 @@ import UIKit
 import SDWebImage
 import UIActivityIndicator_for_SDWebImage
 import Alamofire
-//import EKKeyboardAvoiding
 import SwiftyJSON
 
 class RepliesViewController: UIViewController, PHFComposeBarViewDelegate, RepliesTableDelegate {
@@ -130,22 +129,7 @@ class RepliesViewController: UIViewController, PHFComposeBarViewDelegate, Replie
         
         composeBarView.startLoading();
         
-        var userInfo = NSUserDefaults.standardUserDefaults()
-     
-        var params = [String: AnyObject]()
-        
-        params["auth_token"] = userInfo.objectForKey("auth_token") as! String
-        params["user_id"] = userInfo.objectForKey("user_id") as! String
-        
-        var reply : [String: AnyObject] = [ "body" : composeBarView.text.strip() ]
-        
-        params["reply"] = reply
-        
-        composeBarView.text = ""
-        composeBarView.endEditing(true)
-        self.containerView.customInputView.resignFirstResponder()
-        
-        request = Alamofire.request(.POST, "https://infinite-lake-4056.herokuapp.com/api/v1/posts/\(post.id)/replies.json", parameters: params, encoding: .JSON)
+        request = Alamofire.request(Router.WriteReply(post_id: post.id, body: composeBarView.text.strip()))
             .responseJSON { request, response, jsonData, errors in
                 var defaultError = errors?.localizedDescription
                 

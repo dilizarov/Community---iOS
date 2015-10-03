@@ -389,8 +389,11 @@
                                 <state key="disabled" title="Create Account">
                                     <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="createAccountAction:" destination="dT0-f1-PV6" eventType="touchUpInside" id="zRn-Om-IjI"/>
+                                </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password Confirmation" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vip-VP-MXb" customClass="HoshiTextField" customModule="TextFieldEffects">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vip-VP-MXb" customClass="HoshiTextField" customModule="TextFieldEffects">
                                 <rect key="frame" x="16" y="312" width="288" height="60"/>
                                 <animations/>
                                 <constraints>
@@ -411,6 +414,13 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your account has been created" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wSO-Tb-CEE">
+                                <rect key="frame" x="16" y="273" width="288" height="22"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="textColor" red="0.24037527210000001" green="0.24037527210000001" blue="0.24037527210000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -420,7 +430,10 @@
                             <constraint firstAttribute="trailingMargin" secondItem="WJz-vo-1GF" secondAttribute="trailing" id="Bqe-iu-crw"/>
                             <constraint firstItem="WJz-vo-1GF" firstAttribute="top" secondItem="ADd-iH-G2b" secondAttribute="bottom" constant="44" id="EgM-ER-bJl"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ulj-iq-P3I" secondAttribute="trailing" id="FzF-gs-2yb"/>
+                            <constraint firstItem="wSO-Tb-CEE" firstAttribute="leading" secondItem="aSv-Gr-gR9" secondAttribute="leadingMargin" id="K3m-9R-mFY"/>
                             <constraint firstItem="Azy-Fp-8r0" firstAttribute="leading" secondItem="aSv-Gr-gR9" secondAttribute="leadingMargin" id="L7U-2m-npj"/>
+                            <constraint firstItem="wSO-Tb-CEE" firstAttribute="trailing" secondItem="aSv-Gr-gR9" secondAttribute="trailingMargin" id="QhJ-E9-ZJR"/>
+                            <constraint firstAttribute="centerX" secondItem="wSO-Tb-CEE" secondAttribute="centerX" id="Sm8-NP-FSW"/>
                             <constraint firstItem="Azy-Fp-8r0" firstAttribute="trailing" secondItem="aSv-Gr-gR9" secondAttribute="trailingMargin" id="YGn-jO-KNf"/>
                             <constraint firstItem="ulj-iq-P3I" firstAttribute="leading" secondItem="aSv-Gr-gR9" secondAttribute="leadingMargin" id="aPe-sR-ICl"/>
                             <constraint firstItem="vip-VP-MXb" firstAttribute="top" secondItem="ulj-iq-P3I" secondAttribute="bottom" constant="8" id="b5C-SD-ePz"/>
@@ -429,18 +442,20 @@
                             <constraint firstItem="WJz-vo-1GF" firstAttribute="leading" secondItem="aSv-Gr-gR9" secondAttribute="leadingMargin" id="iU3-Ru-hYP"/>
                             <constraint firstItem="Azy-Fp-8r0" firstAttribute="top" secondItem="vip-VP-MXb" secondAttribute="bottom" constant="32" id="p3L-0b-Kk1"/>
                             <constraint firstAttribute="trailingMargin" secondItem="vip-VP-MXb" secondAttribute="trailing" id="sxD-tS-S7C"/>
+                            <constraint firstAttribute="centerY" secondItem="wSO-Tb-CEE" secondAttribute="centerY" id="xeA-gQ-dmm"/>
                             <constraint firstItem="QYX-WY-2jX" firstAttribute="top" secondItem="WJz-vo-1GF" secondAttribute="bottom" constant="8" id="y4K-X9-88C"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Want an account?" id="Dps-nD-2cA">
                         <barButtonItem key="rightBarButtonItem" title="Skip" id="hvZ-Tz-3VB">
                             <connections>
-                                <segue destination="zn4-Lp-EgB" kind="show" id="g5u-Jb-Fga"/>
+                                <segue destination="zn4-Lp-EgB" kind="show" identifier="showShare" id="g5u-Jb-Fga"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="accountCreatedLabel" destination="wSO-Tb-CEE" id="nck-aN-mU8"/>
                         <outlet property="createAccountButton" destination="Azy-Fp-8r0" id="UAd-NF-LQK"/>
                         <outlet property="emailField" destination="QYX-WY-2jX" id="XDP-wR-JVO"/>
                         <outlet property="passwordConfirmField" destination="vip-VP-MXb" id="Pmk-Zh-cLr"/>

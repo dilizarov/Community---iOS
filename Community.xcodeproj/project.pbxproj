@@ -35,6 +35,8 @@
 		9A5566AD1BAD3CD6005DDBA3 /* PHFDelegateChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A5566A91BAD3CD6005DDBA3 /* PHFDelegateChain.m */; };
 		9A5566B11BAEAE07005DDBA3 /* RoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5566B01BAEAE07005DDBA3 /* RoundedView.swift */; };
 		9A5FC6191BBDB095001937C5 /* UsernameGeneratorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5FC6181BBDB095001937C5 /* UsernameGeneratorViewController.swift */; };
+		9A5FC61B1BBEF232001937C5 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5FC61A1BBEF231001937C5 /* Router.swift */; };
+		9A5FC61D1BBF69E2001937C5 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5FC61C1BBF69E2001937C5 /* Session.swift */; };
 		9AA526861B89CF4C00900383 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AA526851B89CF4C00900383 /* QuartzCore.framework */; };
 		9AA6135E1B83F572004911C2 /* LoggedOutProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA6135D1B83F572004911C2 /* LoggedOutProfileViewController.swift */; };
 		9AA613601B8464F0004911C2 /* CommunityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA6135F1B8464F0004911C2 /* CommunityCell.swift */; };
@@ -111,6 +113,8 @@
 		9A5566A91BAD3CD6005DDBA3 /* PHFDelegateChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHFDelegateChain.m; sourceTree = "<group>"; };
 		9A5566B01BAEAE07005DDBA3 /* RoundedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedView.swift; sourceTree = "<group>"; };
 		9A5FC6181BBDB095001937C5 /* UsernameGeneratorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsernameGeneratorViewController.swift; sourceTree = "<group>"; };
+		9A5FC61A1BBEF231001937C5 /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		9A5FC61C1BBF69E2001937C5 /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		9AA526851B89CF4C00900383 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		9AA6135D1B83F572004911C2 /* LoggedOutProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggedOutProfileViewController.swift; sourceTree = "<group>"; };
 		9AA6135F1B8464F0004911C2 /* CommunityCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunityCell.swift; sourceTree = "<group>"; };
@@ -260,6 +264,8 @@
 				9AAD20511B82A22F0053F743 /* LaunchScreen.xib */,
 				9A55660A1B9FD955005DDBA3 /* Main.storyboard */,
 				9AF4BC281BB9DB9400426A7E /* Welcome.storyboard */,
+				9A5FC61A1BBEF231001937C5 /* Router.swift */,
+				9A5FC61C1BBF69E2001937C5 /* Session.swift */,
 			);
 			path = Community;
 			sourceTree = "<group>";
@@ -554,6 +560,7 @@
 				9AD3B4B01B8E81D900357860 /* Delegates.swift in Sources */,
 				9A5FC6191BBDB095001937C5 /* UsernameGeneratorViewController.swift in Sources */,
 				9A55665E1BA7E4FB005DDBA3 /* DKImageResource.swift in Sources */,
+				9A5FC61D1BBF69E2001937C5 /* Session.swift in Sources */,
 				9AC6221A1BB222D200347F8D /* NSObject+EKKeyboardAvoiding.m in Sources */,
 				9AAD204B1B82A22F0053F743 /* SearchViewController.swift in Sources */,
 				9AF4BC301BBB6A8A00426A7E /* ShareCommunityViewController.swift in Sources */,
@@ -580,6 +587,7 @@
 				9A5566AB1BAD3CD6005DDBA3 /* PHFComposeBarView_Button.m in Sources */,
 				9AC622171BB222D200347F8D /* EKAvoidingInsetCalculator.m in Sources */,
 				9A5566971BAA0708005DDBA3 /* CommunitySettingsViewController.swift in Sources */,
+				9A5FC61B1BBEF232001937C5 /* Router.swift in Sources */,
 				9A5566AC1BAD3CD6005DDBA3 /* PHFComposeBarView_TextView.m in Sources */,
 				9A55665F1BA7E4FB005DDBA3 /* DKPopoverViewController.swift in Sources */,
 				9AC6221B1BB222D200347F8D /* UIScrollView+EKKeyboardAvoiding.m in Sources */,

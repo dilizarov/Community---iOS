@@ -69,7 +69,7 @@ class WritePostViewController: UIViewController, UITextViewDelegate {
         }
         
         if avatar_url == "" {
-            var default_avatar_url = NSUserDefaults.standardUserDefaults().objectForKey("avatar_url") as? String
+            var default_avatar_url = Session.get(.AvatarUrl)
             
             if let potential_avatar_url = default_avatar_url {
                 avatar_url = potential_avatar_url
@@ -101,7 +101,7 @@ class WritePostViewController: UIViewController, UITextViewDelegate {
         }
         
         if username == "" {
-            username = NSUserDefaults.standardUserDefaults().objectForKey("username") as! String
+            username = Session.get(.Username)!
         }
         
         usernameLabel.text = username
@@ -148,21 +148,9 @@ class WritePostViewController: UIViewController, UITextViewDelegate {
         (rightButtonOptions["load"]!.customView as! UIActivityIndicatorView).startAnimating()
         navBar.topItem!.rightBarButtonItem = rightButtonOptions["load"]
         
-        var userInfo = NSUserDefaults.standardUserDefaults()
+        var title: String? = (titleField.text.strip() == "" ? nil : titleField.text.strip())
         
-        var params = [String: AnyObject]()
-        params["auth_token"] = userInfo.objectForKey("auth_token") as! String
-        params["user_id"] = userInfo.objectForKey("user_id") as! String
-        
-        var post : [String: AnyObject] = [ "body" : postTextView.text.strip(), "community" : communityName.strip()]
-        
-        if (titleField.text != "") {
-            post["title"] = titleField.text.strip()
-        }
-        
-        params["post"] = post
-        
-        request = Alamofire.request(.POST, "https://infinite-lake-4056.herokuapp.com/api/v1/posts.json", parameters: params, encoding: .JSON)
+        request = Alamofire.request(Router.WritePost(community: communityName.strip(), body: postTextView.text.strip(), title: title))
             .responseJSON { request, response, jsonData, errors in
                 var defaultError = errors?.localizedDescription
                 

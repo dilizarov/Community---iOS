@@ -171,14 +171,8 @@ class CommunityTableViewController: UITableViewController, UpdateFeedWithLatestP
     }
     
     func performBackgroundFetch(completionHandler: (UIBackgroundFetchResult) -> Void) {
-        var userInfo = NSUserDefaults.standardUserDefaults()
         
-        var params = [String: AnyObject]()
-        params["user_id"] = userInfo.objectForKey("user_id") as! String
-        params["auth_token"] = userInfo.objectForKey("auth_token") as! String
-        params["community"] = communityTitle!.strip()
-        
-        Alamofire.request(.GET, "https://infinite-lake-4056.herokuapp.com/api/v1/posts.json", parameters: params)
+        Alamofire.request(Router.GetPosts(community: communityTitle!.strip(), page: nil, infiniteScrollTimeBuffer: nil))
             .responseJSON { request, response, jsonData, errors in
                 
                 if let jsonData: AnyObject = jsonData {
@@ -231,25 +225,20 @@ class CommunityTableViewController: UITableViewController, UpdateFeedWithLatestP
             animateInitialLoad()
         }
         
-        var userInfo = NSUserDefaults.standardUserDefaults()
-        
-        var params = [String: AnyObject]()
-        params["user_id"] = userInfo.objectForKey("user_id") as! String
-        params["auth_token"] = userInfo.objectForKey("auth_token") as! String
-        params["community"] = communityTitle!.strip()
+        var potentialPage: Int?
+        var potentialTimeBuffer: String?
         
         if (!refreshing) {
-            if page != nil {
-                var unwrappedPage = page!
-                params["page"] = unwrappedPage
+            
+            potentialPage = page
+            
+            if !infiniteScrollTimeBuffer.isEmpty {
+                potentialTimeBuffer = infiniteScrollTimeBuffer
             }
             
-            if (!infiniteScrollTimeBuffer.isEmpty) {
-                params["infinite_scroll_time_buffer"] = infiniteScrollTimeBuffer
-            }
         }
         
-        Alamofire.request(.GET, "https://infinite-lake-4056.herokuapp.com/api/v1/posts.json", parameters: params)
+        Alamofire.request(Router.GetPosts(community: communityTitle!.strip(), page: potentialPage, infiniteScrollTimeBuffer: potentialTimeBuffer))
             .responseJSON { request, response, jsonData, errors in
                 
                 var defaultError = errors?.localizedDescription

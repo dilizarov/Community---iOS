@@ -9,7 +9,6 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
-import KeychainSwift
 import Toast
 
 class UsernameGeneratorViewController: UIViewController {
@@ -35,11 +34,10 @@ class UsernameGeneratorViewController: UIViewController {
         loadIndicator.layer.zPosition = 5000
         self.view.addSubview(loadIndicator)
         
-        let keychain = KeychainSwift()
-        if keychain.get("meta_username") == nil {
+       if Session.get(.MetaUsername) == nil {
             generateMetaAccount()
         } else {
-            generatedUsername.text = keychain.get("meta_username")
+            generatedUsername.text = Session.get(.MetaUsername)
             navigationItem.rightBarButtonItem?.enabled = true
         }
     }
@@ -56,7 +54,7 @@ class UsernameGeneratorViewController: UIViewController {
         generatedUsername.textColor = UIColor.darkGrayColor()
         loadIndicator.startAnimating()
         
-        Alamofire.request(.POST, "https://infinite-lake-4056.herokuapp.com/api/v1/sessions/meta_account.json", encoding: .JSON)
+        Alamofire.request(Router.CreateMetaAccount)
             .responseJSON { request, response, jsonData, errors in
 
                 self.loadIndicator.stopAnimating()
@@ -67,12 +65,10 @@ class UsernameGeneratorViewController: UIViewController {
                     if (json["user"] != nil) {
                         var user = json["user"]
                         
-                        let keychain = KeychainSwift()
-                        
-                        keychain.set(user["auth_token"].string!, forKey: "meta_auth_token")
-                        keychain.set(user["username"].string!, forKey: "meta_username")
-                        keychain.set(user["external_id"].string!, forKey: "meta_user_id")
-                        keychain.set(user["created_at"].string!, forKey: "meta_created_at")
+                        Session.createMetaAccount(user["username"].string!,
+                            user_id: user["user_id"].string!,
+                            auth_token: user["auth_token"].string!,
+                            created_at: user["created_at"].string!)
                         
                         self.generatedUsername.text = user["username"].string
                         self.generatedUsername.alpha = 1.0
@@ -99,8 +95,7 @@ class UsernameGeneratorViewController: UIViewController {
         generatedUsername.textColor = UIColor.darkGrayColor()
         loadIndicator.startAnimating()
         
-        let keychain = KeychainSwift()
-        var user_id = keychain.get("meta_user_id")
+        var user_id = Session.get(.MetaUserId)
 
         if user_id == nil {
         
@@ -113,10 +108,7 @@ class UsernameGeneratorViewController: UIViewController {
             return
         }
         
-        var params = [String: AnyObject]()
-        params["auth_token"] = keychain.get("meta_auth_token")!
-        
-        Alamofire.request(.POST, "https://infinite-lake-4056.herokuapp.com/api/v1/users/\(user_id!)/meta_username.json", parameters: params, encoding: .JSON)
+        Alamofire.request(Router.ChangeMetaUsername)
             .responseJSON { request, response, jsonData, errors in
                 
                 self.loadIndicator.stopAnimating()
@@ -127,9 +119,7 @@ class UsernameGeneratorViewController: UIViewController {
                     if (json["user"] != nil) {
                         var user = json["user"]
                         
-                        let keychain = KeychainSwift()
-                        
-                        keychain.set(user["username"].string!, forKey: "meta_username")
+                        Session.set(user["username"].string!, key: .MetaUsername)
                         
                         self.generatedUsername.text = user["username"].string
                         self.generatedUsername.alpha = 1.0

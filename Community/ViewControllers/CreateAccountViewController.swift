@@ -70,26 +70,12 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
         MMProgressHUD.setPresentationStyle(.Balloon)
         MMProgressHUD.show()
         
-        var usernameText = usernameTextField.text.strip()
-        var emailText    = emailTextField.text.strip()
-        var passwordText = passwordTextField.text.strip()
-        
-        var params = [String: AnyObject]()
-        
-        var user = [ "username" : usernameText.strip(), "email" : emailText.strip(), "password" : passwordText]
-        
-        params["user"] = user
-        
-        Alamofire.request(.POST, "https://infinite-lake-4056.herokuapp.com/api/v1/registrations.json", parameters: params, encoding: .JSON)
+        Alamofire.request(Router.Register(username: usernameTextField.text.strip(), email: emailTextField.text.strip(), password: passwordTextField.text))
             .responseJSON { request, response, jsonData, errors in
                 // We delay by 1 second to keep a very smooth animation.
                 var delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC)))
                 
                 dispatch_after(delayTime, dispatch_get_main_queue(), {
-                    
-                    println(response)
-                    println(jsonData)
-                    println(errors)
                     
                     var defaultError = errors?.localizedDescription
                     
@@ -223,17 +209,15 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
     }
     
     func storeSessionData(jsonData: JSON) {
-        var defaults = NSUserDefaults.standardUserDefaults()
         
         var user = jsonData["user"]
         
-        defaults.setObject(user["username"].string, forKey: "username")
-        defaults.setObject(user["email"].string, forKey: "email")
-        defaults.setObject(user["external_id"].string, forKey: "user_id")
-        defaults.setObject(user["auth_token"].string, forKey: "auth_token")
-        defaults.setObject(user["created_at"].string, forKey: "created_at")
-        
-        defaults.synchronize()
+        Session.login(user["username"].string!,
+            email: user["email"].string!,
+            user_id: user["external_id"].string!,
+            auth_token: user["auth_token"].string!,
+            created_at: user["created_at"].string!,
+            avatar_url: nil)
     }
     
     func disableCreateAccountButton() {

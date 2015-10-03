@@ -37,14 +37,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func configureRealm() {
         
-        var optional_user_id = NSUserDefaults.standardUserDefaults().objectForKey("user_id") as? String
+        var optionalUserId = Session.get(.AccountUserId)
         
         var documentsDirectory = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! NSString
         
         var customRealmPath: String
         
-        if let user_id = optional_user_id {
-            customRealmPath = documentsDirectory.stringByAppendingPathComponent("\(user_id).realm")
+        if let userId = optionalUserId {
+            customRealmPath = documentsDirectory.stringByAppendingPathComponent("\(userId).realm")
         } else {
             customRealmPath = documentsDirectory.stringByAppendingPathComponent("logged_out.realm")
         }
@@ -66,13 +66,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func configureLaunchState() {
         let keychain = KeychainSwift()
         
-//        if let has_opened_app_before = keychain.get("meta_auth_token") {
-//            configureUsualLaunch(nil)
-//        } else {
-//            configureWelcomeLaunch()
-//        }
-        
-        configureWelcomeLaunch()
+        if let has_opened_app_before = Session.get(.MetaAuthToken) {
+            configureUsualLaunch(nil)
+        } else {
+            configureWelcomeLaunch()
+        }
     }
     
     func configureUsualLaunch(community: String?) {
@@ -88,7 +86,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var leftViewIdentifier: String
         
         //TODO
-        if (NSUserDefaults.standardUserDefaults().objectForKey("auth_token") != nil) {
+        if (Session.get(.AuthToken) != nil) {
             leftViewIdentifier = "ProfileViewController"
         } else {
             leftViewIdentifier = "LoggedOutProfileViewController"

@@ -111,16 +111,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         MMProgressHUD.setPresentationStyle(.Balloon)
         MMProgressHUD.show()
         
-        var emailText    = emailTextField.text.strip()
-        var passwordText = passwordTextField.text.strip()
-        
-        var params = [String: AnyObject]()
-        
-        var user = [ "email" : emailText.strip(), "password" : passwordText ]
-        
-        params["user"] = user
-        
-        Alamofire.request(.POST, "https://infinite-lake-4056.herokuapp.com/api/v1/sessions.json", parameters: params, encoding: .JSON)
+        Alamofire.request(Router.Login(email: emailTextField.text.strip(), password: passwordTextField.text))
             .responseJSON { request, response, jsonData, errors in
                 // We delay by 1 second to keep a very smooth animation.
                 var delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC)))
@@ -153,9 +144,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
                                 // This forces the side to layout itself properly.
                                 drawerController?.bouncePreviewForDrawerSide(.Left, distance: 30, completion: nil)
 
-//                                centerViewController.drawerController = drawerController
-//                                
-                                self.presentViewController(drawerController, animated: true, completion: nil)
+                               self.presentViewController(drawerController, animated: true, completion: nil)
                             }
                             
                             MMProgressHUD.dismissWithSuccess(":)")
@@ -221,18 +210,15 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     }
     
     func storeSessionData(jsonData: JSON) {
-        var defaults = NSUserDefaults.standardUserDefaults()
         
         var user = jsonData["user"]
         
-        defaults.setObject(user["username"].string, forKey: "username")
-        defaults.setObject(user["email"].string, forKey: "email")
-        defaults.setObject(user["external_id"].string, forKey: "user_id")
-        defaults.setObject(user["auth_token"].string, forKey: "auth_token")
-        defaults.setObject(user["created_at"].string, forKey: "created_at")
-        defaults.setObject(user["avatar_url"].string, forKey: "avatar_url")
-        
-        defaults.synchronize()
+        Session.login(user["username"].string!,
+            email: user["email"].string!,
+            user_id: user["external_id"].string!,
+            auth_token: user["auth_token"].string!,
+            created_at: user["created_at"].string!,
+            avatar_url: user["avatar_url"].string)
     }
     
     func disableLogInButton() {

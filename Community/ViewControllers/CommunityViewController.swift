@@ -118,14 +118,7 @@ class CommunityViewController: UIViewController, CommunityTableDelegate {
     
     func verifyJoinOrSettings() {
         
-        var userInfo = NSUserDefaults.standardUserDefaults()
-        
-        var params = [String: AnyObject]()
-        params["user_id"] = userInfo.objectForKey("user_id") as! String
-        params["auth_token"] = userInfo.objectForKey("auth_token") as! String
-        params["community"] = communityTitle!.strip()
-        
-        Alamofire.request(.GET, "https://infinite-lake-4056.herokuapp.com/api/v1/communities/show.json", parameters: params)
+        Alamofire.request(Router.VerifyMembership(community: communityTitle!.strip()))
             .responseJSON { request, response, jsonData, errors in
                 if response?.statusCode == 200 {
                     self.navBar.topItem!.leftBarButtonItem = self.leftButtonOptions["settings"]
@@ -164,14 +157,7 @@ class CommunityViewController: UIViewController, CommunityTableDelegate {
         (leftButtonOptions["load"]!.customView as! UIActivityIndicatorView).startAnimating()
         navBar.topItem!.leftBarButtonItem = leftButtonOptions["load"]
         
-        var userInfo = NSUserDefaults.standardUserDefaults()
-        
-        var params = [String: AnyObject]()
-        params["user_id"] = userInfo.objectForKey("user_id") as! String
-        params["auth_token"] = userInfo.objectForKey("auth_token") as! String
-        params["community"] = communityTitle!.strip()
-        
-        Alamofire.request(.POST, "https://infinite-lake-4056.herokuapp.com/api/v1/communities.json", parameters: params)
+        Alamofire.request(Router.JoinCommunity(community: communityTitle!.strip()))
             .responseJSON { request, response, jsonData, errors in
                 
                 if (response?.statusCode > 299 || errors != nil) {
