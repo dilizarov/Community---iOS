@@ -48,8 +48,18 @@ class WelcomeCreateAccountViewController: UIViewController, UITextFieldDelegate 
 
                                 self.resignTextFieldResponders()
                                 self.setAccountCreatedView()
-                                // THe username we made you will apply if you ever log out.
-                                self.performSegueWithIdentifier("showShare", sender: self)
+                                
+                                var descriptionAlert = UIAlertController(title: "Account Created", message: "The username we created for you during the previous step will be used whenever you log out.", preferredStyle: .Alert)
+                                
+                                var close = UIAlertAction(title: "Close", style: .Default, handler: {
+                                    alert in
+                                    
+                                    self.performSegueWithIdentifier("showShare", sender: self)
+                                })
+                                
+                                descriptionAlert.addAction(close)
+                                
+                                self.presentViewController(descriptionAlert, animated: true, completion: nil)
                             }
                             
                             MMProgressHUD.dismissWithSuccess(":)")

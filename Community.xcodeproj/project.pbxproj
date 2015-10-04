@@ -263,9 +263,9 @@
 				9AAD204F1B82A22F0053F743 /* Images.xcassets */,
 				9AAD20511B82A22F0053F743 /* LaunchScreen.xib */,
 				9A55660A1B9FD955005DDBA3 /* Main.storyboard */,
-				9AF4BC281BB9DB9400426A7E /* Welcome.storyboard */,
 				9A5FC61A1BBEF231001937C5 /* Router.swift */,
 				9A5FC61C1BBF69E2001937C5 /* Session.swift */,
+				9AF4BC281BB9DB9400426A7E /* Welcome.storyboard */,
 			);
 			path = Community;
 			sourceTree = "<group>";
@@ -368,14 +368,14 @@
 		9AF4BC2C1BBB300600426A7E /* Welcome */ = {
 			isa = PBXGroup;
 			children = (
+				9AF4BC311BBC77A900426A7E /* ChatWithUsViewController.swift */,
+				9AF4BC331BBC996200426A7E /* ImportantDocumentsViewController.swift */,
+				9AF4BC2D1BBB303500426A7E /* PrivacyPolicyViewController.swift */,
+				9AF4BC2F1BBB6A8A00426A7E /* ShareCommunityViewController.swift */,
 				9A5FC6181BBDB095001937C5 /* UsernameGeneratorViewController.swift */,
 				9AF4BC351BBCB19A00426A7E /* WelcomeCreateAccountViewController.swift */,
-				9AF4BC331BBC996200426A7E /* ImportantDocumentsViewController.swift */,
-				9AF4BC311BBC77A900426A7E /* ChatWithUsViewController.swift */,
-				9AF4BC2F1BBB6A8A00426A7E /* ShareCommunityViewController.swift */,
-				9AF4BC2D1BBB303500426A7E /* PrivacyPolicyViewController.swift */,
 			);
-			name = Welcome;
+			path = Welcome;
 			sourceTree = "<group>";
 		};
 		B5F817F0E7CB96DBA1F65791 /* Pods */ = {

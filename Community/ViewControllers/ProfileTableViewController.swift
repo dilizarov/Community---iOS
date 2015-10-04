@@ -79,8 +79,9 @@ class ProfileTableViewController: UITableViewController, PresentControllerDelega
         self.presentViewController(confirmLeaveAlert, animated: true, completion: nil)
     }
     
-    func performBackgroundFetch() {
+    func performBackgroundFetch(asyncGroup: dispatch_group_t!) {
         
+        dispatch_group_enter(asyncGroup)
         Alamofire.request(Router.GetCommunities)
             .responseJSON { request, response, jsonData, errors in
                 
@@ -105,11 +106,6 @@ class ProfileTableViewController: UITableViewController, PresentControllerDelega
                             }
                             
                             self.communities.append(community)
-                            
-                            //                            var name = community.name
-                            //                            var unicode = map(Array(community.name.unicodeScalars)) { NSString(format: "%04X", $0.value) }
-                            //
-                            //                            println("\(name) \(unicode)")
                         }
                         
                         let realm = Realm()
@@ -126,6 +122,8 @@ class ProfileTableViewController: UITableViewController, PresentControllerDelega
                         self.triggerRealmReload = true
                     }
                 }
+                
+                dispatch_group_leave(asyncGroup)
         }
     }
     

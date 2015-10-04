@@ -62,8 +62,9 @@ class RepliesTableViewController: UITableViewController {
         }
     }
     
-    func performBackgroundFetch(completionHandler: (UIBackgroundFetchResult) -> Void) {
+    func performBackgroundFetch(asyncGroup: dispatch_group_t!) {
         
+        dispatch_group_enter(asyncGroup)
         Alamofire.request(Router.GetReplies(post_id: post.id))
             .responseJSON { request, response, jsonData, errors in
                 
@@ -84,15 +85,15 @@ class RepliesTableViewController: UITableViewController {
                         
                         if self.replies.count == 1 {
                             self.emptyOrErrorDescription = "No replies"
-                            completionHandler(.NoData)
                         } else {
                             self.emptyOrErrorDescription = nil
-                            completionHandler(.NewData)
                         }
                     }
                 } else {
-                    completionHandler(.Failed)
+                
                 }
+                
+                dispatch_group_leave(asyncGroup)
         }
     }
     

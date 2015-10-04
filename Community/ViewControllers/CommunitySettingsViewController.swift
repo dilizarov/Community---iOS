@@ -85,6 +85,28 @@ class CommunitySettingsViewController: UIViewController {
         usernameField.addTarget(self, action: Selector("textFieldDidChange"), forControlEvents: .EditingChanged)
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if Session.isMeta() {
+            var userInfo = NSUserDefaults.standardUserDefaults()
+            var openedSettingsBefore = userInfo.objectForKey("openedSettingsBefore") as? Bool
+            
+            if openedSettingsBefore == nil || openedSettingsBefore == false {
+                userInfo.setBool(true, forKey: "openedSettingsBefore")
+                userInfo.synchronize()
+                
+                var definitionAlert = UIAlertController(title: "Quick Note", message: "Users with accounts can take usernames from users without accounts.", preferredStyle: .Alert)
+                
+                var confirm = UIAlertAction(title: "Close", style: .Default, handler: nil)
+                
+                definitionAlert.addAction(confirm)
+                
+                self.presentViewController(definitionAlert, animated: true, completion: nil)
+            }
+        }
+    }
+    
     func setupNavBar() {
         navBar = UINavigationBar(frame: CGRectMake(0, 0, self.view.bounds.width, 64))
         

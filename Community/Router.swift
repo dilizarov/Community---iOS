@@ -121,6 +121,8 @@ enum Router: URLRequestConvertible {
                         if username != nil {
                             params = [ "username" : username! ]
                         }
+                        
+                        params["community"] = community
                     }
                     
                     return (.PUT, "/communities/update.json", params)

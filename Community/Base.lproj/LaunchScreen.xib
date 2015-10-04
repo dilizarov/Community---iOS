@@ -11,7 +11,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="community" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MoA-Fu-7kX">
-                    <rect key="frame" x="60" y="261" width="200" height="50"/>
+                    <rect key="frame" x="60" y="259" width="200" height="50"/>
                     <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="ZzA-tp-ywm"/>
@@ -25,8 +25,8 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="MoA-Fu-7kX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="60" id="5u5-dF-ofk"/>
+                <constraint firstAttribute="centerY" secondItem="MoA-Fu-7kX" secondAttribute="centerY" id="h8s-5X-3cC"/>
                 <constraint firstAttribute="trailing" secondItem="MoA-Fu-7kX" secondAttribute="trailing" constant="60" id="nD4-RO-owz"/>
-                <constraint firstItem="MoA-Fu-7kX" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="261" id="qD5-Lf-DwG"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>

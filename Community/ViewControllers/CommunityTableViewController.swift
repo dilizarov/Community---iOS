@@ -170,8 +170,9 @@ class CommunityTableViewController: UITableViewController, UpdateFeedWithLatestP
         }
     }
     
-    func performBackgroundFetch(completionHandler: (UIBackgroundFetchResult) -> Void) {
+    func performBackgroundFetch(asyncGroup: dispatch_group_t!) {
         
+        dispatch_group_enter(asyncGroup)
         Alamofire.request(Router.GetPosts(community: communityTitle!.strip(), page: nil, infiniteScrollTimeBuffer: nil))
             .responseJSON { request, response, jsonData, errors in
                 
@@ -205,15 +206,15 @@ class CommunityTableViewController: UITableViewController, UpdateFeedWithLatestP
                         
                         if self.posts.count == 0 {
                             self.emptyOrErrorDescription = "No one has posted in this community. Maybe you can be the first post!"
-                            completionHandler(.NoData)
                         } else {
                             self.emptyOrErrorDescription = nil
-                            completionHandler(.NewData)
                         }
                     }
                 } else {
-                    completionHandler(.Failed)
+
                 }
+                
+                dispatch_group_leave(asyncGroup)
         }
     }
     

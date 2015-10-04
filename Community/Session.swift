@@ -23,32 +23,33 @@ class Session {
             var prefix: String = (!Session.loggedIn() ? "meta_" : "")
             
             switch self {
-                case .Username:
-                    return prefix + "username"
-                case .Email:
-                    return prefix + "email"
-                case .UserId:
-                    return prefix + "user_id"
-                case .AuthToken:
-                    return prefix + "auth_token"
-                case .CreatedAt:
-                    return prefix + "created_at"
-                case .AvatarUrl:
-                    return prefix + "avatar_url"
-                case .MetaUserId:
-                    return "meta_user_id"
-                case .MetaAuthToken:
-                    return "meta_auth_token"
-                case .MetaUsername:
-                    return "meta_username"
-                case .AccountUserId:
-                    return "user_id"
+            case .Username:
+                return prefix + "username"
+            case .Email:
+                return prefix + "email"
+            case .UserId:
+                return prefix + "user_id"
+            case .AuthToken:
+                return prefix + "auth_token"
+            case .CreatedAt:
+                return prefix + "created_at"
+            case .AvatarUrl:
+                return prefix + "avatar_url"
+            case .MetaUserId:
+                return "meta_user_id"
+            case .MetaAuthToken:
+                return "meta_auth_token"
+            case .MetaUsername:
+                return "meta_username"
+            case .AccountUserId:
+                return "user_id"
             }
         }
     }
     
     static func set(value: String, key: Key) {
-        keychain.set(value, forKey: key.path)
+        keychain.delete(key.path)
+        keychain.set(value, forKey: key.path, withAccess: .AccessibleAfterFirstUnlock)
     }
     
     static func get(key: Key) -> String? {
@@ -73,22 +74,22 @@ class Session {
     
     static func createMetaAccount(username: String, user_id: String, auth_token: String, created_at: String) {
         
-        keychain.set(username, forKey: "meta_username")
-        keychain.set(user_id, forKey: "meta_user_id")
-        keychain.set(auth_token, forKey: "meta_auth_token")
-        keychain.set(created_at, forKey: "meta_created_at")
+        keychain.set(username, forKey: "meta_username", withAccess: .AccessibleAfterFirstUnlock)
+        keychain.set(user_id, forKey: "meta_user_id", withAccess: .AccessibleAfterFirstUnlock)
+        keychain.set(auth_token, forKey: "meta_auth_token", withAccess: .AccessibleAfterFirstUnlock)
+        keychain.set(created_at, forKey: "meta_created_at", withAccess: .AccessibleAfterFirstUnlock)
     }
     
     static func login(username: String, email: String, user_id: String, auth_token: String, created_at: String, avatar_url: String?) {
         
-        keychain.set(username, forKey: "username")
-        keychain.set(email, forKey: "email")
-        keychain.set(user_id, forKey: "user_id")
-        keychain.set(auth_token, forKey: "auth_token")
-        keychain.set(created_at, forKey: "created_at")
+        keychain.set(username, forKey: "username", withAccess: .AccessibleAfterFirstUnlock)
+        keychain.set(email, forKey: "email", withAccess: .AccessibleAfterFirstUnlock)
+        keychain.set(user_id, forKey: "user_id", withAccess: .AccessibleAfterFirstUnlock)
+        keychain.set(auth_token, forKey: "auth_token", withAccess: .AccessibleAfterFirstUnlock)
+        keychain.set(created_at, forKey: "created_at", withAccess: .AccessibleAfterFirstUnlock)
         
         if let url = avatar_url {
-            keychain.set(url, forKey: "avatar_url")
+            keychain.set(url, forKey: "avatar_url", withAccess: .AccessibleAfterFirstUnlock)
         }
     }
     

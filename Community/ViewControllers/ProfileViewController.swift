@@ -14,6 +14,7 @@ import SDWebImage
 import UIActivityIndicator_for_SDWebImage
 import MMProgressHUD
 import RealmSwift
+import SIAlertView
 
 class ProfileViewController: UIViewController {
     
@@ -239,8 +240,8 @@ class ProfileViewController: UIViewController {
         self.presentViewController(pickerController, animated: true, completion: nil)
     }
     
-    func performBackgroundFetch() {
-        tableViewController.performBackgroundFetch()
+    func performBackgroundFetch(asyncGroup: dispatch_group_t!) {
+        tableViewController.performBackgroundFetch(asyncGroup)
     }
     
     func uploadImageData(imageData: NSData) {
@@ -250,7 +251,7 @@ class ProfileViewController: UIViewController {
         MMProgressHUD.show()
         
         Alamofire.upload(.POST,
-            URLString: "https://infinite-lake-4056.herokuapp.com/api/v1/users/\(Session.get(.UserId)!)/profile_pic.json?auth_token=\(Session.get(.AuthToken))",
+            URLString: "https://infinite-lake-4056.herokuapp.com/api/v1/users/\(Session.get(.UserId)!)/profile_pic.json?auth_token=\(Session.get(.AuthToken)!)",
             multipartFormData: { multipartFormData in
                 multipartFormData.appendBodyPart(data: imageData, name: "avatar", fileName: "avatar_img.png", mimeType: "image/png")
             },
@@ -266,6 +267,7 @@ class ProfileViewController: UIViewController {
                             upload.responseJSON { request, response, data, error in
                                 
                                 var errorCompletionBlock: (() -> Void) = {
+                                    
                                     var retryAlert = UIAlertController(title: "Could Not Upload Picture", message: nil, preferredStyle: .Alert)
                                     
                                     var retryAction = UIAlertAction(title: "Retry", style: .Default, handler: { alert in

@@ -112,8 +112,8 @@ class CommunityViewController: UIViewController, CommunityTableDelegate {
         navBar.pushNavigationItem(navigationItem, animated: false)
     }
     
-    func performBackgroundFetch(completionHandler: (UIBackgroundFetchResult) -> Void) {
-        tableViewController.performBackgroundFetch(completionHandler)
+    func performBackgroundFetch(asyncGroup: dispatch_group_t!) {
+        tableViewController.performBackgroundFetch(asyncGroup)
     }
     
     func verifyJoinOrSettings() {

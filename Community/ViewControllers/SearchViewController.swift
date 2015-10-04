@@ -34,9 +34,6 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //Overlays where the LaunchScreen label is.
-        originalFrame = communityLabel.frame
 
         search.alpha = 0
         
@@ -48,7 +45,8 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        communityLabel.frame.origin.y = communityLabel.frame.origin.y + 77
+        originalFrame = communityLabel.frame
+        communityLabel.center = self.view.center
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -58,7 +56,8 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
             firstAppearance = false
             UIView.animateWithDuration(0.25, delay: 0, options: UIViewAnimationOptions.CurveEaseIn | UIViewAnimationOptions.BeginFromCurrentState, animations: {
                 
-                self.communityLabel.transform = CGAffineTransformMakeTranslation(0, -77)
+                var deltaY = self.originalFrame.origin.y - self.communityLabel.frame.origin.y
+                self.communityLabel.transform = CGAffineTransformMakeTranslation(0, deltaY)
                 self.search.alpha = 1
                 
                 }, completion: nil)

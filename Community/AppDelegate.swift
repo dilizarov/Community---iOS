@@ -9,7 +9,6 @@
 import UIKit
 import MMDrawerController
 import RealmSwift
-import KeychainSwift
 import IQKeyboardManagerSwift
 
 @UIApplicationMain
@@ -64,8 +63,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func configureLaunchState() {
-        let keychain = KeychainSwift()
-        
         if let has_opened_app_before = Session.get(.MetaAuthToken) {
             configureUsualLaunch(nil)
         } else {
@@ -121,20 +118,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, performFetchWithCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
+        
+        println(Session.get(Session.Key.Username))
+        println(Session.get(Session.Key.UserId))
+        println(Session.get(Session.Key.AuthToken))
+        
+        if Session.getAuthToken() == nil {
+            return completionHandler(.NoData)
+        }
+        
         if let drawer = drawerController {
             let profileVC = drawer.leftDrawerViewController as! ProfileViewController
             let navigationVC = drawer.centerViewController as! UINavigationController
             
-            // We don't use the completionHandler in this method.
-            profileVC.performBackgroundFetch()
+            var backgroundGroup = dispatch_group_create()
+            
+            profileVC.performBackgroundFetch(backgroundGroup)
             
             if let communityVC = navigationVC.visibleViewController as? CommunityViewController {
-                if let repliesVC = communityVC.presentedViewController as? RepliesViewController {
-                    repliesVC.performBackgroundFetch(completionHandler)
-                } else {
-                    communityVC.performBackgroundFetch(completionHandler)
-                }
+                communityVC.performBackgroundFetch(backgroundGroup)
+            } else if let repliesVC = navigationVC.visibleViewController as? RepliesViewController {
+                repliesVC.performBackgroundFetch(backgroundGroup)
             }
+            
+            dispatch_group_notify(backgroundGroup, dispatch_get_main_queue(), {
+                completionHandler(.NewData)
+            })
         } else {
             completionHandler(UIBackgroundFetchResult.NoData)
         }
