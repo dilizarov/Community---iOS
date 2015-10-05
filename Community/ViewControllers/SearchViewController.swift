@@ -9,6 +9,7 @@
 import UIKit
 import SDWebImage
 import UIActivityIndicator_for_SDWebImage
+import UITextField_Shake
 
 class SearchViewController: UIViewController, UITextFieldDelegate {
 
@@ -186,7 +187,17 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         self.view.endEditing(true)
         
-        search(textField.text.strip())
+        var searchString: String = textField.text.strip()
+        
+        var length = NSString(string: searchString).length
+        
+        if length == 0 {
+            textField.shake()
+        } else if searchString[0] == "&" && length != 1 {
+            search(searchString[Range<Int>(start: 1, end: length)].strip())
+        } else {
+            search(searchString)
+        }
         
         return false
     }

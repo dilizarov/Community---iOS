@@ -412,7 +412,7 @@ public class IQKeyboardManager: NSObject, UIGestureRecognizerDelegate {
     internal func tapRecognized(gesture: UITapGestureRecognizer) {
         
         if gesture.state == UIGestureRecognizerState.Ended {
-
+            
             //Resigning currently responder textField.
             resignFirstResponder()
         }

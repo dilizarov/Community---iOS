@@ -89,10 +89,20 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>UITextField+Shake.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>10845198053E6B4C1CB0DB2377D456CA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>1C71C1FEC9C51F833C96819095731B69</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -102,22 +112,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>26E05F8F1C39D9F540C609ED55A95A0B</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>27A89DDCA91AB7A6A73C5BC17324072B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>367CD2AA27D866DFA89573B4769B8C15</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>45553333629D7AB111A65B59FE628590</key>
+		<key>3FCD5C81BE8F26E5E7DE96A9EC11CFF9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -127,17 +127,32 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>52482ED075D1E84A97B02A84659E2FEB</key>
+		<key>48FB5A2C5FDBB765AB47B299E2F07522</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6C5B47B7606A1C870C346C0651FF4587</key>
+		<key>4DF261448914CAB86E70D85B476B4C84</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7BC1206E88B437C415197D2A8E350B84</key>
+		<key>535E89DE828964C3817725A2854A858B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8273670D1200FECE158CDD69CA54F858</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>89E2098B90F3AE5DDB59F72D56D46D78</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A3426706A84EFA7331BDDBFBDF7647C4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -147,32 +162,27 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>AC4FBEC48BB4B790119D5624F31D0B96</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>B9A04D3C9B208813656510FDA8ADAE02</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>CE37A771D2A8D097834491E016D6076F</key>
+		<key>E7143E91D8A9AE31542527D7A204393A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E0060141C833D76F5939244822443A81</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>E04052B55E1B444AD34376084D9AEF03</key>
+		<key>E9CA5EC9F4D0452FC125E5CCC358747C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>F7ED902DA9B8C7F94554D537AB6765C7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FE9880B0589547FCF366E6443262C9DB</key>
 		<dict>
 			<key>primary</key>
 			<true/>

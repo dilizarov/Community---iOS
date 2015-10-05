@@ -24,9 +24,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.sharedManager().shouldResignOnTouchOutside = true
         IQKeyboardManager.sharedManager().enableAutoToolbar = false
         
-        IQKeyboardManager.sharedManager().disableInViewControllerClass(RepliesViewController)
-        IQKeyboardManager.sharedManager().disableInViewControllerClass(RepliesTableViewController)
-        
         configureRealm()
         configureLaunchState()
         application.setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalMinimum)
@@ -119,10 +116,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, performFetchWithCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
         
-        println(Session.get(Session.Key.Username))
-        println(Session.get(Session.Key.UserId))
-        println(Session.get(Session.Key.AuthToken))
-        
         if Session.getAuthToken() == nil {
             return completionHandler(.NoData)
         }
@@ -145,7 +138,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 completionHandler(.NewData)
             })
         } else {
-            completionHandler(UIBackgroundFetchResult.NoData)
+            completionHandler(.NoData)
         }
     }
     

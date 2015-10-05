@@ -32,6 +32,7 @@ PODS:
   - Toast (2.4)
   - UIActivityIndicator-for-SDWebImage (1.2):
     - SDWebImage (~> 3.7)
+  - UITextField+Shake (1.1.1)
 
 DEPENDENCIES:
   - Alamofire (~> 1.3)
@@ -49,6 +50,7 @@ DEPENDENCIES:
   - TextFieldEffects (~> 0.4)
   - Toast (~> 2.4)
   - UIActivityIndicator-for-SDWebImage (~> 1.2)
+  - UITextField+Shake (~> 1.1)
 
 SPEC CHECKSUMS:
   Alamofire: e4ab637e3195b645c814b87a652373439e59f2a4
@@ -67,5 +69,6 @@ SPEC CHECKSUMS:
   TextFieldEffects: e83649831762655b12244775d8b8a1fd3e3953d1
   Toast: 0773b8fc0e97352ca6054517bec7ebdd4110029d
   UIActivityIndicator-for-SDWebImage: 7bf7ebbf0ed1747dedc0d6e949c4603a6d0f9e0c
+  UITextField+Shake: 7b54838133d2242b90bd40e24d8de2a50a31964b
 
 COCOAPODS: 0.38.0

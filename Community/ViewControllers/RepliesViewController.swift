@@ -11,6 +11,7 @@ import SDWebImage
 import UIActivityIndicator_for_SDWebImage
 import Alamofire
 import SwiftyJSON
+import IQKeyboardManagerSwift
 
 class RepliesViewController: UIViewController, PHFComposeBarViewDelegate, RepliesTableDelegate {
 
@@ -77,6 +78,9 @@ class RepliesViewController: UIViewController, PHFComposeBarViewDelegate, Replie
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
+        // We need to disable the IQKeyboardManager because we use our own implementation on the inputAccessoryView
+        IQKeyboardManager.sharedManager().enable = false
         
         if !loadIndicator.isAnimating() && navBar.topItem!.rightBarButtonItem != rightButtonOptions["load"] {
             tableViewController.tableView.reloadData()
@@ -170,7 +174,6 @@ class RepliesViewController: UIViewController, PHFComposeBarViewDelegate, Replie
     }
     
     func refresh() {
-        
         (rightButtonOptions["load"]!.customView as! UIActivityIndicatorView).startAnimating()
         navBar.topItem!.rightBarButtonItem = rightButtonOptions["load"]
         
@@ -206,6 +209,13 @@ class RepliesViewController: UIViewController, PHFComposeBarViewDelegate, Replie
             tableViewController.delegate = self
             
         }
+    }
+    
+
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        IQKeyboardManager.sharedManager().enable = true
     }
     
     override func didReceiveMemoryWarning() {
