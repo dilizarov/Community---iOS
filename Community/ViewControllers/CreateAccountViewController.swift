@@ -2,75 +2,33 @@
 //  CreateAccountViewController.swift
 //  
 //
-//  Created by David Ilizarov on 8/19/15.
+//  Created by David Ilizarov on 10/5/15.
 //
 //
 
 import UIKit
+import TextFieldEffects
 import Alamofire
 import SwiftyJSON
 import MMProgressHUD
-import MMDrawerController
+import IQKeyboardManagerSwift
 
 class CreateAccountViewController: UIViewController, UITextFieldDelegate {
-        
-    @IBOutlet var usernameLabel: UILabel!
-    @IBOutlet var emailLabel: UILabel!
-    @IBOutlet var passwordLabel: UILabel!
-    @IBOutlet var confirmLabel: UILabel!
-    @IBOutlet var usernameTextField: UITextField!
-    @IBOutlet var emailTextField: UITextField!
-    @IBOutlet var passwordTextField: UITextField!
-    @IBOutlet var confirmTextField: UITextField!
+
+    var navBar: UINavigationBar!
     
-    @IBOutlet var backButton: UIButton!
-    @IBAction func backButtonPressed(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    @IBOutlet var passwordShowButton: UIButton!
-    @IBAction func passwordShowButtonPressed(sender: AnyObject) {
-        
-        if (passwordTextField.secureTextEntry) {
-            passwordTextField.secureTextEntry = false
-            passwordShowButton.setTitle("Hide", forState: .Normal)
-            
-            // Silly solution to resolve what is an iOS bug
-            // http://stackoverflow.com/questions/14220187/uitextfield-has-trailing-whitespace-after-securetextentry-toggle
-            
-            var tmpText = passwordTextField.text
-            passwordTextField.text = nil
-            passwordTextField.text = tmpText
-        } else {
-            passwordTextField.secureTextEntry = true
-            passwordShowButton.setTitle("Show", forState: .Normal)
-        }
-    }
-    
-    @IBOutlet var confirmShowButton: UIButton!
-    @IBAction func confirmShowButtonPressed(sender: AnyObject) {
-        
-        if (confirmTextField.secureTextEntry) {
-            confirmTextField.secureTextEntry = false
-            confirmShowButton.setTitle("Hide", forState: .Normal)
-            
-            var tmpText = confirmTextField.text
-            confirmTextField.text = nil
-            confirmTextField.text = tmpText
-        } else {
-            confirmTextField.secureTextEntry = true
-            confirmShowButton.setTitle("Show", forState: .Normal)
-        }
-    }
+    @IBOutlet var usernameField: HoshiTextField!
+    @IBOutlet var emailField: HoshiTextField!
+    @IBOutlet var passwordField: HoshiTextField!
+    @IBOutlet var confirmField: HoshiTextField!
     
     @IBOutlet var createAccountButton: UIButton!
     @IBAction func createAccountButtonPressed(sender: AnyObject) {
-        
         MMProgressHUD.sharedHUD().overlayMode = .Linear
         MMProgressHUD.setPresentationStyle(.Balloon)
         MMProgressHUD.show()
         
-        Alamofire.request(Router.Register(username: usernameTextField.text.strip(), email: emailTextField.text.strip(), password: passwordTextField.text))
+        Alamofire.request(Router.Register(username: usernameField.text!.strip(), email: emailField.text!.strip(), password: passwordField.text!))
             .responseJSON { request, response, jsonData, errors in
                 // We delay by 1 second to keep a very smooth animation.
                 var delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC)))
@@ -85,29 +43,19 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
                         let json = JSON(jsonData)
                         
                         if (json["errors"] == nil) {
-                            self.storeSessionData(json)
+                            //self.storeSessionData(json)
+                            
                             MMProgressHUD.sharedHUD().dismissAnimationCompletion = {
-                             
-                                let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
                                 
-                                var centerViewController =  mainStoryboard.instantiateViewControllerWithIdentifier("SearchViewController") as! SearchViewController
+                                self.usernameField.resignFirstResponder()
+                                self.emailField.resignFirstResponder()
+                                self.passwordField.resignFirstResponder()
+                                self.confirmField.resignFirstResponder()
                                 
-                                var leftViewController = mainStoryboard.instantiateViewControllerWithIdentifier("ProfileViewController") as! UIViewController
-                                
-                                let drawerController = MMDrawerController(centerViewController: centerViewController, leftDrawerViewController: leftViewController)
-                                
-                                drawerController?.setMaximumLeftDrawerWidth(330, animated: true, completion: nil)
-                                drawerController?.openDrawerGestureModeMask = .All
-                                drawerController?.closeDrawerGestureModeMask = .All
-                                drawerController?.centerHiddenInteractionMode = .None
-                                
-                                // This forces the side to layout itself properly.
-                                drawerController?.bouncePreviewForDrawerSide(.Left, distance: 30, completion: nil)
-                                
-                              //  centerViewController.drawerController = drawerController
-                                
-                                self.presentViewController(drawerController, animated: true, completion: nil)
+                                var delegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                                delegate.configureUsualLaunch(nil)
                             }
+
                             
                             MMProgressHUD.dismissWithSuccess(":)")
                         } else {
@@ -118,7 +66,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
                                 
                                 errorString += json["errors"][i].string!
                             }
-                                
+                            
                             MMProgressHUD.dismissWithError(errorString, afterDelay: NSTimeInterval(3))
                         }
                     } else {
@@ -129,39 +77,64 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
- 
-        disableCreateAccountButton()
-        
-        usernameTextField.tintColor = UIColor.whiteColor()
-        emailTextField.tintColor = UIColor.whiteColor()
-        passwordTextField.tintColor = UIColor.whiteColor()
-        confirmTextField.tintColor = UIColor.whiteColor()
-        
-        self.usernameTextField.delegate = self
-        self.emailTextField.delegate = self
-        self.passwordTextField.delegate = self
-        self.confirmTextField.delegate = self
-        
-        usernameTextField.addTarget(self, action: Selector("textFieldDidChange"), forControlEvents: .EditingChanged)
-        emailTextField.addTarget(self, action: Selector("textFieldDidChange"), forControlEvents: .EditingChanged)
-        passwordTextField.addTarget(self, action: Selector("textFieldDidChange"), forControlEvents: .EditingChanged)
-        confirmTextField.addTarget(self, action: Selector("textFieldDidChange"), forControlEvents: .EditingChanged)
 
-        usernameTextField.becomeFirstResponder()
+        setupNavBar()
+        
+        createAccountButton.enabled = false
+        
+        usernameField.tintColor = UIColor(hexString: "056A85")
+        emailField.tintColor = UIColor(hexString: "056A85")
+        passwordField.tintColor = UIColor(hexString: "056A85")
+        confirmField.tintColor = UIColor(hexString: "056A85")
+
+        self.usernameField.delegate = self
+        self.emailField.delegate = self
+        self.passwordField.delegate = self
+        self.confirmField.delegate = self
+        
+        usernameField.addTarget(self, action: Selector("textFieldDidChange"), forControlEvents: .EditingChanged)
+        emailField.addTarget(self, action: Selector("textFieldDidChange"), forControlEvents: .EditingChanged)
+        passwordField.addTarget(self, action: Selector("textFieldDidChange"), forControlEvents: .EditingChanged)
+        confirmField.addTarget(self, action: Selector("textFieldDidChange"), forControlEvents: .EditingChanged)
+        
+        usernameField.keyboardDistanceFromTextField = 76
+        emailField.keyboardDistanceFromTextField = 76
+        passwordField.keyboardDistanceFromTextField = 76
+        confirmField.keyboardDistanceFromTextField = 130
+    }
+    
+    func setupNavBar() {
+        navBar = UINavigationBar(frame: CGRectMake(0, 0, self.view.bounds.width, 64))
+        
+        navBar.barTintColor = UIColor(hexString: "056A85")
+        navBar.translucent = true
+        
+        navBar.titleTextAttributes = [ NSForegroundColorAttributeName : UIColor.whiteColor() ]
+        
+        self.view.addSubview(navBar)
+        
+        var backButton = UIBarButtonItem(image: UIImage(named: "Back"), style: .Plain, target: self, action: Selector("back"))
+        
+        backButton.tintColor = UIColor.whiteColor()
+        
+        var navigationItem = UINavigationItem()
+        navigationItem.leftBarButtonItem = backButton
+        
+        navigationItem.title = "Create Account"
+        
+        navBar.pushNavigationItem(navigationItem, animated: false)
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        
-        if (textField == usernameTextField) {
-            emailTextField.becomeFirstResponder()
-        } else if (textField == emailTextField) {
-            passwordTextField.becomeFirstResponder()
-        } else if (textField == passwordTextField) {
-            confirmTextField.becomeFirstResponder()
-        } else if (textField == confirmTextField) {
+        if (textField == usernameField) {
+            emailField.becomeFirstResponder()
+        } else if (textField == emailField) {
+            passwordField.becomeFirstResponder()
+        } else if (textField == passwordField) {
+            confirmField.becomeFirstResponder()
+        } else if (textField == confirmField) {
             if (createAccountButton.enabled) {
                 createAccountButton.sendActionsForControlEvents(UIControlEvents.TouchUpInside)
             }
@@ -170,42 +143,13 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
-    func textFieldDidBeginEditing(textField: UITextField) {
-
-        if (textField == passwordTextField || textField == confirmTextField) {
-            passwordShowButton.enabled = true
-            confirmShowButton.enabled = true
-            
-            passwordShowButton.alpha = 1.0
-            confirmShowButton.alpha = 1.0
-        } else {
-            passwordShowButton.alpha = 0.0
-            confirmShowButton.alpha = 0.0
-            
-            passwordShowButton.enabled = false
-            confirmShowButton.enabled = false
-            
-            passwordTextField.secureTextEntry = true
-            confirmTextField.secureTextEntry = true
-            
-            passwordShowButton.setTitle("Show", forState: .Normal)
-            confirmShowButton.setTitle("Show", forState: .Normal)
-        }
-    }
-
-    // We check all fields and if the fields meet the criteria, we activate create account button.
     func textFieldDidChange() {
-    
-        var usernameChars = usernameTextField.text.strip()
-        var emailChars    = emailTextField.text.strip()
-        var passwordChars = passwordTextField.text.strip()
-        var confirmChars  = confirmTextField.text.strip()
+        var usernameChars = usernameField.text!.strip()
+        var emailChars    = emailField.text!.strip()
+        var passwordChars = passwordField.text!.strip()
+        var confirmChars  = confirmField.text!.strip()
         
-        if (usernameChars.isEmpty || !String.validateEmail(emailChars) || passwordChars.isEmpty || confirmChars.isEmpty || passwordChars != confirmChars) {
-            disableCreateAccountButton()
-        } else {
-            enableCreateAccountButton()
-        }
+        createAccountButton.enabled = !(usernameChars.isEmpty || !String.validateEmail(emailChars) || passwordChars.isEmpty || confirmChars.isEmpty || passwordChars != confirmChars)
     }
     
     func storeSessionData(jsonData: JSON) {
@@ -220,16 +164,10 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
             avatar_url: nil)
     }
     
-    func disableCreateAccountButton() {
-        createAccountButton.enabled = false
-        createAccountButton.alpha = 0.4
+    func back() {
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
-    
-    func enableCreateAccountButton() {
-        createAccountButton.enabled = true
-        createAccountButton.alpha = 1.0
-    }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

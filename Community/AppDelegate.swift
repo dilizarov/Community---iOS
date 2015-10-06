@@ -24,6 +24,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.sharedManager().shouldResignOnTouchOutside = true
         IQKeyboardManager.sharedManager().enableAutoToolbar = false
         
+        IQKeyboardManager.sharedManager().disableInViewControllerClass(RepliesViewController)
+        IQKeyboardManager.sharedManager().disableInViewControllerClass(RepliesTableViewController)
+        
         configureRealm()
         configureLaunchState()
         application.setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalMinimum)
@@ -77,16 +80,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let navigationController = UINavigationController(rootViewController: searchViewController)
         navigationController.navigationBarHidden = true
         
-        var leftViewIdentifier: String
-        
-        //TODO
-        if (Session.get(.AuthToken) != nil) {
-            leftViewIdentifier = "ProfileViewController"
-        } else {
-            leftViewIdentifier = "LoggedOutProfileViewController"
-        }
-        
-        let leftViewController = mainStoryboard.instantiateViewControllerWithIdentifier(leftViewIdentifier) as! UIViewController
+        let leftViewController = mainStoryboard.instantiateViewControllerWithIdentifier("ProfileViewController") as! UIViewController
         
         drawerController = MMDrawerController(centerViewController: navigationController, leftDrawerViewController: leftViewController)
         

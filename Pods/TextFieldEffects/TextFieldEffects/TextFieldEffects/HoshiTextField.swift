@@ -59,6 +59,8 @@ import UIKit
         }
     }
     
+    public var rightOffset: CGFloat?
+    
     private let borderThickness: (active: CGFloat, inactive: CGFloat) = (active: 2, inactive: 0.5)
     private let placeholderInsets = CGPoint(x: 0, y: 6)
     private let textFieldInsets = CGPoint(x: 0, y: 12)
@@ -192,11 +194,24 @@ import UIKit
     // MARK: - Overrides
     
     override public func editingRectForBounds(bounds: CGRect) -> CGRect {
-        return CGRectOffset(bounds, textFieldInsets.x, textFieldInsets.y)
+        
+        var editableBounds = bounds
+        
+        if let offset = rightOffset {
+            editableBounds = CGRectMake(editableBounds.origin.x, editableBounds.origin.y, editableBounds.size.width - offset, editableBounds.size.height)
+        }
+        
+        return CGRectOffset(editableBounds, textFieldInsets.x, textFieldInsets.y)
     }
     
     override public func textRectForBounds(bounds: CGRect) -> CGRect {
-        return CGRectOffset(bounds, textFieldInsets.x, textFieldInsets.y)
+        
+        var editableBounds = bounds
+        
+        if let offset = rightOffset {
+            editableBounds = CGRectMake(editableBounds.origin.x, editableBounds.origin.y, editableBounds.size.width - offset, editableBounds.size.height)
+        }
+        
+        return CGRectOffset(editableBounds, textFieldInsets.x, textFieldInsets.y)
     }
-    
 }

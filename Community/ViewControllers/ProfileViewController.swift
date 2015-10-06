@@ -14,7 +14,6 @@ import SDWebImage
 import UIActivityIndicator_for_SDWebImage
 import MMProgressHUD
 import RealmSwift
-import SIAlertView
 
 class ProfileViewController: UIViewController {
     

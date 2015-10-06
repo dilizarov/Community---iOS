@@ -37,11 +37,10 @@
 		9A5FC6191BBDB095001937C5 /* UsernameGeneratorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5FC6181BBDB095001937C5 /* UsernameGeneratorViewController.swift */; };
 		9A5FC61B1BBEF232001937C5 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5FC61A1BBEF231001937C5 /* Router.swift */; };
 		9A5FC61D1BBF69E2001937C5 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5FC61C1BBF69E2001937C5 /* Session.swift */; };
+		9A5FC61F1BC306AB001937C5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5FC61E1BC306AB001937C5 /* LoginViewController.swift */; };
+		9A5FC6211BC35FDD001937C5 /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5FC6201BC35FDD001937C5 /* CreateAccountViewController.swift */; };
 		9AA526861B89CF4C00900383 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AA526851B89CF4C00900383 /* QuartzCore.framework */; };
-		9AA6135E1B83F572004911C2 /* LoggedOutProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA6135D1B83F572004911C2 /* LoggedOutProfileViewController.swift */; };
 		9AA613601B8464F0004911C2 /* CommunityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA6135F1B8464F0004911C2 /* CommunityCell.swift */; };
-		9AA613621B851F79004911C2 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA613611B851F79004911C2 /* LogInViewController.swift */; };
-		9AA613641B851FD6004911C2 /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA613631B851FD6004911C2 /* CreateAccountViewController.swift */; };
 		9AAD20491B82A22F0053F743 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AAD20481B82A22F0053F743 /* AppDelegate.swift */; };
 		9AAD204B1B82A22F0053F743 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AAD204A1B82A22F0053F743 /* SearchViewController.swift */; };
 		9AAD20501B82A22F0053F743 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9AAD204F1B82A22F0053F743 /* Images.xcassets */; };
@@ -115,11 +114,10 @@
 		9A5FC6181BBDB095001937C5 /* UsernameGeneratorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsernameGeneratorViewController.swift; sourceTree = "<group>"; };
 		9A5FC61A1BBEF231001937C5 /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		9A5FC61C1BBF69E2001937C5 /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
+		9A5FC61E1BC306AB001937C5 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		9A5FC6201BC35FDD001937C5 /* CreateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 		9AA526851B89CF4C00900383 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		9AA6135D1B83F572004911C2 /* LoggedOutProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggedOutProfileViewController.swift; sourceTree = "<group>"; };
 		9AA6135F1B8464F0004911C2 /* CommunityCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunityCell.swift; sourceTree = "<group>"; };
-		9AA613611B851F79004911C2 /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
-		9AA613631B851FD6004911C2 /* CreateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 		9AAD20431B82A22F0053F743 /* Community.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Community.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AAD20471B82A22F0053F743 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9AAD20481B82A22F0053F743 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -319,9 +317,8 @@
 				9A5566961BAA0707005DDBA3 /* CommunitySettingsViewController.swift */,
 				9A5566521BA78E94005DDBA3 /* CommunityTableViewController.swift */,
 				9A5566501BA78A2C005DDBA3 /* CommunityViewController.swift */,
-				9AA613631B851FD6004911C2 /* CreateAccountViewController.swift */,
-				9AA613611B851F79004911C2 /* LogInViewController.swift */,
-				9AA6135D1B83F572004911C2 /* LoggedOutProfileViewController.swift */,
+				9A5FC6201BC35FDD001937C5 /* CreateAccountViewController.swift */,
+				9A5FC61E1BC306AB001937C5 /* LoginViewController.swift */,
 				9A5566641BA7FD5C005DDBA3 /* ProfileTableViewController.swift */,
 				9A55661C1BA41C8C005DDBA3 /* ProfileViewController.swift */,
 				9A55669E1BAD19DC005DDBA3 /* RepliesTableViewController.swift */,
@@ -560,19 +557,18 @@
 				9AD3B4B01B8E81D900357860 /* Delegates.swift in Sources */,
 				9A5FC6191BBDB095001937C5 /* UsernameGeneratorViewController.swift in Sources */,
 				9A55665E1BA7E4FB005DDBA3 /* DKImageResource.swift in Sources */,
+				9A5FC61F1BC306AB001937C5 /* LoginViewController.swift in Sources */,
 				9A5FC61D1BBF69E2001937C5 /* Session.swift in Sources */,
 				9AC6221A1BB222D200347F8D /* NSObject+EKKeyboardAvoiding.m in Sources */,
 				9AAD204B1B82A22F0053F743 /* SearchViewController.swift in Sources */,
 				9AF4BC301BBB6A8A00426A7E /* ShareCommunityViewController.swift in Sources */,
 				9A5566141BA16F18005DDBA3 /* WritePostViewController.swift in Sources */,
-				9AA613621B851F79004911C2 /* LogInViewController.swift in Sources */,
+				9A5FC6211BC35FDD001937C5 /* CreateAccountViewController.swift in Sources */,
 				9AF4BC2E1BBB303500426A7E /* PrivacyPolicyViewController.swift in Sources */,
-				9AA613641B851FD6004911C2 /* CreateAccountViewController.swift in Sources */,
 				9A5566AD1BAD3CD6005DDBA3 /* PHFDelegateChain.m in Sources */,
 				9AB8D00F1BB23C2200516551 /* Reply.swift in Sources */,
 				9A3D2C2B1B8BFD4F00C10CC5 /* Extensions.swift in Sources */,
 				9AF4BC361BBCB19A00426A7E /* WelcomeCreateAccountViewController.swift in Sources */,
-				9AA6135E1B83F572004911C2 /* LoggedOutProfileViewController.swift in Sources */,
 				9A5566AA1BAD3CD6005DDBA3 /* PHFComposeBarView.m in Sources */,
 				9A55669B1BACC10E005DDBA3 /* ReplyCell.swift in Sources */,
 				9A5566991BACB722005DDBA3 /* RepliesViewController.swift in Sources */,
