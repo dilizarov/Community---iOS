@@ -13,7 +13,18 @@ class ProfileTableViewController: UITableViewController, PresentControllerDelega
     
     var communities = [JoinedCommunity]()
     
-    var settings = ["Log out"]
+    var settings: [String] {
+ 
+        var settings: [String]
+        
+        if Session.isMeta() {
+            settings = ["Log In", "Create Account"]
+        } else {
+            settings = ["Log Out"]
+        }
+
+        return settings
+    }
     
     var triggerRealmReload = false
     
@@ -281,14 +292,14 @@ class ProfileTableViewController: UITableViewController, PresentControllerDelega
         } else {
             if (settings.count > indexPath.row) {
                
-                if settings[indexPath.row] == "Log out" {
+                if settings[indexPath.row] == "Log Out" {
                     
                     
                     var logoutAlert = UIAlertController(title: "Log Out", message: "Are you sure you want to log out?", preferredStyle: .Alert)
                     
                     let logoutAction = UIAlertAction(title: "Log Out", style: .Destructive, handler: {
                         (alert: UIAlertAction!) in
-                        println("logout")
+                        self.delegate.processLogOut()
                     })
                     
                     let cancelAction = UIAlertAction(title: "Cancel", style: .Default, handler: nil)
@@ -297,6 +308,19 @@ class ProfileTableViewController: UITableViewController, PresentControllerDelega
                     logoutAlert.addAction(cancelAction)
                     
                     self.presentViewController(logoutAlert, animated: true, completion: nil)
+                } else if settings[indexPath.row] == "Log In" {
+                    
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let loginVC = storyboard.instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
+                        
+                    self.presentViewController(loginVC, animated: true, completion: nil)
+                    
+                } else if settings[indexPath.row] == "Create Account" {
+                    
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let registrationVC = storyboard.instantiateViewControllerWithIdentifier("CreateAccountViewController") as! CreateAccountViewController
+                    
+                    self.presentViewController(registrationVC, animated: true, completion: nil)
                 }
             }
         }

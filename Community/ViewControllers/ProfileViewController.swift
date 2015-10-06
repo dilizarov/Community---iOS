@@ -333,6 +333,61 @@ class ProfileViewController: UIViewController {
         )
     }
     
+    func processLogOut() {
+        MMProgressHUD.sharedHUD().overlayMode = .Linear
+        MMProgressHUD.setPresentationStyle(.Balloon)
+        MMProgressHUD.show()
+        
+        Alamofire.request(Router.Logout)
+            .responseJSON { request, response, jsonData, errors in
+                // We delay by 1 second to keep a very smooth animation.
+                var delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC)))
+                
+                dispatch_after(delayTime, dispatch_get_main_queue(), {
+                    var defaultError = errors?.localizedDescription
+                    
+                    if (defaultError != nil) {
+                        MMProgressHUD.dismissWithError(defaultError?.removeEndingPunctuationAndMakeLowerCase(), afterDelay: NSTimeInterval(3))
+                    } else if let jsonData: AnyObject = jsonData {
+                        let json = JSON(jsonData)
+                        if (json["errors"] != nil) {
+                            var errorString = ""
+                            
+                            for var i = 0; i < json["errors"].count; i++ {
+                                if (i != 0) { errorString += "\n\n" }
+                                
+                                errorString += json["errors"][i].string!
+                            }
+                            
+                            MMProgressHUD.dismissWithError(errorString, afterDelay: NSTimeInterval(3))
+                        }
+                    } else {
+                        Session.logout()
+                        MMProgressHUD.sharedHUD().dismissAnimationCompletion = {
+                            
+                            self.tableViewController.communities = []
+                            self.communitiesImageTapped()
+                            self.tableViewController.tableView.setContentOffset(CGPointZero, animated: false)
+                            self.setAvatarImage()
+                            self.usernameLabel.text = Session.get(.Username)!
+                            self.tableViewController.beginInitialLoad()
+                            
+                            var delegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                            var centerNC = delegate.drawerController!.centerViewController as! UINavigationController
+                            
+                            centerNC.popToRootViewControllerAnimated(false)
+                            println(centerNC.topViewController)
+                            (centerNC.topViewController as! SearchViewController).setAvatar()
+                            
+                            //refresh notifications
+                        }
+                        
+                        MMProgressHUD.dismissWithSuccess(":)")
+                    }
+                })
+        }
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "profileEmbedTVC" {
             tableViewController = segue.destinationViewController as! ProfileTableViewController

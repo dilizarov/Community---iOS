@@ -24,57 +24,20 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var createAccountButton: UIButton!
     @IBAction func createAccountButtonPressed(sender: AnyObject) {
-        MMProgressHUD.sharedHUD().overlayMode = .Linear
-        MMProgressHUD.setPresentationStyle(.Balloon)
-        MMProgressHUD.show()
+        var transferAlert = UIAlertController(title: "Transfer Request", message: "Would you like to transfer over the communities \(Session.get(.MetaUsername)!) joined?", preferredStyle: .Alert)
         
-        Alamofire.request(Router.Register(username: usernameField.text!.strip(), email: emailField.text!.strip(), password: passwordField.text!))
-            .responseJSON { request, response, jsonData, errors in
-                // We delay by 1 second to keep a very smooth animation.
-                var delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC)))
-                
-                dispatch_after(delayTime, dispatch_get_main_queue(), {
-                    
-                    var defaultError = errors?.localizedDescription
-                    
-                    if (defaultError != nil) {
-                        MMProgressHUD.dismissWithError(defaultError?.removeEndingPunctuationAndMakeLowerCase(), afterDelay: NSTimeInterval(3))
-                    } else if let jsonData: AnyObject = jsonData {
-                        let json = JSON(jsonData)
-                        
-                        if (json["errors"] == nil) {
-                            //self.storeSessionData(json)
-                            
-                            MMProgressHUD.sharedHUD().dismissAnimationCompletion = {
-                                
-                                self.usernameField.resignFirstResponder()
-                                self.emailField.resignFirstResponder()
-                                self.passwordField.resignFirstResponder()
-                                self.confirmField.resignFirstResponder()
-                                
-                                var delegate = UIApplication.sharedApplication().delegate as! AppDelegate
-                                delegate.configureUsualLaunch(nil)
-                            }
-
-                            
-                            MMProgressHUD.dismissWithSuccess(":)")
-                        } else {
-                            var errorString = ""
-                            
-                            for var i = 0; i < json["errors"].count; i++ {
-                                if (i != 0) { errorString += "\n\n" }
-                                
-                                errorString += json["errors"][i].string!
-                            }
-                            
-                            MMProgressHUD.dismissWithError(errorString, afterDelay: NSTimeInterval(3))
-                        }
-                    } else {
-                        // Realistically, should never trigger, but should always handle dismissing the HUD.
-                        MMProgressHUD.dismissWithError(":(")
-                    }
-                })
-        }
+        var cancel = UIAlertAction(title: "Cancel", style: .Cancel, handler: { alert in
+            self.processRegistration(false)
+        })
+        
+        var transfer = UIAlertAction(title: "Transfer", style: .Default, handler: { alert in
+            self.processRegistration(true)
+        })
+        
+        transferAlert.addAction(cancel)
+        transferAlert.addAction(transfer)
+        
+        self.presentViewController(transferAlert, animated: true, completion: nil)
     }
     
     override func viewDidLoad() {
@@ -125,6 +88,60 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
         navigationItem.title = "Create Account"
         
         navBar.pushNavigationItem(navigationItem, animated: false)
+    }
+    
+    func processRegistration(transfer: Bool) {
+        MMProgressHUD.sharedHUD().overlayMode = .Linear
+        MMProgressHUD.setPresentationStyle(.Balloon)
+        MMProgressHUD.show()
+        
+        Alamofire.request(Router.Register(username: usernameField.text!.strip(), email: emailField.text!.strip(), password: passwordField.text!, transfer: transfer))
+            .responseJSON { request, response, jsonData, errors in
+                // We delay by 1 second to keep a very smooth animation.
+                var delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC)))
+                
+                dispatch_after(delayTime, dispatch_get_main_queue(), {
+                    
+                    var defaultError = errors?.localizedDescription
+                    
+                    if (defaultError != nil) {
+                        MMProgressHUD.dismissWithError(defaultError?.removeEndingPunctuationAndMakeLowerCase(), afterDelay: NSTimeInterval(3))
+                    } else if let jsonData: AnyObject = jsonData {
+                        let json = JSON(jsonData)
+                        
+                        if (json["errors"] == nil) {
+                            self.storeSessionData(json)
+                            
+                            MMProgressHUD.sharedHUD().dismissAnimationCompletion = {
+                                
+                                self.usernameField.resignFirstResponder()
+                                self.emailField.resignFirstResponder()
+                                self.passwordField.resignFirstResponder()
+                                self.confirmField.resignFirstResponder()
+                                
+                                var delegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                                delegate.configureUsualLaunch(nil)
+                            }
+                            
+                            
+                            MMProgressHUD.dismissWithSuccess(":)")
+                        } else {
+                            var errorString = ""
+                            
+                            for var i = 0; i < json["errors"].count; i++ {
+                                if (i != 0) { errorString += "\n\n" }
+                                
+                                errorString += json["errors"][i].string!
+                            }
+                            
+                            MMProgressHUD.dismissWithError(errorString, afterDelay: NSTimeInterval(3))
+                        }
+                    } else {
+                        // Realistically, should never trigger, but should always handle dismissing the HUD.
+                        MMProgressHUD.dismissWithError(":(")
+                    }
+                })
+        }
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {

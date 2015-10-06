@@ -12,7 +12,8 @@ enum Router: URLRequestConvertible {
     static let baseURLString = "https://infinite-lake-4056.herokuapp.com/api/v1"
     
     case Login(email: String, password: String)
-    case Register(username: String, email: String, password: String)
+    case Register(username: String, email: String, password: String, transfer: Bool)
+    case Logout
     case CreateMetaAccount
     case ChangeMetaUsername
     case WritePost(community: String, body: String, title: String?)
@@ -39,10 +40,20 @@ enum Router: URLRequestConvertible {
                     params = [ "user" : ["email" : email, "password" : password ]]
                     return (.POST, "/sessions.json", params)
                 
-                case .Register(let username, let email, let password):
+                case .Register(let username, let email, let password, let transfer):
                     
                     params = ["user" : ["username" : username, "email" : email, "password" : password ]]
+                    
+                    if transfer {
+                        params["transfer_auth_token"] = Session.get(.MetaAuthToken)!
+                        params["transfer_user_id"] = Session.get(.MetaUserId)!
+                    }
+                    
                     return (.POST, "/registrations.json", params)
+                
+                case .Logout:
+                
+                    return (.POST, "/sessions/logout.json", params)
                 
                 case .CreateMetaAccount:
                     
@@ -138,6 +149,7 @@ enum Router: URLRequestConvertible {
             case .ChangeMetaUsername:
                 params["auth_token"] = Session.get(.MetaAuthToken)!
             default:
+                println(Session.get(.AuthToken))
                 params["auth_token"] = Session.get(.AuthToken)!
                 params["user_id"] = Session.get(.UserId)!
         }

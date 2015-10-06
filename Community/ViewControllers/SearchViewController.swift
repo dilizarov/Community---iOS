@@ -13,28 +13,6 @@ import UITextField_Shake
 
 class SearchViewController: UIViewController, UITextFieldDelegate {
 
-    
-    @IBOutlet var loginButton: UIButton!
-    @IBOutlet var createAccountButton: UIButton!
-    
-    @IBAction func loginButtonPressed(sender: AnyObject) {
-        
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        
-        let loginVC = storyboard.instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
-        
-        self.presentViewController(loginVC, animated: true, completion: nil)
-    }
-    
-    @IBAction func createAccountButtonPressed(sender: AnyObject) {
-    
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        
-        let registrationVC = storyboard.instantiateViewControllerWithIdentifier("CreateAccountViewController") as! CreateAccountViewController
-        
-        self.presentViewController(registrationVC, animated: true, completion: nil)
-    }
-    
     var headingToCommunity: String?
     
     // Dictates whether or not we have a NSNotification Observer viewing this
@@ -67,14 +45,6 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
-        if (Session.isMeta()) {
-            loginButton.alpha = 1.0
-            createAccountButton.alpha = 1.0
-        } else {
-            loginButton.alpha = 0.0
-            createAccountButton.alpha = 0.0
-        }
         
         if (viewDisappeared) {
             viewDisappeared = false

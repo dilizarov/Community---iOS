@@ -46,36 +46,6 @@
                                     <constraint firstAttribute="width" constant="50" id="z5E-ot-HRF"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FMb-cw-i2k">
-                                <rect key="frame" x="174" y="528" width="130" height="40"/>
-                                <animations/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="130" id="Zse-xU-VKj"/>
-                                    <constraint firstAttribute="height" constant="40" id="qeG-7Q-nM2"/>
-                                </constraints>
-                                <state key="normal" title="create account">
-                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="createAccountButtonPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="vXt-rV-XEV"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GXa-cU-eEJ">
-                                <rect key="frame" x="16" y="528" width="84" height="40"/>
-                                <animations/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="GOV-Bq-oFJ"/>
-                                    <constraint firstAttribute="width" constant="84" id="qPq-Kb-yIZ"/>
-                                </constraints>
-                                <state key="normal" title="log in">
-                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="loginButtonPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="1Kw-S6-9fA"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -83,29 +53,17 @@
                             <constraint firstItem="tze-zC-EW1" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="03X-Yy-3no"/>
                             <constraint firstItem="KFF-cT-IaF" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="44" id="8lU-2u-auC"/>
                             <constraint firstItem="asj-yc-qGD" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="20" id="A5T-37-imr"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="FMb-cw-i2k" secondAttribute="bottom" id="GhD-rV-R4L"/>
                             <constraint firstAttribute="trailingMargin" secondItem="KFF-cT-IaF" secondAttribute="trailing" constant="44" id="Opz-oN-5gk"/>
-                            <constraint firstItem="GXa-cU-eEJ" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="W2Z-hz-ncP"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="GXa-cU-eEJ" secondAttribute="bottom" id="Wcg-uH-YuD"/>
                             <constraint firstAttribute="trailingMargin" secondItem="asj-yc-qGD" secondAttribute="trailing" constant="20" id="ZXq-YV-Yqx"/>
                             <constraint firstItem="KFF-cT-IaF" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="164" id="blj-r6-2hk"/>
-                            <constraint firstItem="FMb-cw-i2k" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="dQP-aa-OIl"/>
                             <constraint firstItem="asj-yc-qGD" firstAttribute="top" secondItem="KFF-cT-IaF" secondAttribute="bottom" constant="27" id="gsh-nm-6ap"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="FMb-cw-i2k" secondAttribute="bottom" id="nGf-sH-KPl"/>
                             <constraint firstItem="tze-zC-EW1" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="12" id="oQU-hH-b2s"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="nGf-sH-KPl"/>
-                            </mask>
-                        </variation>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="avatar" destination="tze-zC-EW1" id="BU7-Vu-YPL"/>
                         <outlet property="communityLabel" destination="KFF-cT-IaF" id="eMb-tx-Phv"/>
-                        <outlet property="createAccountButton" destination="FMb-cw-i2k" id="p3o-l8-5Y4"/>
-                        <outlet property="loginButton" destination="GXa-cU-eEJ" id="vuf-ID-Mtd"/>
                         <outlet property="search" destination="asj-yc-qGD" id="72U-0S-BUJ"/>
                     </connections>
                 </viewController>

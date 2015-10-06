@@ -135,9 +135,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                         let json = JSON(jsonData)
                         println(json)
                         if (json["errors"] == nil) {
-                            //self.storeSessionData(json)
+                            self.storeSessionData(json)
                             MMProgressHUD.sharedHUD().dismissAnimationCompletion = {
-                                
+                            
                                 self.emailField.resignFirstResponder()
                                 self.passwordField.resignFirstResponder()
                                 

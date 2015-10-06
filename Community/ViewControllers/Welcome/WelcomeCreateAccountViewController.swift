@@ -28,7 +28,7 @@ class WelcomeCreateAccountViewController: UIViewController, UITextFieldDelegate 
         MMProgressHUD.setPresentationStyle(.Balloon)
         MMProgressHUD.show()
         
-        Alamofire.request(Router.Register(username: usernameField.text!.strip(), email: emailField.text!.strip(), password: passwordField.text!))
+        Alamofire.request(Router.Register(username: usernameField.text!.strip(), email: emailField.text!.strip(), password: passwordField.text!, transfer: false))
             .responseJSON { request, response, jsonData, errors in
                 // We delay by 1 second to keep a very smooth animation.
                 var delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC)))
