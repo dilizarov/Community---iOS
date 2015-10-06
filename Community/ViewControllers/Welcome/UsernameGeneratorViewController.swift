@@ -130,7 +130,6 @@ class UsernameGeneratorViewController: UIViewController {
                 }
                 
                 self.view.makeToast("Something went wrong :(", duration: NSTimeInterval(3), position: CSToastPositionCenter)
-                
                 self.generatedUsername.alpha = 1.0
                 self.requestButton.enabled = true
         }

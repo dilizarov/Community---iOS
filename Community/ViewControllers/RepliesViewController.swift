@@ -12,6 +12,7 @@ import UIActivityIndicator_for_SDWebImage
 import Alamofire
 import SwiftyJSON
 import IQKeyboardManagerSwift
+import Toast
 
 class RepliesViewController: UIViewController, PHFComposeBarViewDelegate, RepliesTableDelegate {
 
@@ -133,16 +134,24 @@ class RepliesViewController: UIViewController, PHFComposeBarViewDelegate, Replie
         
         composeBarView.startLoading();
         
+        composeBarView.enabled = false
+        
         request = Alamofire.request(Router.WriteReply(post_id: post.id, body: composeBarView.text.strip()))
             .responseJSON { request, response, jsonData, errors in
+                
+                self.composeBarView.enabled = true
                 var defaultError = errors?.localizedDescription
                 
                 if (defaultError != nil) {
-                    
+                    self.composeBarView.stopLoading()
+                    self.view.makeToast(defaultError!, duration: NSTimeInterval(3), position: CSToastPositionCenter)
                 } else if let jsonData: AnyObject = jsonData {
                     let json = JSON(jsonData)
                     
-                    if (json["errors"] == nil) {
+                    if (json["error"] != nil) {
+                        self.composeBarView.stopLoading()
+                        self.view.makeToast(json["error"].stringValue, duration: NSTimeInterval(3), position: CSToastPositionCenter)
+                    } else if (json["errors"] == nil) {
                         var jsonReply = json["reply"]
                         
                         var reply = Reply(id: jsonReply["external_id"].stringValue, username: jsonReply["user"]["username"].stringValue, body: jsonReply["body"].stringValue, likeCount: jsonReply["likes"].intValue, liked: jsonReply["liked"].boolValue, timeCreated: jsonReply["created_at"].stringValue, avatarUrl: jsonReply["user"]["avatar_url"].string)
@@ -158,13 +167,24 @@ class RepliesViewController: UIViewController, PHFComposeBarViewDelegate, Replie
                         
                         dispatch_after(time, dispatch_get_main_queue(), {
                             self.tableViewController.scrollToBottom()
+                            self.composeBarView.text = ""
                             self.composeBarView.stopLoading()
                         })
                     } else {
+                        var errorString = ""
                         
+                        for var i = 0; i < json["errors"].count; i++ {
+                            if (i != 0) { errorString += "\n\n" }
+                            
+                            errorString += json["errors"][i].string!
+                        }
+
+                        self.composeBarView.stopLoading()
+                        self.view.makeToast(errorString, duration: NSTimeInterval(3), position: CSToastPositionCenter)
                     }
                 } else {
-                    
+                    self.composeBarView.stopLoading()
+                    self.view.makeToast("Something went wrong :(", duration: NSTimeInterval(3), position: CSToastPositionCenter)
                 }
         }
     }
@@ -174,6 +194,7 @@ class RepliesViewController: UIViewController, PHFComposeBarViewDelegate, Replie
     }
     
     func refresh() {
+        
         (rightButtonOptions["load"]!.customView as! UIActivityIndicatorView).startAnimating()
         navBar.topItem!.rightBarButtonItem = rightButtonOptions["load"]
         

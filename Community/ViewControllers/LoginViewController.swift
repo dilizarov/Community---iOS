@@ -133,8 +133,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                         MMProgressHUD.dismissWithError(defaultError?.removeEndingPunctuationAndMakeLowerCase(), afterDelay: NSTimeInterval(3))
                     } else if let jsonData: AnyObject = jsonData {
                         let json = JSON(jsonData)
-                        println(json)
-                        if (json["errors"] == nil) {
+
+                        if (json["error"] != nil) {
+                            MMProgressHUD.dismissWithError(json["error"].stringValue, afterDelay: NSTimeInterval(3))
+                        } else if (json["errors"] == nil) {
                             self.storeSessionData(json)
                             MMProgressHUD.sharedHUD().dismissAnimationCompletion = {
                             
@@ -159,7 +161,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                         }
                     } else {
                         // Realistically, should never trigger, but should always handle dismissing the HUD.
-                        MMProgressHUD.dismissWithError(":(")
+                        MMProgressHUD.dismissWithError("Something went wrong :(")
                     }
                 })
         }

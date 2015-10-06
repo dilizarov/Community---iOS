@@ -14,6 +14,8 @@ import SDWebImage
 import UIActivityIndicator_for_SDWebImage
 import MMProgressHUD
 import RealmSwift
+import Sheriff
+import AudioToolbox.AudioServices
 
 class ProfileViewController: UIViewController {
     
@@ -42,6 +44,14 @@ class ProfileViewController: UIViewController {
     @IBOutlet var notificationsImage: UIImageView!
     @IBOutlet var settingsImage: UIImageView!
     
+    lazy var badge: GIBadgeView = {
+       var badge = GIBadgeView.new()
+        badge.textColor = UIColor.whiteColor()
+        badge.backgroundColor = UIColor.lightGrayColor()
+        
+        return badge
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -49,6 +59,8 @@ class ProfileViewController: UIViewController {
         setupAvatarImage()
         setupRoundedViews()
         setDataViewedTapGestures()
+        
+        notificationsImage.addSubview(badge)
         
         errorLabel.alpha = 0.0
         usernameLabel.text = Session.get(.Username)!
@@ -161,6 +173,10 @@ class ProfileViewController: UIViewController {
     }
     
     func communitiesImageTapped() {
+        badge.increment()
+        
+        AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
+        
         if currentState == .Communities { return }
         
         self.viewingNotifications.alpha = 0.0
@@ -183,6 +199,7 @@ class ProfileViewController: UIViewController {
     }
     
     func settingsImageTapped() {
+        badge.decrement()
         if currentState == .Settings { return }
         
         self.viewingCommunities.alpha = 0.0
@@ -261,31 +278,31 @@ class ProfileViewController: UIViewController {
                 
                 dispatch_after(delayTime,
                     dispatch_get_main_queue(), {
+                        
+                        var errorCompletionBlock: (() -> Void) = {
+                            
+                            var retryAlert = UIAlertController(title: "Could Not Upload Picture", message: nil, preferredStyle: .Alert)
+                            
+                            var retryAction = UIAlertAction(title: "Retry", style: .Default, handler: { alert in
+                                self.uploadImageData(imageData)
+                            })
+                            
+                            var changePicAction = UIAlertAction(title: "Change Picture", style: .Default, handler: { alert in
+                                self.chooseNewProfilePic()
+                            })
+                            
+                            var cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+                            
+                            retryAlert.addAction(retryAction)
+                            retryAlert.addAction(changePicAction)
+                            retryAlert.addAction(cancelAction)
+                            
+                            self.presentViewController(retryAlert, animated: true, completion: nil)
+                        }
+                        
                         switch encodingResult {
                         case .Success (let upload, _, _):
                             upload.responseJSON { request, response, data, error in
-                                
-                                var errorCompletionBlock: (() -> Void) = {
-                                    
-                                    var retryAlert = UIAlertController(title: "Could Not Upload Picture", message: nil, preferredStyle: .Alert)
-                                    
-                                    var retryAction = UIAlertAction(title: "Retry", style: .Default, handler: { alert in
-                                        self.uploadImageData(imageData)
-                                    })
-                                    
-                                    var changePicAction = UIAlertAction(title: "Change Picture", style: .Default, handler: { alert in
-                                        self.chooseNewProfilePic()
-                                    })
-                                    
-                                    var cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
-                                    
-                                    retryAlert.addAction(retryAction)
-                                    retryAlert.addAction(changePicAction)
-                                    retryAlert.addAction(cancelAction)
-                                    
-                                    self.presentViewController(retryAlert, animated: true, completion: nil)
-                                }
-                                
                                 
                                 if let defaultError = error {
                                     MMProgressHUD.sharedHUD().dismissAnimationCompletion = errorCompletionBlock
@@ -296,7 +313,10 @@ class ProfileViewController: UIViewController {
                                 } else if let jsonData: AnyObject = data {
                                     let json = JSON(jsonData)
                                     
-                                    if (json["errors"] == nil) {
+                                    if (json["error"] != nil) {
+                                        MMProgressHUD.sharedHUD().dismissAnimationCompletion = errorCompletionBlock
+                                        MMProgressHUD.dismissWithError(json["error"].stringValue, afterDelay: NSTimeInterval(3))
+                                    } else if (json["errors"] == nil) {
                                         var avatar_url = json["avatar"]["url"].string
                                         var image = UIImage(data: imageData)
                                         
@@ -320,11 +340,15 @@ class ProfileViewController: UIViewController {
                                         MMProgressHUD.sharedHUD().dismissAnimationCompletion = errorCompletionBlock
                                         MMProgressHUD.dismissWithError(errorString, afterDelay: NSTimeInterval(3))
                                     }
+                                } else {
+                                    MMProgressHUD.sharedHUD().dismissAnimationCompletion = errorCompletionBlock
+                                    MMProgressHUD.dismissWithError("Something went wrong :(", afterDelay: NSTimeInterval(3))
                                 }
                             }
                             
                         case .Failure (let encodingError):
                             //Realistically, I don't expect this to ever trigger, but I guess if the user uses some very weird image format...
+                            MMProgressHUD.sharedHUD().dismissAnimationCompletion = errorCompletionBlock
                             MMProgressHUD.dismissWithError("Having difficulty with this image :(", afterDelay: NSTimeInterval(3))
                         }
                     }
@@ -350,7 +374,10 @@ class ProfileViewController: UIViewController {
                         MMProgressHUD.dismissWithError(defaultError?.removeEndingPunctuationAndMakeLowerCase(), afterDelay: NSTimeInterval(3))
                     } else if let jsonData: AnyObject = jsonData {
                         let json = JSON(jsonData)
-                        if (json["errors"] != nil) {
+                        
+                        if (json["error"] != nil) {
+                            MMProgressHUD.dismissWithError(json["error"].stringValue, afterDelay: NSTimeInterval(3))
+                        } else if (json["errors"] != nil) {
                             var errorString = ""
                             
                             for var i = 0; i < json["errors"].count; i++ {

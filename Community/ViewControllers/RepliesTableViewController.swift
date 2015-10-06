@@ -71,7 +71,7 @@ class RepliesTableViewController: UITableViewController {
                 if let jsonData: AnyObject = jsonData {
                     let json = JSON(jsonData)
                     
-                    if (json["errors"] == nil) {
+                    if (json["errors"] == nil && json["error"] == nil) {
                         self.replies = [nil]
                         
                         self.post.repliesCount = json["replies"].count
@@ -89,8 +89,6 @@ class RepliesTableViewController: UITableViewController {
                             self.emptyOrErrorDescription = nil
                         }
                     }
-                } else {
-                
                 }
                 
                 dispatch_group_leave(asyncGroup)
@@ -115,7 +113,9 @@ class RepliesTableViewController: UITableViewController {
                 } else if let jsonData: AnyObject = jsonData {
                     let json = JSON(jsonData)
                     
-                    if (json["errors"] == nil) {
+                    if (json["error"] != nil) {
+                        self.emptyOrErrorDescription = json["error"].stringValue
+                    } else if (json["errors"] == nil) {
                         self.replies = [nil]
                         
                         self.post.repliesCount = json["replies"].count
@@ -140,7 +140,7 @@ class RepliesTableViewController: UITableViewController {
 
                     }
                 } else {
-                    
+                    self.emptyOrErrorDescription = "Something went wrong :("
                 }
 
                 dispatch_async(dispatch_get_main_queue(), {

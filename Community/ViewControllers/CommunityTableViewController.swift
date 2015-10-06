@@ -179,7 +179,7 @@ class CommunityTableViewController: UITableViewController, UpdateFeedWithLatestP
                 if let jsonData: AnyObject = jsonData {
                     let json = JSON(jsonData)
                     
-                    if (json["errors"] == nil) {
+                    if (json["errors"] == nil && json["error"] == nil) {
                         
                         self.setInfiniteScrollVars()
                         
@@ -210,8 +210,6 @@ class CommunityTableViewController: UITableViewController, UpdateFeedWithLatestP
                             self.emptyOrErrorDescription = nil
                         }
                     }
-                } else {
-
                 }
                 
                 dispatch_group_leave(asyncGroup)
@@ -249,7 +247,9 @@ class CommunityTableViewController: UITableViewController, UpdateFeedWithLatestP
                 } else if let jsonData: AnyObject = jsonData {
                     let json = JSON(jsonData)
                     
-                    if (json["errors"] == nil) {
+                    if (json["error"] != nil) {
+                        self.emptyOrErrorDescription = json["error"].stringValue
+                    } else if (json["errors"] == nil) {
                         if (refreshing) {
                             self.posts = []
                             self.cachedHeights.removeAll(keepCapacity: false)
@@ -285,7 +285,7 @@ class CommunityTableViewController: UITableViewController, UpdateFeedWithLatestP
                         }
                     }
             } else {
-                    
+                self.emptyOrErrorDescription = "Something went wrong :("
             }
                 
             var delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0.25 * Double(NSEC_PER_SEC)))

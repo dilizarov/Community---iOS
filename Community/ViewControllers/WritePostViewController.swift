@@ -14,6 +14,7 @@ import UIActivityIndicator_for_SDWebImage
 import Alamofire
 import SwiftyJSON
 import RealmSwift
+import Toast
 
 class WritePostViewController: UIViewController, UITextViewDelegate {
 
@@ -155,11 +156,13 @@ class WritePostViewController: UIViewController, UITextViewDelegate {
                 var defaultError = errors?.localizedDescription
                 
                 if (defaultError != nil) {
-                
+                    self.view.makeToast(defaultError!, duration: NSTimeInterval(3), position: CSToastPositionCenter)
                 } else if let jsonData: AnyObject = jsonData {
                     let json = JSON(jsonData)
-                                    
-                    if (json["errors"] == nil) {
+                    
+                    if (json["error"] != nil) {
+                        self.view.makeToast(json["error"].stringValue, duration: NSTimeInterval(3), position: CSToastPositionCenter)
+                    } else if (json["errors"] == nil) {
                         var jsonPost = json["post"]
                         
                         var post = Post(id: jsonPost["external_id"].stringValue, username: jsonPost["user"]["username"].stringValue, body: jsonPost["body"].stringValue, title: jsonPost["title"].string, repliesCount: jsonPost["replies_count"].intValue, likeCount: jsonPost["likes"].intValue, liked: jsonPost["liked"].boolValue, timeCreated: jsonPost["created_at"].stringValue, avatarUrl: jsonPost["user"]["avatar_url"].string)
@@ -167,11 +170,22 @@ class WritePostViewController: UIViewController, UITextViewDelegate {
                         self.delegate.updateFeedWithLatestPost(post)
                         self.dismissViewControllerAnimated(true, completion: nil)
                     } else {
+                        var errorString = ""
                         
+                        for var i = 0; i < json["errors"].count; i++ {
+                            if (i != 0) { errorString += "\n\n" }
+                            
+                            errorString += json["errors"][i].string!
+                        }
+                        
+                        self.view.makeToast(errorString, duration: NSTimeInterval(3), position: CSToastPositionCenter)
                     }
                 } else {
-                    
+                    self.view.makeToast("Something went wrong :(", duration: NSTimeInterval(3), position: CSToastPositionCenter)
                 }
+                
+                self.navBar.topItem!.rightBarButtonItem = self.rightButtonOptions["post"]
+                (self.rightButtonOptions["load"]!.customView as! UIActivityIndicatorView).stopAnimating()
             }
     }
     

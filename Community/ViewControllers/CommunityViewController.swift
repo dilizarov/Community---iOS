@@ -162,9 +162,9 @@ class CommunityViewController: UIViewController, CommunityTableDelegate {
                 
                 if (response?.statusCode > 299 || errors != nil) {
                     if (response?.statusCode > 299) {
-                        //something went wrong
+                        self.view.makeToast("Something went wrong :(", duration: NSTimeInterval(3), position: CSToastPositionCenter)
                     } else {
-                        //localizedDescription
+                        self.view.makeToast(errors!.localizedDescription, duration: NSTimeInterval(3), position: CSToastPositionCenter)
                     }
                     
                     self.navBar.topItem!.leftBarButtonItem = self.leftButtonOptions["join"]

@@ -325,9 +325,6 @@ class CommunitySettingsViewController: UIViewController {
         MMProgressHUD.setPresentationStyle(.Balloon)
         MMProgressHUD.show()
         
-//        var user_id = userDefaults.objectForKey("user_id") as! String
-//        var auth_token = userDefaults.objectForKey("auth_token") as! String
-        
         var delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC)))
         
         if (defaultSwitch.on) {
@@ -342,7 +339,9 @@ class CommunitySettingsViewController: UIViewController {
                         } else if let jsonData: AnyObject = jsonData {
                             let json = JSON(jsonData)
                             
-                            if (json["errors"] == nil) {
+                            if (json["error"] != nil) {
+                                MMProgressHUD.dismissWithError(json["error"].stringValue, afterDelay: NSTimeInterval(3))
+                            } else if (json["errors"] == nil) {
                                 let realm = Realm()
                                 var community = realm.objectForPrimaryKey(JoinedCommunity.self, key: self.communityName)
                                 
@@ -370,7 +369,6 @@ class CommunitySettingsViewController: UIViewController {
                         } else {
                             MMProgressHUD.dismissWithError("Something went wrong :(", afterDelay: NSTimeInterval(3))
                         }
-
                     })
                 }
         } else if croppedNewImage != nil {
@@ -396,7 +394,9 @@ class CommunitySettingsViewController: UIViewController {
                                 } else if let jsonData: AnyObject = data {
                                     let json = JSON(jsonData)
                                     
-                                    if json["errors"] == nil {
+                                    if (json["error"] != nil) {
+                                        MMProgressHUD.dismissWithError(json["error"].stringValue, afterDelay: NSTimeInterval(3))
+                                    } else if json["errors"] == nil {
                                         let realm = Realm()
                                         var community = realm.objectForPrimaryKey(JoinedCommunity.self, key: self.communityName)
                                         
@@ -453,7 +453,9 @@ class CommunitySettingsViewController: UIViewController {
                         } else if let jsonData: AnyObject = jsonData {
                             let json = JSON(jsonData)
                             
-                            if (json["errors"] == nil) {
+                            if (json["error"] != nil) {
+                                MMProgressHUD.dismissWithError(json["error"].stringValue, afterDelay: NSTimeInterval(3))
+                            } else if (json["errors"] == nil) {
                                 let realm = Realm()
                                 var community = realm.objectForPrimaryKey(JoinedCommunity.self, key: self.communityName)
                                 

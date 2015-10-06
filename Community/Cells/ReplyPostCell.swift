@@ -80,16 +80,7 @@ class ReplyPostCell: UITableViewCell {
         Alamofire.request(Router.LikePost(post_id: post.id, dislike: !post.liked))
             .responseJSON { request, response, jsonData, errors in
                 
-                if (response?.statusCode > 299 || errors != nil) {
-                    if (response?.statusCode > 299) {
-                        //something went wrong
-                    } else {
-                        //localizedDescription
-                    }
-                    
-                    self.toggleLike()
-                    // maybe use toast.
-                }
+                if (response?.statusCode > 299 || errors != nil) { self.toggleLike() }
         }
     }
     

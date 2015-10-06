@@ -99,7 +99,7 @@ class ProfileTableViewController: UITableViewController, PresentControllerDelega
                 if let jsonData: AnyObject = jsonData {
                     let json = JSON(jsonData)
                     
-                    if (json["errors"] == nil) {
+                    if (json["errors"] == nil && json["error"] == nil) {
                         self.communities = []
                         for var i = 0; i < json["communities"].count; i++ {
                             var jsonCommunity = json["communities"][i]
@@ -150,7 +150,9 @@ class ProfileTableViewController: UITableViewController, PresentControllerDelega
                 } else if let jsonData: AnyObject = jsonData {
                     let json = JSON(jsonData)
                     
-                    if (json["errors"] == nil) {
+                    if (json["error"] != nil) {
+                        self.delegate.failureRequestJoinedCommunities(json["error"].stringValue)
+                    } else if (json["errors"] == nil) {
                         self.communities = []
                         for var i = 0; i < json["communities"].count; i++ {
                             var jsonCommunity = json["communities"][i]
@@ -221,14 +223,14 @@ class ProfileTableViewController: UITableViewController, PresentControllerDelega
         Alamofire.request(Router.LeaveCommunity(community: community.name.strip()))
             .responseJSON { request, response, jsonData, errors in
                 
-                if (response?.statusCode == 404 || errors != nil) {
+                if (response?.statusCode > 299 || errors != nil) {
                     
                     var arraySize = self.communities.count
                     
                     self.communities.insert(community, atIndex: (row > arraySize ? arraySize : row))
                     self.tableView.reloadData()
                     
-                    if (response?.statusCode == 404) {
+                    if (response?.statusCode > 299) {
                         self.delegate.spreadToast("something went wrong :(")
                     } else {
                         self.delegate.spreadToast(errors!.localizedDescription.removeEndingPunctuationAndMakeLowerCase())
