@@ -16,6 +16,7 @@ enum Router: URLRequestConvertible {
     case Logout
     case CreateMetaAccount
     case ChangeMetaUsername
+    case SendDeviceToken
     case WritePost(community: String, body: String, title: String?)
     case LikePost(post_id: String, dislike: Bool)
     case GetPosts(community: String, page: Int?, infiniteScrollTimeBuffer: String?)
@@ -62,6 +63,12 @@ enum Router: URLRequestConvertible {
                 case .ChangeMetaUsername:
                     
                     return (.POST, "/users/\(Session.get(.MetaUserId)!)/meta_username.json", params)
+                
+                case .SendDeviceToken:
+                
+                    params = ["device" : ["platform" : "iOS", "token" : Session.getDeviceToken()!]]
+                    
+                    return (.POST, "sessions/sync_device.json", params)
                 
                 case .WritePost(let community, let body, let title):
                     
@@ -144,14 +151,26 @@ enum Router: URLRequestConvertible {
         var params = result.parameters!
         
         switch self {
-            case .CreateMetaAccount, .Login, .Register:
+            case .CreateMetaAccount:
                 break
+            case .Login, .Register:
+                if let deviceToken = Session.getDeviceToken() {
+                    params["device"] = ["platform" : "iOS", "token" : deviceToken]
+                }
             case .ChangeMetaUsername:
                 params["auth_token"] = Session.get(.MetaAuthToken)!
+            case .SendDeviceToken:
+                params["auth_token"] = Session.getAuthToken()!
+                params["user_id"] = Session.getUserId()!
+                
+                if Session.loggedIn() {
+                    params["meta_auth_token"] = Session.get(.MetaAuthToken)!
+                    params["meta_user_id"] = Session.get(.MetaUserId)!
+                }
             default:
                 println(Session.get(.AuthToken))
-                params["auth_token"] = Session.get(.AuthToken)!
-                params["user_id"] = Session.get(.UserId)!
+                params["auth_token"] = Session.getAuthToken()!
+                params["user_id"] = Session.getUserId()!
         }
         
         let URL = NSURL(string: Router.baseURLString)!

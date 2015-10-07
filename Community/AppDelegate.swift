@@ -10,6 +10,7 @@ import UIKit
 import MMDrawerController
 import RealmSwift
 import IQKeyboardManagerSwift
+import Alamofire
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,7 +19,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var drawerController: MMDrawerController?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
         
         IQKeyboardManager.sharedManager().enable = true
         IQKeyboardManager.sharedManager().shouldResignOnTouchOutside = true
@@ -91,12 +91,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         drawerController?.showsShadow = true
         drawerController?.setDrawerVisualStateBlock(MMDrawerVisualState.parallaxVisualStateBlockWithParallaxFactor(3)!)
         
-        
-        // This forces the side to layout itself properly.
+        // This forces the side to layout itself properly. Pretty sure this is a library bug.
         drawerController?.bouncePreviewForDrawerSide(.Left, distance: 10, completion: nil)
         
         self.window?.rootViewController = drawerController
         self.window?.makeKeyAndVisible()
+        
+        var application = UIApplication.sharedApplication()
+        var pushSettings: UIUserNotificationSettings = UIUserNotificationSettings(forTypes: .Alert | .Badge | .Sound, categories: nil)
+        
+        application.registerUserNotificationSettings(pushSettings)
+        application.registerForRemoteNotifications()
     }
     
     func configureWelcomeLaunch() {
@@ -106,6 +111,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.window?.rootViewController = rootVC
         self.window?.makeKeyAndVisible()
+    }
+    
+    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+        // Would anyone like to explain to me why Apple, a company known for simplicity, decides
+        // that we need to do all this work instead of them just giving us an NSString to work with?
+        
+        let tokenChars = UnsafePointer<CChar>(deviceToken.bytes)
+        var tokenString = ""
+        
+        for var i = 0; i < deviceToken.length; i++ {
+            tokenString += String(format: "%02.2hhx", arguments: [tokenChars[i]])
+        }
+        
+        println("tokenString: \(tokenString)")
+        
+        Session.set(tokenString, key: .DeviceToken)
+        Alamofire.request(Router.SendDeviceToken)
+    }
+    
+    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
+        println("Failed to register for remote notifications: \(error)")
+    }
+    
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+        println("received remote notification")
     }
     
     func application(application: UIApplication, performFetchWithCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {

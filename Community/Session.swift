@@ -16,8 +16,10 @@ class Session {
     }
     
     enum Key {
-        case Username, Email, UserId, AuthToken, CreatedAt, AvatarUrl, MetaUserId, MetaAuthToken, MetaUsername, MetaCreatedAt, MetaAvatarUrl, AccountUsername,
-            AccountEmail, AccountUserId, AccountAuthToken, AccountCreatedAt, AccountAvatarUrl
+        case Username, Email, UserId, AuthToken, CreatedAt, AvatarUrl,
+            MetaUserId, MetaAuthToken, MetaUsername, MetaCreatedAt, MetaAvatarUrl, AccountUsername,
+            AccountEmail, AccountUserId, AccountAuthToken, AccountCreatedAt, AccountAvatarUrl,
+            DeviceToken
         
         var path: String {
             
@@ -58,6 +60,8 @@ class Session {
                     return "created_at"
                 case .AccountAvatarUrl:
                     return "avatar_url"
+                case .DeviceToken:
+                    return "device_token"
             }
         }
     }
@@ -72,11 +76,11 @@ class Session {
     }
     
     static func getAuthToken() -> String? {
-        return get(Key.AuthToken)
+        return get(.AuthToken)
     }
     
     static func getUserId() -> String? {
-        return get(Key.UserId)
+        return get(.UserId)
     }
     
     static func isMeta() -> Bool {
@@ -87,24 +91,32 @@ class Session {
         return keychain.get("auth_token") != nil
     }
     
+    static func setDeviceToken(value: String) {
+        set(value, key: .DeviceToken)
+    }
+    
+    static func getDeviceToken() -> String? {
+        return get(.DeviceToken)
+    }
+    
     static func createMetaAccount(username: String, user_id: String, auth_token: String, created_at: String) {
         
-        self.set(username, key: .MetaUsername)
-        self.set(user_id, key: .MetaUserId)
-        self.set(auth_token, key: .MetaAuthToken)
-        self.set(created_at, key: .MetaCreatedAt)
+        set(username, key: .MetaUsername)
+        set(user_id, key: .MetaUserId)
+        set(auth_token, key: .MetaAuthToken)
+        set(created_at, key: .MetaCreatedAt)
     }
     
     static func login(username: String, email: String, user_id: String, auth_token: String, created_at: String, avatar_url: String?) {
         
-        self.set(username, key: .AccountUsername)
-        self.set(email, key: .AccountEmail)
-        self.set(user_id, key: .AccountUserId)
-        self.set(auth_token, key: .AccountAuthToken)
-        self.set(created_at, key: .AccountCreatedAt)
+        set(username, key: .AccountUsername)
+        set(email, key: .AccountEmail)
+        set(user_id, key: .AccountUserId)
+        set(auth_token, key: .AccountAuthToken)
+        set(created_at, key: .AccountCreatedAt)
         
         if let url = avatar_url {
-            self.set(url, key: .AccountAvatarUrl)
+            set(url, key: .AccountAvatarUrl)
         }
     }
     
