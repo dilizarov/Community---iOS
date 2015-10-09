@@ -400,10 +400,11 @@ class ProfileViewController: UIViewController {
                             self.tableViewController.beginInitialLoad()
                             
                             var delegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                            delegate.configureRealm()
+                            
                             var centerNC = delegate.drawerController!.centerViewController as! UINavigationController
                             
                             centerNC.popToRootViewControllerAnimated(false)
-                            println(centerNC.topViewController)
                             (centerNC.topViewController as! SearchViewController).setAvatar()
                             
                             //refresh notifications

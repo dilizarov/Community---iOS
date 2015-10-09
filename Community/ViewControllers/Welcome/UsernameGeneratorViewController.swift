@@ -66,7 +66,7 @@ class UsernameGeneratorViewController: UIViewController {
                         var user = json["user"]
                         
                         Session.createMetaAccount(user["username"].string!,
-                            user_id: user["user_id"].string!,
+                            user_id: user["external_id"].string!,
                             auth_token: user["auth_token"].string!,
                             created_at: user["created_at"].string!)
                         

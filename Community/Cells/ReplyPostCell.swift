@@ -103,8 +103,9 @@ class ReplyPostCell: UITableViewCell {
             self.avatarImage.setImageWithURL(NSURL(string: url), placeholderImage: UIImage(named: "AvatarPlaceHolder"), options: SDWebImageOptions.RetryFailed, completed: { (image: UIImage!, error: NSError!, cacheType: SDImageCacheType, imageURL: NSURL!) -> Void in
                 
                 }, usingActivityIndicatorStyle: .Gray)
+        } else {
+            self.avatarImage.image = UIImage(named: "AvatarPlaceHolder")
         }
-        
     }
     
     func avatarSetup() {

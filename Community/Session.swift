@@ -17,9 +17,13 @@ class Session {
     
     enum Key {
         case Username, Email, UserId, AuthToken, CreatedAt, AvatarUrl,
-            MetaUserId, MetaAuthToken, MetaUsername, MetaCreatedAt, MetaAvatarUrl, AccountUsername,
-            AccountEmail, AccountUserId, AccountAuthToken, AccountCreatedAt, AccountAvatarUrl,
+            MetaUserId, MetaAuthToken, MetaUsername, MetaCreatedAt, MetaAvatarUrl,
+            AccountUsername, AccountEmail, AccountUserId, AccountAuthToken, AccountCreatedAt, AccountAvatarUrl,
             DeviceToken
+        
+        static let allValues = [MetaUserId, MetaAuthToken, MetaUsername, MetaCreatedAt, MetaAvatarUrl,
+            AccountUsername, AccountEmail, AccountUserId, AccountAuthToken, AccountCreatedAt, AccountAvatarUrl,
+            DeviceToken]
         
         var path: String {
             
@@ -127,6 +131,12 @@ class Session {
         keychain.delete(Key.AccountUserId.path)
         keychain.delete(Key.AccountCreatedAt.path)
         keychain.delete(Key.AccountAvatarUrl.path)
+    }
+    
+    static func clearAllData() {
+        for key in Key.allValues {
+            keychain.delete(key.path)
+        }
     }
     
 }

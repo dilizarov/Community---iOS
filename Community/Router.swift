@@ -66,7 +66,9 @@ enum Router: URLRequestConvertible {
                 
                 case .SendDeviceToken:
                 
-                    params = ["device" : ["platform" : "iOS", "token" : Session.getDeviceToken()!]]
+                    if Session.getDeviceToken() != nil {
+                        params = ["device" : ["platform" : "iOS", "token" : Session.getDeviceToken()!]]
+                    }
                     
                     return (.POST, "sessions/sync_device.json", params)
                 
