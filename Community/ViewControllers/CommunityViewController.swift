@@ -16,6 +16,8 @@ import RealmSwift
 class CommunityViewController: UIViewController, CommunityTableDelegate {
     
     var communityTitle: String?
+    // Handles propogation for notifications.
+    var postId: String?
     
     var observingCommunitySelected: Bool = false
     
@@ -45,6 +47,22 @@ class CommunityViewController: UIViewController, CommunityTableDelegate {
             NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("communitySelected:"), name: "communitySelected", object: nil)
         }
 
+    }
+
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if postId != nil {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let repliesVC = storyboard.instantiateViewControllerWithIdentifier("RepliesViewController") as! RepliesViewController
+            
+            
+            repliesVC.postId = postId
+            
+            postId = nil
+            self.presentViewController(repliesVC, animated: true, completion: nil)
+            
+        }
     }
     
     func communitySelected(notification: NSNotification) {
@@ -120,6 +138,7 @@ class CommunityViewController: UIViewController, CommunityTableDelegate {
         
         Alamofire.request(Router.VerifyMembership(community: communityTitle!.strip()))
             .responseJSON { request, response, jsonData, errors in
+                
                 if response?.statusCode == 200 {
                     self.navBar.topItem!.leftBarButtonItem = self.leftButtonOptions["settings"]
                     

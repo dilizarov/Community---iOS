@@ -69,14 +69,15 @@ class CommunitySettingsViewController: UIViewController {
         super.viewDidLoad()
         
         let realm = Realm()
-        joinedCommunity = realm.objectForPrimaryKey(JoinedCommunity.self, key: communityName)
+        
+        joinedCommunity = realm.objectForPrimaryKey(JoinedCommunity.self, key: communityName.lowercaseString)
 
         usernameField.tintColor = UIColor(hexString: "056A85")
         
         settingsHolder.layer.cornerRadius = 5.0
         setupNavBar()
         setupAvatarImage()
-
+        
         //Store defaults/community-based username
         //and avatar into local variables for ease
         //of reuse and set how everything initially looks

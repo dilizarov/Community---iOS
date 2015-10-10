@@ -28,7 +28,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.sharedManager().disableInViewControllerClass(RepliesTableViewController)
         
         configureRealm()
-        configureLaunchState()
+        
+        var userInfo: Dictionary<NSObject, AnyObject>?
+        
+        if let options = launchOptions {
+            if options[UIApplicationLaunchOptionsRemoteNotificationKey] != nil {
+                application.applicationIconBadgeNumber -= 1
+                userInfo = options[UIApplicationLaunchOptionsRemoteNotificationKey] as? Dictionary<NSObject, AnyObject>
+            }
+        }
+        
+        configureLaunchState(userInfo)
+        
         application.setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalMinimum)
         
         return true
@@ -50,10 +61,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         var config = Realm.Configuration()
         config.path = customRealmPath
-        config.schemaVersion = 1
+        config.schemaVersion = 2
         config.migrationBlock = {
             migration, oldSchemaVersion in
-            if (oldSchemaVersion < 1) {                
+            if (oldSchemaVersion < 2) {
             }
         }
         
@@ -62,25 +73,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let realm = Realm()
     }
     
-    func configureLaunchState() {
+    func configureLaunchState(userInfo: Dictionary<NSObject, AnyObject>?) {
         if let has_opened_app_before = Session.get(.MetaAuthToken) {
-            configureUsualLaunch(nil)
+            configureUsualLaunch(nil, userInfo: userInfo)
         } else {
             configureWelcomeLaunch()
         }
     }
     
-    func configureUsualLaunch(community: String?) {
+    func configureUsualLaunch(community: String?, userInfo: Dictionary<NSObject, AnyObject>? = nil) {
         let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
         
         let searchViewController = mainStoryboard.instantiateViewControllerWithIdentifier("SearchViewController") as! SearchViewController
         
         searchViewController.headingToCommunity = community
         
+        if userInfo != nil {
+            if userInfo!["community"] != nil && userInfo!["post_id"] != nil {
+                println(userInfo!["community"] as? String)
+                println(userInfo!["post_id"] as? String)
+                searchViewController.headingToCommunity = userInfo!["community"] as? String
+                searchViewController.postId = userInfo!["post_id"] as? String
+                
+            }
+        }
+        
         let navigationController = UINavigationController(rootViewController: searchViewController)
         navigationController.navigationBarHidden = true
         
-        let leftViewController = mainStoryboard.instantiateViewControllerWithIdentifier("ProfileViewController") as! UIViewController
+        let leftViewController = mainStoryboard.instantiateViewControllerWithIdentifier("ProfileViewController") as! ProfileViewController
+        
+        leftViewController.badge.badgeValue = UIApplication.sharedApplication().applicationIconBadgeNumber
         
         drawerController = MMDrawerController(centerViewController: navigationController, leftDrawerViewController: leftViewController)
         
@@ -136,8 +159,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
         println("received remote notification")
+        
+        let state = application.applicationState
+        
+        if state == .Active {
+            if let controller = drawerController {
+                (controller.leftDrawerViewController as! ProfileViewController).badge.badgeValue = application.applicationIconBadgeNumber
+            }
+        } else if state == .Inactive {
+            application.applicationIconBadgeNumber -= 1
+            println("-\n-\n-\n-\n-\n-\n-\n-\n-\n-\n-\n-\n-\n-\n-\n-\n-\n-\n-\n-\n-\n")
+            println("USER INFO: \(userInfo)")
+            configureLaunchState(userInfo)
+        }
     }
-    
+
     func application(application: UIApplication, performFetchWithCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
         
         if Session.getAuthToken() == nil {

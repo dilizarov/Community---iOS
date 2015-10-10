@@ -8,7 +8,7 @@
         <!--Search View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController storyboardIdentifier="SearchViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="vXZ-lx-hvc" customClass="SearchViewController" customModule="Community" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SearchViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="vXZ-lx-hvc" customClass="SearchViewController" customModule="Main" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -27,7 +27,7 @@
                                 <color key="textColor" red="0.018165555810000001" green="0.41620616300000002" blue="0.52175376559999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="asj-yc-qGD" customClass="SearchTextField" customModule="Community" customModuleProvider="target">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="asj-yc-qGD" customClass="SearchTextField" customModule="Main" customModuleProvider="target">
                                 <rect key="frame" x="36" y="261" width="248" height="46"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.018165555810000001" green="0.41620616300000002" blue="0.52175376559999997" alpha="1" colorSpace="calibratedRGB"/>
@@ -74,12 +74,12 @@
         <!--Replies View Controller-->
         <scene sceneID="nrQ-Cm-Nlm">
             <objects>
-                <viewController storyboardIdentifier="RepliesViewController" id="69u-Ed-5AO" customClass="RepliesViewController" customModule="Community" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RepliesViewController" id="69u-Ed-5AO" customClass="RepliesViewController" customModule="Main" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jOc-nd-nIy"/>
                         <viewControllerLayoutGuide type="bottom" id="G0X-Ef-fhG"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="iD0-Ic-PhQ" customClass="ContainerView" customModule="Community" customModuleProvider="target">
+                    <view key="view" contentMode="scaleToFill" id="iD0-Ic-PhQ" customClass="ContainerView" customModule="Main" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -124,14 +124,14 @@
         <!--Replies Table View Controller-->
         <scene sceneID="BUr-GZ-yEX">
             <objects>
-                <tableViewController id="Q8j-an-hFB" customClass="RepliesTableViewController" customModule="Community" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="Q8j-an-hFB" customClass="RepliesTableViewController" customModule="Main" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="oJB-Es-dUY">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="postCell" rowHeight="171" id="hAg-ce-IZe" customClass="ReplyPostCell" customModule="Community" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="postCell" rowHeight="171" id="hAg-ce-IZe" customClass="ReplyPostCell" customModule="Main" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hAg-ce-IZe" id="S7k-Z5-A8E">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -270,7 +270,7 @@
                                     <outlet property="username" destination="kE8-hS-nP8" id="gOc-VE-DxA"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="replyCell" rowHeight="113" id="EFI-f7-k5h" customClass="ReplyCell" customModule="Community" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="replyCell" rowHeight="113" id="EFI-f7-k5h" customClass="ReplyCell" customModule="Main" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EFI-f7-k5h" id="zee-Ja-0Ba">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -499,7 +499,7 @@
                                     <outlet property="username" destination="cX1-Qn-DtQ" id="7pn-Wk-8oC"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="noReplies" rowHeight="47" id="zBr-uq-1eO" customClass="NoRepliesCell" customModule="Community" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="noReplies" rowHeight="47" id="zBr-uq-1eO" customClass="NoRepliesCell" customModule="Main" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zBr-uq-1eO" id="fdC-Ru-uTa">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -540,7 +540,7 @@
         <!--Community View Controller-->
         <scene sceneID="ik9-h3-xn1">
             <objects>
-                <viewController storyboardIdentifier="CommunityCopyViewController" id="Dr5-LR-ZuW" customClass="CommunityViewController" customModule="Community" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CommunityViewController" id="Dr5-LR-ZuW" customClass="CommunityViewController" customModule="Main" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3Z1-Ux-rDP"/>
                         <viewControllerLayoutGuide type="bottom" id="dFY-Rk-4Ln"/>
@@ -575,7 +575,7 @@
         <!--Community Settings View Controller-->
         <scene sceneID="RVV-vo-1n6">
             <objects>
-                <viewController storyboardIdentifier="CommunitySettingsViewController" id="qiI-Fl-pVc" customClass="CommunitySettingsViewController" customModule="Community" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CommunitySettingsViewController" id="qiI-Fl-pVc" customClass="CommunitySettingsViewController" customModule="Main" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="aCy-Fk-pZq"/>
                         <viewControllerLayoutGuide type="bottom" id="YZ2-6d-iob"/>
@@ -688,14 +688,14 @@
         <!--Community Table View Controller-->
         <scene sceneID="2bc-wL-w47">
             <objects>
-                <tableViewController storyboardIdentifier="CommunityTableViewController" id="BWc-aD-IVI" customClass="CommunityTableViewController" customModule="Community" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="CommunityTableViewController" id="BWc-aD-IVI" customClass="CommunityTableViewController" customModule="Main" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="193" sectionHeaderHeight="22" sectionFooterHeight="22" id="0yn-nU-mrA">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
                         <color key="backgroundColor" red="0.018165555810000001" green="0.41620616300000002" blue="0.52175376559999997" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="communityPost" rowHeight="187" id="ovd-Wb-oKJ" customClass="PostCell" customModule="Community" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="communityPost" rowHeight="187" id="ovd-Wb-oKJ" customClass="PostCell" customModule="Main" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ovd-Wb-oKJ" id="S35-Gp-m2V">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -908,7 +908,7 @@
                                     <outlet property="username" destination="VIi-tw-2f0" id="d3R-aA-C52"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="noPosts" rowHeight="72" id="xdT-ph-MmT" customClass="NoPostsCell" customModule="Community" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="noPosts" rowHeight="72" id="xdT-ph-MmT" customClass="NoPostsCell" customModule="Main" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xdT-ph-MmT" id="gDX-1Z-9hZ">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -973,7 +973,7 @@
         <!--Profile Table View Controller-->
         <scene sceneID="b3p-23-BWX">
             <objects>
-                <tableViewController id="0Ya-Um-g6Z" customClass="ProfileTableViewController" customModule="Community" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="0Ya-Um-g6Z" customClass="ProfileTableViewController" customModule="Main" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="71" sectionHeaderHeight="22" sectionFooterHeight="22" id="fds-0w-Tzf">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -982,7 +982,7 @@
                         <color key="separatorColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <inset key="separatorInset" minX="75" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="communityCell" rowHeight="71" id="Hw0-Nh-p8g" customClass="CommunityCell" customModule="Community" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="communityCell" rowHeight="71" id="Hw0-Nh-p8g" customClass="CommunityCell" customModule="Main" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Hw0-Nh-p8g" id="pfc-U7-iQJ">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -1081,7 +1081,7 @@
         <!--Login View Controller-->
         <scene sceneID="5cB-n9-gmg">
             <objects>
-                <viewController storyboardIdentifier="LoginViewController" id="kdA-ms-TIM" customClass="LoginViewController" customModule="Community" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="kdA-ms-TIM" customClass="LoginViewController" customModule="Main" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="BNE-hi-seF"/>
                         <viewControllerLayoutGuide type="bottom" id="zgA-qg-e73"/>
@@ -1207,7 +1207,7 @@
         <!--Create Account View Controller-->
         <scene sceneID="5fN-f4-iHw">
             <objects>
-                <viewController storyboardIdentifier="CreateAccountViewController" id="Gfk-EW-Je7" customClass="CreateAccountViewController" customModule="Community" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CreateAccountViewController" id="Gfk-EW-Je7" customClass="CreateAccountViewController" customModule="Main" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="10J-7Y-HjD"/>
                         <viewControllerLayoutGuide type="bottom" id="fgF-yR-TSU"/>
@@ -1368,7 +1368,7 @@
         <!--Write Post View Controller-->
         <scene sceneID="CXz-tZ-T2V">
             <objects>
-                <viewController storyboardIdentifier="WritePostViewController" id="gAs-Bg-8Gf" customClass="WritePostViewController" customModule="Community" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WritePostViewController" id="gAs-Bg-8Gf" customClass="WritePostViewController" customModule="Main" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="QvS-bU-CCo"/>
                         <viewControllerLayoutGuide type="bottom" id="ER4-mj-ib2"/>
@@ -1481,7 +1481,7 @@
         <!--Profile View Controller-->
         <scene sceneID="Reg-K1-HN9">
             <objects>
-                <viewController storyboardIdentifier="ProfileViewController" id="xvf-hT-YCc" customClass="ProfileViewController" customModule="Community" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfileViewController" id="xvf-hT-YCc" customClass="ProfileViewController" customModule="Main" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Zle-7y-dIf"/>
                         <viewControllerLayoutGuide type="bottom" id="ytf-Yx-o3m"/>
@@ -1527,7 +1527,7 @@
                                     <constraint firstAttribute="width" constant="100" id="hXu-WG-SDn"/>
                                 </constraints>
                             </imageView>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gve-VY-kg4" customClass="RoundedView" customModule="Community" customModuleProvider="target">
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gve-VY-kg4" customClass="RoundedView" customModule="Main" customModuleProvider="target">
                                 <rect key="frame" x="11" y="231" width="353" height="436"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1559,7 +1559,7 @@
                                     <constraint firstAttribute="height" constant="40" id="BYV-O7-Oqr"/>
                                 </constraints>
                             </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U1E-se-v9F" customClass="RoundedView" customModule="Community" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U1E-se-v9F" customClass="RoundedView" customModule="Main" customModuleProvider="target">
                                 <rect key="frame" x="314" y="231" width="28" height="4"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.018165555810000001" green="0.41620616300000002" blue="0.52175376559999997" alpha="1" colorSpace="calibratedRGB"/>
@@ -1574,7 +1574,7 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ecL-jQ-B3s" customClass="RoundedView" customModule="Community" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ecL-jQ-B3s" customClass="RoundedView" customModule="Main" customModuleProvider="target">
                                 <rect key="frame" x="32" y="231" width="28" height="4"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.018165555810000001" green="0.41620616300000002" blue="0.52175376559999997" alpha="1" colorSpace="calibratedRGB"/>
@@ -1589,7 +1589,7 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OLI-K1-s3C" customClass="RoundedView" customModule="Community" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OLI-K1-s3C" customClass="RoundedView" customModule="Main" customModuleProvider="target">
                                 <rect key="frame" x="173" y="231" width="28" height="4"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.018165555810000001" green="0.41620616300000002" blue="0.52175376559999997" alpha="1" colorSpace="calibratedRGB"/>

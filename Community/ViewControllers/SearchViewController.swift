@@ -14,6 +14,8 @@ import UITextField_Shake
 class SearchViewController: UIViewController, UITextFieldDelegate {
 
     var headingToCommunity: String?
+    // Handles propogation for notifications.
+    var postId: String?
     
     // Dictates whether or not we have a NSNotification Observer viewing this
     var observingSideViewAppeared: Bool = false
@@ -180,9 +182,12 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
     
     func goToCommunityVC(community: String, animated: Bool) {
 
-        var communityVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("CommunityCopyViewController") as! CommunityViewController
+        var communityVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("CommunityViewController") as! CommunityViewController
         
         communityVC.communityTitle = community
+        communityVC.postId = postId
+        
+        postId = nil
         
         self.navigationController?.pushViewController(communityVC, animated: animated)
     }

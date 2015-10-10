@@ -56,7 +56,9 @@ class RepliesViewController: UIViewController, PHFComposeBarViewDelegate, Replie
         return true
     }
     
-    var post: Post!
+    var post: Post?
+    var postId: String?
+    
     var tableViewController: RepliesTableViewController!
     
     var navBar: UINavigationBar!
@@ -83,8 +85,12 @@ class RepliesViewController: UIViewController, PHFComposeBarViewDelegate, Replie
         // We need to disable the IQKeyboardManager because we use our own implementation on the inputAccessoryView
         IQKeyboardManager.sharedManager().enable = false
         
-        if !loadIndicator.isAnimating() && navBar.topItem!.rightBarButtonItem != rightButtonOptions["load"] {
+        if !loadIndicator.isAnimating() && navBar.topItem!.rightBarButtonItem != rightButtonOptions["load"] && post != nil {
             tableViewController.tableView.reloadData()
+        }
+        
+        if postId != nil {
+            composeBarView.enabled = false
         }
     }
     
@@ -136,7 +142,7 @@ class RepliesViewController: UIViewController, PHFComposeBarViewDelegate, Replie
         
         composeBarView.enabled = false
         
-        request = Alamofire.request(Router.WriteReply(post_id: post.id, body: composeBarView.text.strip()))
+        request = Alamofire.request(Router.WriteReply(post_id: post!.id, body: composeBarView.text.strip()))
             .responseJSON { request, response, jsonData, errors in
                 
                 self.composeBarView.enabled = true
@@ -156,7 +162,7 @@ class RepliesViewController: UIViewController, PHFComposeBarViewDelegate, Replie
                         
                         var reply = Reply(id: jsonReply["external_id"].stringValue, username: jsonReply["user"]["username"].stringValue, body: jsonReply["body"].stringValue, likeCount: jsonReply["likes"].intValue, liked: jsonReply["liked"].boolValue, timeCreated: jsonReply["created_at"].stringValue, avatarUrl: jsonReply["user"]["avatar_url"].string)
                         
-                        self.post.repliesCount += 1
+                        self.post!.repliesCount += 1
                         
                         self.tableViewController.replies.append(reply)
                         self.tableViewController.emptyOrErrorDescription = nil
@@ -217,6 +223,10 @@ class RepliesViewController: UIViewController, PHFComposeBarViewDelegate, Replie
         (self.rightButtonOptions["load"]!.customView as! UIActivityIndicatorView).stopAnimating()
     }
     
+    func enableReplying() {
+        self.composeBarView.enabled = true
+    }
+    
     func back() {
         self.request?.cancel()
         self.dismissViewControllerAnimated(true, completion: nil)
@@ -227,8 +237,10 @@ class RepliesViewController: UIViewController, PHFComposeBarViewDelegate, Replie
             tableViewController = segue.destinationViewController as! RepliesTableViewController
             
             tableViewController.post = post
+            tableViewController.postId = postId
             tableViewController.delegate = self
             
+            postId = nil
         }
     }
     

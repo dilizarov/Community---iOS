@@ -32,5 +32,5 @@ protocol RepliesTableDelegate {
     func startLoading()
     func stopLoading()
     func stopRefreshing()
-    
+    func enableReplying()
 }

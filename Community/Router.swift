@@ -22,7 +22,7 @@ enum Router: URLRequestConvertible {
     case GetPosts(community: String, page: Int?, infiniteScrollTimeBuffer: String?)
     case WriteReply(post_id: String, body: String)
     case LikeReply(reply_id: String, dislike: Bool)
-    case GetReplies(post_id: String)
+    case GetReplies(post_id: String, includePost: Bool)
     case GetCommunities
     case VerifyMembership(community: String)
     case JoinCommunity(community: String)
@@ -107,8 +107,12 @@ enum Router: URLRequestConvertible {
                     if dislike { params = ["dislike" : true ] }
                     
                     return (.GET, "/replies/\(reply_id)/like.json", params)
-                case .GetReplies(let post_id):
+                case .GetReplies(let post_id, let includePost):
                 
+                    if includePost {
+                        params["include_post"] = true
+                    }
+                    
                     return (.GET, "/posts/\(post_id)/replies.json", params)
                 
                 case .GetCommunities:

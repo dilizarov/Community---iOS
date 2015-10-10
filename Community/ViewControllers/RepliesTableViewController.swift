@@ -12,7 +12,9 @@ import SwiftyJSON
 
 class RepliesTableViewController: UITableViewController {
     
-    var post: Post!
+    var post: Post?
+    var postId: String?
+    
     var atBottom = false
     
     var emptyOrErrorDescription: String?
@@ -65,7 +67,12 @@ class RepliesTableViewController: UITableViewController {
     func performBackgroundFetch(asyncGroup: dispatch_group_t!) {
         
         dispatch_group_enter(asyncGroup)
-        Alamofire.request(Router.GetReplies(post_id: post.id))
+        if post == nil {
+            dispatch_group_leave(asyncGroup)
+            return
+        }
+        
+        Alamofire.request(Router.GetReplies(post_id: post!.id, includePost: false))
             .responseJSON { request, response, jsonData, errors in
                 
                 if let jsonData: AnyObject = jsonData {
@@ -74,7 +81,7 @@ class RepliesTableViewController: UITableViewController {
                     if (json["errors"] == nil && json["error"] == nil) {
                         self.replies = [nil]
                         
-                        self.post.repliesCount = json["replies"].count
+                        self.post!.repliesCount = json["replies"].count
                         for var i = 0; i < json["replies"].count; i++ {
                             var jsonReply = json["replies"][i]
                             
@@ -103,7 +110,15 @@ class RepliesTableViewController: UITableViewController {
             delegate.startLoading()
         }
         
-        Alamofire.request(Router.GetReplies(post_id: post.id))
+        var urlRequest: URLRequestConvertible
+        
+        if post == nil {
+            urlRequest = Router.GetReplies(post_id: postId!, includePost: true)
+        } else {
+            urlRequest = Router.GetReplies(post_id: post!.id, includePost: false)
+        }
+        
+        Alamofire.request(urlRequest)
             .responseJSON { request, response, jsonData, errors in
                 
                 var defaultError = errors?.localizedDescription
@@ -118,7 +133,16 @@ class RepliesTableViewController: UITableViewController {
                     } else if (json["errors"] == nil) {
                         self.replies = [nil]
                         
-                        self.post.repliesCount = json["replies"].count
+                        if self.post == nil {
+                            var jsonPost = json["meta"]["post"]
+                            
+                            self.post = Post(id: jsonPost["external_id"].stringValue, username: jsonPost["user"]["username"].stringValue, body: jsonPost["body"].stringValue, title: jsonPost["title"].string, repliesCount: jsonPost["replies_count"].intValue, likeCount: jsonPost["likes"].intValue, liked: jsonPost["liked"].boolValue, timeCreated: jsonPost["created_at"].stringValue, avatarUrl: jsonPost["user"]["avatar_url"].string)
+                            
+                            self.postId = nil
+                            self.delegate.enableReplying()
+                        }
+                        
+                        self.post!.repliesCount = json["replies"].count
                         for var i = 0; i < json["replies"].count; i++ {
                             var jsonReply = json["replies"][i]
                             
@@ -185,13 +209,25 @@ class RepliesTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         if indexPath.row == 0 {
-            var cell = tableView.dequeueReusableCellWithIdentifier("postCell", forIndexPath: indexPath) as! ReplyPostCell
-        
-            cell.configureViews(self.post)
-            
-            cell.layoutIfNeeded()
-            
-            return cell
+            if self.post == nil {
+                // In hindsight, maybe I should have called this something different, because I use it for more
+                // than just no replies, but it suffices here.
+                var cell = tableView.dequeueReusableCellWithIdentifier("noReplies") as! NoRepliesCell
+                
+                cell.configureView("Could not load post")
+                
+                cell.layoutIfNeeded()
+                
+                return cell
+            } else {
+                var cell = tableView.dequeueReusableCellWithIdentifier("postCell", forIndexPath: indexPath) as! ReplyPostCell
+                
+                cell.configureViews(self.post!)
+                
+                cell.layoutIfNeeded()
+                
+                return cell
+            }
         } else if emptyOrErrorDescription != nil {
             var cell = tableView.dequeueReusableCellWithIdentifier("noReplies") as! NoRepliesCell
             

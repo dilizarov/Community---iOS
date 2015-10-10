@@ -24,10 +24,10 @@ class JoinedCommunity: Object {
     dynamic var avatar_url = ""
     
     override static func indexedProperties() -> [String] {
-        return ["name"]
+        return ["name", "nameLowercase"]
     }
     
     override static func primaryKey() -> String? {
-        return "name"
+        return "nameLowercase"
     }
 }
