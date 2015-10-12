@@ -139,6 +139,8 @@ class RepliesTableViewController: UITableViewController {
                             self.post = Post(id: jsonPost["external_id"].stringValue, username: jsonPost["user"]["username"].stringValue, body: jsonPost["body"].stringValue, title: jsonPost["title"].string, repliesCount: jsonPost["replies_count"].intValue, likeCount: jsonPost["likes"].intValue, liked: jsonPost["liked"].boolValue, timeCreated: jsonPost["created_at"].stringValue, avatarUrl: jsonPost["user"]["avatar_url"].string)
                             
                             self.postId = nil
+                            
+                            self.delegate.setPost(self.post!)
                             self.delegate.enableReplying()
                         }
                         

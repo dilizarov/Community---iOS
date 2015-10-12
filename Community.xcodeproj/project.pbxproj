@@ -39,6 +39,8 @@
 		9A5FC61D1BBF69E2001937C5 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5FC61C1BBF69E2001937C5 /* Session.swift */; };
 		9A5FC61F1BC306AB001937C5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5FC61E1BC306AB001937C5 /* LoginViewController.swift */; };
 		9A5FC6211BC35FDD001937C5 /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5FC6201BC35FDD001937C5 /* CreateAccountViewController.swift */; };
+		9A5FC6231BCB68B5001937C5 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5FC6221BCB68B4001937C5 /* Notification.swift */; };
+		9A5FC6251BCB8331001937C5 /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5FC6241BCB8330001937C5 /* NotificationCell.swift */; };
 		9AA526861B89CF4C00900383 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AA526851B89CF4C00900383 /* QuartzCore.framework */; };
 		9AA613601B8464F0004911C2 /* CommunityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA6135F1B8464F0004911C2 /* CommunityCell.swift */; };
 		9AAD20491B82A22F0053F743 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AAD20481B82A22F0053F743 /* AppDelegate.swift */; };
@@ -116,6 +118,8 @@
 		9A5FC61C1BBF69E2001937C5 /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		9A5FC61E1BC306AB001937C5 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		9A5FC6201BC35FDD001937C5 /* CreateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
+		9A5FC6221BCB68B4001937C5 /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		9A5FC6241BCB8330001937C5 /* NotificationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
 		9AA526851B89CF4C00900383 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		9AA6135F1B8464F0004911C2 /* CommunityCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunityCell.swift; sourceTree = "<group>"; };
 		9AAD20431B82A22F0053F743 /* Main.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Main.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -332,6 +336,7 @@
 		9AE113D41BB7400800005F30 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				9A5FC6241BCB8330001937C5 /* NotificationCell.swift */,
 				9AA6135F1B8464F0004911C2 /* CommunityCell.swift */,
 				9AE113D71BB7D29E00005F30 /* NoPostsCell.swift */,
 				9AE113D51BB7412400005F30 /* NoRepliesCell.swift */,
@@ -348,6 +353,7 @@
 				9A5566151BA2C511005DDBA3 /* JoinedCommunity.swift */,
 				9A55660D1BA0168C005DDBA3 /* Post.swift */,
 				9AB8D00E1BB23C2200516551 /* Reply.swift */,
+				9A5FC6221BCB68B4001937C5 /* Notification.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -567,6 +573,7 @@
 				9AF4BC2E1BBB303500426A7E /* PrivacyPolicyViewController.swift in Sources */,
 				9A5566AD1BAD3CD6005DDBA3 /* PHFDelegateChain.m in Sources */,
 				9AB8D00F1BB23C2200516551 /* Reply.swift in Sources */,
+				9A5FC6231BCB68B5001937C5 /* Notification.swift in Sources */,
 				9A3D2C2B1B8BFD4F00C10CC5 /* Extensions.swift in Sources */,
 				9AF4BC361BBCB19A00426A7E /* WelcomeCreateAccountViewController.swift in Sources */,
 				9A5566AA1BAD3CD6005DDBA3 /* PHFComposeBarView.m in Sources */,
@@ -590,6 +597,7 @@
 				9AA613601B8464F0004911C2 /* CommunityCell.swift in Sources */,
 				9A55669D1BACD00A005DDBA3 /* ReplyPostCell.swift in Sources */,
 				9A3D2C271B8AA0C400C10CC5 /* SearchTextField.swift in Sources */,
+				9A5FC6251BCB8331001937C5 /* NotificationCell.swift in Sources */,
 				9A5566651BA7FD5C005DDBA3 /* ProfileTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

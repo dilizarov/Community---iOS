@@ -16,6 +16,7 @@ import RealmSwift
 class CommunityViewController: UIViewController, CommunityTableDelegate {
     
     var communityTitle: String?
+    var communityKey: String?
     // Handles propogation for notifications.
     var postId: String?
     
@@ -52,17 +53,7 @@ class CommunityViewController: UIViewController, CommunityTableDelegate {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        if postId != nil {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let repliesVC = storyboard.instantiateViewControllerWithIdentifier("RepliesViewController") as! RepliesViewController
-            
-            
-            repliesVC.postId = postId
-            
-            postId = nil
-            self.presentViewController(repliesVC, animated: true, completion: nil)
-            
-        }
+        potentiallyHeadToReplies()
     }
     
     func communitySelected(notification: NSNotification) {
@@ -85,7 +76,24 @@ class CommunityViewController: UIViewController, CommunityTableDelegate {
                 tableViewController.requestPostsAndPopulateFeed(false, page: nil)
                 
                 (UIApplication.sharedApplication().delegate as! AppDelegate).drawerController?.closeDrawerAnimated(true, completion: nil)
+                
+                postId = info["postId"]
+                potentiallyHeadToReplies()
             }
+        }
+    }
+    
+    func potentiallyHeadToReplies() {
+        if postId != nil {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let repliesVC = storyboard.instantiateViewControllerWithIdentifier("RepliesViewController") as! RepliesViewController
+            
+            
+            repliesVC.postId = postId
+            
+            postId = nil
+            self.presentViewController(repliesVC, animated: true, completion: nil)
+            
         }
     }
     
@@ -147,6 +155,7 @@ class CommunityViewController: UIViewController, CommunityTableDelegate {
                     
                     var community = JoinedCommunity()
                     community.name = json["name"].stringValue
+                    self.communityKey = json["name"].stringValue
                     
                     if let username = json["user"]["username"].string {
                         community.username = username
@@ -193,6 +202,7 @@ class CommunityViewController: UIViewController, CommunityTableDelegate {
                     let realm = Realm()
                     var community = JoinedCommunity()
                     community.name = self.communityTitle!
+                    self.communityKey = self.communityTitle!
                     
                     realm.write {
                         realm.add(community, update: true)
@@ -226,7 +236,7 @@ class CommunityViewController: UIViewController, CommunityTableDelegate {
         
         var settingsVC = storyboard.instantiateViewControllerWithIdentifier("CommunitySettingsViewController") as! CommunitySettingsViewController
         
-        settingsVC.communityName = communityTitle
+        settingsVC.communityName = self.communityKey
         
         self.presentViewController(settingsVC, animated: true, completion: nil)
     }

@@ -90,11 +90,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if userInfo != nil {
             if userInfo!["community"] != nil && userInfo!["post_id"] != nil {
-                println(userInfo!["community"] as? String)
-                println(userInfo!["post_id"] as? String)
                 searchViewController.headingToCommunity = userInfo!["community"] as? String
                 searchViewController.postId = userInfo!["post_id"] as? String
-                
             }
         }
         
@@ -147,29 +144,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             tokenString += String(format: "%02.2hhx", arguments: [tokenChars[i]])
         }
         
-        println("tokenString: \(tokenString)")
-        
         Session.set(tokenString, key: .DeviceToken)
         Alamofire.request(Router.SendDeviceToken)
     }
     
     func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
-        println("Failed to register for remote notifications: \(error)")
-    }
+        }
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
-        println("received remote notification")
         
         let state = application.applicationState
         
         if state == .Active {
             if let controller = drawerController {
-                (controller.leftDrawerViewController as! ProfileViewController).badge.badgeValue = application.applicationIconBadgeNumber
+                println("BADGE NUMBER: \(application.applicationIconBadgeNumber)")
+                var currentBadgeNumber = application.applicationIconBadgeNumber
+                application.applicationIconBadgeNumber = currentBadgeNumber + 1
+                
+                (controller.leftDrawerViewController as! ProfileViewController).badge.badgeValue = currentBadgeNumber + 1
             }
         } else if state == .Inactive {
             application.applicationIconBadgeNumber -= 1
-            println("-\n-\n-\n-\n-\n-\n-\n-\n-\n-\n-\n-\n-\n-\n-\n-\n-\n-\n-\n-\n-\n")
-            println("USER INFO: \(userInfo)")
             configureLaunchState(userInfo)
         }
     }

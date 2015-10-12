@@ -169,6 +169,10 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
         if let info = notification.userInfo as? Dictionary<String, String> {
             if let community = info["community"] {
                 
+                println(info)
+                println(info["postId"])
+                self.postId = info["postId"]
+                
                 goToCommunityVC(community, animated: false)
                 
                 (UIApplication.sharedApplication().delegate as! AppDelegate).drawerController?.closeDrawerAnimated(true, completion: nil)

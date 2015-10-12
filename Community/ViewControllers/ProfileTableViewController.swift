@@ -12,6 +12,7 @@ class ProfileTableViewController: UITableViewController, PresentControllerDelega
     var delegate: ProfileViewController!
     
     var communities = [JoinedCommunity]()
+    var notifications = [Notification]()
     
     var settings: [String] {
  
@@ -30,7 +31,14 @@ class ProfileTableViewController: UITableViewController, PresentControllerDelega
     
     @IBAction func handleRefresh(sender: AnyObject) {
         delegate.handleRefresh()
-        requestJoinedCommunitiesAndPopulateList()
+        
+        if delegate.currentState == .Communities {
+            requestJoinedCommunitiesAndPopulateList()
+        } else if delegate.currentState == .Notifications {
+            requestNotificationsAndPopulateList()
+        } else {
+            self.refreshControl!.endRefreshing()
+        }
     }
     
     override func viewDidLoad() {
@@ -48,7 +56,11 @@ class ProfileTableViewController: UITableViewController, PresentControllerDelega
             communities = Array(realm.objects(JoinedCommunity
                 ).sorted("nameLowercase", ascending: true))
             
-            tableView.reloadData()
+            if communities.count != 0 && delegate.currentState == .Communities {
+                delegate.successRequestJoinedCommunities()
+                tableView.reloadData()
+            }
+
             triggerRealmReload = false
         }
     }
@@ -63,6 +75,15 @@ class ProfileTableViewController: UITableViewController, PresentControllerDelega
     
     func beginInitialLoad() {
         self.refreshControl!.beginRefreshing()
+        
+        // Handling bug of refresh control not appearing when contentOffset is 0.
+        if (self.tableView.contentOffset.y == 0) {
+            
+            UIView.animateWithDuration(0.25, animations: {
+                self.tableView.contentOffset = CGPointMake(0, -self.refreshControl!.frame.size.height)
+            })
+        }
+        
         self.refreshControl!.sendActionsForControlEvents(.ValueChanged)
     }
     
@@ -145,15 +166,17 @@ class ProfileTableViewController: UITableViewController, PresentControllerDelega
                 
                 var defaultError = errors?.localizedDescription
                 
+                self.communities = []
+                var failureString: String?
+                
                 if (defaultError != nil) {
-                    self.delegate.failureRequestJoinedCommunities(defaultError!.removeEndingPunctuationAndMakeLowerCase())
+                    failureString = defaultError!.removeEndingPunctuationAndMakeLowerCase()
                 } else if let jsonData: AnyObject = jsonData {
                     let json = JSON(jsonData)
                     
                     if (json["error"] != nil) {
-                        self.delegate.failureRequestJoinedCommunities(json["error"].stringValue)
+                        failureString = json["error"].stringValue
                     } else if (json["errors"] == nil) {
-                        self.communities = []
                         for var i = 0; i < json["communities"].count; i++ {
                             var jsonCommunity = json["communities"][i]
                             
@@ -170,7 +193,6 @@ class ProfileTableViewController: UITableViewController, PresentControllerDelega
                             }
                             
                             self.communities.append(community)
-                            
                         }
                         
                         let realm = Realm()
@@ -185,7 +207,9 @@ class ProfileTableViewController: UITableViewController, PresentControllerDelega
                         }
                         
                         self.delegate.successRequestJoinedCommunities()
-                        self.tableView.reloadData()
+                        if self.communities.count == 0 {
+                            failureString = "Communities you join will be located here"
+                        }
                     } else {
                         var errorString = ""
                         
@@ -195,10 +219,15 @@ class ProfileTableViewController: UITableViewController, PresentControllerDelega
                             errorString += json["errors"][i].string!
                         }
                         
-                        self.delegate.failureRequestJoinedCommunities(errorString)
+                        failureString = errorString
                     }
                 } else {
-                    self.delegate.failureRequestJoinedCommunities("something went wrong :(")
+                    failureString = "something went wrong :("
+                }
+                
+                self.tableView.reloadData()
+                if let string = failureString {
+                    self.delegate.failureRequestJoinedCommunities(string)
                 }
                 
                 // We add a delay between ending the refresh and reloading data because otherwise the animation won't
@@ -210,6 +239,76 @@ class ProfileTableViewController: UITableViewController, PresentControllerDelega
                 })
         }
     }
+    
+    func requestNotificationsAndPopulateList() {
+        
+        Alamofire.request(Router.GetNotifications)
+            .responseJSON { request, response, jsonData, errors in
+                
+                var defaultError = errors?.localizedDescription
+                
+                self.notifications = []
+                var failureString: String?
+                
+                if (defaultError != nil) {
+                    failureString = defaultError!.removeEndingPunctuationAndMakeLowerCase()
+                } else if let jsonData: AnyObject = jsonData {
+                    let json = JSON(jsonData)
+                    
+                    if (json["error"] != nil) {
+                        failureString = json["error"].stringValue
+                    } else if (json["errors"] == nil) {
+                        
+                        for var i = 0; i < json["notifications"].count; i++ {
+                            var jsonNotif = json["notifications"][i]
+                                                        
+                            var notification = Notification(kind: jsonNotif["kind"].string!,
+                                username: jsonNotif["user"]["username"].string!,
+                                timeCreated: jsonNotif["created_at"].string!,
+                                community: jsonNotif["community"].string!,
+                                normalizedCommunityName: jsonNotif["community_normalized"].string!,
+                                postId: jsonNotif["post_id"].string!,
+                                avatarUrl: jsonNotif["user"]["avatar_url"].string)
+                            
+                            self.notifications.append(notification)
+                        }
+                        
+                        self.delegate.successRequestNotifications()
+                        self.delegate.resetBadge()
+                        
+                        if self.notifications.count == 0 {
+                            failureString = "Notifications can be found here"
+                        }
+                    } else {
+                        var errorString = ""
+                        
+                        for var i = 0; i < json["errors"].count; i++ {
+                            if (i != 0) { errorString += "\n\n" }
+                            
+                            errorString += json["errors"][i].string!
+                        }
+                        
+                        failureString = errorString
+                    }
+                } else {
+                    failureString = "something went wrong :("
+                }
+                
+                self.tableView.reloadData()
+                if let string = failureString {
+                    self.delegate.failureRequestNotifications(string)
+                }
+                
+                // We add a delay between ending the refresh and reloading data because otherwise the animation won't
+                // be smooth and from then on, refreshing looks clunky.
+                var delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0.25 * Double(NSEC_PER_SEC)))
+                
+                dispatch_after(delayTime, dispatch_get_main_queue(), {
+                    self.refreshControl!.endRefreshing()
+                })
+        }
+    }
+
     
     func leaveCommunity(community: JoinedCommunity, row: Int) {
         if (community.name == communities[row].name) {
@@ -248,7 +347,7 @@ class ProfileTableViewController: UITableViewController, PresentControllerDelega
         if delegate.currentState == ProfileViewController.State.Communities {
             return communities.count
         } else if delegate.currentState == ProfileViewController.State.Notifications {
-            return communities.count
+            return notifications.count
         } else {
             return settings.count
         }
@@ -267,8 +366,14 @@ class ProfileTableViewController: UITableViewController, PresentControllerDelega
             }
             
             return cell
-        //} else if delegate.currentState == ProfileViewController.State.Notifications {
-        //    return communities.count
+        } else if delegate.currentState == ProfileViewController.State.Notifications {
+            let cell = self.tableView.dequeueReusableCellWithIdentifier("notificationCell") as! NotificationCell
+            
+            if (notifications.count > indexPath.row) {
+                cell.configureViews(notifications[indexPath.row])
+            }
+            
+            return cell
         } else {
             let cell = self.tableView.dequeueReusableCellWithIdentifier("settingCell") as! UITableViewCell
             
@@ -289,8 +394,14 @@ class ProfileTableViewController: UITableViewController, PresentControllerDelega
                 
                 NSNotificationCenter.defaultCenter().postNotificationName("communitySelected", object: self, userInfo: userInfo)
             }
-            //} else if delegate.currentState == ProfileViewController.State.Notifications {
-            //    return communities.count
+        } else if delegate.currentState == ProfileViewController.State.Notifications {
+            if (notifications.count > indexPath.row) {
+                var userInfo = Dictionary<String, String>()
+                userInfo["community"] = notifications[indexPath.row].community
+                userInfo["postId"] = notifications[indexPath.row].postId
+                                
+                NSNotificationCenter.defaultCenter().postNotificationName("communitySelected", object: self, userInfo: userInfo)
+            }
         } else {
             if (settings.count > indexPath.row) {
                

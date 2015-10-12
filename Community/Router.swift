@@ -17,6 +17,7 @@ enum Router: URLRequestConvertible {
     case CreateMetaAccount
     case ChangeMetaUsername
     case SendDeviceToken
+    case GetNotifications
     case WritePost(community: String, body: String, title: String?)
     case LikePost(post_id: String, dislike: Bool)
     case GetPosts(community: String, page: Int?, infiniteScrollTimeBuffer: String?)
@@ -71,6 +72,10 @@ enum Router: URLRequestConvertible {
                     }
                     
                     return (.POST, "sessions/sync_device.json", params)
+            
+                case .GetNotifications:
+                
+                    return (.GET, "/users/\(Session.getUserId()!)/notifications.json", params)
                 
                 case .WritePost(let community, let body, let title):
                     
@@ -173,6 +178,8 @@ enum Router: URLRequestConvertible {
                     params["meta_auth_token"] = Session.get(.MetaAuthToken)!
                     params["meta_user_id"] = Session.get(.MetaUserId)!
                 }
+            case .GetNotifications:
+                params["auth_token"] = Session.getAuthToken()!
             default:
                 println(Session.get(.AuthToken))
                 params["auth_token"] = Session.getAuthToken()!

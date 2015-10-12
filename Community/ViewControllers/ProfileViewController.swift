@@ -15,7 +15,6 @@ import UIActivityIndicator_for_SDWebImage
 import MMProgressHUD
 import RealmSwift
 import Sheriff
-import AudioToolbox.AudioServices
 
 class ProfileViewController: UIViewController {
     
@@ -28,6 +27,9 @@ class ProfileViewController: UIViewController {
     var tableViewController: ProfileTableViewController!
     
     var initialLoad = true
+    
+    var communitiesError: String?
+    var notificationsError: String?
 
     @IBOutlet var tableHolder: RoundedView!
     @IBOutlet var viewingCommunities: RoundedView!
@@ -69,6 +71,7 @@ class ProfileViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
         
+        self.badge.badgeValue = UIApplication.sharedApplication().applicationIconBadgeNumber
         NSNotificationCenter.defaultCenter().postNotificationName("sideViewAppeared", object: self)
     }
     
@@ -173,9 +176,6 @@ class ProfileViewController: UIViewController {
     }
     
     func communitiesImageTapped() {
-        badge.increment()
-        
-        AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
         
         if currentState == .Communities { return }
         
@@ -184,7 +184,15 @@ class ProfileViewController: UIViewController {
         self.viewingCommunities.alpha = 1.0
         
         currentState = .Communities
+        self.errorLabel.alpha = 0
+        
         tableViewController.tableView.reloadData()
+        
+        if let error = communitiesError {
+            self.errorLabel.text = error
+            self.errorLabel.alpha = 1
+        }
+
     }
     
     func notificationsImageTapped() {
@@ -195,18 +203,31 @@ class ProfileViewController: UIViewController {
         self.viewingNotifications.alpha = 1.0
 
         currentState = .Notifications
+        self.errorLabel.alpha = 0
+        
         tableViewController.tableView.reloadData()
+        
+        if let error = notificationsError {
+            self.errorLabel.text = error
+            self.errorLabel.alpha = 1
+        }
+        
+        if (!self.tableViewController.refreshControl!.refreshing && (self.badge.badgeValue > 0 || (self.tableViewController.notifications.count == 0 && notificationsError == nil))) {
+            self.tableViewController.beginInitialLoad()
+        }
     }
     
     func settingsImageTapped() {
-        badge.decrement()
         if currentState == .Settings { return }
         
         self.viewingCommunities.alpha = 0.0
         self.viewingNotifications.alpha = 0.0
         self.viewingSettings.alpha = 1.0
-    
+        
         currentState = .Settings
+        
+        self.errorLabel.alpha = 0
+        
         tableViewController.tableView.reloadData()
     }
     
@@ -224,12 +245,40 @@ class ProfileViewController: UIViewController {
     }
     
     func failureRequestJoinedCommunities(error: String) {
-        self.errorLabel.text = error
-        self.errorLabel.alpha = 1
+        self.communitiesError = error
+        
+        if currentState != .Communities {
+            communitiesImageTapped()
+        } else {
+            self.errorLabel.text = error
+            self.errorLabel.alpha = 1
+        }
     }
     
     func successRequestJoinedCommunities() {
+        self.communitiesError = nil
         self.errorLabel.alpha = 0
+    }
+    
+    func failureRequestNotifications(error: String) {
+        self.notificationsError = error
+        
+        if currentState != .Notifications {
+            notificationsImageTapped()
+        } else {
+            self.errorLabel.text = error
+            self.errorLabel.alpha = 1
+        }
+    }
+    
+    func successRequestNotifications() {
+        self.notificationsError = nil
+        self.errorLabel.alpha = 0
+    }
+    
+    func resetBadge() {
+        self.badge.badgeValue = 0
+        UIApplication.sharedApplication().applicationIconBadgeNumber = 0
     }
     
     func spreadToast(string: String) {
@@ -393,6 +442,7 @@ class ProfileViewController: UIViewController {
                         MMProgressHUD.sharedHUD().dismissAnimationCompletion = {
                             
                             self.tableViewController.communities = []
+                            self.tableViewController.notifications = []
                             self.communitiesImageTapped()
                             self.tableViewController.tableView.setContentOffset(CGPointZero, animated: false)
                             self.setAvatarImage()
@@ -406,8 +456,6 @@ class ProfileViewController: UIViewController {
                             
                             centerNC.popToRootViewControllerAnimated(false)
                             (centerNC.topViewController as! SearchViewController).setAvatar()
-                            
-                            //refresh notifications
                         }
                         
                         MMProgressHUD.dismissWithSuccess(":)")

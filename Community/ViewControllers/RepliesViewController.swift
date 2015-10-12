@@ -227,6 +227,10 @@ class RepliesViewController: UIViewController, PHFComposeBarViewDelegate, Replie
         self.composeBarView.enabled = true
     }
     
+    func setPost(post: Post) {
+        self.post = post
+    }
+    
     func back() {
         self.request?.cancel()
         self.dismissViewControllerAnimated(true, completion: nil)
