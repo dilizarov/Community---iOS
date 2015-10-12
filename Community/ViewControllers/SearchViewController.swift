@@ -13,7 +13,9 @@ import UITextField_Shake
 
 class SearchViewController: UIViewController, UITextFieldDelegate {
 
+    // Crappy quick solution to getting stuff across to other VCs.
     var headingToCommunity: String?
+    var communityKey: String?
     // Handles propogation for notifications.
     var postId: String?
     
@@ -169,9 +171,8 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
         if let info = notification.userInfo as? Dictionary<String, String> {
             if let community = info["community"] {
                 
-                println(info)
-                println(info["postId"])
                 self.postId = info["postId"]
+                self.communityKey = info["normalized_name"]
                 
                 goToCommunityVC(community, animated: false)
                 
@@ -181,16 +182,20 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
     }
 
     func search(community: String) {
+        // Fake key to best of my ability because... assumes we keep this consistent with server-side.
+        communityKey = community.lowercaseString.stringByReplacingOccurrencesOfString(" ", withString: "_", options: .LiteralSearch, range: nil)
         goToCommunityVC(community, animated: true)
     }
     
     func goToCommunityVC(community: String, animated: Bool) {
 
         var communityVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("CommunityViewController") as! CommunityViewController
-        
+
         communityVC.communityTitle = community
         communityVC.postId = postId
+        communityVC.communityKey = communityKey
         
+        communityKey = nil
         postId = nil
         
         self.navigationController?.pushViewController(communityVC, animated: animated)

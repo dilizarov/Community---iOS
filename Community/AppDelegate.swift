@@ -61,10 +61,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         var config = Realm.Configuration()
         config.path = customRealmPath
-        config.schemaVersion = 2
+        config.schemaVersion = 3
         config.migrationBlock = {
             migration, oldSchemaVersion in
-            if (oldSchemaVersion < 2) {
+            if (oldSchemaVersion < 3) {
             }
         }
         

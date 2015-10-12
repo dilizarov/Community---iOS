@@ -128,6 +128,7 @@ class ProfileTableViewController: UITableViewController, PresentControllerDelega
                             var community = JoinedCommunity()
                             
                             community.name = jsonCommunity["name"].string!
+                            community.normalizedName = jsonCommunity["normalized_name"].string!
                             
                             if let username = jsonCommunity["user"]["username"].string {
                                 community.username = username
@@ -183,6 +184,7 @@ class ProfileTableViewController: UITableViewController, PresentControllerDelega
                             var community = JoinedCommunity()
                             
                             community.name = jsonCommunity["name"].string!
+                            community.normalizedName = jsonCommunity["normalized_name"].string!
                             
                             if let username = jsonCommunity["user"]["username"].string {
                                 community.username = username
@@ -311,10 +313,10 @@ class ProfileTableViewController: UITableViewController, PresentControllerDelega
 
     
     func leaveCommunity(community: JoinedCommunity, row: Int) {
-        if (community.name == communities[row].name) {
+        if (community.normalizedName == communities[row].normalizedName) {
             communities.removeAtIndex(row)
         } else {
-            communities = communities.filter( { return $0.name != community.name } )
+            communities = communities.filter( { return $0.normalizedName != community.normalizedName } )
         }
         
         tableView.reloadData()
@@ -391,6 +393,7 @@ class ProfileTableViewController: UITableViewController, PresentControllerDelega
             if (communities.count > indexPath.row) {
                 var userInfo = Dictionary<String, String>()
                 userInfo["community"] = communities[indexPath.row].name
+                userInfo["normalized_name"] = communities[indexPath.row].normalizedName
                 
                 NSNotificationCenter.defaultCenter().postNotificationName("communitySelected", object: self, userInfo: userInfo)
             }
@@ -398,6 +401,7 @@ class ProfileTableViewController: UITableViewController, PresentControllerDelega
             if (notifications.count > indexPath.row) {
                 var userInfo = Dictionary<String, String>()
                 userInfo["community"] = notifications[indexPath.row].community
+                userInfo["normalized_name"] = notifications[indexPath.row].normalizedCommunityName
                 userInfo["postId"] = notifications[indexPath.row].postId
                                 
                 NSNotificationCenter.defaultCenter().postNotificationName("communitySelected", object: self, userInfo: userInfo)

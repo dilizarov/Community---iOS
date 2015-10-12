@@ -29,6 +29,7 @@ class CommunitySettingsViewController: UIViewController {
     var rightButtonOptions = [String : UIBarButtonItem]()
     
     var communityName: String!
+    var communityKey: String!
     var joinedCommunity: JoinedCommunity!
     
     var communityUsername: String!
@@ -70,7 +71,7 @@ class CommunitySettingsViewController: UIViewController {
         
         let realm = Realm()
         
-        joinedCommunity = realm.objectForPrimaryKey(JoinedCommunity.self, key: communityName.lowercaseString)
+        joinedCommunity = realm.objectForPrimaryKey(JoinedCommunity.self, key: communityKey)
 
         usernameField.tintColor = UIColor(hexString: "056A85")
         
@@ -344,7 +345,7 @@ class CommunitySettingsViewController: UIViewController {
                                 MMProgressHUD.dismissWithError(json["error"].stringValue, afterDelay: NSTimeInterval(3))
                             } else if (json["errors"] == nil) {
                                 let realm = Realm()
-                                var community = realm.objectForPrimaryKey(JoinedCommunity.self, key: self.communityName)
+                                var community = realm.objectForPrimaryKey(JoinedCommunity.self, key: self.communityKey)
                                 
                                 realm.write {
                                     community?.avatar_url = ""
@@ -399,7 +400,7 @@ class CommunitySettingsViewController: UIViewController {
                                         MMProgressHUD.dismissWithError(json["error"].stringValue, afterDelay: NSTimeInterval(3))
                                     } else if json["errors"] == nil {
                                         let realm = Realm()
-                                        var community = realm.objectForPrimaryKey(JoinedCommunity.self, key: self.communityName)
+                                        var community = realm.objectForPrimaryKey(JoinedCommunity.self, key: self.communityKey)
                                         
                                         var username = ""
                                         
@@ -458,7 +459,7 @@ class CommunitySettingsViewController: UIViewController {
                                 MMProgressHUD.dismissWithError(json["error"].stringValue, afterDelay: NSTimeInterval(3))
                             } else if (json["errors"] == nil) {
                                 let realm = Realm()
-                                var community = realm.objectForPrimaryKey(JoinedCommunity.self, key: self.communityName)
+                                var community = realm.objectForPrimaryKey(JoinedCommunity.self, key: self.communityKey)
                                 
                                 var username = ""
                                 

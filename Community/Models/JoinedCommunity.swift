@@ -9,14 +9,9 @@
 import RealmSwift
 
 class JoinedCommunity: Object {
-    dynamic var name = "" {
-        didSet {
-            nameLowercase = name.lowercaseString
-        }
-    }
+    dynamic var name = ""
+    dynamic var normalizedName = ""
     
-    // Used for sorting. Couldn't find documentation on using doing something like realm.objects(...).sorted('name.lowercase', ascended: true)
-    dynamic var nameLowercase = ""
     // These represent the Community-specific username
     // and avatar for the user. For simplicity, if "",
     // we assume to use default username and avatar.
@@ -24,10 +19,10 @@ class JoinedCommunity: Object {
     dynamic var avatar_url = ""
     
     override static func indexedProperties() -> [String] {
-        return ["name", "nameLowercase"]
+        return ["name", "normalizedName"]
     }
     
     override static func primaryKey() -> String? {
-        return "nameLowercase"
+        return "normalizedName"
     }
 }

@@ -61,7 +61,8 @@ class CommunityViewController: UIViewController, CommunityTableDelegate {
             if let community = info["community"] {
                 
                 communityTitle = community
-
+                communityKey = info["normalized_name"]
+                
                 navBar.topItem?.title = communityTitle
                 (self.leftButtonOptions["load"]!.customView as! UIActivityIndicatorView).startAnimating()
                 navBar.topItem?.leftBarButtonItem = self.leftButtonOptions["load"]
@@ -155,7 +156,8 @@ class CommunityViewController: UIViewController, CommunityTableDelegate {
                     
                     var community = JoinedCommunity()
                     community.name = json["name"].stringValue
-                    self.communityKey = json["name"].stringValue
+                    community.normalizedName = json["normalized_name"].stringValue
+                    self.communityKey = json["normalized_name"].stringValue
                     
                     if let username = json["user"]["username"].string {
                         community.username = username
@@ -199,10 +201,13 @@ class CommunityViewController: UIViewController, CommunityTableDelegate {
                 } else {
                     self.navBar.topItem!.leftBarButtonItem = self.leftButtonOptions["settings"]
                     
+                    var json = JSON(jsonData!)["community"]
+                    
                     let realm = Realm()
                     var community = JoinedCommunity()
-                    community.name = self.communityTitle!
-                    self.communityKey = self.communityTitle!
+                    community.name = json["name"].stringValue
+                    community.normalizedName = json["normalized_name"].stringValue
+                    self.communityKey = json["normalized_name"].stringValue
                     
                     realm.write {
                         realm.add(community, update: true)
@@ -226,6 +231,7 @@ class CommunityViewController: UIViewController, CommunityTableDelegate {
         var writePostVC = storyboard.instantiateViewControllerWithIdentifier("WritePostViewController") as! WritePostViewController
         
         writePostVC.communityName = communityTitle
+        writePostVC.communityKey = self.communityKey!
         writePostVC.delegate = self.tableViewController
         
         self.presentViewController(writePostVC, animated: true, completion: nil)
@@ -236,7 +242,8 @@ class CommunityViewController: UIViewController, CommunityTableDelegate {
         
         var settingsVC = storyboard.instantiateViewControllerWithIdentifier("CommunitySettingsViewController") as! CommunitySettingsViewController
         
-        settingsVC.communityName = self.communityKey
+        settingsVC.communityName = self.communityTitle
+        settingsVC.communityKey = self.communityKey
         
         self.presentViewController(settingsVC, animated: true, completion: nil)
     }

@@ -11,6 +11,7 @@ import MGSwipeTableCell
 class CommunityCell: MGSwipeTableCell {
     
     var name: String!
+    var normalizedName: String!
     var row: Int!
     
     var presentControllerDelegate: PresentControllerDelegate!
@@ -18,12 +19,9 @@ class CommunityCell: MGSwipeTableCell {
     
     @IBOutlet var communityName: UILabel!
     
-    func configureView(name: String) {
-        self.communityName.text = name
-    }
-    
     func configureViews(community: JoinedCommunity, row: Int) {
         self.name = community.name
+        self.normalizedName = community.normalizedName
         self.row = row
         
         self.communityName.text = self.name
@@ -31,7 +29,7 @@ class CommunityCell: MGSwipeTableCell {
         var shareButton = MGSwipeButton(title: "Share", backgroundColor: UIColor.blueColor(), callback: {
             (sender: MGSwipeTableCell!) -> Bool in
             
-            let nameWithUnite = "&" + self.name
+            let nameWithUnite = "&" + self.normalizedName
             
             var objectsToShare: [AnyObject] = [nameWithUnite]
             
@@ -58,7 +56,8 @@ class CommunityCell: MGSwipeTableCell {
             var settingsVC = storyboard.instantiateViewControllerWithIdentifier("CommunitySettingsViewController") as! CommunitySettingsViewController
                 
             settingsVC.communityName = self.name
-                
+            settingsVC.communityKey = self.normalizedName
+            
             self.presentControllerDelegate.presentController(settingsVC)
 
             return true

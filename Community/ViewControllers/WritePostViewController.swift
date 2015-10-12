@@ -24,6 +24,7 @@ class WritePostViewController: UIViewController, UITextViewDelegate {
     var rightButtonOptions = [String : UIBarButtonItem]()
     
     var communityName: String!
+    var communityKey: String!
     var joinedCommunity: JoinedCommunity?
     
     var request: Alamofire.Request?
@@ -48,7 +49,7 @@ class WritePostViewController: UIViewController, UITextViewDelegate {
         postTextView.tintColor = UIColor(hexString: "056A85")
         
         let realm = Realm()
-        joinedCommunity = realm.objectForPrimaryKey(JoinedCommunity.self, key: communityName)
+        joinedCommunity = realm.objectForPrimaryKey(JoinedCommunity.self, key: communityKey)
         
         setAvatar()
         setUsername()
