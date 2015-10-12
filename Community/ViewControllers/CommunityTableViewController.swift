@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-class CommunityTableViewController: UITableViewController, UpdateFeedWithLatestPostDelegate {
+class CommunityTableViewController: UITableViewController, UpdateFeedWithLatestPostDelegate, PresentControllerDelegate {
 
     var delegate: CommunityTableDelegate!
     
@@ -149,6 +149,7 @@ class CommunityTableViewController: UITableViewController, UpdateFeedWithLatestP
             var cell = tableView.dequeueReusableCellWithIdentifier("communityPost", forIndexPath: indexPath) as! PostCell
         
             if self.posts.count > indexPath.row {
+                cell.delegate = self
                 cell.configureViews(posts[indexPath.row])
             }
         
@@ -168,6 +169,10 @@ class CommunityTableViewController: UITableViewController, UpdateFeedWithLatestP
         } else {
             return 200
         }
+    }
+    
+    func presentController(controller: UIViewController) {
+        self.presentViewController(controller, animated: true, completion: nil)
     }
     
     func performBackgroundFetch(asyncGroup: dispatch_group_t!) {

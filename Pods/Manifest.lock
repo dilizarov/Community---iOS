@@ -31,6 +31,7 @@ PODS:
   - SZTextView (1.2.1)
   - TextFieldEffects (0.4.4)
   - Toast (2.4)
+  - TTTAttributedLabel (1.13.4)
   - UIActivityIndicator-for-SDWebImage (1.2):
     - SDWebImage (~> 3.7)
   - UITextField+Shake (1.1.1)
@@ -51,6 +52,7 @@ DEPENDENCIES:
   - SZTextView (~> 1.2)
   - TextFieldEffects (~> 0.4)
   - Toast (~> 2.4)
+  - TTTAttributedLabel (~> 1.13)
   - UIActivityIndicator-for-SDWebImage (~> 1.2)
   - UITextField+Shake (~> 1.1)
 
@@ -71,6 +73,7 @@ SPEC CHECKSUMS:
   SZTextView: 906df45afd3c1b24fc5252088d5ef8061513c238
   TextFieldEffects: e83649831762655b12244775d8b8a1fd3e3953d1
   Toast: 0773b8fc0e97352ca6054517bec7ebdd4110029d
+  TTTAttributedLabel: 0a2ac7b2dd726d32a070dafb01446026b11e624f
   UIActivityIndicator-for-SDWebImage: 7bf7ebbf0ed1747dedc0d6e949c4603a6d0f9e0c
   UITextField+Shake: 7b54838133d2242b90bd40e24d8de2a50a31964b
 

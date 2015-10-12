@@ -10,11 +10,14 @@ import UIKit
 import SDWebImage
 import UIActivityIndicator_for_SDWebImage
 import Alamofire
+import TTTAttributedLabel
 
-class ReplyCell: UITableViewCell {
+class ReplyCell: UITableViewCell, TTTAttributedLabelDelegate {
 
     var reply: Reply!
     var last = false
+    
+    var delegate: PresentControllerDelegate!
     
     @IBOutlet var avatarImage: UIImageView!
     @IBOutlet var username: UILabel!
@@ -24,7 +27,7 @@ class ReplyCell: UITableViewCell {
     @IBOutlet var likeImage: UIImageView!
     
     @IBOutlet var likeClickSpace: UIView!
-    @IBOutlet var replyBody: UILabel!
+    @IBOutlet var replyBody: TTTAttributedLabel!
     
     @IBOutlet var leadingUsernameSuperViewConstraint: NSLayoutConstraint!
     @IBOutlet var leadingUsernameAvatarConstraint: NSLayoutConstraint!
@@ -55,6 +58,12 @@ class ReplyCell: UITableViewCell {
     }
     
     func configureViews(reply: Reply, last: Bool) {
+        replyBody.enabledTextCheckingTypes = NSTextCheckingType.Link.rawValue// | NSTextCheckingType.PhoneNumber.rawValue
+        
+        replyBody.linkAttributes = [kCTForegroundColorAttributeName : UIColor.blueColor()]
+        replyBody.activeLinkAttributes = [kCTForegroundColorAttributeName : UIColor.darkGrayColor()]
+        replyBody.delegate = self
+        
         self.reply = reply
         self.last = last
         
@@ -77,6 +86,37 @@ class ReplyCell: UITableViewCell {
         }
         
         setupLikeGesture()
+    }
+    
+//    func attributedLabel(label: TTTAttributedLabel!, didSelectLinkWithPhoneNumber phoneNumber: String!) {
+//        
+//        var alertSheet = UIAlertController(title: phoneNumber, message: nil, preferredStyle: .ActionSheet)
+//        var cancelButton = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+//        var callNumber = UIAlertAction(title: "Make a Phone Call", style: .Default, handler: { alert in
+//            var phoneURLString = NSURL(string: "tel://\(phoneNumber)")
+//            
+//            UIApplication.sharedApplication().openURL(phoneURLString!)
+//        })
+//        
+//        alertSheet.addAction(cancelButton)
+//        alertSheet.addAction(callNumber)
+//        
+//        self.delegate.presentController(alertSheet)
+//        
+//    }
+    
+    func attributedLabel(label: TTTAttributedLabel!, didSelectLinkWithURL url: NSURL!) {
+       
+        var alertSheet = UIAlertController(title: url.absoluteString, message: nil, preferredStyle: .ActionSheet)
+        var cancelButton = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+        var openInSafariButton = UIAlertAction(title: "Open Link in Safari", style: .Default, handler: { alert in
+            UIApplication.sharedApplication().openURL(url)
+        })
+        
+        alertSheet.addAction(cancelButton)
+        alertSheet.addAction(openInSafariButton)
+        
+        self.delegate.presentController(alertSheet)
     }
     
     func processAvatarImage(url: String) {

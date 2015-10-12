@@ -75,6 +75,7 @@ class RepliesViewController: UIViewController, PHFComposeBarViewDelegate, Replie
         
         var tapGesture = UITapGestureRecognizer(target: self, action: "keyboardDisappear")
         tapGesture.numberOfTapsRequired = 1
+        tapGesture.cancelsTouchesInView = false
         
         self.containerView.addGestureRecognizer(tapGesture)
     }

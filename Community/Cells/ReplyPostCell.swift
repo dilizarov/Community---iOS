@@ -2,10 +2,12 @@ import UIKit
 import SDWebImage
 import UIActivityIndicator_for_SDWebImage
 import Alamofire
+import TTTAttributedLabel
 
-class ReplyPostCell: UITableViewCell {
+class ReplyPostCell: UITableViewCell, TTTAttributedLabelDelegate {
     
     var post: Post!
+    var delegate: PresentControllerDelegate!
     
     @IBOutlet var avatarImage: UIImageView!
     @IBOutlet var username: UILabel!
@@ -15,7 +17,7 @@ class ReplyPostCell: UITableViewCell {
     @IBOutlet var likeImage: UIImageView!
     @IBOutlet var likeClickSpace: UIView!
     
-    @IBOutlet var postBody: UILabel!
+    @IBOutlet var postBody: TTTAttributedLabel!
     @IBOutlet var postTitle: UILabel!
     
     @IBOutlet var titleUpperConstraint: NSLayoutConstraint!
@@ -43,6 +45,12 @@ class ReplyPostCell: UITableViewCell {
     }
     
     func configureViews(post: Post) {
+        postBody.enabledTextCheckingTypes = NSTextCheckingType.Link.rawValue// | NSTextCheckingType.PhoneNumber.rawValue
+        
+        postBody.linkAttributes = [kCTForegroundColorAttributeName : UIColor.blueColor()]
+        postBody.activeLinkAttributes = [kCTForegroundColorAttributeName : UIColor.darkGrayColor()]
+        postBody.delegate = self
+        
         self.post = post
         
         if (post.title == nil) {
@@ -81,6 +89,20 @@ class ReplyPostCell: UITableViewCell {
         let singleTap = UITapGestureRecognizer(target: self, action: Selector("processLike"))
         singleTap.numberOfTapsRequired = 1
         likeClickSpace.addGestureRecognizer(singleTap)
+    }
+    
+    func attributedLabel(label: TTTAttributedLabel!, didSelectLinkWithURL url: NSURL!) {
+        
+        var alertSheet = UIAlertController(title: url.absoluteString, message: nil, preferredStyle: .ActionSheet)
+        var cancelButton = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+        var openInSafariButton = UIAlertAction(title: "Open Link in Safari", style: .Default, handler: { alert in
+            UIApplication.sharedApplication().openURL(url)
+        })
+        
+        alertSheet.addAction(cancelButton)
+        alertSheet.addAction(openInSafariButton)
+        
+        self.delegate.presentController(alertSheet)
     }
     
     func processLike() {

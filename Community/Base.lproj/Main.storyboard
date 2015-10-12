@@ -177,7 +177,7 @@
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Post" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sqf-GN-FPp">
+                                        <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Post" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sqf-GN-FPp" customClass="TTTAttributedLabel">
                                             <rect key="frame" x="12" y="102" width="292" height="22"/>
                                             <animations/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -423,7 +423,7 @@
                                             <color key="textColor" red="0.24037527210000001" green="0.24037527210000001" blue="0.24037527210000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reply" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gnr-FM-anf">
+                                        <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reply" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gnr-FM-anf" customClass="TTTAttributedLabel">
                                             <rect key="frame" x="72" y="40" width="232" height="23"/>
                                             <animations/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -497,7 +497,7 @@
                                     <outlet property="likeClickSpace" destination="HA3-Du-LXZ" id="EKV-Tf-67k"/>
                                     <outlet property="likeImage" destination="LSP-qh-8qt" id="Fb3-fF-50L"/>
                                     <outlet property="likesCount" destination="UD7-KG-VyR" id="NUW-mB-TXl"/>
-                                    <outlet property="replyBody" destination="gnr-FM-anf" id="y5d-T1-Yrx"/>
+                                    <outlet property="replyBody" destination="gnr-FM-anf" id="guR-Dg-imf"/>
                                     <outlet property="timestamp" destination="PQ0-iC-wXM" id="ghl-Bt-ad0"/>
                                     <outlet property="username" destination="cX1-Qn-DtQ" id="7pn-Wk-8oC"/>
                                 </connections>
@@ -723,7 +723,7 @@
                                                         </mask>
                                                     </variation>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Post" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ONN-IL-Pp1">
+                                                <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Post" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ONN-IL-Pp1" customClass="TTTAttributedLabel">
                                                     <rect key="frame" x="12" y="102" width="292" height="22"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>

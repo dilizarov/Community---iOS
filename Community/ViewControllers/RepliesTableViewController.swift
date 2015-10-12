@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-class RepliesTableViewController: UITableViewController {
+class RepliesTableViewController: UITableViewController, PresentControllerDelegate {
     
     var post: Post?
     var postId: String?
@@ -224,6 +224,7 @@ class RepliesTableViewController: UITableViewController {
             } else {
                 var cell = tableView.dequeueReusableCellWithIdentifier("postCell", forIndexPath: indexPath) as! ReplyPostCell
                 
+                cell.delegate = self
                 cell.configureViews(self.post!)
                 
                 cell.layoutIfNeeded()
@@ -246,6 +247,7 @@ class RepliesTableViewController: UITableViewController {
             
             var reply = replies[indexPath.row]
             
+            cell.delegate = self
             cell.configureViews(reply!, last: last)
             
             cell.setNeedsDisplay()
@@ -265,6 +267,10 @@ class RepliesTableViewController: UITableViewController {
         } else {
             return 113
         }
+    }
+    
+    func presentController(controller: UIViewController) {
+        self.presentViewController(controller, animated: true, completion: nil)
     }
     
     // This garbage is so hacky but this solution hilariously works to getting the bottom showing. I'm honestly pretty shocked right now 

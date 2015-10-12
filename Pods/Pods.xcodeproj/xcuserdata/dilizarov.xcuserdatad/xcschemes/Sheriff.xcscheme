@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E8CFFAA1E6AF3A5B79834113"
+               BlueprintIdentifier = "C6E04915034782432A9DA5DE"
                BuildableName = "Sheriff.framework"
                BlueprintName = "Sheriff"
                ReferencedContainer = "container:Pods.xcodeproj">
