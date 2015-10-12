@@ -18,6 +18,9 @@ class NotificationCell: UITableViewCell {
     @IBOutlet var notificationBody: UILabel!
     @IBOutlet var timestamp: UILabel!
     
+    @IBOutlet var leadingNotificationAvatarConstraint: NSLayoutConstraint!
+    @IBOutlet var leadingNotificationSuperViewConstraint: NSLayoutConstraint!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -32,10 +35,10 @@ class NotificationCell: UITableViewCell {
         self.timestamp.text = notification.timestamp
         
         if let url = notification.avatarUrl {
-            self.avatarImage.alpha = 1.0
+            showAvatar()
             processAvatarImage(url)
         } else {
-            self.avatarImage.alpha = 0.0
+            hideAvatar()
         }
     }
     
@@ -45,6 +48,20 @@ class NotificationCell: UITableViewCell {
             }, usingActivityIndicatorStyle: .White)
     }
 
+    func showAvatar() {
+        self.leadingNotificationAvatarConstraint.priority = 999
+        self.leadingNotificationSuperViewConstraint.priority = 500
+        self.avatarImage.alpha = 1.0
+        self.layoutIfNeeded()
+    }
+    
+    func hideAvatar() {
+        self.leadingNotificationAvatarConstraint.priority = 500
+        self.leadingNotificationSuperViewConstraint.priority = 999
+        self.avatarImage.alpha = 0.0
+        self.layoutIfNeeded()
+    }
+    
     func avatarSetup() {
         self.avatarImage.layer.cornerRadius = self.avatarImage.frame.size.height / 2
         self.avatarImage.layer.masksToBounds = true

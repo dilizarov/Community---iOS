@@ -35,6 +35,10 @@ class WritePostViewController: UIViewController, UITextViewDelegate {
     @IBOutlet var titleField: UITextField!
     @IBOutlet var postTextView: SZTextView!
     
+    @IBOutlet var leadingUsernameSuperViewConstraint: NSLayoutConstraint!
+    @IBOutlet var leadingUsernameAvatarConstraint: NSLayoutConstraint!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -79,6 +83,10 @@ class WritePostViewController: UIViewController, UITextViewDelegate {
         
         if avatar_url != "" {
             
+            self.leadingUsernameAvatarConstraint.priority = 999
+            self.leadingUsernameSuperViewConstraint.priority = 500
+            self.avatar.alpha = 1.0
+            
             avatar.setImageWithURL(
                 NSURL(string: avatar_url),
                 placeholderImage: UIImage(named: "AvatarPlaceHolder"),
@@ -90,6 +98,10 @@ class WritePostViewController: UIViewController, UITextViewDelegate {
                 },
                 usingActivityIndicatorStyle: .Gray
             )
+        } else {
+            self.leadingUsernameAvatarConstraint.priority = 500
+            self.leadingUsernameSuperViewConstraint.priority = 999
+            self.avatar.alpha = 0.0
         }
     }
     

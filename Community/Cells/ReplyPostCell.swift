@@ -21,6 +21,9 @@ class ReplyPostCell: UITableViewCell {
     @IBOutlet var titleUpperConstraint: NSLayoutConstraint!
     @IBOutlet var bodyUpperConstraint: NSLayoutConstraint!
     
+    @IBOutlet var leadingUsernameSuperViewConstraint: NSLayoutConstraint!
+    @IBOutlet var leadingUsernameAvatarConstraint: NSLayoutConstraint!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -64,7 +67,13 @@ class ReplyPostCell: UITableViewCell {
             likeImage.image = UIImage(named: "Like")
         }
         
-        setupAvatarImage()
+        if let url = post.avatarUrl {
+            showAvatar()
+            processAvatarImage(url)
+        } else {
+            hideAvatar()
+        }
+        
         setupLikeGesture()
     }
     
@@ -84,6 +93,20 @@ class ReplyPostCell: UITableViewCell {
         }
     }
     
+    func showAvatar() {
+        self.leadingUsernameAvatarConstraint.priority = 999
+        self.leadingUsernameSuperViewConstraint.priority = 500
+        self.avatarImage.alpha = 1.0
+        self.layoutIfNeeded()
+    }
+    
+    func hideAvatar() {
+        self.leadingUsernameAvatarConstraint.priority = 500
+        self.leadingUsernameSuperViewConstraint.priority = 999
+        self.avatarImage.alpha = 0.0
+        self.layoutIfNeeded()
+    }
+    
     func toggleLike() {
         if post.liked {
             post.liked = false
@@ -98,14 +121,10 @@ class ReplyPostCell: UITableViewCell {
         self.likesCount.text = post.likeCount.toThousandsString()
     }
     
-    func setupAvatarImage() {
-        if let url = post.avatarUrl {
-            self.avatarImage.setImageWithURL(NSURL(string: url), placeholderImage: UIImage(named: "AvatarPlaceHolder"), options: SDWebImageOptions.RetryFailed, completed: { (image: UIImage!, error: NSError!, cacheType: SDImageCacheType, imageURL: NSURL!) -> Void in
+    func processAvatarImage(url: String) {
+        self.avatarImage.setImageWithURL(NSURL(string: url), placeholderImage: UIImage(named: "AvatarPlaceHolder"), options: SDWebImageOptions.RetryFailed, completed: { (image: UIImage!, error: NSError!, cacheType: SDImageCacheType, imageURL: NSURL!) -> Void in
                 
-                }, usingActivityIndicatorStyle: .Gray)
-        } else {
-            self.avatarImage.image = UIImage(named: "AvatarPlaceHolder")
-        }
+            }, usingActivityIndicatorStyle: .Gray)
     }
     
     func avatarSetup() {

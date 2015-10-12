@@ -244,11 +244,12 @@
                                         <constraint firstAttribute="trailingMargin" secondItem="Sqf-GN-FPp" secondAttribute="trailing" constant="8" id="T1Q-ZU-FBB"/>
                                         <constraint firstItem="Sqf-GN-FPp" firstAttribute="top" secondItem="P6N-cp-49E" secondAttribute="bottom" priority="500" constant="12" id="TTz-me-Z5m"/>
                                         <constraint firstItem="KRw-FE-1aa" firstAttribute="trailing" secondItem="S7k-Z5-A8E" secondAttribute="trailingMargin" id="TdU-1c-7aN"/>
-                                        <constraint firstItem="kE8-hS-nP8" firstAttribute="leading" secondItem="P6N-cp-49E" secondAttribute="trailing" constant="16" id="XCN-E9-d3t"/>
+                                        <constraint firstItem="kE8-hS-nP8" firstAttribute="leading" secondItem="P6N-cp-49E" secondAttribute="trailing" priority="999" constant="16" id="XCN-E9-d3t"/>
                                         <constraint firstItem="KRw-FE-1aa" firstAttribute="bottom" secondItem="S7k-Z5-A8E" secondAttribute="bottomMargin" constant="6" id="YpJ-zE-h4i"/>
                                         <constraint firstItem="w2A-bE-cyW" firstAttribute="leading" secondItem="S7k-Z5-A8E" secondAttribute="leadingMargin" constant="4" id="cWQ-eH-lqN"/>
                                         <constraint firstItem="Or8-Ga-zYt" firstAttribute="top" secondItem="Sqf-GN-FPp" secondAttribute="bottom" constant="20" id="gaY-1g-kud"/>
                                         <constraint firstItem="P6N-cp-49E" firstAttribute="leading" secondItem="S7k-Z5-A8E" secondAttribute="leadingMargin" constant="4" id="mBd-Xv-clz"/>
+                                        <constraint firstItem="kE8-hS-nP8" firstAttribute="leading" secondItem="S7k-Z5-A8E" secondAttribute="leadingMargin" priority="500" constant="4" id="pa9-vu-gqE"/>
                                         <constraint firstItem="P6N-cp-49E" firstAttribute="top" secondItem="S7k-Z5-A8E" secondAttribute="topMargin" constant="4" id="pdX-VA-acS"/>
                                         <constraint firstItem="kE8-hS-nP8" firstAttribute="centerY" secondItem="P6N-cp-49E" secondAttribute="centerY" id="rY8-Ya-Lv6"/>
                                         <constraint firstItem="n1V-U8-KZP" firstAttribute="leading" secondItem="igl-Jh-H1c" secondAttribute="trailing" constant="8" id="uwH-Y0-4qg"/>
@@ -260,6 +261,8 @@
                                 <connections>
                                     <outlet property="avatarImage" destination="P6N-cp-49E" id="3Li-Gz-599"/>
                                     <outlet property="bodyUpperConstraint" destination="TTz-me-Z5m" id="CiS-oB-ye7"/>
+                                    <outlet property="leadingUsernameAvatarConstraint" destination="XCN-E9-d3t" id="nGA-G5-gAh"/>
+                                    <outlet property="leadingUsernameSuperViewConstraint" destination="pa9-vu-gqE" id="Xuy-Yp-Lqv"/>
                                     <outlet property="likeClickSpace" destination="7qj-mK-OkO" id="i9b-tr-QYp"/>
                                     <outlet property="likeImage" destination="BYB-Wn-YvC" id="6tE-5D-Myx"/>
                                     <outlet property="likesCount" destination="Or8-Ga-zYt" id="zOJ-cN-yIM"/>
@@ -852,6 +855,7 @@
                                                 <constraint firstAttribute="bottom" secondItem="RNj-yY-NSN" secondAttribute="bottom" constant="9" id="4Uk-Aq-HrI"/>
                                                 <constraint firstItem="Yr1-KR-TPV" firstAttribute="leading" secondItem="r7q-z3-sqi" secondAttribute="trailing" constant="16" id="54N-YJ-FER"/>
                                                 <constraint firstItem="DCP-Iq-vG6" firstAttribute="centerY" secondItem="RNj-yY-NSN" secondAttribute="centerY" id="5ox-NF-4aa"/>
+                                                <constraint firstItem="VIi-tw-2f0" firstAttribute="leading" secondItem="l3b-Bc-yvX" secondAttribute="leading" priority="500" constant="12" id="7Pc-X1-gaa"/>
                                                 <constraint firstItem="RNj-yY-NSN" firstAttribute="top" secondItem="ONN-IL-Pp1" secondAttribute="bottom" constant="20" id="Aoi-xU-ojL"/>
                                                 <constraint firstItem="ONN-IL-Pp1" firstAttribute="top" secondItem="vIi-5f-2vF" secondAttribute="bottom" priority="500" constant="12" id="Cra-Zg-sRy"/>
                                                 <constraint firstAttribute="trailing" secondItem="ONN-IL-Pp1" secondAttribute="trailing" constant="16" id="Mvw-B9-sex"/>
@@ -871,7 +875,7 @@
                                                 <constraint firstAttribute="trailing" secondItem="RNj-yY-NSN" secondAttribute="trailing" constant="8" id="hhM-51-cK2"/>
                                                 <constraint firstItem="DCP-Iq-vG6" firstAttribute="leading" secondItem="l3b-Bc-yvX" secondAttribute="leading" constant="12" id="jBZ-al-VeF"/>
                                                 <constraint firstItem="ONN-IL-Pp1" firstAttribute="top" secondItem="lGA-dd-B8b" secondAttribute="bottom" priority="700" constant="10" id="pW2-A3-KZr"/>
-                                                <constraint firstItem="VIi-tw-2f0" firstAttribute="leading" secondItem="vIi-5f-2vF" secondAttribute="trailing" constant="16" id="sZp-FT-EtB"/>
+                                                <constraint firstItem="VIi-tw-2f0" firstAttribute="leading" secondItem="vIi-5f-2vF" secondAttribute="trailing" priority="999" constant="16" id="sZp-FT-EtB"/>
                                                 <constraint firstItem="lGA-dd-B8b" firstAttribute="leading" secondItem="l3b-Bc-yvX" secondAttribute="leading" constant="12" id="vJG-qg-ujD"/>
                                                 <constraint firstItem="vIi-5f-2vF" firstAttribute="top" secondItem="l3b-Bc-yvX" secondAttribute="top" constant="12" id="xCf-u9-o2Q"/>
                                                 <constraint firstItem="DCP-Iq-vG6" firstAttribute="centerY" secondItem="WmF-PE-bZp" secondAttribute="centerY" id="xea-ad-rel"/>
@@ -897,6 +901,8 @@
                                     <outlet property="avatarImage" destination="vIi-5f-2vF" id="eFG-xV-JRY"/>
                                     <outlet property="bodyUpperConstraint" destination="Cra-Zg-sRy" id="Rmd-Gu-0P5"/>
                                     <outlet property="cardView" destination="l3b-Bc-yvX" id="agx-Bg-ryn"/>
+                                    <outlet property="leadingUsernameAvatarConstraint" destination="sZp-FT-EtB" id="AI4-Mt-BYg"/>
+                                    <outlet property="leadingUsernameSuperViewConstraint" destination="7Pc-X1-gaa" id="PyR-zd-Hr9"/>
                                     <outlet property="likeClickSpace" destination="JR5-Ky-kGy" id="WQ2-Nn-l0A"/>
                                     <outlet property="likeImage" destination="Tuz-oi-eF1" id="gk4-tz-PM7"/>
                                     <outlet property="likesCount" destination="r7q-z3-sqi" id="msR-RI-JGM"/>
@@ -1131,21 +1137,24 @@
                                     <animations/>
                                     <constraints>
                                         <constraint firstItem="1Or-i4-vQs" firstAttribute="top" secondItem="VzS-ki-Xdb" secondAttribute="topMargin" constant="-8" id="1HO-0v-OqD"/>
-                                        <constraint firstItem="Hop-oc-9oE" firstAttribute="leading" secondItem="1Or-i4-vQs" secondAttribute="trailing" constant="12" id="7sg-0M-eqt"/>
+                                        <constraint firstItem="Hop-oc-9oE" firstAttribute="leading" secondItem="1Or-i4-vQs" secondAttribute="trailing" priority="999" constant="12" id="7sg-0M-eqt"/>
+                                        <constraint firstItem="Hop-oc-9oE" firstAttribute="leading" secondItem="VzS-ki-Xdb" secondAttribute="leadingMargin" priority="500" constant="40" id="FL8-wT-JoO"/>
                                         <constraint firstItem="IKi-6Z-ODu" firstAttribute="top" secondItem="Hop-oc-9oE" secondAttribute="bottom" constant="10" id="GDd-O7-6JU"/>
                                         <constraint firstItem="PrQ-QK-QYw" firstAttribute="centerY" secondItem="IKi-6Z-ODu" secondAttribute="centerY" id="IKc-Nf-aYs"/>
-                                        <constraint firstItem="PrQ-QK-QYw" firstAttribute="leading" secondItem="1Or-i4-vQs" secondAttribute="trailing" constant="12" id="bTd-gg-0kJ"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="PrQ-QK-QYw" secondAttribute="bottom" constant="5" id="e9X-ND-gH1"/>
                                         <constraint firstItem="Hop-oc-9oE" firstAttribute="top" secondItem="VzS-ki-Xdb" secondAttribute="topMargin" constant="12" id="giB-mY-3fI"/>
                                         <constraint firstItem="IKi-6Z-ODu" firstAttribute="leading" secondItem="PrQ-QK-QYw" secondAttribute="trailing" constant="8" id="j3n-52-Tx1"/>
                                         <constraint firstItem="1Or-i4-vQs" firstAttribute="leading" secondItem="VzS-ki-Xdb" secondAttribute="leadingMargin" constant="-8" id="ljY-Mo-iU5"/>
                                         <constraint firstItem="Hop-oc-9oE" firstAttribute="trailing" secondItem="VzS-ki-Xdb" secondAttribute="trailingMargin" id="wSY-qa-twk"/>
+                                        <constraint firstItem="Hop-oc-9oE" firstAttribute="leading" secondItem="PrQ-QK-QYw" secondAttribute="leading" id="wfb-d1-gLT"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="1Or-i4-vQs" secondAttribute="bottom" constant="-8" id="yTY-LJ-uA8"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <animations/>
                                 <connections>
                                     <outlet property="avatarImage" destination="wqS-3S-OyS" id="u8b-Y9-6Gq"/>
+                                    <outlet property="leadingNotificationAvatarConstraint" destination="7sg-0M-eqt" id="g1B-36-WGb"/>
+                                    <outlet property="leadingNotificationSuperViewConstraint" destination="FL8-wT-JoO" id="fMz-mx-Eo3"/>
                                     <outlet property="notificationBody" destination="Hop-oc-9oE" id="RmG-Tm-EPr"/>
                                     <outlet property="timestamp" destination="IKi-6Z-ODu" id="sol-Os-FeZ"/>
                                 </connections>
@@ -1526,6 +1535,7 @@
                                     <constraint firstAttribute="bottom" secondItem="iKg-Tj-YQa" secondAttribute="bottom" constant="8" id="9Gt-yg-NVD"/>
                                     <constraint firstItem="Szw-8d-t7w" firstAttribute="top" secondItem="haw-8m-Fdm" secondAttribute="top" constant="12" id="9hA-1B-EXD"/>
                                     <constraint firstAttribute="trailing" secondItem="gly-Bb-mbA" secondAttribute="trailing" constant="16" id="AK1-sc-sd4"/>
+                                    <constraint firstItem="gly-Bb-mbA" firstAttribute="leading" secondItem="haw-8m-Fdm" secondAttribute="leading" priority="500" constant="12" id="Kug-eZ-esj"/>
                                     <constraint firstAttribute="trailing" secondItem="Alc-yB-h7V" secondAttribute="trailing" constant="8" id="MbH-4E-75q"/>
                                     <constraint firstItem="Szw-8d-t7w" firstAttribute="centerY" secondItem="gly-Bb-mbA" secondAttribute="centerY" id="NxI-dl-z3w"/>
                                     <constraint firstAttribute="trailing" secondItem="xbe-CM-Rgf" secondAttribute="trailing" id="S6k-rg-nlY"/>
@@ -1536,7 +1546,7 @@
                                     <constraint firstItem="iKg-Tj-YQa" firstAttribute="leading" secondItem="haw-8m-Fdm" secondAttribute="leading" constant="4" id="fGf-ZL-UG8"/>
                                     <constraint firstAttribute="height" constant="254" id="jJb-a1-oCz"/>
                                     <constraint firstItem="iKg-Tj-YQa" firstAttribute="top" secondItem="Alc-yB-h7V" secondAttribute="bottom" constant="8" id="pOn-BD-mVp"/>
-                                    <constraint firstItem="gly-Bb-mbA" firstAttribute="leading" secondItem="Szw-8d-t7w" secondAttribute="trailing" constant="16" id="stM-gb-cJv"/>
+                                    <constraint firstItem="gly-Bb-mbA" firstAttribute="leading" secondItem="Szw-8d-t7w" secondAttribute="trailing" priority="999" constant="16" id="stM-gb-cJv"/>
                                     <constraint firstItem="Alc-yB-h7V" firstAttribute="top" secondItem="xbe-CM-Rgf" secondAttribute="bottom" constant="4" id="tM8-5L-UJ4"/>
                                     <constraint firstItem="xbe-CM-Rgf" firstAttribute="top" secondItem="Szw-8d-t7w" secondAttribute="bottom" constant="8" id="z0l-Nz-GCS"/>
                                     <constraint firstItem="xbe-CM-Rgf" firstAttribute="leading" secondItem="haw-8m-Fdm" secondAttribute="leading" id="zRK-oW-K4F"/>
@@ -1559,6 +1569,8 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="avatar" destination="Szw-8d-t7w" id="oQg-OW-pml"/>
+                        <outlet property="leadingUsernameAvatarConstraint" destination="stM-gb-cJv" id="ZMH-ez-GfV"/>
+                        <outlet property="leadingUsernameSuperViewConstraint" destination="Kug-eZ-esj" id="7Td-3G-Qd4"/>
                         <outlet property="postTextView" destination="iKg-Tj-YQa" id="XdT-5s-tXE"/>
                         <outlet property="titleField" destination="Alc-yB-h7V" id="xHH-cX-Dt9"/>
                         <outlet property="usernameLabel" destination="gly-Bb-mbA" id="yXo-Zy-PpJ"/>
