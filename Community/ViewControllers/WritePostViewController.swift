@@ -166,6 +166,7 @@ class WritePostViewController: UIViewController, UITextViewDelegate {
         
         request = Alamofire.request(Router.WritePost(community: communityName.strip(), body: postTextView.text.strip(), title: title))
             .responseJSON { request, response, jsonData, errors in
+               
                 var defaultError = errors?.localizedDescription
                 
                 if (defaultError != nil) {

@@ -34,6 +34,7 @@ class CommunityCell: MGSwipeTableCell {
             var objectsToShare: [AnyObject] = [nameWithUnite]
             
             let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+            activityVC.excludedActivityTypes = [UIActivityTypeAirDrop]
             
             self.presentControllerDelegate.presentController(activityVC)
             

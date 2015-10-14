@@ -180,44 +180,45 @@ class CommunityTableViewController: UITableViewController, UpdateFeedWithLatestP
         dispatch_group_enter(asyncGroup)
         Alamofire.request(Router.GetPosts(community: communityTitle!.strip(), page: nil, infiniteScrollTimeBuffer: nil))
             .responseJSON { request, response, jsonData, errors in
-                
-                if let jsonData: AnyObject = jsonData {
-                    let json = JSON(jsonData)
-                    
-                    if (json["errors"] == nil && json["error"] == nil) {
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+                    if let jsonData: AnyObject = jsonData {
+                        let json = JSON(jsonData)
                         
-                        self.setInfiniteScrollVars()
-                        
-                        self.posts = []
-                        self.cachedHeights.removeAll(keepCapacity: false)
-                        
-                        if (json["posts"].count < 15) {
-                            self.reachedEndOfList = true
-                        }
-                        
-                        for var i = 0; i < json["posts"].count; i++ {
-                            var jsonPost = json["posts"][i]
+                        if (json["errors"] == nil && json["error"] == nil) {
                             
-                            var post = Post(id: jsonPost["external_id"].stringValue, username: jsonPost["user"]["username"].stringValue, body: jsonPost["body"].stringValue, title: jsonPost["title"].string, repliesCount: jsonPost["replies_count"].intValue, likeCount: jsonPost["likes"].intValue, liked: jsonPost["liked"].boolValue, timeCreated: jsonPost["created_at"].stringValue, avatarUrl: jsonPost["user"]["avatar_url"].string)
+                            self.setInfiniteScrollVars()
                             
-                            if (i == 0) {
-                                self.infiniteScrollTimeBuffer = NSDate(timeIntervalSince1970: (post.timeCreated.timeIntervalSince1970 * 1000 + 1)/1000).stringFromDate()
+                            self.posts = []
+                            self.cachedHeights.removeAll(keepCapacity: false)
+                            
+                            if (json["posts"].count < 15) {
+                                self.reachedEndOfList = true
                             }
                             
-                            self.posts.append(post)
-                        }
-                        
-                        self.backgroundRefreshed = true
-                        
-                        if self.posts.count == 0 {
-                            self.emptyOrErrorDescription = "No one has posted in this community. Maybe you can be the first post!"
-                        } else {
-                            self.emptyOrErrorDescription = nil
+                            for var i = 0; i < json["posts"].count; i++ {
+                                var jsonPost = json["posts"][i]
+                                
+                                var post = Post(id: jsonPost["external_id"].stringValue, username: jsonPost["user"]["username"].stringValue, body: jsonPost["body"].stringValue, title: jsonPost["title"].string, repliesCount: jsonPost["replies_count"].intValue, likeCount: jsonPost["likes"].intValue, liked: jsonPost["liked"].boolValue, timeCreated: jsonPost["created_at"].stringValue, avatarUrl: jsonPost["user"]["avatar_url"].string)
+                                
+                                if (i == 0) {
+                                    self.infiniteScrollTimeBuffer = NSDate(timeIntervalSince1970: (post.timeCreated.timeIntervalSince1970 * 1000 + 1)/1000).stringFromDate()
+                                }
+                                
+                                self.posts.append(post)
+                            }
+                            
+                            self.backgroundRefreshed = true
+                            
+                            if self.posts.count == 0 {
+                                self.emptyOrErrorDescription = "No one has posted in this community. Maybe you can be the first post!"
+                            } else {
+                                self.emptyOrErrorDescription = nil
+                            }
                         }
                     }
+                    
+                    dispatch_group_leave(asyncGroup)
                 }
-                
-                dispatch_group_leave(asyncGroup)
         }
     }
     
@@ -243,7 +244,8 @@ class CommunityTableViewController: UITableViewController, UpdateFeedWithLatestP
         }
         
         Alamofire.request(Router.GetPosts(community: communityTitle!.strip(), page: potentialPage, infiniteScrollTimeBuffer: potentialTimeBuffer))
-            .responseJSON { request, response, jsonData, errors in
+        .responseJSON { request, response, jsonData, errors in
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
                 
                 var defaultError = errors?.localizedDescription
                 
@@ -289,29 +291,29 @@ class CommunityTableViewController: UITableViewController, UpdateFeedWithLatestP
                             self.emptyOrErrorDescription = self.emptyOrErrorDescription! + json["errors"][i].string!
                         }
                     }
-            } else {
-                self.emptyOrErrorDescription = "Something went wrong :("
-            }
-                
-            var delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0.25 * Double(NSEC_PER_SEC)))
-            
-            dispatch_after(delayTime, dispatch_get_main_queue(), {
-                
-                self.tableView.reloadData()
-                
-                if refreshing {
-                    self.currentPage = 2
+                } else {
+                    self.emptyOrErrorDescription = "Something went wrong :("
                 }
                 
+                var delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0.25 * Double(NSEC_PER_SEC)))
+                
                 dispatch_after(delayTime, dispatch_get_main_queue(), {
-                    self.refreshControl!.endRefreshing()
-                    self.toggleLoadingFooter(false)
+                    
+                    self.tableView.reloadData()
+                    
+                    if refreshing {
+                        self.currentPage = 2
+                    }
+                    
+                    dispatch_after(delayTime, dispatch_get_main_queue(), {
+                        self.refreshControl!.endRefreshing()
+                        self.toggleLoadingFooter(false)
+                    })
+                    
+                    self.reachedEndOfCallback = true
                 })
-                
-                self.reachedEndOfCallback = true
-            })
-                
             }
+        }
     }
     
     

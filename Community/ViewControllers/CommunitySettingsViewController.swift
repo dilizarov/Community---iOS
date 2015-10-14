@@ -328,7 +328,7 @@ class CommunitySettingsViewController: UIViewController {
         MMProgressHUD.show()
         
         var delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC)))
-        
+                
         if (defaultSwitch.on) {
             Alamofire.request(Router.UpdateCommunitySettings(community: communityName.strip(), dfault: true, username: nil))
                 .responseJSON { request, response, jsonData, errors in

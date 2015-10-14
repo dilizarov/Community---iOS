@@ -225,7 +225,9 @@ class RepliesViewController: UIViewController, PHFComposeBarViewDelegate, Replie
     }
     
     func enableReplying() {
-        self.composeBarView.enabled = true
+        dispatch_async(dispatch_get_main_queue()) {
+            self.composeBarView.enabled = true
+        }
     }
     
     func setPost(post: Post) {

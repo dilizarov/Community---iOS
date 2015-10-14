@@ -277,8 +277,10 @@ class ProfileViewController: UIViewController {
     }
     
     func resetBadge() {
-        self.badge.badgeValue = 0
-        UIApplication.sharedApplication().applicationIconBadgeNumber = 0
+        dispatch_async(dispatch_get_main_queue()) {
+            self.badge.badgeValue = 0
+            UIApplication.sharedApplication().applicationIconBadgeNumber = 0
+        }
     }
     
     func spreadToast(string: String) {

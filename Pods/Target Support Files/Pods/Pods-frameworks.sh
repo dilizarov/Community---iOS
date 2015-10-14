@@ -71,6 +71,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework 'Pods/Toast.framework'
   install_framework 'Pods/UIActivityIndicator_for_SDWebImage.framework'
   install_framework 'Pods/UITextField_Shake.framework'
+  install_framework 'Pods/iRate.framework'
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'Pods/Alamofire.framework'
@@ -92,4 +93,5 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'Pods/Toast.framework'
   install_framework 'Pods/UIActivityIndicator_for_SDWebImage.framework'
   install_framework 'Pods/UITextField_Shake.framework'
+  install_framework 'Pods/iRate.framework'
 fi

@@ -74,31 +74,32 @@ class RepliesTableViewController: UITableViewController, PresentControllerDelega
         
         Alamofire.request(Router.GetReplies(post_id: post!.id, includePost: false))
             .responseJSON { request, response, jsonData, errors in
-                
-                if let jsonData: AnyObject = jsonData {
-                    let json = JSON(jsonData)
-                    
-                    if (json["errors"] == nil && json["error"] == nil) {
-                        self.replies = [nil]
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+                    if let jsonData: AnyObject = jsonData {
+                        let json = JSON(jsonData)
                         
-                        self.post!.repliesCount = json["replies"].count
-                        for var i = 0; i < json["replies"].count; i++ {
-                            var jsonReply = json["replies"][i]
+                        if (json["errors"] == nil && json["error"] == nil) {
+                            self.replies = [nil]
                             
-                            var reply = Reply(id: jsonReply["external_id"].stringValue, username: jsonReply["user"]["username"].stringValue, body: jsonReply["body"].stringValue, likeCount: jsonReply["likes"].intValue, liked: jsonReply["liked"].boolValue, timeCreated: jsonReply["created_at"].stringValue, avatarUrl: jsonReply["user"]["avatar_url"].string)
+                            self.post!.repliesCount = json["replies"].count
+                            for var i = 0; i < json["replies"].count; i++ {
+                                var jsonReply = json["replies"][i]
+                                
+                                var reply = Reply(id: jsonReply["external_id"].stringValue, username: jsonReply["user"]["username"].stringValue, body: jsonReply["body"].stringValue, likeCount: jsonReply["likes"].intValue, liked: jsonReply["liked"].boolValue, timeCreated: jsonReply["created_at"].stringValue, avatarUrl: jsonReply["user"]["avatar_url"].string)
+                                
+                                self.replies.append(reply)
+                            }
                             
-                            self.replies.append(reply)
-                        }
-                        
-                        if self.replies.count == 1 {
-                            self.emptyOrErrorDescription = "No replies"
-                        } else {
-                            self.emptyOrErrorDescription = nil
+                            if self.replies.count == 1 {
+                                self.emptyOrErrorDescription = "No replies"
+                            } else {
+                                self.emptyOrErrorDescription = nil
+                            }
                         }
                     }
+                    
+                    dispatch_group_leave(asyncGroup)
                 }
-                
-                dispatch_group_leave(asyncGroup)
         }
     }
     
@@ -120,65 +121,67 @@ class RepliesTableViewController: UITableViewController, PresentControllerDelega
         
         Alamofire.request(urlRequest)
             .responseJSON { request, response, jsonData, errors in
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
                 
-                var defaultError = errors?.localizedDescription
-                
-                if defaultError != nil {
-                    self.emptyOrErrorDescription = defaultError
-                } else if let jsonData: AnyObject = jsonData {
-                    let json = JSON(jsonData)
+                    var defaultError = errors?.localizedDescription
                     
-                    if (json["error"] != nil) {
-                        self.emptyOrErrorDescription = json["error"].stringValue
-                    } else if (json["errors"] == nil) {
-                        self.replies = [nil]
+                    if defaultError != nil {
+                        self.emptyOrErrorDescription = defaultError
+                    } else if let jsonData: AnyObject = jsonData {
+                        let json = JSON(jsonData)
                         
-                        if self.post == nil {
-                            var jsonPost = json["meta"]["post"]
+                        if (json["error"] != nil) {
+                            self.emptyOrErrorDescription = json["error"].stringValue
+                        } else if (json["errors"] == nil) {
+                            self.replies = [nil]
                             
-                            self.post = Post(id: jsonPost["external_id"].stringValue, username: jsonPost["user"]["username"].stringValue, body: jsonPost["body"].stringValue, title: jsonPost["title"].string, repliesCount: jsonPost["replies_count"].intValue, likeCount: jsonPost["likes"].intValue, liked: jsonPost["liked"].boolValue, timeCreated: jsonPost["created_at"].stringValue, avatarUrl: jsonPost["user"]["avatar_url"].string)
+                            if self.post == nil {
+                                var jsonPost = json["meta"]["post"]
+                                
+                                self.post = Post(id: jsonPost["external_id"].stringValue, username: jsonPost["user"]["username"].stringValue, body: jsonPost["body"].stringValue, title: jsonPost["title"].string, repliesCount: jsonPost["replies_count"].intValue, likeCount: jsonPost["likes"].intValue, liked: jsonPost["liked"].boolValue, timeCreated: jsonPost["created_at"].stringValue, avatarUrl: jsonPost["user"]["avatar_url"].string)
+                                
+                                self.postId = nil
+                                
+                                self.delegate.setPost(self.post!)
+                                self.delegate.enableReplying()
+                            }
                             
-                            self.postId = nil
+                            self.post!.repliesCount = json["replies"].count
+                            for var i = 0; i < json["replies"].count; i++ {
+                                var jsonReply = json["replies"][i]
+                                
+                                var reply = Reply(id: jsonReply["external_id"].stringValue, username: jsonReply["user"]["username"].stringValue, body: jsonReply["body"].stringValue, likeCount: jsonReply["likes"].intValue, liked: jsonReply["liked"].boolValue, timeCreated: jsonReply["created_at"].stringValue, avatarUrl: jsonReply["user"]["avatar_url"].string)
+                                
+                                self.replies.append(reply)
+                            }
                             
-                            self.delegate.setPost(self.post!)
-                            self.delegate.enableReplying()
-                        }
-                        
-                        self.post!.repliesCount = json["replies"].count
-                        for var i = 0; i < json["replies"].count; i++ {
-                            var jsonReply = json["replies"][i]
+                            if self.replies.count == 1 {
+                                self.emptyOrErrorDescription = "No replies"
+                            }
+                        } else {
+                            self.emptyOrErrorDescription = ""
                             
-                            var reply = Reply(id: jsonReply["external_id"].stringValue, username: jsonReply["user"]["username"].stringValue, body: jsonReply["body"].stringValue, likeCount: jsonReply["likes"].intValue, liked: jsonReply["liked"].boolValue, timeCreated: jsonReply["created_at"].stringValue, avatarUrl: jsonReply["user"]["avatar_url"].string)
-                            
-                            self.replies.append(reply)
-                        }
-                        
-                        if self.replies.count == 1 {
-                            self.emptyOrErrorDescription = "No replies"
+                            for var i = 0; i < json["errors"].count; i++ {
+                                if (i != 0) { self.emptyOrErrorDescription = self.emptyOrErrorDescription! + "\n\n" }
+                                self.emptyOrErrorDescription = self.emptyOrErrorDescription! + json["errors"][i].string!
+                            }
+
                         }
                     } else {
-                        self.emptyOrErrorDescription = ""
-                        
-                        for var i = 0; i < json["errors"].count; i++ {
-                            if (i != 0) { self.emptyOrErrorDescription = self.emptyOrErrorDescription! + "\n\n" }
-                            self.emptyOrErrorDescription = self.emptyOrErrorDescription! + json["errors"][i].string!
-                        }
-
+                        self.emptyOrErrorDescription = "Something went wrong :("
                     }
-                } else {
-                    self.emptyOrErrorDescription = "Something went wrong :("
+
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.tableView.reloadData()
+                        
+                        if refreshing {
+                            self.delegate.stopRefreshing()
+                            if (self.emptyOrErrorDescription == nil) { self.scrollToBottom() }
+                        } else {
+                            self.delegate.stopLoading()
+                        }
+                    })
                 }
-
-                dispatch_async(dispatch_get_main_queue(), {
-                    self.tableView.reloadData()
-                    
-                    if refreshing {
-                        self.delegate.stopRefreshing()
-                        if (self.emptyOrErrorDescription == nil) { self.scrollToBottom() }
-                    } else {
-                        self.delegate.stopLoading()
-                    }
-                })
             }
     }
     

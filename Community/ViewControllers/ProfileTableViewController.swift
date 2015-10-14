@@ -116,47 +116,57 @@ class ProfileTableViewController: UITableViewController, PresentControllerDelega
         dispatch_group_enter(asyncGroup)
         Alamofire.request(Router.GetCommunities)
             .responseJSON { request, response, jsonData, errors in
-                
-                if let jsonData: AnyObject = jsonData {
-                    let json = JSON(jsonData)
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
                     
-                    if (json["errors"] == nil && json["error"] == nil) {
-                        self.communities = []
-                        for var i = 0; i < json["communities"].count; i++ {
-                            var jsonCommunity = json["communities"][i]
-                            
-                            var community = JoinedCommunity()
-                            
-                            community.name = jsonCommunity["name"].string!
-                            community.normalizedName = jsonCommunity["normalized_name"].string!
-                            
-                            if let username = jsonCommunity["user"]["username"].string {
-                                community.username = username
+                    var storeInRealm = false
+                    
+                    if let jsonData: AnyObject = jsonData {
+                        let json = JSON(jsonData)
+                        
+                        if (json["errors"] == nil && json["error"] == nil) {
+                            self.communities = []
+                            for var i = 0; i < json["communities"].count; i++ {
+                                var jsonCommunity = json["communities"][i]
+                                
+                                var community = JoinedCommunity()
+                                
+                                community.name = jsonCommunity["name"].string!
+                                community.normalizedName = jsonCommunity["normalized_name"].string!
+                                
+                                if let username = jsonCommunity["user"]["username"].string {
+                                    community.username = username
+                                }
+                                
+                                if let avatar_url = jsonCommunity["avatar_url"].string {
+                                    community.avatar_url = avatar_url
+                                }
+                                
+                                self.communities.append(community)
                             }
                             
-                            if let avatar_url = jsonCommunity["avatar_url"].string {
-                                community.avatar_url = avatar_url
+                            storeInRealm = true
+                        }
+                    }
+                    
+                    dispatch_async(dispatch_get_main_queue()) {
+                        if storeInRealm {
+                            let realm = Realm()
+                            realm.write {
+                                // Delete because we don't need data on
+                                // communities one may have left.
+                                realm.delete(realm.objects(JoinedCommunity))
+                                
+                                for community in self.communities {
+                                    realm.add(community, update: true)
+                                }
                             }
                             
-                            self.communities.append(community)
+                            self.triggerRealmReload = true
                         }
                         
-                        let realm = Realm()
-                        realm.write {
-                            // Delete because we don't need data on
-                            // communities one may have left.
-                            realm.delete(realm.objects(JoinedCommunity))
-                            
-                            for community in self.communities {
-                                realm.add(community, update: true)
-                            }
-                        }
-                        
-                        self.triggerRealmReload = true
+                        dispatch_group_leave(asyncGroup)
                     }
                 }
-                
-                dispatch_group_leave(asyncGroup)
         }
     }
     
@@ -164,81 +174,85 @@ class ProfileTableViewController: UITableViewController, PresentControllerDelega
         
         Alamofire.request(Router.GetCommunities)
             .responseJSON { request, response, jsonData, errors in
-                
-                var defaultError = errors?.localizedDescription
-                
-                self.communities = []
-                var failureString: String?
-                
-                if (defaultError != nil) {
-                    failureString = defaultError!.removeEndingPunctuationAndMakeLowerCase()
-                } else if let jsonData: AnyObject = jsonData {
-                    let json = JSON(jsonData)
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+                    var defaultError = errors?.localizedDescription
                     
-                    if (json["error"] != nil) {
-                        failureString = json["error"].stringValue
-                    } else if (json["errors"] == nil) {
-                        for var i = 0; i < json["communities"].count; i++ {
-                            var jsonCommunity = json["communities"][i]
-                            
-                            var community = JoinedCommunity()
-                            
-                            community.name = jsonCommunity["name"].string!
-                            community.normalizedName = jsonCommunity["normalized_name"].string!
-                            
-                            if let username = jsonCommunity["user"]["username"].string {
-                                community.username = username
-                            }
-                            
-                            if let avatar_url = jsonCommunity["user"]["avatar_url"].string {
-                                community.avatar_url = avatar_url
-                            }
-                            
-                            self.communities.append(community)
-                        }
+                    self.communities = []
+                    var failureString: String?
+                    
+                    if (defaultError != nil) {
+                        failureString = defaultError!.removeEndingPunctuationAndMakeLowerCase()
+                    } else if let jsonData: AnyObject = jsonData {
+                        let json = JSON(jsonData)
                         
-                        let realm = Realm()
-                        realm.write {
-                            // Delete because we don't need data on
-                            // communities one may have left.
-                            realm.delete(realm.objects(JoinedCommunity))
-                            
-                            for community in self.communities {
-                                realm.add(community, update: true)
+                        if (json["error"] != nil) {
+                            failureString = json["error"].stringValue
+                        } else if (json["errors"] == nil) {
+                            for var i = 0; i < json["communities"].count; i++ {
+                                var jsonCommunity = json["communities"][i]
+                                
+                                var community = JoinedCommunity()
+                                
+                                community.name = jsonCommunity["name"].string!
+                                community.normalizedName = jsonCommunity["normalized_name"].string!
+                                
+                                if let username = jsonCommunity["user"]["username"].string {
+                                    community.username = username
+                                }
+                                
+                                if let avatar_url = jsonCommunity["user"]["avatar_url"].string {
+                                    community.avatar_url = avatar_url
+                                }
+                                
+                                self.communities.append(community)
                             }
-                        }
-                        
-                        self.delegate.successRequestJoinedCommunities()
-                        if self.communities.count == 0 {
-                            failureString = "Communities you join will be located here"
+                            
+                            if self.communities.count == 0 {
+                                failureString = "Communities you join will be located here"
+                            }
+                        } else {
+                            var errorString = ""
+                            
+                            for var i = 0; i < json["errors"].count; i++ {
+                                if (i != 0) { errorString += "\n\n" }
+                                
+                                errorString += json["errors"][i].string!
+                            }
+                            
+                            failureString = errorString
                         }
                     } else {
-                        var errorString = ""
+                        failureString = "something went wrong :("
+                    }
+                    
+                    dispatch_async(dispatch_get_main_queue()) {
                         
-                        for var i = 0; i < json["errors"].count; i++ {
-                            if (i != 0) { errorString += "\n\n" }
-                            
-                            errorString += json["errors"][i].string!
+                        self.tableView.reloadData()
+                        if let string = failureString {
+                            self.delegate.failureRequestJoinedCommunities(string)
+                        } else {
+                            self.delegate.successRequestJoinedCommunities()
+                            let realm = Realm()
+                            realm.write {
+                                // Delete because we don't need data on
+                                // communities one may have left.
+                                realm.delete(realm.objects(JoinedCommunity))
+                                
+                                for community in self.communities {
+                                    realm.add(community, update: true)
+                                }
+                            }
                         }
                         
-                        failureString = errorString
+                        // We add a delay between ending the refresh and reloading data because otherwise the animation won't
+                        // be smooth and from then on, refreshing looks clunky.
+                        var delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0.25 * Double(NSEC_PER_SEC)))
+                        
+                        dispatch_after(delayTime, dispatch_get_main_queue(), {
+                            self.refreshControl!.endRefreshing()
+                        })
                     }
-                } else {
-                    failureString = "something went wrong :("
                 }
-                
-                self.tableView.reloadData()
-                if let string = failureString {
-                    self.delegate.failureRequestJoinedCommunities(string)
-                }
-                
-                // We add a delay between ending the refresh and reloading data because otherwise the animation won't
-                // be smooth and from then on, refreshing looks clunky.
-                var delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0.25 * Double(NSEC_PER_SEC)))
-                
-                dispatch_after(delayTime, dispatch_get_main_queue(), {
-                    self.refreshControl!.endRefreshing()
-                })
         }
     }
     
@@ -246,68 +260,72 @@ class ProfileTableViewController: UITableViewController, PresentControllerDelega
         
         Alamofire.request(Router.GetNotifications)
             .responseJSON { request, response, jsonData, errors in
-                
-                var defaultError = errors?.localizedDescription
-                
-                self.notifications = []
-                var failureString: String?
-                
-                if (defaultError != nil) {
-                    failureString = defaultError!.removeEndingPunctuationAndMakeLowerCase()
-                } else if let jsonData: AnyObject = jsonData {
-                    let json = JSON(jsonData)
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+                    var defaultError = errors?.localizedDescription
                     
-                    if (json["error"] != nil) {
-                        failureString = json["error"].stringValue
-                    } else if (json["errors"] == nil) {
+                    self.notifications = []
+                    var failureString: String?
+                    
+                    if (defaultError != nil) {
+                        failureString = defaultError!.removeEndingPunctuationAndMakeLowerCase()
+                    } else if let jsonData: AnyObject = jsonData {
+                        let json = JSON(jsonData)
                         
-                        for var i = 0; i < json["notifications"].count; i++ {
-                            var jsonNotif = json["notifications"][i]
-                                                        
-                            var notification = Notification(kind: jsonNotif["kind"].string!,
-                                username: jsonNotif["user"]["username"].string!,
-                                timeCreated: jsonNotif["created_at"].string!,
-                                community: jsonNotif["community"].string!,
-                                normalizedCommunityName: jsonNotif["community_normalized"].string!,
-                                postId: jsonNotif["post_id"].string!,
-                                avatarUrl: jsonNotif["user"]["avatar_url"].string)
+                        if (json["error"] != nil) {
+                            failureString = json["error"].stringValue
+                        } else if (json["errors"] == nil) {
                             
-                            self.notifications.append(notification)
-                        }
-                        
-                        self.delegate.successRequestNotifications()
-                        self.delegate.resetBadge()
-                        
-                        if self.notifications.count == 0 {
-                            failureString = "Notifications can be found here"
+                            for var i = 0; i < json["notifications"].count; i++ {
+                                var jsonNotif = json["notifications"][i]
+                                
+                                var notification = Notification(kind: jsonNotif["kind"].string!,
+                                    username: jsonNotif["user"]["username"].string!,
+                                    timeCreated: jsonNotif["created_at"].string!,
+                                    community: jsonNotif["community"].string!,
+                                    normalizedCommunityName: jsonNotif["community_normalized"].string!,
+                                    postId: jsonNotif["post_id"].string!,
+                                    avatarUrl: jsonNotif["user"]["avatar_url"].string)
+                                
+                                self.notifications.append(notification)
+                            }
+                            
+                            self.delegate.resetBadge()
+                            
+                            if self.notifications.count == 0 {
+                                failureString = "Notifications can be found here"
+                            }
+                        } else {
+                            var errorString = ""
+                            
+                            for var i = 0; i < json["errors"].count; i++ {
+                                if (i != 0) { errorString += "\n\n" }
+                                
+                                errorString += json["errors"][i].string!
+                            }
+                            
+                            failureString = errorString
                         }
                     } else {
-                        var errorString = ""
-                        
-                        for var i = 0; i < json["errors"].count; i++ {
-                            if (i != 0) { errorString += "\n\n" }
-                            
-                            errorString += json["errors"][i].string!
+                        failureString = "something went wrong :("
+                    }
+                    
+                    dispatch_async(dispatch_get_main_queue()) {
+                        self.tableView.reloadData()
+                        if let string = failureString {
+                            self.delegate.failureRequestNotifications(string)
+                        } else {
+                            self.delegate.successRequestNotifications()
                         }
                         
-                        failureString = errorString
+                        // We add a delay between ending the refresh and reloading data because otherwise the animation won't
+                        // be smooth and from then on, refreshing looks clunky.
+                        var delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0.25 * Double(NSEC_PER_SEC)))
+                        
+                        dispatch_after(delayTime, dispatch_get_main_queue(), {
+                            self.refreshControl!.endRefreshing()
+                        })
                     }
-                } else {
-                    failureString = "something went wrong :("
                 }
-                
-                self.tableView.reloadData()
-                if let string = failureString {
-                    self.delegate.failureRequestNotifications(string)
-                }
-                
-                // We add a delay between ending the refresh and reloading data because otherwise the animation won't
-                // be smooth and from then on, refreshing looks clunky.
-                var delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0.25 * Double(NSEC_PER_SEC)))
-                
-                dispatch_after(delayTime, dispatch_get_main_queue(), {
-                    self.refreshControl!.endRefreshing()
-                })
         }
     }
 
@@ -323,18 +341,22 @@ class ProfileTableViewController: UITableViewController, PresentControllerDelega
         
         Alamofire.request(Router.LeaveCommunity(community: community.name.strip()))
             .responseJSON { request, response, jsonData, errors in
-                
-                if (response?.statusCode > 299 || errors != nil) {
-                    
-                    var arraySize = self.communities.count
-                    
-                    self.communities.insert(community, atIndex: (row > arraySize ? arraySize : row))
-                    self.tableView.reloadData()
-                    
-                    if (response?.statusCode > 299) {
-                        self.delegate.spreadToast("something went wrong :(")
-                    } else {
-                        self.delegate.spreadToast(errors!.localizedDescription.removeEndingPunctuationAndMakeLowerCase())
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+                    if (response?.statusCode > 299 || errors != nil) {
+                        
+                        var arraySize = self.communities.count
+                        
+                        self.communities.insert(community, atIndex: (row > arraySize ? arraySize : row))
+                        
+                        dispatch_async(dispatch_get_main_queue()) {
+                            self.tableView.reloadData()
+                            
+                            if (response?.statusCode > 299) {
+                                self.delegate.spreadToast("something went wrong :(")
+                            } else {
+                                self.delegate.spreadToast(errors!.localizedDescription.removeEndingPunctuationAndMakeLowerCase())
+                            }
+                        }
                     }
                 }
         }
@@ -366,6 +388,8 @@ class ProfileTableViewController: UITableViewController, PresentControllerDelega
             if (communities.count > indexPath.row) {
                 cell.configureViews(communities[indexPath.row], row: indexPath.row)
             }
+            
+            cell.contentView.layer.zPosition = 500
             
             return cell
         } else if delegate.currentState == ProfileViewController.State.Notifications {
