@@ -376,7 +376,7 @@ class CommunitySettingsViewController: UIViewController {
         } else if croppedNewImage != nil {
             var imageData = UIImagePNGRepresentation(croppedNewImage!)
             
-            var url = Router.baseURLString + "/communities/update.json?user_id=\(Session.getUserId()!)&auth_token=\(Session.getAuthToken()!)&community=\(communityName.strip())&username=\(latestCommunityUsername.strip())"
+            var url = Router.baseURLString + "/communities/update.json?user_id=\(Session.getUserId()!)&auth_token=\(Session.getAuthToken()!)&community=\(communityName.strip())&username=\(latestCommunityUsername.strip())&api_key=\(Router.apiKey)"
             
             Alamofire.upload(.PUT, URLString: url.stringByAddingPercentEncodingWithAllowedCharacters(.URLQueryAllowedCharacterSet())!,
                 multipartFormData: { multipartFormData in

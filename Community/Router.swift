@@ -10,6 +10,7 @@ import Alamofire
 
 enum Router: URLRequestConvertible {
     static let baseURLString = "https://infinite-lake-4056.herokuapp.com/api/v1"
+    static let apiKey = "47e2c603-b125-4c6d-8c89-00722d7a5e28"
     
     case Login(email: String, password: String)
     case Register(username: String, email: String, password: String, transfer: Bool)
@@ -160,6 +161,8 @@ enum Router: URLRequestConvertible {
         }()
         
         var params = result.parameters!
+        
+        params["api_key"] = Router.apiKey
         
         switch self {
             case .CreateMetaAccount:

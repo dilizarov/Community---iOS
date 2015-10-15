@@ -318,7 +318,7 @@ class ProfileViewController: UIViewController {
         MMProgressHUD.show()
         
         Alamofire.upload(.POST,
-            URLString: "https://infinite-lake-4056.herokuapp.com/api/v1/users/\(Session.get(.UserId)!)/profile_pic.json?auth_token=\(Session.get(.AuthToken)!)",
+            URLString: "https://infinite-lake-4056.herokuapp.com/api/v1/users/\(Session.get(.UserId)!)/profile_pic.json?auth_token=\(Session.get(.AuthToken)!)&api_key=\(Router.apiKey)",
             multipartFormData: { multipartFormData in
                 multipartFormData.appendBodyPart(data: imageData, name: "avatar", fileName: "avatar_img.png", mimeType: "image/png")
             },
