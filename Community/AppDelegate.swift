@@ -74,11 +74,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func configureLaunchState(userInfo: Dictionary<NSObject, AnyObject>?) {
-        if let has_opened_app_before = Session.get(.MetaAuthToken) {
-            configureUsualLaunch(nil, userInfo: userInfo)
-        } else {
+//        if let has_opened_app_before = Session.get(.MetaAuthToken) {
+//            configureUsualLaunch(nil, userInfo: userInfo)
+//        } else {
             configureWelcomeLaunch()
-        }
+//        }
     }
     
     func configureUsualLaunch(community: String?, userInfo: Dictionary<NSObject, AnyObject>? = nil) {
@@ -157,7 +157,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if state == .Active {
             if let controller = drawerController {
-                println("BADGE NUMBER: \(application.applicationIconBadgeNumber)")
                 var currentBadgeNumber = application.applicationIconBadgeNumber
                 application.applicationIconBadgeNumber = currentBadgeNumber + 1
                 

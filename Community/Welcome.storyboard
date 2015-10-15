@@ -31,7 +31,7 @@
         <!--Great, let us set you up :)-->
         <scene sceneID="gHJ-Zo-fwP">
             <objects>
-                <viewController id="4Zc-0n-RsE" customClass="UsernameGeneratorViewController" customModule="Community" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="4Zc-0n-RsE" customClass="UsernameGeneratorViewController" customModule="Main" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cMf-DX-SNC"/>
                         <viewControllerLayoutGuide type="bottom" id="V6g-6c-B0x"/>
@@ -140,7 +140,7 @@
         <!--Hi-->
         <scene sceneID="MQC-Dj-Azi">
             <objects>
-                <viewController id="am0-Hk-GdL" customClass="ImportantDocumentsViewController" customModule="Community" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="am0-Hk-GdL" customClass="ImportantDocumentsViewController" customModule="Main" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ynj-ci-FuN"/>
                         <viewControllerLayoutGuide type="bottom" id="TBE-QF-A6o"/>
@@ -203,6 +203,9 @@
                                     <color key="titleColor" red="0.018165555810000001" green="0.41620616300000002" blue="0.52175376559999997" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="jeb-Oe-CCv" kind="show" id="fmY-jQ-BX7"/>
+                                </connections>
                             </button>
                         </subviews>
                         <animations/>
@@ -300,7 +303,7 @@
         <!--Want an account?-->
         <scene sceneID="VL6-xX-MDU">
             <objects>
-                <viewController id="dT0-f1-PV6" customClass="WelcomeCreateAccountViewController" customModule="Community" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="dT0-f1-PV6" customClass="WelcomeCreateAccountViewController" customModule="Main" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ADd-iH-G2b"/>
                         <viewControllerLayoutGuide type="bottom" id="z79-FJ-eAb"/>
@@ -470,7 +473,7 @@
         <!--Would you share us?-->
         <scene sceneID="vqR-vg-vdd">
             <objects>
-                <viewController id="zn4-Lp-EgB" customClass="ShareCommunityViewController" customModule="Community" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="zn4-Lp-EgB" customClass="ShareCommunityViewController" customModule="Main" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="IMc-Vk-C3k"/>
                         <viewControllerLayoutGuide type="bottom" id="PcI-Pw-UfH"/>
@@ -551,10 +554,56 @@
             </objects>
             <point key="canvasLocation" x="1284" y="356"/>
         </scene>
+        <!--Terms of Service-->
+        <scene sceneID="ZLF-qj-ggX">
+            <objects>
+                <viewController id="jeb-Oe-CCv" customClass="TermsOfServiceViewController" customModule="Main" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="s7S-30-14Z"/>
+                        <viewControllerLayoutGuide type="bottom" id="1MA-zJ-ArL"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7KE-Wg-zCc">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ytf-zc-vRK">
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <dataDetectorType key="dataDetectorTypes"/>
+                            </webView>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="ytf-zc-vRK" secondAttribute="trailing" constant="-16" id="KZE-Iz-mCL"/>
+                            <constraint firstItem="1MA-zJ-ArL" firstAttribute="top" secondItem="ytf-zc-vRK" secondAttribute="bottom" id="X1P-y3-WP1"/>
+                            <constraint firstItem="ytf-zc-vRK" firstAttribute="leading" secondItem="7KE-Wg-zCc" secondAttribute="leadingMargin" constant="-16" id="bsA-ba-XHU"/>
+                            <constraint firstItem="ytf-zc-vRK" firstAttribute="top" secondItem="s7S-30-14Z" secondAttribute="bottom" id="cQe-7Z-FsT"/>
+                            <constraint firstItem="ytf-zc-vRK" firstAttribute="top" secondItem="7KE-Wg-zCc" secondAttribute="topMargin" id="j4W-KX-S2J"/>
+                            <constraint firstItem="ytf-zc-vRK" firstAttribute="top" secondItem="s7S-30-14Z" secondAttribute="bottom" id="vga-tS-WyI"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="cQe-7Z-FsT"/>
+                                <exclude reference="j4W-KX-S2J"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" title="Terms of Service" id="vUh-AB-Vro"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="webView" destination="ytf-zc-vRK" id="SWF-aN-Ybd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5Ws-RQ-UFK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="37" y="1137"/>
+        </scene>
         <!--Privacy Policy-->
         <scene sceneID="jdE-gc-yyk">
             <objects>
-                <viewController id="99k-S5-Ot3" customClass="PrivacyPolicyViewController" customModule="Community" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="99k-S5-Ot3" customClass="PrivacyPolicyViewController" customModule="Main" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hJX-u6-upo"/>
                         <viewControllerLayoutGuide type="bottom" id="gmO-Pv-V7e"/>
@@ -563,12 +612,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OoD-wv-JFB">
-                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
-                                <animations/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES"/>
-                            </webView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qeI-HJ-iCr">
                                 <rect key="frame" x="16" y="269" width="288" height="30"/>
                                 <animations/>
@@ -580,20 +623,26 @@
                                     <action selector="retryPressed:" destination="99k-S5-Ot3" eventType="touchUpInside" id="riF-1g-nuC"/>
                                 </connections>
                             </button>
+                            <webView contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WaE-vy-Q6M">
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                            </webView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="gmO-Pv-V7e" firstAttribute="top" secondItem="OoD-wv-JFB" secondAttribute="bottom" id="0rV-ca-wxb"/>
+                            <constraint firstItem="WaE-vy-Q6M" firstAttribute="leading" secondItem="0Ca-1R-fcc" secondAttribute="leadingMargin" constant="-16" id="Dmn-C5-qgV"/>
                             <constraint firstItem="qeI-HJ-iCr" firstAttribute="leading" secondItem="0Ca-1R-fcc" secondAttribute="leadingMargin" id="Gsh-sz-c9l"/>
-                            <constraint firstItem="OoD-wv-JFB" firstAttribute="top" secondItem="hJX-u6-upo" secondAttribute="bottom" id="ZZ1-HX-GfJ"/>
+                            <constraint firstItem="WaE-vy-Q6M" firstAttribute="top" secondItem="hJX-u6-upo" secondAttribute="bottom" id="Nuz-dw-6HE"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="WaE-vy-Q6M" secondAttribute="trailing" constant="-16" id="UnA-HK-isp"/>
                             <constraint firstItem="gmO-Pv-V7e" firstAttribute="top" secondItem="qeI-HJ-iCr" secondAttribute="bottom" constant="269" id="ZkE-ne-FzR"/>
+                            <constraint firstItem="gmO-Pv-V7e" firstAttribute="top" secondItem="WaE-vy-Q6M" secondAttribute="bottom" id="bro-j0-Omf"/>
                             <constraint firstItem="gmO-Pv-V7e" firstAttribute="top" secondItem="qeI-HJ-iCr" secondAttribute="bottom" constant="237" id="bxo-eU-U52"/>
-                            <constraint firstItem="OoD-wv-JFB" firstAttribute="leading" secondItem="0Ca-1R-fcc" secondAttribute="leadingMargin" constant="-16" id="bys-dp-zje"/>
                             <constraint firstItem="qeI-HJ-iCr" firstAttribute="top" secondItem="hJX-u6-upo" secondAttribute="bottom" constant="205" id="mda-Hb-gau"/>
                             <constraint firstItem="qeI-HJ-iCr" firstAttribute="trailing" secondItem="0Ca-1R-fcc" secondAttribute="trailingMargin" id="o7h-cW-ClE"/>
                             <constraint firstItem="qeI-HJ-iCr" firstAttribute="top" secondItem="hJX-u6-upo" secondAttribute="bottom" constant="237" id="uak-li-41D"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="OoD-wv-JFB" secondAttribute="trailing" constant="-16" id="vAH-if-dgB"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -606,17 +655,17 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="retryButton" destination="qeI-HJ-iCr" id="z4G-ul-qvm"/>
-                        <outlet property="webView" destination="OoD-wv-JFB" id="9oz-bX-fTj"/>
+                        <outlet property="webView" destination="WaE-vy-Q6M" id="VOr-OQ-Keg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rb7-M4-c0f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="553" y="1137"/>
+            <point key="canvasLocation" x="519" y="1137"/>
         </scene>
         <!--Chat with us!-->
         <scene sceneID="Vfa-9y-hIB">
             <objects>
-                <viewController id="Y21-sP-n4z" customClass="ChatWithUsViewController" customModule="Community" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Y21-sP-n4z" customClass="ChatWithUsViewController" customModule="Main" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="mfj-FB-V8N"/>
                         <viewControllerLayoutGuide type="bottom" id="k9b-T2-Sgt"/>

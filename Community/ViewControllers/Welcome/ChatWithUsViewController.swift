@@ -31,7 +31,6 @@ class ChatWithUsViewController: UIViewController {
      
         navigationItem.rightBarButtonItem?.target = self
         navigationItem.rightBarButtonItem?.action = Selector("donePressed")
-        // Do any additional setup after loading the view.
     }
     
     func donePressed() {
@@ -40,7 +39,6 @@ class ChatWithUsViewController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
 

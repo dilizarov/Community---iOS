@@ -184,7 +184,6 @@ enum Router: URLRequestConvertible {
             case .GetNotifications:
                 params["auth_token"] = Session.getAuthToken()!
             default:
-                println(Session.get(.AuthToken))
                 params["auth_token"] = Session.getAuthToken()!
                 params["user_id"] = Session.getUserId()!
         }

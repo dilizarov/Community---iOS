@@ -38,7 +38,6 @@ extension String {
     func removeEndingPunctuationAndMakeLowerCase() -> String {
 
         var last = self[-1]
-        
         if (last ==  "." || last == "?" || last == "!") {
            return dropLast(self.lowercaseString)
         } else {

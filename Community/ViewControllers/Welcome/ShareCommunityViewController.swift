@@ -12,13 +12,13 @@ class ShareCommunityViewController: UIViewController {
 
     @IBAction func shareCommunity(sender: AnyObject) {
         let text = "Join me on #Community"
-        let url = NSURL(string: "http://community.com")!
+        let url = NSURL(string: "http://get.community")!
         
         var objectsToShare: [AnyObject] = [text, url]
         
         let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
         
-        activityVC.excludedActivityTypes = [UIActivityTypeAddToReadingList, UIActivityTypePrint]
+        activityVC.excludedActivityTypes = [UIActivityTypeAirDrop, UIActivityTypeAddToReadingList, UIActivityTypePrint]
         
         self.presentViewController(activityVC, animated: true, completion: nil)
     }
