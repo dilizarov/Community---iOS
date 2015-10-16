@@ -41,8 +41,8 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
 
         search.alpha = 0
+        search.delegate = self
         
-        setupSearchLook()
         setupAvatar()
         setAvatar()
     }
@@ -99,22 +99,6 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
             headingToCommunity = nil
         }
     }
-    
-    func setupSearchLook() {
-        search.layer.masksToBounds = false
-        search.layer.cornerRadius = 3
-        search.layer.shadowOffset = CGSizeMake(0, 1)
-        search.layer.shadowRadius = 1.0
-        search.layer.shadowOpacity = 0.25
-        search.tintColor = UIColor(hexString: "056A85")
-        search.backgroundColor = UIColor.whiteColor()
-//        search.backgroundColor = UIColor(hexString: "EFEFF4")
-//        search.layer.borderWidth = 1
-//        search.layer.borderColor = UIColor(hexString: "056A85").CGColor
-        
-        search.delegate = self
-    }
-    
     
     func setupAvatar() {
         avatar.layer.cornerRadius = self.avatar.frame.size.height / 2
