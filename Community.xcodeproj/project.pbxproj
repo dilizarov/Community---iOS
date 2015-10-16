@@ -262,7 +262,7 @@
 				9A735F2C1BD179DA00EC01BB /* TextFieldsEffects.swift */,
 				9A735F2D1BD179DA00EC01BB /* YokoTextField.swift */,
 			);
-			name = TextFieldEffects;
+			path = TextFieldEffects;
 			sourceTree = "<group>";
 		};
 		9AAD203A1B82A22F0053F743 = {
@@ -288,7 +288,6 @@
 		9AAD20451B82A22F0053F743 /* Community */ = {
 			isa = PBXGroup;
 			children = (
-				9A735F241BD179CB00EC01BB /* TextFieldEffects */,
 				9AE113D41BB7400800005F30 /* Cells */,
 				9AF4BC271BB91B0A00426A7E /* Custom Views */,
 				9A3DED9C1B9155AF00B90556 /* DKImagePickerController */,
@@ -296,6 +295,7 @@
 				9AF4BC261BB91AEA00426A7E /* Models */,
 				9A5566A11BAD3C94005DDBA3 /* PHFComposeBar */,
 				9AAD20461B82A22F0053F743 /* Supporting Files */,
+				9A735F241BD179CB00EC01BB /* TextFieldEffects */,
 				9AD3B4B11B91283E00357860 /* ViewControllers */,
 				9AAD20481B82A22F0053F743 /* AppDelegate.swift */,
 				9A5566121BA049EE005DDBA3 /* Community-Bridging-Header.h */,
@@ -306,8 +306,8 @@
 				9A55660A1B9FD955005DDBA3 /* Main.storyboard */,
 				9A5FC61A1BBEF231001937C5 /* Router.swift */,
 				9A5FC61C1BBF69E2001937C5 /* Session.swift */,
-				9AF4BC281BB9DB9400426A7E /* Welcome.storyboard */,
 				9A5FC6281BD031DD001937C5 /* TermsOfService.html */,
+				9AF4BC281BB9DB9400426A7E /* Welcome.storyboard */,
 			);
 			path = Community;
 			sourceTree = "<group>";
@@ -376,10 +376,10 @@
 		9AE113D41BB7400800005F30 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				9A5FC6241BCB8330001937C5 /* NotificationCell.swift */,
 				9AA6135F1B8464F0004911C2 /* CommunityCell.swift */,
 				9AE113D71BB7D29E00005F30 /* NoPostsCell.swift */,
 				9AE113D51BB7412400005F30 /* NoRepliesCell.swift */,
+				9A5FC6241BCB8330001937C5 /* NotificationCell.swift */,
 				9A5566071B9FB60F005DDBA3 /* PostCell.swift */,
 				9A55669A1BACC10E005DDBA3 /* ReplyCell.swift */,
 				9A55669C1BACD00A005DDBA3 /* ReplyPostCell.swift */,
@@ -391,9 +391,9 @@
 			isa = PBXGroup;
 			children = (
 				9A5566151BA2C511005DDBA3 /* JoinedCommunity.swift */,
+				9A5FC6221BCB68B4001937C5 /* Notification.swift */,
 				9A55660D1BA0168C005DDBA3 /* Post.swift */,
 				9AB8D00E1BB23C2200516551 /* Reply.swift */,
-				9A5FC6221BCB68B4001937C5 /* Notification.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -411,11 +411,11 @@
 		9AF4BC2C1BBB300600426A7E /* Welcome */ = {
 			isa = PBXGroup;
 			children = (
-				9A5FC62A1BD035E5001937C5 /* TermsOfServiceViewController.swift */,
 				9AF4BC311BBC77A900426A7E /* ChatWithUsViewController.swift */,
 				9AF4BC331BBC996200426A7E /* ImportantDocumentsViewController.swift */,
 				9AF4BC2D1BBB303500426A7E /* PrivacyPolicyViewController.swift */,
 				9AF4BC2F1BBB6A8A00426A7E /* ShareCommunityViewController.swift */,
+				9A5FC62A1BD035E5001937C5 /* TermsOfServiceViewController.swift */,
 				9A5FC6181BBDB095001937C5 /* UsernameGeneratorViewController.swift */,
 				9AF4BC351BBCB19A00426A7E /* WelcomeCreateAccountViewController.swift */,
 			);
