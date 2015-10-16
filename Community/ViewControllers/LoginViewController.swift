@@ -35,7 +35,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             self.passwordField.resignFirstResponder()
             
             forgotPasswordButton.setTitle("Whoops", forState: .Normal)
-            commandButton.setTitle("Send Email", forState: .Normal | .Disabled)
+            commandButton.setTitle("Send Email", forState: .Normal)
+            commandButton.setTitle("Send Email", forState: .Disabled)
             
             textFieldDidChange()
             
@@ -52,7 +53,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             self.passwordField.resignFirstResponder()
 
             forgotPasswordButton.setTitle("Forget?", forState: .Normal)
-            commandButton.setTitle("Log In", forState: .Normal | .Disabled)
+            commandButton.setTitle("Log In", forState: .Normal)
+            commandButton.setTitle("Log In", forState: .Disabled)
             
             textFieldDidChange()
             
@@ -169,8 +171,43 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
 
     func processForgotPassword() {
-        // TODO
-        // BUILD THIS
+        MMProgressHUD.sharedHUD().overlayMode = .Linear
+        MMProgressHUD.setPresentationStyle(.Balloon)
+        MMProgressHUD.show()
+        
+        Alamofire.request(Router.ForgotPassword(email: emailField.text!.strip()))
+            .responseJSON { request, response, jsonData, errors in
+                // We delay by 1 second to keep a very smooth animation.
+                var delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC)))
+                
+                dispatch_after(delayTime, dispatch_get_main_queue(), {
+                    
+                    var defaultError = errors?.localizedDescription
+                    
+                    if (defaultError != nil) {
+                        MMProgressHUD.dismissWithError(defaultError?.removeEndingPunctuationAndMakeLowerCase(), afterDelay: NSTimeInterval(3))
+                    } else if response?.statusCode > 299 {
+                        var errorString = "Something went wrong :("
+                        
+                        if let jsonData: AnyObject = jsonData {
+                            let json = JSON(jsonData)
+                            
+                            if let error = json["error"].string {
+                                errorString = error
+                            }
+                        }
+                        
+                        MMProgressHUD.dismissWithError(errorString, afterDelay: NSTimeInterval(3))
+                    } else {
+                        MMProgressHUD.sharedHUD().dismissAnimationCompletion = {
+                            self.forgotPasswordButtonPressed(self)
+                        }
+                        
+                        MMProgressHUD.dismissWithSuccess("Email sent")
+                    }
+                })
+        }
+
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {

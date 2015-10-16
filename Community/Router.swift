@@ -14,6 +14,7 @@ enum Router: URLRequestConvertible {
     
     case Login(email: String, password: String)
     case Register(username: String, email: String, password: String, transfer: Bool)
+    case ForgotPassword(email: String)
     case Logout
     case CreateMetaAccount
     case ChangeMetaUsername
@@ -53,6 +54,12 @@ enum Router: URLRequestConvertible {
                     }
                     
                     return (.POST, "/registrations.json", params)
+                
+                case .ForgotPassword(let email):
+                
+                    params = ["email" : email]
+                
+                    return (.POST, "/users/forgot_password.json" ,params)
                 
                 case .Logout:
                 
@@ -165,7 +172,7 @@ enum Router: URLRequestConvertible {
         params["api_key"] = Router.apiKey
         
         switch self {
-            case .CreateMetaAccount:
+            case .CreateMetaAccount, .ForgotPassword:
                 break
             case .Login, .Register:
                 if let deviceToken = Session.getDeviceToken() {

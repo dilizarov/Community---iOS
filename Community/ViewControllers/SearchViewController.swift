@@ -103,13 +103,14 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
     func setupSearchLook() {
         search.layer.masksToBounds = false
         search.layer.cornerRadius = 3
-//        search.layer.shadowOffset = CGSizeMake(0, 1)
-//        search.layer.shadowRadius = 1.0
-//        search.layer.shadowOpacity = 0.8
-        search.tintColor = UIColor.whiteColor()
-        search.backgroundColor = UIColor(hexString: "EFEFF4")
-        search.layer.borderWidth = 1
-        search.layer.borderColor = UIColor(hexString: "056A85").CGColor
+        search.layer.shadowOffset = CGSizeMake(0, 1)
+        search.layer.shadowRadius = 1.0
+        search.layer.shadowOpacity = 0.25
+        search.tintColor = UIColor(hexString: "056A85")
+        search.backgroundColor = UIColor.whiteColor()
+//        search.backgroundColor = UIColor(hexString: "EFEFF4")
+//        search.layer.borderWidth = 1
+//        search.layer.borderColor = UIColor(hexString: "056A85").CGColor
         
         search.delegate = self
     }

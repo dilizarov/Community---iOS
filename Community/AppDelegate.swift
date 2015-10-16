@@ -65,6 +65,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         config.migrationBlock = {
             migration, oldSchemaVersion in
             if (oldSchemaVersion < 3) {
+                migration.enumerate(JoinedCommunity.className()) { oldObject, newObject in
+                    migration.delete(newObject!)
+                }
             }
         }
         
