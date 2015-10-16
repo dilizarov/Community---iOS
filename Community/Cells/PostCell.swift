@@ -1,4 +1,4 @@
-//
+
 //  PostCell.swift
 //  
 //
@@ -47,7 +47,7 @@ class PostCell: UITableViewCell, TTTAttributedLabelDelegate {
     }
     
     func configureViews(post: Post) {
-        postBody.enabledTextCheckingTypes = NSTextCheckingType.Link.rawValue// | NSTextCheckingType.PhoneNumber.rawValue
+        postBody.enabledTextCheckingTypes = NSTextCheckingType.Link.rawValue
         
         postBody.linkAttributes = [kCTForegroundColorAttributeName : UIColor.blueColor()]
         postBody.activeLinkAttributes = [kCTForegroundColorAttributeName : UIColor.darkGrayColor()]
@@ -90,9 +90,9 @@ class PostCell: UITableViewCell, TTTAttributedLabelDelegate {
     
     func attributedLabel(label: TTTAttributedLabel!, didSelectLinkWithURL url: NSURL!) {
         
-        var alertSheet = UIAlertController(title: url.absoluteString, message: nil, preferredStyle: .ActionSheet)
-        var cancelButton = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
-        var openInSafariButton = UIAlertAction(title: "Open Link in Safari", style: .Default, handler: { alert in
+        let alertSheet = UIAlertController(title: url.absoluteString, message: nil, preferredStyle: .ActionSheet)
+        let cancelButton = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+        let openInSafariButton = UIAlertAction(title: "Open Link in Safari", style: .Default, handler: { alert in
             UIApplication.sharedApplication().openURL(url)
         })
         
@@ -127,9 +127,9 @@ class PostCell: UITableViewCell, TTTAttributedLabelDelegate {
        toggleLike()
         
         Alamofire.request(Router.LikePost(post_id: post.id, dislike: !post.liked))
-            .responseJSON { request, response, jsonData, errors in
+            .responseJSON { request, response, result in//jsonData, errors in
                 
-                if (response?.statusCode > 299 || errors != nil) { self.toggleLike() }
+                if (response?.statusCode > 299 || result.error != nil) { self.toggleLike() }
             }
     }
     

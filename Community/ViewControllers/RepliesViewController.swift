@@ -73,7 +73,7 @@ class RepliesViewController: UIViewController, PHFComposeBarViewDelegate, Replie
         
         setupNavBar()
         
-        var tapGesture = UITapGestureRecognizer(target: self, action: "keyboardDisappear")
+        let tapGesture = UITapGestureRecognizer(target: self, action: "keyboardDisappear")
         tapGesture.numberOfTapsRequired = 1
         tapGesture.cancelsTouchesInView = false
         
@@ -109,26 +109,26 @@ class RepliesViewController: UIViewController, PHFComposeBarViewDelegate, Replie
         
         self.view.addSubview(navBar)
         
-        var backButton = UIBarButtonItem(image: UIImage(named: "Back"), style: .Plain, target: self, action: Selector("back"))
+        let backButton = UIBarButtonItem(image: UIImage(named: "Back"), style: .Plain, target: self, action: Selector("back"))
         
         backButton.tintColor = UIColor(hexString: "056A85")
         
-        var refreshButton = UIBarButtonItem(barButtonSystemItem: .Refresh, target: self, action: Selector("refresh"))
+        let refreshButton = UIBarButtonItem(barButtonSystemItem: .Refresh, target: self, action: Selector("refresh"))
         
         refreshButton.tintColor = UIColor(hexString: "056A85")
         refreshButton.enabled = true
         
-        var loadIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 22, 22))
+        let loadIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 22, 22))
         loadIndicator.stopAnimating()
         loadIndicator.hidesWhenStopped = true
         loadIndicator.activityIndicatorViewStyle = .Gray
         
-        var loadButton = UIBarButtonItem(customView: loadIndicator)
+        let loadButton = UIBarButtonItem(customView: loadIndicator)
         
         rightButtonOptions["refresh"] = refreshButton
         rightButtonOptions["load"] = loadButton
         
-        var navigationItem = UINavigationItem()
+        let navigationItem = UINavigationItem()
         navigationItem.rightBarButtonItem = refreshButton
         navigationItem.leftBarButtonItem = backButton
         
@@ -144,15 +144,15 @@ class RepliesViewController: UIViewController, PHFComposeBarViewDelegate, Replie
         composeBarView.enabled = false
         
         request = Alamofire.request(Router.WriteReply(post_id: post!.id, body: composeBarView.text.strip()))
-            .responseJSON { request, response, jsonData, errors in
+            .responseJSON { request, response, result in
                 
                 self.composeBarView.enabled = true
-                var defaultError = errors?.localizedDescription
+                let defaultError = (result.error as? NSError)?.localizedDescription
                 
                 if (defaultError != nil) {
                     self.composeBarView.stopLoading()
                     self.view.makeToast(defaultError!, duration: NSTimeInterval(3), position: CSToastPositionCenter)
-                } else if let jsonData: AnyObject = jsonData {
+                } else if let jsonData: AnyObject = result.value {
                     let json = JSON(jsonData)
                     
                     if (json["error"] != nil) {
@@ -161,7 +161,7 @@ class RepliesViewController: UIViewController, PHFComposeBarViewDelegate, Replie
                     } else if (json["errors"] == nil) {
                         var jsonReply = json["reply"]
                         
-                        var reply = Reply(id: jsonReply["external_id"].stringValue, username: jsonReply["user"]["username"].stringValue, body: jsonReply["body"].stringValue, likeCount: jsonReply["likes"].intValue, liked: jsonReply["liked"].boolValue, timeCreated: jsonReply["created_at"].stringValue, avatarUrl: jsonReply["user"]["avatar_url"].string)
+                        let reply = Reply(id: jsonReply["external_id"].stringValue, username: jsonReply["user"]["username"].stringValue, body: jsonReply["body"].stringValue, likeCount: jsonReply["likes"].intValue, liked: jsonReply["liked"].boolValue, timeCreated: jsonReply["created_at"].stringValue, avatarUrl: jsonReply["user"]["avatar_url"].string)
                         
                         self.post!.repliesCount += 1
                         

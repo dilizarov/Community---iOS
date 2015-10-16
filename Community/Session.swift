@@ -27,7 +27,7 @@ class Session {
         
         var path: String {
             
-            var prefix: String = (!Session.loggedIn() ? "meta_" : "")
+            let prefix: String = (!Session.loggedIn() ? "meta_" : "")
             
             switch self {
                 case .Username:

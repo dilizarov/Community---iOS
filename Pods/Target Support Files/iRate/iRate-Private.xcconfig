@@ -1,5 +1,0 @@
-#include "iRate.xcconfig"
-GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Private" "${PODS_ROOT}/Headers/Private/iRate" "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/Alamofire" "${PODS_ROOT}/Headers/Public/HexColors" "${PODS_ROOT}/Headers/Public/IQKeyboardManagerSwift" "${PODS_ROOT}/Headers/Public/KeychainSwift" "${PODS_ROOT}/Headers/Public/MGSwipeTableCell" "${PODS_ROOT}/Headers/Public/MMDrawerController" "${PODS_ROOT}/Headers/Public/MMProgressHUD" "${PODS_ROOT}/Headers/Public/RSKImageCropper" "${PODS_ROOT}/Headers/Public/Realm" "${PODS_ROOT}/Headers/Public/Realm/realm" "${PODS_ROOT}/Headers/Public/RealmSwift" "${PODS_ROOT}/Headers/Public/SDWebImage" "${PODS_ROOT}/Headers/Public/SZTextView" "${PODS_ROOT}/Headers/Public/Sheriff" "${PODS_ROOT}/Headers/Public/SwiftyJSON" "${PODS_ROOT}/Headers/Public/TTTAttributedLabel" "${PODS_ROOT}/Headers/Public/TextFieldEffects" "${PODS_ROOT}/Headers/Public/Toast" "${PODS_ROOT}/Headers/Public/UIActivityIndicator-for-SDWebImage" "${PODS_ROOT}/Headers/Public/UITextField+Shake" "${PODS_ROOT}/Headers/Public/iRate"
-PODS_ROOT = ${SRCROOT}
-SKIP_INSTALL = YES

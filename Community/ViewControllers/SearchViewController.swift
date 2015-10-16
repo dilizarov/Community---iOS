@@ -84,9 +84,9 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
         
         if firstAppearance {
             firstAppearance = false
-            UIView.animateWithDuration(0.25, delay: 0, options: UIViewAnimationOptions.CurveEaseIn | UIViewAnimationOptions.BeginFromCurrentState, animations: {
+            UIView.animateWithDuration(0.25, delay: 0, options: [UIViewAnimationOptions.CurveEaseIn, UIViewAnimationOptions.BeginFromCurrentState], animations: {
                 
-                var deltaY = self.originalFrame.origin.y - self.communityLabel.frame.origin.y
+                let deltaY = self.originalFrame.origin.y - self.communityLabel.frame.origin.y
                 self.communityLabel.transform = CGAffineTransformMakeTranslation(0, deltaY)
                 self.search.alpha = 1
                 
@@ -122,7 +122,7 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
                 placeholderImage: UIImage(named: "AvatarPlaceHolderGray"),
                 options: SDWebImageOptions.RetryFailed,
                 completed: { (image: UIImage!, error: NSError!, cacheType: SDImageCacheType, imageURL: NSURL!) -> Void in
-                    if let actualError = error {
+                    if let _ = error {
                         
                         self.avatarImageError = true
                         self.avatar.image = UIImage(named: "AvatarPlaceHolderError")
@@ -143,7 +143,7 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
             setAvatar()
         }
         
-        var delegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
         
         delegate.drawerController?.openDrawerSide(.Left, animated: true, completion: nil)
     }
@@ -174,7 +174,7 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
     
     func goToCommunityVC(community: String, animated: Bool) {
 
-        var communityVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("CommunityViewController") as! CommunityViewController
+        let communityVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("CommunityViewController") as! CommunityViewController
 
         communityVC.communityTitle = community
         communityVC.postId = postId
@@ -189,9 +189,9 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         self.view.endEditing(true)
         
-        var searchString: String = textField.text.strip()
+        let searchString: String = textField.text!.strip()
         
-        var length = NSString(string: searchString).length
+        let length = NSString(string: searchString).length
         
         if length == 0 {
             textField.shake()

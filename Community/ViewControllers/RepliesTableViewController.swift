@@ -29,7 +29,7 @@ class RepliesTableViewController: UITableViewController, PresentControllerDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        var headerView = UIView(frame: CGRectMake(0, 0, tableView.bounds.width, 20))
+        let headerView = UIView(frame: CGRectMake(0, 0, tableView.bounds.width, 20))
         headerView.backgroundColor = UIColor.clearColor()
         
         tableView.tableHeaderView = headerView
@@ -73,9 +73,9 @@ class RepliesTableViewController: UITableViewController, PresentControllerDelega
         }
         
         Alamofire.request(Router.GetReplies(post_id: post!.id, includePost: false))
-            .responseJSON { request, response, jsonData, errors in
+            .responseJSON { request, response, result in
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-                    if let jsonData: AnyObject = jsonData {
+                    if let jsonData: AnyObject = result.value {
                         let json = JSON(jsonData)
                         
                         if (json["errors"] == nil && json["error"] == nil) {
@@ -85,7 +85,7 @@ class RepliesTableViewController: UITableViewController, PresentControllerDelega
                             for var i = 0; i < json["replies"].count; i++ {
                                 var jsonReply = json["replies"][i]
                                 
-                                var reply = Reply(id: jsonReply["external_id"].stringValue, username: jsonReply["user"]["username"].stringValue, body: jsonReply["body"].stringValue, likeCount: jsonReply["likes"].intValue, liked: jsonReply["liked"].boolValue, timeCreated: jsonReply["created_at"].stringValue, avatarUrl: jsonReply["user"]["avatar_url"].string)
+                                let reply = Reply(id: jsonReply["external_id"].stringValue, username: jsonReply["user"]["username"].stringValue, body: jsonReply["body"].stringValue, likeCount: jsonReply["likes"].intValue, liked: jsonReply["liked"].boolValue, timeCreated: jsonReply["created_at"].stringValue, avatarUrl: jsonReply["user"]["avatar_url"].string)
                                 
                                 self.replies.append(reply)
                             }
@@ -120,14 +120,14 @@ class RepliesTableViewController: UITableViewController, PresentControllerDelega
         }
         
         Alamofire.request(urlRequest)
-            .responseJSON { request, response, jsonData, errors in
+            .responseJSON { request, response, result in
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
                 
-                    var defaultError = errors?.localizedDescription
+                    let defaultError = (result.error as? NSError)?.localizedDescription
                     
                     if defaultError != nil {
                         self.emptyOrErrorDescription = defaultError
-                    } else if let jsonData: AnyObject = jsonData {
+                    } else if let jsonData: AnyObject = result.value {
                         let json = JSON(jsonData)
                         
                         if (json["error"] != nil) {
@@ -150,7 +150,7 @@ class RepliesTableViewController: UITableViewController, PresentControllerDelega
                             for var i = 0; i < json["replies"].count; i++ {
                                 var jsonReply = json["replies"][i]
                                 
-                                var reply = Reply(id: jsonReply["external_id"].stringValue, username: jsonReply["user"]["username"].stringValue, body: jsonReply["body"].stringValue, likeCount: jsonReply["likes"].intValue, liked: jsonReply["liked"].boolValue, timeCreated: jsonReply["created_at"].stringValue, avatarUrl: jsonReply["user"]["avatar_url"].string)
+                                let reply = Reply(id: jsonReply["external_id"].stringValue, username: jsonReply["user"]["username"].stringValue, body: jsonReply["body"].stringValue, likeCount: jsonReply["likes"].intValue, liked: jsonReply["liked"].boolValue, timeCreated: jsonReply["created_at"].stringValue, avatarUrl: jsonReply["user"]["avatar_url"].string)
                                 
                                 self.replies.append(reply)
                             }
@@ -217,7 +217,7 @@ class RepliesTableViewController: UITableViewController, PresentControllerDelega
             if self.post == nil {
                 // In hindsight, maybe I should have called this something different, because I use it for more
                 // than just no replies, but it suffices here.
-                var cell = tableView.dequeueReusableCellWithIdentifier("noReplies") as! NoRepliesCell
+                let cell = tableView.dequeueReusableCellWithIdentifier("noReplies") as! NoRepliesCell
                 
                 cell.configureView("Could not load post")
                 
@@ -225,7 +225,7 @@ class RepliesTableViewController: UITableViewController, PresentControllerDelega
                 
                 return cell
             } else {
-                var cell = tableView.dequeueReusableCellWithIdentifier("postCell", forIndexPath: indexPath) as! ReplyPostCell
+                let cell = tableView.dequeueReusableCellWithIdentifier("postCell", forIndexPath: indexPath) as! ReplyPostCell
                 
                 cell.delegate = self
                 cell.configureViews(self.post!)
@@ -235,7 +235,7 @@ class RepliesTableViewController: UITableViewController, PresentControllerDelega
                 return cell
             }
         } else if emptyOrErrorDescription != nil {
-            var cell = tableView.dequeueReusableCellWithIdentifier("noReplies") as! NoRepliesCell
+            let cell = tableView.dequeueReusableCellWithIdentifier("noReplies") as! NoRepliesCell
             
             cell.configureView(emptyOrErrorDescription!)
             
@@ -244,11 +244,11 @@ class RepliesTableViewController: UITableViewController, PresentControllerDelega
             
             return cell
         } else {
-            var cell = tableView.dequeueReusableCellWithIdentifier("replyCell", forIndexPath: indexPath) as! ReplyCell
+            let cell = tableView.dequeueReusableCellWithIdentifier("replyCell", forIndexPath: indexPath) as! ReplyCell
             
-            var last = (indexPath.row == replies.count - 1)
+            let last = (indexPath.row == replies.count - 1)
             
-            var reply = replies[indexPath.row]
+            let reply = replies[indexPath.row]
             
             cell.delegate = self
             cell.configureViews(reply!, last: last)

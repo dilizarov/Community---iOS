@@ -51,7 +51,7 @@ class PrivacyPolicyViewController: UIViewController, UIWebViewDelegate {
         loadIndicator.startAnimating()
     }
     
-    func webView(webView: UIWebView, didFailLoadWithError error: NSError) {
+    func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {
         loadIndicator.stopAnimating()
         retryButton.alpha = 1.0
     }

@@ -43,14 +43,14 @@ class Notification {
             string = "\(username) replied to a post in &\(normalizedCommunityName)"
         }
         
-        var editableString = NSMutableAttributedString(string: string)
+        let editableString = NSMutableAttributedString(string: string)
         
-        var usernameRange = NSMakeRange(0, NSString(string: username).length)
-        var communityRange = NSMakeRange(NSString(string: string).length - NSString(string: normalizedCommunityName).length - 1, NSString(string: normalizedCommunityName).length + 1)
+        let usernameRange = NSMakeRange(0, NSString(string: username).length)
+        let communityRange = NSMakeRange(NSString(string: string).length - NSString(string: normalizedCommunityName).length - 1, NSString(string: normalizedCommunityName).length + 1)
         
         editableString.beginEditing()
         
-        var attributes: [NSObject : AnyObject] = [NSFontAttributeName : UIFont.boldSystemFontOfSize(15)]
+        let attributes: [String : AnyObject] = [NSFontAttributeName : UIFont.boldSystemFontOfSize(15)]
     
         editableString.addAttributes(attributes, range: usernameRange)
         

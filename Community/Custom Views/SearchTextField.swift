@@ -14,7 +14,7 @@ class SearchTextField: UITextField {
     
     let inset: CGFloat = 10
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setupTintColor()
     }
@@ -49,7 +49,7 @@ class SearchTextField: UITextField {
     }
     
     private func tintClearImage() {
-        for view in subviews as! [UIView] {
+        for view in subviews {
             if view is UIButton {
                 let button = view as! UIButton
                 if let image = button.imageForState(.Highlighted) {
@@ -68,10 +68,10 @@ class SearchTextField: UITextField {
         
         UIGraphicsBeginImageContextWithOptions(size, false, image.scale)
         let context = UIGraphicsGetCurrentContext()
-        image.drawAtPoint(CGPointZero, blendMode: kCGBlendModeNormal, alpha: 1.0)
         
+        image.drawAtPoint(CGPointZero, blendMode: .Normal, alpha: 1.0)
         CGContextSetFillColorWithColor(context, color.CGColor)
-        CGContextSetBlendMode(context, kCGBlendModeSourceIn)
+        CGContextSetBlendMode(context, .SourceIn)
         CGContextSetAlpha(context, 1.0)
         
         let rect = CGRectMake(CGPointZero.x, CGPointZero.y, image.size.width, image.size.height)

@@ -75,9 +75,9 @@ class CommunityTableViewController: UITableViewController, UpdateFeedWithLatestP
     }
     
     func setupWritePostButton() {
-        var customView = UIView(frame: CGRectMake(0, 0, tableView.frame.width, 60))
+        let customView = UIView(frame: CGRectMake(0, 0, tableView.frame.width, 60))
         
-        var button: UIButton = UIButton.buttonWithType(.System) as! UIButton
+        let button: UIButton = UIButton(type: .System)
         button.backgroundColor = UIColor.whiteColor()
         button.layer.cornerRadius = 5.0
         button.clipsToBounds = true
@@ -123,7 +123,7 @@ class CommunityTableViewController: UITableViewController, UpdateFeedWithLatestP
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if self.posts.count > indexPath.row {
-            var post = posts[indexPath.row]
+            let post = posts[indexPath.row]
             
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let repliesVC = storyboard.instantiateViewControllerWithIdentifier("RepliesViewController") as! RepliesViewController
@@ -138,7 +138,7 @@ class CommunityTableViewController: UITableViewController, UpdateFeedWithLatestP
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         if emptyOrErrorDescription != nil {
-            var cell = tableView.dequeueReusableCellWithIdentifier("noPosts") as! NoPostsCell
+            let cell = tableView.dequeueReusableCellWithIdentifier("noPosts") as! NoPostsCell
             
             cell.configureView(emptyOrErrorDescription!)
             
@@ -146,7 +146,7 @@ class CommunityTableViewController: UITableViewController, UpdateFeedWithLatestP
             
             return cell
         } else {
-            var cell = tableView.dequeueReusableCellWithIdentifier("communityPost", forIndexPath: indexPath) as! PostCell
+            let cell = tableView.dequeueReusableCellWithIdentifier("communityPost", forIndexPath: indexPath) as! PostCell
         
             if self.posts.count > indexPath.row {
                 cell.delegate = self
@@ -179,9 +179,9 @@ class CommunityTableViewController: UITableViewController, UpdateFeedWithLatestP
         
         dispatch_group_enter(asyncGroup)
         Alamofire.request(Router.GetPosts(community: communityTitle!.strip(), page: nil, infiniteScrollTimeBuffer: nil))
-            .responseJSON { request, response, jsonData, errors in
+            .responseJSON { request, response, result in
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-                    if let jsonData: AnyObject = jsonData {
+                    if let jsonData: AnyObject = result.value {
                         let json = JSON(jsonData)
                         
                         if (json["errors"] == nil && json["error"] == nil) {
@@ -198,7 +198,7 @@ class CommunityTableViewController: UITableViewController, UpdateFeedWithLatestP
                             for var i = 0; i < json["posts"].count; i++ {
                                 var jsonPost = json["posts"][i]
                                 
-                                var post = Post(id: jsonPost["external_id"].stringValue, username: jsonPost["user"]["username"].stringValue, body: jsonPost["body"].stringValue, title: jsonPost["title"].string, repliesCount: jsonPost["replies_count"].intValue, likeCount: jsonPost["likes"].intValue, liked: jsonPost["liked"].boolValue, timeCreated: jsonPost["created_at"].stringValue, avatarUrl: jsonPost["user"]["avatar_url"].string)
+                                let post = Post(id: jsonPost["external_id"].stringValue, username: jsonPost["user"]["username"].stringValue, body: jsonPost["body"].stringValue, title: jsonPost["title"].string, repliesCount: jsonPost["replies_count"].intValue, likeCount: jsonPost["likes"].intValue, liked: jsonPost["liked"].boolValue, timeCreated: jsonPost["created_at"].stringValue, avatarUrl: jsonPost["user"]["avatar_url"].string)
                                 
                                 if (i == 0) {
                                     self.infiniteScrollTimeBuffer = NSDate(timeIntervalSince1970: (post.timeCreated.timeIntervalSince1970 * 1000 + 1)/1000).stringFromDate()
@@ -244,14 +244,14 @@ class CommunityTableViewController: UITableViewController, UpdateFeedWithLatestP
         }
         
         Alamofire.request(Router.GetPosts(community: communityTitle!.strip(), page: potentialPage, infiniteScrollTimeBuffer: potentialTimeBuffer))
-        .responseJSON { request, response, jsonData, errors in
+        .responseJSON { request, response, result in
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
                 
-                var defaultError = errors?.localizedDescription
+                let defaultError = (result.error as? NSError)?.localizedDescription
                 
                 if (defaultError != nil) {
                     self.emptyOrErrorDescription = defaultError
-                } else if let jsonData: AnyObject = jsonData {
+                } else if let jsonData: AnyObject = result.value {
                     let json = JSON(jsonData)
                     
                     if (json["error"] != nil) {
@@ -270,7 +270,7 @@ class CommunityTableViewController: UITableViewController, UpdateFeedWithLatestP
                         for var i = 0; i < json["posts"].count; i++ {
                             var jsonPost = json["posts"][i]
                             
-                            var post = Post(id: jsonPost["external_id"].stringValue, username: jsonPost["user"]["username"].stringValue, body: jsonPost["body"].stringValue, title: jsonPost["title"].string, repliesCount: jsonPost["replies_count"].intValue, likeCount: jsonPost["likes"].intValue, liked: jsonPost["liked"].boolValue, timeCreated: jsonPost["created_at"].stringValue, avatarUrl: jsonPost["user"]["avatar_url"].string)
+                            let post = Post(id: jsonPost["external_id"].stringValue, username: jsonPost["user"]["username"].stringValue, body: jsonPost["body"].stringValue, title: jsonPost["title"].string, repliesCount: jsonPost["replies_count"].intValue, likeCount: jsonPost["likes"].intValue, liked: jsonPost["liked"].boolValue, timeCreated: jsonPost["created_at"].stringValue, avatarUrl: jsonPost["user"]["avatar_url"].string)
                             
                             if (i == 0 && (self.infiniteScrollTimeBuffer.isEmpty || refreshing)) {
                                 self.infiniteScrollTimeBuffer = NSDate(timeIntervalSince1970: (post.timeCreated.timeIntervalSince1970 * 1000 + 1)/1000).stringFromDate()
@@ -295,7 +295,7 @@ class CommunityTableViewController: UITableViewController, UpdateFeedWithLatestP
                     self.emptyOrErrorDescription = "Something went wrong :("
                 }
                 
-                var delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0.25 * Double(NSEC_PER_SEC)))
+                let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0.25 * Double(NSEC_PER_SEC)))
                 
                 dispatch_after(delayTime, dispatch_get_main_queue(), {
                     
@@ -319,9 +319,9 @@ class CommunityTableViewController: UITableViewController, UpdateFeedWithLatestP
     
     func toggleLoadingFooter(on: Bool) {
         if on {
-            var container = UIView(frame: CGRectMake(0, 0, self.tableView.bounds.size.width, 44))
+            let container = UIView(frame: CGRectMake(0, 0, self.tableView.bounds.size.width, 44))
             
-            var loadSpinner = UIActivityIndicatorView(activityIndicatorStyle: .White)
+            let loadSpinner = UIActivityIndicatorView(activityIndicatorStyle: .White)
             var frame = loadSpinner.frame
             frame.origin.x = container.frame.size.width * 0.5 - frame.size.width * 0.5
             frame.origin.y = container.frame.size.height * 0.5 - frame.size.height * 0.5
@@ -358,14 +358,14 @@ class CommunityTableViewController: UITableViewController, UpdateFeedWithLatestP
         }
     
         if (!isLoading) {
-            var visibleIndexPaths = self.tableView.indexPathsForVisibleRows() as! [NSIndexPath]
-            var visibleCount = visibleIndexPaths.count
+            var visibleIndexPaths = self.tableView.indexPathsForVisibleRows as [NSIndexPath]!
+            let visibleCount = visibleIndexPaths.count
             
             //Ensure we don't crash if for some reason the user is scrolling without any active cells.
             if visibleCount == 0 { return }
             
             // We add one so it plays nicely with posts.count
-            var bottomVisiblePost = visibleIndexPaths[visibleCount - 1].row + 1
+            let bottomVisiblePost = visibleIndexPaths[visibleCount - 1].row + 1
     
             if (bottomVisiblePost + infiniteScrollBufferCount >= posts.count) {
                 isLoading = true

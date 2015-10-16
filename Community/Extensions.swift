@@ -22,14 +22,14 @@ extension String {
     
     subscript (i: Int) -> Character {
         
-        var index = (i < 0 ? self.endIndex : self.startIndex)
+        let index = (i < 0 ? self.endIndex : self.startIndex)
         
-        return self[advance(index, i)]
+        return self[index.advancedBy(i)]
     }
     
     subscript(integerRange: Range<Int>) -> String {
-        let start = advance(startIndex, integerRange.startIndex)
-        let end = advance(startIndex, integerRange.endIndex)
+        let start = startIndex.advancedBy(integerRange.startIndex)
+        let end = startIndex.advancedBy(integerRange.endIndex)
         let range = start..<end
         return self[range]
     }
@@ -37,9 +37,9 @@ extension String {
     
     func removeEndingPunctuationAndMakeLowerCase() -> String {
 
-        var last = self[-1]
+        let last = self[-1]
         if (last ==  "." || last == "?" || last == "!") {
-           return dropLast(self.lowercaseString)
+           return String(self.characters.dropLast())
         } else {
            return self.lowercaseString
         }
@@ -59,46 +59,46 @@ extension String {
 
 extension NSDate {
     func yearsFrom(date:NSDate) -> Int{
-        return NSCalendar.currentCalendar().components(NSCalendarUnit.CalendarUnitYear, fromDate: date, toDate: self, options: nil).year
+        return NSCalendar.currentCalendar().components(.Year, fromDate: date, toDate: self, options: []).year
     }
     
     func monthsFrom(date:NSDate) -> Int{
-        return NSCalendar.currentCalendar().components(NSCalendarUnit.CalendarUnitMonth, fromDate: date, toDate: self, options: nil).month
+        return NSCalendar.currentCalendar().components(.Month, fromDate: date, toDate: self, options: []).month
     }
     
     func weeksFrom(date:NSDate) -> Int{
-        return NSCalendar.currentCalendar().components(NSCalendarUnit.CalendarUnitWeekOfYear, fromDate: date, toDate: self, options: nil).weekOfYear
+        return NSCalendar.currentCalendar().components(.WeekOfYear, fromDate: date, toDate: self, options: []).weekOfYear
     }
     
     func daysFrom(date:NSDate) -> Int{
-        return NSCalendar.currentCalendar().components(NSCalendarUnit.CalendarUnitDay, fromDate: date, toDate: self, options: nil).day
+        return NSCalendar.currentCalendar().components(.Day, fromDate: date, toDate: self, options: []).day
     }
     
     func hoursFrom(date:NSDate) -> Int{
-        return NSCalendar.currentCalendar().components(NSCalendarUnit.CalendarUnitHour, fromDate: date, toDate: self, options: nil).hour
+        return NSCalendar.currentCalendar().components(.Hour, fromDate: date, toDate: self, options: []).hour
     }
     
     func minutesFrom(date:NSDate) -> Int{
-        return NSCalendar.currentCalendar().components(NSCalendarUnit.CalendarUnitMinute, fromDate: date, toDate: self, options: nil).minute
+        return NSCalendar.currentCalendar().components(.Minute, fromDate: date, toDate: self, options: []).minute
     }
     
     func secondsFrom(date:NSDate) -> Int{
-        return NSCalendar.currentCalendar().components(NSCalendarUnit.CalendarUnitSecond, fromDate: date, toDate: self, options: nil).second
+        return NSCalendar.currentCalendar().components(.Second, fromDate: date, toDate: self, options: []).second
     }
     
     func offsetFrom(date:NSDate) -> String {
         
         if yearsFrom(date) > 0 {
-            var num = yearsFrom(date)
+            let num = yearsFrom(date)
             return num > 1 ? "\(num) years" : "1 year"
         } else if weeksFrom(date) > 0 {
-            var num = weeksFrom(date)
+            let num = weeksFrom(date)
             return num > 1 ? "\(num) weeks" : "1 week"
         } else if daysFrom(date) > 0 {
-            var num = daysFrom(date)
+            let num = daysFrom(date)
             return num > 1 ? "\(num) days" : "1 day"
         } else if hoursFrom(date) > 0 {
-            var num = hoursFrom(date)
+            let num = hoursFrom(date)
             return num > 1 ? "\(num) hours" : "1 hour"
         } else if minutesFrom(date) > 0 {
             return "\(minutesFrom(date)) min"
@@ -111,9 +111,9 @@ extension NSDate {
     }
     
     func minusDays(days: Int) -> NSDate {
-        var dateComponents = NSDateComponents()
+        let dateComponents = NSDateComponents()
         dateComponents.day = -days
-        return NSCalendar.currentCalendar().dateByAddingComponents(dateComponents, toDate: self, options: nil)!
+        return NSCalendar.currentCalendar().dateByAddingComponents(dateComponents, toDate: self, options: [])!
         
     }
     
@@ -132,14 +132,14 @@ extension Int {
         if self < 1000 {
             return "\(self)"
         } else if self < 10000 {
-            var numberFormatter = NSNumberFormatter()
+            let numberFormatter = NSNumberFormatter()
             numberFormatter.numberStyle = .DecimalStyle
             return numberFormatter.stringFromNumber(self)!
         } else {
             
-            var div = Double(self)/1000.0
+            let div = Double(self)/1000.0
             
-            var strDiv = "\(div)"
+            let strDiv = "\(div)"
             
             var dotIndex = -1
             
@@ -211,7 +211,7 @@ extension UIImage {
         // Now we draw the underlying CGImage into a new context, applying the transform
         // calculated above.
         
-        var ctx = CGBitmapContextCreate(nil, Int(self.size.width), Int(self.size.height), CGImageGetBitsPerComponent(self.CGImage), 0, CGImageGetColorSpace(self.CGImage), CGImageGetBitmapInfo(self.CGImage))
+        let ctx = CGBitmapContextCreate(nil, Int(self.size.width), Int(self.size.height), CGImageGetBitsPerComponent(self.CGImage), 0, CGImageGetColorSpace(self.CGImage), CGImageGetBitmapInfo(self.CGImage).rawValue)
         
         CGContextConcatCTM(ctx, transform);
         switch (self.imageOrientation) {
@@ -226,8 +226,8 @@ extension UIImage {
         }
         
         // And now we just create a new UIImage from the drawing context
-        var cgimg = CGBitmapContextCreateImage(ctx)
-        return UIImage(CGImage: cgimg)!
+        let cgimg = CGBitmapContextCreateImage(ctx)
+        return UIImage(CGImage: cgimg!)
     }
     
     func imageByScalingToSize(newSize: CGSize, contentMode: UIViewContentMode) -> UIImage? {
@@ -236,8 +236,8 @@ extension UIImage {
             return self.imageByScalingToFillSize(newSize)
         } else if (contentMode == .ScaleAspectFill || contentMode == .ScaleAspectFit) {
             
-            var horizontalRatio = self.size.width  / newSize.width
-            var verticalRatio   = self.size.height / newSize.height
+            let horizontalRatio = self.size.width  / newSize.width
+            let verticalRatio   = self.size.height / newSize.height
             var ratio: CGFloat
             
             if (contentMode == .ScaleAspectFill) {
@@ -246,13 +246,13 @@ extension UIImage {
                 ratio = max(horizontalRatio, verticalRatio)
             }
             
-            var sizeForAspectScale = CGSizeMake(self.size.width / ratio, self.size.height / ratio)
+            let sizeForAspectScale = CGSizeMake(self.size.width / ratio, self.size.height / ratio)
             
             var image = self.imageByScalingToFillSize(sizeForAspectScale)
             
             // if we're doing aspect fill, then the image still needs to be cropped
             if (contentMode == .ScaleAspectFill) {
-                var subRect = CGRectMake(floor((sizeForAspectScale.width - newSize.width)   / 2),
+                let subRect = CGRectMake(floor((sizeForAspectScale.width - newSize.width)   / 2),
                                          floor((sizeForAspectScale.height - newSize.height) / 2),
                                          newSize.width,
                                          newSize.height)
@@ -267,14 +267,14 @@ extension UIImage {
     }
     
     func imageByCroppingToBounds(bounds: CGRect) -> UIImage {
-        var imageRef = CGImageCreateWithImageInRect(self.CGImage, bounds)
-        return UIImage(CGImage: imageRef)!
+        let imageRef = CGImageCreateWithImageInRect(self.CGImage, bounds)
+        return UIImage(CGImage: imageRef!)
     }
     
     func imageByScalingToFillSize(newSize: CGSize) -> UIImage {
         UIGraphicsBeginImageContext(newSize)
         self.drawInRect(CGRectMake(0, 0, newSize.width, newSize.height))
-        var image = UIGraphicsGetImageFromCurrentImageContext()
+        let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
         return image

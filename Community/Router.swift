@@ -32,7 +32,7 @@ enum Router: URLRequestConvertible {
     case LeaveCommunity(community: String)
     case UpdateCommunitySettings(community: String, dfault: Bool, username: String?) //We use dfault because default is reserved
     
-    var URLRequest: NSURLRequest {
+    var URLRequest: NSMutableURLRequest {
         
         let result: (method: Alamofire.Method, path: String, parameters: [String: AnyObject]?) = {
             

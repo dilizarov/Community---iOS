@@ -26,12 +26,12 @@ class CommunityCell: MGSwipeTableCell {
         
         self.communityName.text = self.name
         
-        var shareButton = MGSwipeButton(title: "Share", backgroundColor: UIColor.blueColor(), callback: {
+        let shareButton = MGSwipeButton(title: "Share", backgroundColor: UIColor.blueColor(), callback: {
             (sender: MGSwipeTableCell!) -> Bool in
             
             let nameWithUnite = "&" + self.normalizedName
             
-            var objectsToShare: [AnyObject] = [nameWithUnite]
+            let objectsToShare: [AnyObject] = [nameWithUnite]
             
             let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
             activityVC.excludedActivityTypes = [UIActivityTypeAirDrop]
@@ -41,7 +41,7 @@ class CommunityCell: MGSwipeTableCell {
             return true
         })
         
-        var leaveButton = MGSwipeButton(title: "Leave", backgroundColor: UIColor.redColor(), callback: {
+        let leaveButton = MGSwipeButton(title: "Leave", backgroundColor: UIColor.redColor(), callback: {
             (sender: MGSwipeTableCell!) -> Bool in
 
             self.leaveCommunityDelegate.presentLeaveCommunityController(community, row: row)
@@ -49,12 +49,12 @@ class CommunityCell: MGSwipeTableCell {
             return true
         })
         
-        var optionsButton = MGSwipeButton(title: "Settings", backgroundColor: UIColor.darkGrayColor(), callback: {
+        let optionsButton = MGSwipeButton(title: "Settings", backgroundColor: UIColor.darkGrayColor(), callback: {
             (sender: MGSwipeTableCell!) -> Bool in
             
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 
-            var settingsVC = storyboard.instantiateViewControllerWithIdentifier("CommunitySettingsViewController") as! CommunitySettingsViewController
+            let settingsVC = storyboard.instantiateViewControllerWithIdentifier("CommunitySettingsViewController") as! CommunitySettingsViewController
                 
             settingsVC.communityName = self.name
             settingsVC.communityKey = self.normalizedName
@@ -67,7 +67,7 @@ class CommunityCell: MGSwipeTableCell {
         self.rightButtons = [leaveButton, shareButton]
         self.leftButtons = [optionsButton]
         
-        var leftExpansionSettings = MGSwipeExpansionSettings()
+        let leftExpansionSettings = MGSwipeExpansionSettings()
         leftExpansionSettings.fillOnTrigger = true
         leftExpansionSettings.buttonIndex = 0
         

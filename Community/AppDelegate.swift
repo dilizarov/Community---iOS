@@ -47,9 +47,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func configureRealm() {
         
-        var optionalUserId = Session.get(.AccountUserId)
+        let optionalUserId = Session.get(.AccountUserId)
         
-        var documentsDirectory = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! NSString
+        let documentsDirectory = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as NSString
         
         var customRealmPath: String
         
@@ -73,11 +73,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Realm.Configuration.defaultConfiguration = config
         
-        let realm = Realm()
+        let _ = try! Realm()
     }
     
     func configureLaunchState(userInfo: Dictionary<NSObject, AnyObject>?) {
-        if let has_opened_app_before = Session.get(.MetaAuthToken) {
+        if let _ = Session.get(.MetaAuthToken) {
             configureUsualLaunch(nil, userInfo: userInfo)
         } else {
             configureWelcomeLaunch()
@@ -120,8 +120,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.rootViewController = drawerController
         self.window?.makeKeyAndVisible()
         
-        var application = UIApplication.sharedApplication()
-        var pushSettings: UIUserNotificationSettings = UIUserNotificationSettings(forTypes: .Alert | .Badge | .Sound, categories: nil)
+        let application = UIApplication.sharedApplication()
+        let pushSettings: UIUserNotificationSettings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
         
         application.registerUserNotificationSettings(pushSettings)
         application.registerForRemoteNotifications()
@@ -130,7 +130,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func configureWelcomeLaunch() {
         let welcomeStoryboard = UIStoryboard(name: "Welcome", bundle: nil)
         
-        let rootVC = welcomeStoryboard.instantiateInitialViewController() as! UIViewController
+        let rootVC = welcomeStoryboard.instantiateInitialViewController() as UIViewController!
         
         self.window?.rootViewController = rootVC
         self.window?.makeKeyAndVisible()
@@ -160,7 +160,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if state == .Active {
             if let controller = drawerController {
-                var currentBadgeNumber = application.applicationIconBadgeNumber
+                let currentBadgeNumber = application.applicationIconBadgeNumber
                 application.applicationIconBadgeNumber = currentBadgeNumber + 1
                 
                 (controller.leftDrawerViewController as! ProfileViewController).badge.badgeValue = currentBadgeNumber + 1
@@ -181,7 +181,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let profileVC = drawer.leftDrawerViewController as! ProfileViewController
             let navigationVC = drawer.centerViewController as! UINavigationController
             
-            var backgroundGroup = dispatch_group_create()
+            let backgroundGroup = dispatch_group_create()
             
             profileVC.performBackgroundFetch(backgroundGroup)
             

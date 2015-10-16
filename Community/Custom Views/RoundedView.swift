@@ -24,9 +24,9 @@ class RoundedView: UIView {
             cornersMask = UIRectCorner.AllCorners
         }
         
-        var maskPath = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: cornersMask!, cornerRadii: CGSizeMake(cornerRadiiSize!, cornerRadiiSize!))
+        let maskPath = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: cornersMask!, cornerRadii: CGSizeMake(cornerRadiiSize!, cornerRadiiSize!))
         
-        var maskLayer = CAShapeLayer()
+        let maskLayer = CAShapeLayer()
         maskLayer.frame = self.bounds
         maskLayer.path = maskPath.CGPath
         

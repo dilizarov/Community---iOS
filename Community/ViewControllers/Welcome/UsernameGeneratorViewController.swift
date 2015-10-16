@@ -55,11 +55,11 @@ class UsernameGeneratorViewController: UIViewController {
         loadIndicator.startAnimating()
         
         Alamofire.request(Router.CreateMetaAccount)
-            .responseJSON { request, response, jsonData, errors in
+            .responseJSON { request, response, result in
 
                 self.loadIndicator.stopAnimating()
                 
-                if let jsonData: AnyObject = jsonData {
+                if let jsonData: AnyObject = result.value {
                     let json = JSON(jsonData)
                     
                     if (json["user"] != nil) {
@@ -95,7 +95,7 @@ class UsernameGeneratorViewController: UIViewController {
         generatedUsername.textColor = UIColor.darkGrayColor()
         loadIndicator.startAnimating()
         
-        var user_id = Session.get(.MetaUserId)
+        let user_id = Session.get(.MetaUserId)
 
         if user_id == nil {
         
@@ -109,11 +109,11 @@ class UsernameGeneratorViewController: UIViewController {
         }
         
         Alamofire.request(Router.ChangeMetaUsername)
-            .responseJSON { request, response, jsonData, errors in
+            .responseJSON { request, response, result in
                 
                 self.loadIndicator.stopAnimating()
                 
-                if let jsonData: AnyObject = jsonData {
+                if let jsonData: AnyObject = result.value {
                     let json = JSON(jsonData)
                     
                     if (json["user"] != nil) {

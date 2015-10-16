@@ -69,7 +69,7 @@ class CommunitySettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let realm = Realm()
+        let realm = try! Realm()
         
         joinedCommunity = realm.objectForPrimaryKey(JoinedCommunity.self, key: communityKey)
 
@@ -91,16 +91,16 @@ class CommunitySettingsViewController: UIViewController {
         super.viewDidAppear(animated)
         
         if Session.isMeta() {
-            var userInfo = NSUserDefaults.standardUserDefaults()
-            var openedSettingsBefore = userInfo.objectForKey("openedSettingsBefore") as? Bool
+            let userInfo = NSUserDefaults.standardUserDefaults()
+            let openedSettingsBefore = userInfo.objectForKey("openedSettingsBefore") as? Bool
             
             if openedSettingsBefore == nil || openedSettingsBefore == false {
                 userInfo.setBool(true, forKey: "openedSettingsBefore")
                 userInfo.synchronize()
                 
-                var definitionAlert = UIAlertController(title: "Quick Note", message: "Users with accounts can take usernames from users without accounts.", preferredStyle: .Alert)
+                let definitionAlert = UIAlertController(title: "Quick Note", message: "Users with accounts can take usernames from users without accounts.", preferredStyle: .Alert)
                 
-                var confirm = UIAlertAction(title: "Close", style: .Default, handler: nil)
+                let confirm = UIAlertAction(title: "Close", style: .Default, handler: nil)
                 
                 definitionAlert.addAction(confirm)
                 
@@ -119,25 +119,25 @@ class CommunitySettingsViewController: UIViewController {
         
         self.view.addSubview(navBar)
         
-        var backButton = UIBarButtonItem(image: UIImage(named: "Back"), style: .Plain, target: self, action: Selector("cancel"))
+        let backButton = UIBarButtonItem(image: UIImage(named: "Back"), style: .Plain, target: self, action: Selector("cancel"))
         
         backButton.tintColor = UIColor(hexString: "056A85")
         
-        var saveButton = UIBarButtonItem(title: "Save", style: .Plain, target: self, action: Selector("save"))
+        let saveButton = UIBarButtonItem(title: "Save", style: .Plain, target: self, action: Selector("save"))
         saveButton.tintColor = UIColor(hexString: "056A85")
         saveButton.enabled = false
         
-        var loadIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 22, 22))
+        let loadIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 22, 22))
         loadIndicator.stopAnimating()
         loadIndicator.hidesWhenStopped = true
         loadIndicator.activityIndicatorViewStyle = .Gray
         
-        var loadButton = UIBarButtonItem(customView: loadIndicator)
+        let loadButton = UIBarButtonItem(customView: loadIndicator)
         
         rightButtonOptions["save"] = saveButton
         rightButtonOptions["load"] = loadButton
         
-        var navigationItem = UINavigationItem()
+        let navigationItem = UINavigationItem()
         navigationItem.rightBarButtonItem = saveButton
         navigationItem.leftBarButtonItem = backButton
         
@@ -164,7 +164,7 @@ class CommunitySettingsViewController: UIViewController {
         communityAvatarUrl = joinedCommunity!.avatar_url
         
         defaultUsername = Session.get(.Username)
-        var avatarUrl = Session.get(.AvatarUrl)
+        let avatarUrl = Session.get(.AvatarUrl)
         
         if let url = avatarUrl {
             defaultAvatarUrl = url
@@ -172,7 +172,7 @@ class CommunitySettingsViewController: UIViewController {
             defaultAvatarUrl = ""
         }
         
-        var isDefault = communityAvatarUrl == "" && communityUsername == ""
+        let isDefault = communityAvatarUrl == "" && communityUsername == ""
         
         originalAvatarState = .Default
         
@@ -213,7 +213,7 @@ class CommunitySettingsViewController: UIViewController {
                     
                     self.currentAvatarState = .Default
                     
-                    if let actualError = error {
+                    if let _ = error {
                         self.avatar.image = UIImage(named: "AvatarPlaceHolderError")
                     }
                     
@@ -241,7 +241,7 @@ class CommunitySettingsViewController: UIViewController {
                         
                         self.currentAvatarState = .Community
                         
-                        if let actualError = error {
+                        if let _ = error {
                             self.avatar.image = UIImage(named: "AvatarPlaceHolderError")
                         }
                             
@@ -282,7 +282,7 @@ class CommunitySettingsViewController: UIViewController {
     }
     
     func textFieldDidChange() {
-        latestCommunityUsername = usernameField.text.strip()
+        latestCommunityUsername = usernameField.text!.strip()
         
         if (defaultSwitch.on && latestCommunityUsername != defaultUsername) {
             defaultSwitch.setOn(false, animated: true)
@@ -303,7 +303,7 @@ class CommunitySettingsViewController: UIViewController {
     
     func determineSaveEnabled() {
         
-        var saveButton = rightButtonOptions["save"]!
+        let saveButton = rightButtonOptions["save"]!
         
         if originalState == .Default && defaultSwitch.on {
             saveButton.enabled = false
@@ -327,33 +327,33 @@ class CommunitySettingsViewController: UIViewController {
         MMProgressHUD.setPresentationStyle(.Balloon)
         MMProgressHUD.show()
         
-        var delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC)))
+        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC)))
                 
         if (defaultSwitch.on) {
             Alamofire.request(Router.UpdateCommunitySettings(community: communityName.strip(), dfault: true, username: nil))
-                .responseJSON { request, response, jsonData, errors in
+                .responseJSON { request, response, result in
                     
                     dispatch_after(delayTime, dispatch_get_main_queue(), {
-                        var defaultError = errors?.localizedDescription
+                        let defaultError = (result.error as? NSError)?.localizedDescription
                         
                         if (defaultError != nil) {
                             MMProgressHUD.dismissWithError(defaultError?.removeEndingPunctuationAndMakeLowerCase(), afterDelay: NSTimeInterval(3))
-                        } else if let jsonData: AnyObject = jsonData {
+                        } else if let jsonData: AnyObject = result.value {
                             let json = JSON(jsonData)
                             
                             if (json["error"] != nil) {
                                 MMProgressHUD.dismissWithError(json["error"].stringValue, afterDelay: NSTimeInterval(3))
                             } else if (json["errors"] == nil) {
-                                let realm = Realm()
-                                var community = realm.objectForPrimaryKey(JoinedCommunity.self, key: self.communityKey)
+                                let realm = try! Realm()
+                                let community = realm.objectForPrimaryKey(JoinedCommunity.self, key: self.communityKey)
                                 
-                                realm.write {
+                                try! realm.write {
                                     community?.avatar_url = ""
                                     community?.username = ""
                                 }
                                 
                                 MMProgressHUD.dismissWithSuccess(":)")
-                                var newDelayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0.5 * Double(NSEC_PER_SEC)))
+                                let newDelayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0.5 * Double(NSEC_PER_SEC)))
                                 
                                 dispatch_after(newDelayTime, dispatch_get_main_queue(), {
                                     self.dismissViewControllerAnimated(true, completion: nil)
@@ -374,13 +374,13 @@ class CommunitySettingsViewController: UIViewController {
                     })
                 }
         } else if croppedNewImage != nil {
-            var imageData = UIImagePNGRepresentation(croppedNewImage!)
+            let imageData = UIImagePNGRepresentation(croppedNewImage!)
             
-            var url = Router.baseURLString + "/communities/update.json?user_id=\(Session.getUserId()!)&auth_token=\(Session.getAuthToken()!)&community=\(communityName.strip())&username=\(latestCommunityUsername.strip())&api_key=\(Router.apiKey)"
+            let url = Router.baseURLString + "/communities/update.json?user_id=\(Session.getUserId()!)&auth_token=\(Session.getAuthToken()!)&community=\(communityName.strip())&username=\(latestCommunityUsername.strip())&api_key=\(Router.apiKey)"
             
-            Alamofire.upload(.PUT, URLString: url.stringByAddingPercentEncodingWithAllowedCharacters(.URLQueryAllowedCharacterSet())!,
+            Alamofire.upload(.PUT, url.stringByAddingPercentEncodingWithAllowedCharacters(.URLQueryAllowedCharacterSet())!,
                 multipartFormData: { multipartFormData in
-                    multipartFormData.appendBodyPart(data: imageData, name: "community_avatar", fileName: "community_avatar_img.png", mimeType: "image/png")
+                    multipartFormData.appendBodyPart(data: imageData!, name: "community_avatar", fileName: "community_avatar_img.png", mimeType: "image/png")
                 
                 },
                 encodingCompletion: { encodingResult in
@@ -388,19 +388,19 @@ class CommunitySettingsViewController: UIViewController {
                     dispatch_after(delayTime, dispatch_get_main_queue(), {
                         switch encodingResult {
                         case .Success (let upload, _, _):
-                            upload.responseJSON { request, response, data, error in
-                                var defaultError = error?.localizedDescription
+                            upload.responseJSON { request, response, result in
+                                let defaultError = (result.error as? NSError)?.localizedDescription
                                 
                                 if defaultError != nil {
                                     MMProgressHUD.dismissWithError(defaultError!.removeEndingPunctuationAndMakeLowerCase(), afterDelay: NSTimeInterval(3))
-                                } else if let jsonData: AnyObject = data {
+                                } else if let jsonData: AnyObject = result.value {
                                     let json = JSON(jsonData)
                                     
                                     if (json["error"] != nil) {
                                         MMProgressHUD.dismissWithError(json["error"].stringValue, afterDelay: NSTimeInterval(3))
                                     } else if json["errors"] == nil {
-                                        let realm = Realm()
-                                        var community = realm.objectForPrimaryKey(JoinedCommunity.self, key: self.communityKey)
+                                        let realm = try! Realm()
+                                        let community = realm.objectForPrimaryKey(JoinedCommunity.self, key: self.communityKey)
                                         
                                         var username = ""
                                         
@@ -408,9 +408,9 @@ class CommunitySettingsViewController: UIViewController {
                                             username = json["community"]["user"]["username"].stringValue
                                         }
                                         
-                                        var avatar_url = json["community"]["user"]["avatar_url"].stringValue
+                                        let avatar_url = json["community"]["user"]["avatar_url"].stringValue
                                         
-                                        realm.write {
+                                        try! realm.write {
                                             community?.avatar_url = avatar_url
                                             community?.username = username
                                         }
@@ -418,7 +418,7 @@ class CommunitySettingsViewController: UIViewController {
                                         SDImageCache.sharedImageCache().storeImage(self.croppedNewImage!, forKey: avatar_url)
                                         
                                         MMProgressHUD.dismissWithSuccess(":)")
-                                        var newDelayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0.5 * Double(NSEC_PER_SEC)))
+                                        let newDelayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0.5 * Double(NSEC_PER_SEC)))
                                         
                                         dispatch_after(newDelayTime, dispatch_get_main_queue(), {
                                             self.dismissViewControllerAnimated(true, completion: nil)
@@ -437,7 +437,7 @@ class CommunitySettingsViewController: UIViewController {
                                     MMProgressHUD.dismissWithError("Something went wrong :(", afterDelay: NSTimeInterval(3))
                                 }
                             }
-                        case .Failure (let encodingError):
+                        case .Failure ( _):
                             MMProgressHUD.dismissWithError("Having difficult with this image :(", afterDelay: NSTimeInterval(3))
                         }
                     })
@@ -445,21 +445,21 @@ class CommunitySettingsViewController: UIViewController {
             )
         } else {
             Alamofire.request(Router.UpdateCommunitySettings(community: communityName.strip(), dfault: false, username: latestCommunityUsername.strip()))
-                .responseJSON { request, response, jsonData, errors in
+                .responseJSON { request, response, result in
                 
                     dispatch_after(delayTime, dispatch_get_main_queue(), {
-                        var defaultError = errors?.localizedDescription
+                        let defaultError = (result.error as? NSError)?.localizedDescription
                         
                         if (defaultError != nil) {
                             MMProgressHUD.dismissWithError(defaultError?.removeEndingPunctuationAndMakeLowerCase(), afterDelay: NSTimeInterval(3))
-                        } else if let jsonData: AnyObject = jsonData {
+                        } else if let jsonData: AnyObject = result.value {
                             let json = JSON(jsonData)
                             
                             if (json["error"] != nil) {
                                 MMProgressHUD.dismissWithError(json["error"].stringValue, afterDelay: NSTimeInterval(3))
                             } else if (json["errors"] == nil) {
-                                let realm = Realm()
-                                var community = realm.objectForPrimaryKey(JoinedCommunity.self, key: self.communityKey)
+                                let realm = try! Realm()
+                                let community = realm.objectForPrimaryKey(JoinedCommunity.self, key: self.communityKey)
                                 
                                 var username = ""
                                 
@@ -468,12 +468,12 @@ class CommunitySettingsViewController: UIViewController {
                                 }
 
                                 
-                                realm.write {
+                                try! realm.write {
                                     community?.username = username
                                 }
                                 
                                 MMProgressHUD.dismissWithSuccess(":)")
-                                var newDelayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0.5 * Double(NSEC_PER_SEC)))
+                                let newDelayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0.5 * Double(NSEC_PER_SEC)))
                                 
                                 dispatch_after(newDelayTime, dispatch_get_main_queue(), {
                                     self.dismissViewControllerAnimated(true, completion: nil)
@@ -499,13 +499,13 @@ class CommunitySettingsViewController: UIViewController {
     
     func cancel() {
         if rightButtonOptions["save"]!.enabled {
-            var confirmAlert = UIAlertController(title: "Go Back Without Saving", message: "Are you sure you want to go back without saving?", preferredStyle: .Alert)
+            let confirmAlert = UIAlertController(title: "Go Back Without Saving", message: "Are you sure you want to go back without saving?", preferredStyle: .Alert)
             
-            var back = UIAlertAction(title: "Back", style: .Default, handler: { alert in
+            let back = UIAlertAction(title: "Back", style: .Default, handler: { alert in
                 self.dismissViewControllerAnimated(true, completion: nil)
             })
             
-            var save = UIAlertAction(title: "Save", style: .Default, handler: { alert in
+            let save = UIAlertAction(title: "Save", style: .Default, handler: { alert in
                 self.save()
             })
             

@@ -51,10 +51,10 @@ class ProfileTableViewController: UITableViewController, PresentControllerDelega
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
         
-        let realm = Realm()
+        let realm = try! Realm()
         if triggerRealmReload {
             communities = Array(realm.objects(JoinedCommunity
-                ).sorted("nameLowercase", ascending: true))
+                ).sorted("normalizedName", ascending: true))
             
             if communities.count != 0 && delegate.currentState == .Communities {
                 delegate.successRequestJoinedCommunities()
@@ -93,9 +93,9 @@ class ProfileTableViewController: UITableViewController, PresentControllerDelega
     
     func presentLeaveCommunityController(community: JoinedCommunity, row: Int) {
         
-        var nameWithUnite = "&" + community.name.strip().lowercaseString.stringByReplacingOccurrencesOfString(" ", withString: "_")
+        let nameWithUnite = "&" + community.name.strip().lowercaseString.stringByReplacingOccurrencesOfString(" ", withString: "_")
         
-        var confirmLeaveAlert = UIAlertController(title: "Leave \(nameWithUnite)", message: "Are you sure you want to leave?", preferredStyle: .Alert)
+        let confirmLeaveAlert = UIAlertController(title: "Leave \(nameWithUnite)", message: "Are you sure you want to leave?", preferredStyle: .Alert)
         
         let leaveAction = UIAlertAction(title: "Leave", style: .Destructive, handler: {
             (alert: UIAlertAction!) in
@@ -115,12 +115,12 @@ class ProfileTableViewController: UITableViewController, PresentControllerDelega
         
         dispatch_group_enter(asyncGroup)
         Alamofire.request(Router.GetCommunities)
-            .responseJSON { request, response, jsonData, errors in
+            .responseJSON { request, response, result in
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
                     
                     var storeInRealm = false
                     
-                    if let jsonData: AnyObject = jsonData {
+                    if let jsonData: AnyObject = result.value {
                         let json = JSON(jsonData)
                         
                         if (json["errors"] == nil && json["error"] == nil) {
@@ -128,7 +128,7 @@ class ProfileTableViewController: UITableViewController, PresentControllerDelega
                             for var i = 0; i < json["communities"].count; i++ {
                                 var jsonCommunity = json["communities"][i]
                                 
-                                var community = JoinedCommunity()
+                                let community = JoinedCommunity()
                                 
                                 community.name = jsonCommunity["name"].string!
                                 community.normalizedName = jsonCommunity["normalized_name"].string!
@@ -150,8 +150,8 @@ class ProfileTableViewController: UITableViewController, PresentControllerDelega
                     
                     dispatch_async(dispatch_get_main_queue()) {
                         if storeInRealm {
-                            let realm = Realm()
-                            realm.write {
+                            let realm = try! Realm()
+                            try! realm.write {
                                 // Delete because we don't need data on
                                 // communities one may have left.
                                 realm.delete(realm.objects(JoinedCommunity))
@@ -173,16 +173,16 @@ class ProfileTableViewController: UITableViewController, PresentControllerDelega
     func requestJoinedCommunitiesAndPopulateList() {
         
         Alamofire.request(Router.GetCommunities)
-            .responseJSON { request, response, jsonData, errors in
+            .responseJSON { request, response, result in
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-                    var defaultError = errors?.localizedDescription
+                    let defaultError = (result.error as? NSError)?.localizedDescription
                     
                     self.communities = []
                     var failureString: String?
                     
                     if (defaultError != nil) {
                         failureString = defaultError!.removeEndingPunctuationAndMakeLowerCase()
-                    } else if let jsonData: AnyObject = jsonData {
+                    } else if let jsonData: AnyObject = result.value {
                         let json = JSON(jsonData)
                         
                         if (json["error"] != nil) {
@@ -191,7 +191,7 @@ class ProfileTableViewController: UITableViewController, PresentControllerDelega
                             for var i = 0; i < json["communities"].count; i++ {
                                 var jsonCommunity = json["communities"][i]
                                 
-                                var community = JoinedCommunity()
+                                let community = JoinedCommunity()
                                 
                                 community.name = jsonCommunity["name"].string!
                                 community.normalizedName = jsonCommunity["normalized_name"].string!
@@ -232,8 +232,8 @@ class ProfileTableViewController: UITableViewController, PresentControllerDelega
                             self.delegate.failureRequestJoinedCommunities(string)
                         } else {
                             self.delegate.successRequestJoinedCommunities()
-                            let realm = Realm()
-                            realm.write {
+                            let realm = try! Realm()
+                            try! realm.write {
                                 // Delete because we don't need data on
                                 // communities one may have left.
                                 realm.delete(realm.objects(JoinedCommunity))
@@ -246,7 +246,7 @@ class ProfileTableViewController: UITableViewController, PresentControllerDelega
                         
                         // We add a delay between ending the refresh and reloading data because otherwise the animation won't
                         // be smooth and from then on, refreshing looks clunky.
-                        var delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0.25 * Double(NSEC_PER_SEC)))
+                        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0.25 * Double(NSEC_PER_SEC)))
                         
                         dispatch_after(delayTime, dispatch_get_main_queue(), {
                             self.refreshControl!.endRefreshing()
@@ -259,16 +259,16 @@ class ProfileTableViewController: UITableViewController, PresentControllerDelega
     func requestNotificationsAndPopulateList() {
         
         Alamofire.request(Router.GetNotifications)
-            .responseJSON { request, response, jsonData, errors in
+            .responseJSON { request, response, result in
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-                    var defaultError = errors?.localizedDescription
+                    let defaultError = (result.error as? NSError)?.localizedDescription
                     
                     self.notifications = []
                     var failureString: String?
                     
                     if (defaultError != nil) {
                         failureString = defaultError!.removeEndingPunctuationAndMakeLowerCase()
-                    } else if let jsonData: AnyObject = jsonData {
+                    } else if let jsonData: AnyObject = result.value {
                         let json = JSON(jsonData)
                         
                         if (json["error"] != nil) {
@@ -278,7 +278,7 @@ class ProfileTableViewController: UITableViewController, PresentControllerDelega
                             for var i = 0; i < json["notifications"].count; i++ {
                                 var jsonNotif = json["notifications"][i]
                                 
-                                var notification = Notification(kind: jsonNotif["kind"].string!,
+                                let notification = Notification(kind: jsonNotif["kind"].string!,
                                     username: jsonNotif["user"]["username"].string!,
                                     timeCreated: jsonNotif["created_at"].string!,
                                     community: jsonNotif["community"].string!,
@@ -319,7 +319,7 @@ class ProfileTableViewController: UITableViewController, PresentControllerDelega
                         
                         // We add a delay between ending the refresh and reloading data because otherwise the animation won't
                         // be smooth and from then on, refreshing looks clunky.
-                        var delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0.25 * Double(NSEC_PER_SEC)))
+                        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0.25 * Double(NSEC_PER_SEC)))
                         
                         dispatch_after(delayTime, dispatch_get_main_queue(), {
                             self.refreshControl!.endRefreshing()
@@ -340,11 +340,11 @@ class ProfileTableViewController: UITableViewController, PresentControllerDelega
         tableView.reloadData()
         
         Alamofire.request(Router.LeaveCommunity(community: community.name.strip()))
-            .responseJSON { request, response, jsonData, errors in
+            .responseJSON { request, response, result in
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-                    if (response?.statusCode > 299 || errors != nil) {
+                    if (response?.statusCode > 299 || result.error != nil) {
                         
-                        var arraySize = self.communities.count
+                        let arraySize = self.communities.count
                         
                         self.communities.insert(community, atIndex: (row > arraySize ? arraySize : row))
                         
@@ -354,7 +354,7 @@ class ProfileTableViewController: UITableViewController, PresentControllerDelega
                             if (response?.statusCode > 299) {
                                 self.delegate.spreadToast("something went wrong :(")
                             } else {
-                                self.delegate.spreadToast(errors!.localizedDescription.removeEndingPunctuationAndMakeLowerCase())
+                                self.delegate.spreadToast((result.error as? NSError)!.localizedDescription.removeEndingPunctuationAndMakeLowerCase())
                             }
                         }
                     }
@@ -401,7 +401,7 @@ class ProfileTableViewController: UITableViewController, PresentControllerDelega
             
             return cell
         } else {
-            let cell = self.tableView.dequeueReusableCellWithIdentifier("settingCell") as! UITableViewCell
+            let cell = self.tableView.dequeueReusableCellWithIdentifier("settingCell") as UITableViewCell!
             
             if (settings.count > indexPath.row) {
                 (cell.viewWithTag(5) as! UILabel).text = settings[indexPath.row]
@@ -436,7 +436,7 @@ class ProfileTableViewController: UITableViewController, PresentControllerDelega
                 if settings[indexPath.row] == "Log Out" {
                     
                     
-                    var logoutAlert = UIAlertController(title: "Log Out", message: "Are you sure you want to log out?", preferredStyle: .Alert)
+                    let logoutAlert = UIAlertController(title: "Log Out", message: "Are you sure you want to log out?", preferredStyle: .Alert)
                     
                     let logoutAction = UIAlertAction(title: "Log Out", style: .Destructive, handler: {
                         (alert: UIAlertAction!) in

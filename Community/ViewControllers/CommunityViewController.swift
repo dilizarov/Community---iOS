@@ -108,27 +108,27 @@ class CommunityViewController: UIViewController, CommunityTableDelegate {
         
         self.view.addSubview(navBar)
         
-        var settingsButton = UIBarButtonItem(image: UIImage(named: "Settings"), style: .Plain, target: self, action: Selector("goToSettings"))
+        let settingsButton = UIBarButtonItem(image: UIImage(named: "Settings"), style: .Plain, target: self, action: Selector("goToSettings"))
         settingsButton.tintColor = UIColor(hexString: "056A85")
         
-        var joinButton = UIBarButtonItem(title: "Join", style: .Plain, target: self, action: Selector("processJoin"))
+        let joinButton = UIBarButtonItem(title: "Join", style: .Plain, target: self, action: Selector("processJoin"))
         joinButton.tintColor = UIColor(hexString: "056A85")
         
-        var loadIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 22, 22))
+        let loadIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 22, 22))
         loadIndicator.stopAnimating()
         loadIndicator.hidesWhenStopped = true
         loadIndicator.activityIndicatorViewStyle = .Gray
         
-        var loadButton = UIBarButtonItem(customView: loadIndicator)
+        let loadButton = UIBarButtonItem(customView: loadIndicator)
         
         leftButtonOptions["settings"] = settingsButton
         leftButtonOptions["join"] = joinButton
         leftButtonOptions["load"] = loadButton
         
-        var searchButton = UIBarButtonItem(image: UIImage(named: "Search"), style: .Plain, target: self, action: Selector("goSearch"))
+        let searchButton = UIBarButtonItem(image: UIImage(named: "Search"), style: .Plain, target: self, action: Selector("goSearch"))
         searchButton.tintColor = UIColor(hexString: "056A85")
         
-        var navigationItem = UINavigationItem()
+        let navigationItem = UINavigationItem()
         navigationItem.rightBarButtonItem = searchButton
         
         loadIndicator.startAnimating()
@@ -146,15 +146,15 @@ class CommunityViewController: UIViewController, CommunityTableDelegate {
     func verifyJoinOrSettings() {
         
         Alamofire.request(Router.VerifyMembership(community: communityTitle!.strip()))
-            .responseJSON { request, response, jsonData, errors in
+            .responseJSON { request, response, result in
                 
                 if response?.statusCode == 200 {
                     self.navBar.topItem!.leftBarButtonItem = self.leftButtonOptions["settings"]
                     
-                    let json = JSON(jsonData!)["community"]
-                    let realm = Realm()
+                    let json = JSON(result.value!)["community"]
+                    let realm = try! Realm()
                     
-                    var community = JoinedCommunity()
+                    let community = JoinedCommunity()
                     community.name = json["name"].stringValue
                     community.normalizedName = json["normalized_name"].stringValue
                     self.communityKey = json["normalized_name"].stringValue
@@ -167,7 +167,7 @@ class CommunityViewController: UIViewController, CommunityTableDelegate {
                         community.avatar_url = avatar_url
                     }
                     
-                    realm.write {
+                    try! realm.write {
                         realm.add(community, update: true)
                     }
                 } else {
@@ -188,33 +188,33 @@ class CommunityViewController: UIViewController, CommunityTableDelegate {
         navBar.topItem!.leftBarButtonItem = leftButtonOptions["load"]
         
         Alamofire.request(Router.JoinCommunity(community: communityTitle!.strip()))
-            .responseJSON { request, response, jsonData, errors in
+            .responseJSON { request, response, result in
                 
-                if (response?.statusCode > 299 || errors != nil) {
+                if (response?.statusCode > 299 || result.error != nil) {
                     if (response?.statusCode > 299) {
                         self.view.makeToast("Something went wrong :(", duration: NSTimeInterval(3), position: CSToastPositionCenter)
                     } else {
-                        self.view.makeToast(errors!.localizedDescription, duration: NSTimeInterval(3), position: CSToastPositionCenter)
+                        self.view.makeToast((result.error as? NSError)!.localizedDescription, duration: NSTimeInterval(3), position: CSToastPositionCenter)
                     }
                     
                     self.navBar.topItem!.leftBarButtonItem = self.leftButtonOptions["join"]
                 } else {
                     self.navBar.topItem!.leftBarButtonItem = self.leftButtonOptions["settings"]
                     
-                    var json = JSON(jsonData!)["community"]
+                    var json = JSON(result.value!)["community"]
                     
-                    let realm = Realm()
-                    var community = JoinedCommunity()
+                    let realm = try! Realm()
+                    let community = JoinedCommunity()
                     community.name = json["name"].stringValue
                     community.normalizedName = json["normalized_name"].stringValue
                     self.communityKey = json["normalized_name"].stringValue
                     
-                    realm.write {
+                    try! realm.write {
                         realm.add(community, update: true)
                     }
                     
-                    var appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-                    var leftVC = appDelegate.drawerController!.leftDrawerViewController as? ProfileViewController
+                    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                    let leftVC = appDelegate.drawerController!.leftDrawerViewController as? ProfileViewController
                     
                     if let profileVC = leftVC {
                         profileVC.tableViewController.triggerRealmReload = true
@@ -228,7 +228,7 @@ class CommunityViewController: UIViewController, CommunityTableDelegate {
     func writePost() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
-        var writePostVC = storyboard.instantiateViewControllerWithIdentifier("WritePostViewController") as! WritePostViewController
+        let writePostVC = storyboard.instantiateViewControllerWithIdentifier("WritePostViewController") as! WritePostViewController
         
         writePostVC.communityName = communityTitle
         writePostVC.communityKey = self.communityKey!
@@ -240,7 +240,7 @@ class CommunityViewController: UIViewController, CommunityTableDelegate {
     func goToSettings() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
-        var settingsVC = storyboard.instantiateViewControllerWithIdentifier("CommunitySettingsViewController") as! CommunitySettingsViewController
+        let settingsVC = storyboard.instantiateViewControllerWithIdentifier("CommunitySettingsViewController") as! CommunitySettingsViewController
         
         settingsVC.communityName = self.communityTitle
         settingsVC.communityKey = self.communityKey

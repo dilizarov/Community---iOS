@@ -14,7 +14,7 @@ class ShareCommunityViewController: UIViewController {
         let text = "Join me on #Community"
         let url = NSURL(string: "http://get.community")!
         
-        var objectsToShare: [AnyObject] = [text, url]
+        let objectsToShare: [AnyObject] = [text, url]
         
         let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
         

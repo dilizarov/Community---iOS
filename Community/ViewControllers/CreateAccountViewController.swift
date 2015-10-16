@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import TextFieldEffects
 import Alamofire
 import SwiftyJSON
 import MMProgressHUD
@@ -24,13 +23,13 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var createAccountButton: UIButton!
     @IBAction func createAccountButtonPressed(sender: AnyObject) {
-        var transferAlert = UIAlertController(title: "Transfer Request", message: "Would you like to transfer over the communities \(Session.get(.MetaUsername)!) joined?", preferredStyle: .Alert)
+        let transferAlert = UIAlertController(title: "Transfer Request", message: "Would you like to transfer over the communities \(Session.get(.MetaUsername)!) joined?", preferredStyle: .Alert)
         
-        var cancel = UIAlertAction(title: "Cancel", style: .Cancel, handler: { alert in
+        let cancel = UIAlertAction(title: "Cancel", style: .Cancel, handler: { alert in
             self.processRegistration(false)
         })
         
-        var transfer = UIAlertAction(title: "Transfer", style: .Default, handler: { alert in
+        let transfer = UIAlertAction(title: "Transfer", style: .Default, handler: { alert in
             self.processRegistration(true)
         })
         
@@ -78,11 +77,10 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
         
         self.view.addSubview(navBar)
         
-        var backButton = UIBarButtonItem(image: UIImage(named: "Back"), style: .Plain, target: self, action: Selector("back"))
-        
+        let backButton = UIBarButtonItem(image: UIImage(named: "Back"), style: .Plain, target: self, action: Selector("back"))
         backButton.tintColor = UIColor.whiteColor()
         
-        var navigationItem = UINavigationItem()
+        let navigationItem = UINavigationItem()
         navigationItem.leftBarButtonItem = backButton
         
         navigationItem.title = "Create Account"
@@ -96,17 +94,17 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
         MMProgressHUD.show()
         
         Alamofire.request(Router.Register(username: usernameField.text!.strip(), email: emailField.text!.strip(), password: passwordField.text!, transfer: transfer))
-            .responseJSON { request, response, jsonData, errors in
+            .responseJSON { request, response, result in
                 // We delay by 1 second to keep a very smooth animation.
-                var delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC)))
+                let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC)))
                 
                 dispatch_after(delayTime, dispatch_get_main_queue(), {
                     
-                    var defaultError = errors?.localizedDescription
+                    let defaultError = (result.error as? NSError)?.localizedDescription
                     
                     if (defaultError != nil) {
                         MMProgressHUD.dismissWithError(defaultError?.removeEndingPunctuationAndMakeLowerCase(), afterDelay: NSTimeInterval(3))
-                    } else if let jsonData: AnyObject = jsonData {
+                    } else if let jsonData: AnyObject = result.value {
                         let json = JSON(jsonData)
                         
                         if (json["error"] != nil) {
@@ -121,7 +119,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
                                 self.passwordField.resignFirstResponder()
                                 self.confirmField.resignFirstResponder()
                                 
-                                var delegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                                let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
                                 delegate.configureUsualLaunch(nil)
                             }
                             
@@ -163,10 +161,10 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
     }
     
     func textFieldDidChange() {
-        var usernameChars = usernameField.text!.strip()
-        var emailChars    = emailField.text!.strip()
-        var passwordChars = passwordField.text!.strip()
-        var confirmChars  = confirmField.text!.strip()
+        let usernameChars = usernameField.text!.strip()
+        let emailChars    = emailField.text!.strip()
+        let passwordChars = passwordField.text!.strip()
+        let confirmChars  = confirmField.text!.strip()
         
         createAccountButton.enabled = !(usernameChars.isEmpty || !String.validateEmail(emailChars) || passwordChars.isEmpty || confirmChars.isEmpty || passwordChars != confirmChars)
     }

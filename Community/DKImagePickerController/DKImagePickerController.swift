@@ -19,12 +19,12 @@ public class DKAsset: NSObject {
     
     /// Returns a CGImage of the representation that is appropriate for displaying full screen.
     public private(set) lazy var fullScreenImage: UIImage? = {
-        return UIImage(CGImage: self.originalAsset?.defaultRepresentation().fullScreenImage().takeUnretainedValue())
+        return UIImage(CGImage: (self.originalAsset?.defaultRepresentation().fullScreenImage().takeUnretainedValue())!)
     }()
     
     /// Returns a CGImage representation of the asset.
     public private(set) lazy var fullResolutionImage: UIImage? = {
-        return UIImage(CGImage: self.originalAsset?.defaultRepresentation().fullResolutionImage().takeUnretainedValue())
+        return UIImage(CGImage: (self.originalAsset?.defaultRepresentation().fullResolutionImage().takeUnretainedValue())!)
     }()
     
     /// The url uniquely identifies an asset that is an image or a video.
@@ -132,7 +132,7 @@ public class DKImagePickerController: UINavigationController, RSKImageCropViewCo
     public var defaultSelectedAssets: [DKAsset]? {
         didSet {
             if let defaultSelectedAssets = self.defaultSelectedAssets {
-                for (index, asset) in enumerate(defaultSelectedAssets) {
+                for (index, asset) in defaultSelectedAssets.enumerate() {
                     if asset.isFromCamera {
                         self.defaultSelectedAssets!.removeAtIndex(index)
                     }
@@ -147,7 +147,7 @@ public class DKImagePickerController: UINavigationController, RSKImageCropViewCo
     internal var selectedAssets = [DKAsset]()
     
     private lazy var doneButton: UIButton = {
-        let button = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
+        let button = UIButton(type: UIButtonType.Custom)
         button.setTitle("", forState: UIControlState.Normal)
         button.setTitleColor(self.navigationBar.tintColor, forState: UIControlState.Normal)
         button.reversesTitleShadowWhenHighlighted = true
@@ -219,9 +219,9 @@ public class DKImagePickerController: UINavigationController, RSKImageCropViewCo
                 selectedAssets.append(asset)
             }
             
-            var scale: CGFloat = 1.0
+            let scale: CGFloat = 1.0
             
-            var imageCropVC = RSKImageCropViewController(image: UIImage(CGImage: asset.fullScreenImage!.CGImage!, scale: scale, orientation: UIImageOrientation.Up))
+            let imageCropVC = RSKImageCropViewController(image: UIImage(CGImage: asset.fullScreenImage!.CGImage!, scale: scale, orientation: UIImageOrientation.Up))
             
             imageCropVC.delegate = self
             self.presentViewController(imageCropVC, animated: true, completion: nil)
@@ -254,7 +254,7 @@ public class DKImagePickerController: UINavigationController, RSKImageCropViewCo
     
     internal func unselectedImage(noti: NSNotification) {
         if let asset = noti.object as? DKAsset {
-            selectedAssets.removeAtIndex(find(selectedAssets, asset)!)
+            selectedAssets.removeAtIndex(selectedAssets.indexOf(asset)!)
             updateDoneButtonTitle()
         }
     }

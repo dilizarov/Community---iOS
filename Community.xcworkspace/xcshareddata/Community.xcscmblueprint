@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "2325991F9A98A2717394197AF763A642E288CC76",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "B72F6B8903B5AB21511E873731000C39DE4F2EEE" : 0,
+    "2325991F9A98A2717394197AF763A642E288CC76" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "1594BC6B-7B9B-4358-A4B9-CAB787C3F95E",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "B72F6B8903B5AB21511E873731000C39DE4F2EEE" : "DKImagePickerController",
+    "2325991F9A98A2717394197AF763A642E288CC76" : "Community"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Community",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Community.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/dilizarov\/Community---iOS.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "2325991F9A98A2717394197AF763A642E288CC76"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/zhangao0086\/DKImagePickerController.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "B72F6B8903B5AB21511E873731000C39DE4F2EEE"
+    }
+  ]
+}

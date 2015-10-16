@@ -48,7 +48,7 @@ class WritePostViewController: UIViewController, UITextViewDelegate {
         titleField.tintColor = UIColor(hexString: "056A85")
         postTextView.tintColor = UIColor(hexString: "056A85")
         
-        let realm = Realm()
+        let realm = try! Realm()
         joinedCommunity = realm.objectForPrimaryKey(JoinedCommunity.self, key: communityKey)
         
         setAvatar()
@@ -75,7 +75,7 @@ class WritePostViewController: UIViewController, UITextViewDelegate {
         }
         
         if avatar_url == "" {
-            var default_avatar_url = Session.get(.AvatarUrl)
+            let default_avatar_url = Session.get(.AvatarUrl)
             
             if let potential_avatar_url = default_avatar_url {
                 avatar_url = potential_avatar_url
@@ -93,7 +93,7 @@ class WritePostViewController: UIViewController, UITextViewDelegate {
                 placeholderImage: UIImage(named: "AvatarPlaceHolder"),
                 options: SDWebImageOptions.RetryFailed,
                 completed: { (image: UIImage!, error: NSError!, cacheType: SDImageCacheType, imageURL: NSURL!) -> Void in
-                    if let actualError = error {
+                    if let _ = error {
                         // Don't do anything.
                     }
                 },
@@ -131,25 +131,25 @@ class WritePostViewController: UIViewController, UITextViewDelegate {
         
         self.view.addSubview(navBar)
         
-        var backButton = UIBarButtonItem(image: UIImage(named: "Back"), style: .Plain, target: self, action: Selector("cancel"))
+        let backButton = UIBarButtonItem(image: UIImage(named: "Back"), style: .Plain, target: self, action: Selector("cancel"))
         
         backButton.tintColor = UIColor(hexString: "056A85")
         
-        var postButton = UIBarButtonItem(image: UIImage(named: "Message"), style: .Plain, target: self, action: Selector("processPost"))
+        let postButton = UIBarButtonItem(image: UIImage(named: "Message"), style: .Plain, target: self, action: Selector("processPost"))
         postButton.tintColor = UIColor(hexString: "056A85")
         postButton.enabled = false
         
-        var loadIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 22, 22))
+        let loadIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 22, 22))
         loadIndicator.stopAnimating()
         loadIndicator.hidesWhenStopped = true
         loadIndicator.activityIndicatorViewStyle = .Gray
 
-        var loadButton = UIBarButtonItem(customView: loadIndicator)
+        let loadButton = UIBarButtonItem(customView: loadIndicator)
         
         rightButtonOptions["post"] = postButton
         rightButtonOptions["load"] = loadButton
         
-        var navigationItem = UINavigationItem()
+        let navigationItem = UINavigationItem()
         navigationItem.rightBarButtonItem = postButton
         navigationItem.leftBarButtonItem = backButton
         
@@ -162,16 +162,16 @@ class WritePostViewController: UIViewController, UITextViewDelegate {
         (rightButtonOptions["load"]!.customView as! UIActivityIndicatorView).startAnimating()
         navBar.topItem!.rightBarButtonItem = rightButtonOptions["load"]
         
-        var title: String? = (titleField.text.strip() == "" ? nil : titleField.text.strip())
+        let title: String? = (titleField.text!.strip() == "" ? nil : titleField.text!.strip())
         
         request = Alamofire.request(Router.WritePost(community: communityName.strip(), body: postTextView.text.strip(), title: title))
-            .responseJSON { request, response, jsonData, errors in
+            .responseJSON { request, response, result in
                
-                var defaultError = errors?.localizedDescription
+                let defaultError = (result.error as? NSError)?.localizedDescription
                 
                 if (defaultError != nil) {
                     self.view.makeToast(defaultError!, duration: NSTimeInterval(3), position: CSToastPositionCenter)
-                } else if let jsonData: AnyObject = jsonData {
+                } else if let jsonData: AnyObject = result.value {
                     let json = JSON(jsonData)
                     
                     if (json["error"] != nil) {
@@ -179,7 +179,7 @@ class WritePostViewController: UIViewController, UITextViewDelegate {
                     } else if (json["errors"] == nil) {
                         var jsonPost = json["post"]
                         
-                        var post = Post(id: jsonPost["external_id"].stringValue, username: jsonPost["user"]["username"].stringValue, body: jsonPost["body"].stringValue, title: jsonPost["title"].string, repliesCount: jsonPost["replies_count"].intValue, likeCount: jsonPost["likes"].intValue, liked: jsonPost["liked"].boolValue, timeCreated: jsonPost["created_at"].stringValue, avatarUrl: jsonPost["user"]["avatar_url"].string)
+                        let post = Post(id: jsonPost["external_id"].stringValue, username: jsonPost["user"]["username"].stringValue, body: jsonPost["body"].stringValue, title: jsonPost["title"].string, repliesCount: jsonPost["replies_count"].intValue, likeCount: jsonPost["likes"].intValue, liked: jsonPost["liked"].boolValue, timeCreated: jsonPost["created_at"].stringValue, avatarUrl: jsonPost["user"]["avatar_url"].string)
                         
                         self.delegate.updateFeedWithLatestPost(post)
                         self.dismissViewControllerAnimated(true, completion: nil)

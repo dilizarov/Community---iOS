@@ -1,7 +1,7 @@
 PODS:
-  - Alamofire (1.3.1)
+  - Alamofire (2.0.2)
   - HexColors (2.3.0)
-  - IQKeyboardManagerSwift (3.3.1)
+  - IQKeyboardManagerSwift (3.3.2)
   - iRate (1.11.4)
   - KeychainSwift (3.0.0)
   - MGSwipeTableCell (1.5.1)
@@ -18,19 +18,18 @@ PODS:
   - MMDrawerController/Subclass (0.5.7):
     - MMDrawerController/Core
   - MMProgressHUD (0.3.1)
-  - Realm (0.95.0):
-    - Realm/Headers (= 0.95.0)
-  - Realm/Headers (0.95.0)
-  - RealmSwift (0.95.0):
-    - Realm (= 0.95.0)
+  - Realm (0.96.0):
+    - Realm/Headers (= 0.96.0)
+  - Realm/Headers (0.96.0)
+  - RealmSwift (0.96.0):
+    - Realm (= 0.96.0)
   - RSKImageCropper (1.2.1)
   - SDWebImage (3.7.3):
     - SDWebImage/Core (= 3.7.3)
   - SDWebImage/Core (3.7.3)
   - Sheriff (0.3.1)
-  - SwiftyJSON (2.2.1)
+  - SwiftyJSON (2.3.0)
   - SZTextView (1.2.1)
-  - TextFieldEffects (0.4.4)
   - Toast (2.4)
   - TTTAttributedLabel (1.13.4)
   - UIActivityIndicator-for-SDWebImage (1.2):
@@ -38,46 +37,44 @@ PODS:
   - UITextField+Shake (1.1.1)
 
 DEPENDENCIES:
-  - Alamofire (~> 1.3)
+  - Alamofire (~> 2.0)
   - HexColors (~> 2.3)
-  - IQKeyboardManagerSwift (= 3.3.1)
+  - IQKeyboardManagerSwift (~> 3.3)
   - iRate (~> 1.11)
   - KeychainSwift (~> 3.0)
   - MGSwipeTableCell (~> 1.5.1)
   - MMDrawerController (~> 0.5.7)
   - MMProgressHUD (~> 0.3)
-  - RealmSwift (~> 0.95)
+  - RealmSwift (~> 0.96)
   - RSKImageCropper (~> 1.2)
   - SDWebImage (~> 3.7)
   - Sheriff (~> 0.3)
-  - SwiftyJSON (~> 2.2.1)
+  - SwiftyJSON (~> 2.3)
   - SZTextView (~> 1.2)
-  - TextFieldEffects (~> 0.4)
   - Toast (~> 2.4)
   - TTTAttributedLabel (~> 1.13)
   - UIActivityIndicator-for-SDWebImage (~> 1.2)
   - UITextField+Shake (~> 1.1)
 
 SPEC CHECKSUMS:
-  Alamofire: e4ab637e3195b645c814b87a652373439e59f2a4
+  Alamofire: 8edbab00802a752bb5240cc2abe70e7e881488ad
   HexColors: 6ad3947c3447a055a3aa8efa859def096351fe5f
-  IQKeyboardManagerSwift: aa053e83dd53cb50aa8c9c1fde78d74d9400657e
+  IQKeyboardManagerSwift: 40a9f6a3a5f60bc311aad5ab3265b9de5ecb9367
   iRate: 599ed07c854e0695f3c605d1b2a64c67d912acb7
   KeychainSwift: 735f3b9803ce56c47f6f772c8f2013afd515ae07
   MGSwipeTableCell: a51fa670c01f0aa048f12af040acebf315223137
   MMDrawerController: 7a4cf8e25596bf2434e03ce50d22a8608ddee6a1
   MMProgressHUD: dac2655d62d28e7d6dc28bf72d9531a4d4c62459
-  Realm: bbb171b96728ea136ed5cd354dca2a3d6529923c
-  RealmSwift: 35eeb642bf0b43dedfe363451ba3288d0e72ebb9
+  Realm: d1b1eff5264cd6a3158b7a9b6c499d7f6ad3a860
+  RealmSwift: 40246e6f57a4e863bfdfc1ca1d7b967f0df607e2
   RSKImageCropper: e912419809d3a4eac47864d6fbc22f84c14879d5
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
   Sheriff: e43d64884cc4e0bf62403e3c014b2a572f4a141b
-  SwiftyJSON: ae2d0a3d68025d136602a33c4ee215091ced3e33
+  SwiftyJSON: 8d6b61a70277ef2a5d710d372e06e7e2d87fb9e4
   SZTextView: 906df45afd3c1b24fc5252088d5ef8061513c238
-  TextFieldEffects: e83649831762655b12244775d8b8a1fd3e3953d1
   Toast: 0773b8fc0e97352ca6054517bec7ebdd4110029d
   TTTAttributedLabel: 0a2ac7b2dd726d32a070dafb01446026b11e624f
   UIActivityIndicator-for-SDWebImage: 7bf7ebbf0ed1747dedc0d6e949c4603a6d0f9e0c
   UITextField+Shake: 7b54838133d2242b90bd40e24d8de2a50a31964b
 
-COCOAPODS: 0.38.0
+COCOAPODS: 0.39.0

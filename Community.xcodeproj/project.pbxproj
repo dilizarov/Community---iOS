@@ -43,6 +43,15 @@
 		9A5FC6251BCB8331001937C5 /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5FC6241BCB8330001937C5 /* NotificationCell.swift */; };
 		9A5FC6291BD031DE001937C5 /* TermsOfService.html in Resources */ = {isa = PBXBuildFile; fileRef = 9A5FC6281BD031DD001937C5 /* TermsOfService.html */; };
 		9A5FC62B1BD035E5001937C5 /* TermsOfServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5FC62A1BD035E5001937C5 /* TermsOfServiceViewController.swift */; };
+		9A735F2E1BD179DA00EC01BB /* AkiraTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A735F251BD179DA00EC01BB /* AkiraTextField.swift */; settings = {ASSET_TAGS = (); }; };
+		9A735F2F1BD179DA00EC01BB /* HoshiTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A735F261BD179DA00EC01BB /* HoshiTextField.swift */; settings = {ASSET_TAGS = (); }; };
+		9A735F301BD179DA00EC01BB /* IsaoTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A735F271BD179DA00EC01BB /* IsaoTextField.swift */; settings = {ASSET_TAGS = (); }; };
+		9A735F311BD179DA00EC01BB /* JiroTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A735F281BD179DA00EC01BB /* JiroTextField.swift */; settings = {ASSET_TAGS = (); }; };
+		9A735F321BD179DA00EC01BB /* KaedeTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A735F291BD179DA00EC01BB /* KaedeTextField.swift */; settings = {ASSET_TAGS = (); }; };
+		9A735F331BD179DA00EC01BB /* MadokaTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A735F2A1BD179DA00EC01BB /* MadokaTextField.swift */; settings = {ASSET_TAGS = (); }; };
+		9A735F341BD179DA00EC01BB /* MinoruTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A735F2B1BD179DA00EC01BB /* MinoruTextField.swift */; settings = {ASSET_TAGS = (); }; };
+		9A735F351BD179DA00EC01BB /* TextFieldsEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A735F2C1BD179DA00EC01BB /* TextFieldsEffects.swift */; settings = {ASSET_TAGS = (); }; };
+		9A735F361BD179DA00EC01BB /* YokoTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A735F2D1BD179DA00EC01BB /* YokoTextField.swift */; settings = {ASSET_TAGS = (); }; };
 		9AA526861B89CF4C00900383 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AA526851B89CF4C00900383 /* QuartzCore.framework */; };
 		9AA613601B8464F0004911C2 /* CommunityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA6135F1B8464F0004911C2 /* CommunityCell.swift */; };
 		9AAD20491B82A22F0053F743 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AAD20481B82A22F0053F743 /* AppDelegate.swift */; };
@@ -66,7 +75,7 @@
 		9AF4BC321BBC77A900426A7E /* ChatWithUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF4BC311BBC77A900426A7E /* ChatWithUsViewController.swift */; };
 		9AF4BC341BBC996300426A7E /* ImportantDocumentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF4BC331BBC996200426A7E /* ImportantDocumentsViewController.swift */; };
 		9AF4BC361BBCB19A00426A7E /* WelcomeCreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF4BC351BBCB19A00426A7E /* WelcomeCreateAccountViewController.swift */; };
-		9CD1118C8AAD2ACAFAF5D95C /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11CFFFB983B375515C97E45F /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		9CD1118C8AAD2ACAFAF5D95C /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11CFFFB983B375515C97E45F /* Pods.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -124,6 +133,15 @@
 		9A5FC6241BCB8330001937C5 /* NotificationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
 		9A5FC6281BD031DD001937C5 /* TermsOfService.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = TermsOfService.html; sourceTree = "<group>"; };
 		9A5FC62A1BD035E5001937C5 /* TermsOfServiceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsOfServiceViewController.swift; sourceTree = "<group>"; };
+		9A735F251BD179DA00EC01BB /* AkiraTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AkiraTextField.swift; sourceTree = "<group>"; };
+		9A735F261BD179DA00EC01BB /* HoshiTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HoshiTextField.swift; sourceTree = "<group>"; };
+		9A735F271BD179DA00EC01BB /* IsaoTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IsaoTextField.swift; sourceTree = "<group>"; };
+		9A735F281BD179DA00EC01BB /* JiroTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JiroTextField.swift; sourceTree = "<group>"; };
+		9A735F291BD179DA00EC01BB /* KaedeTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KaedeTextField.swift; sourceTree = "<group>"; };
+		9A735F2A1BD179DA00EC01BB /* MadokaTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MadokaTextField.swift; sourceTree = "<group>"; };
+		9A735F2B1BD179DA00EC01BB /* MinoruTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinoruTextField.swift; sourceTree = "<group>"; };
+		9A735F2C1BD179DA00EC01BB /* TextFieldsEffects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldsEffects.swift; sourceTree = "<group>"; };
+		9A735F2D1BD179DA00EC01BB /* YokoTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YokoTextField.swift; sourceTree = "<group>"; };
 		9AA526851B89CF4C00900383 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		9AA6135F1B8464F0004911C2 /* CommunityCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunityCell.swift; sourceTree = "<group>"; };
 		9AAD20431B82A22F0053F743 /* Main.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Main.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -231,6 +249,22 @@
 			path = PHFDelegateChain;
 			sourceTree = "<group>";
 		};
+		9A735F241BD179CB00EC01BB /* TextFieldEffects */ = {
+			isa = PBXGroup;
+			children = (
+				9A735F251BD179DA00EC01BB /* AkiraTextField.swift */,
+				9A735F261BD179DA00EC01BB /* HoshiTextField.swift */,
+				9A735F271BD179DA00EC01BB /* IsaoTextField.swift */,
+				9A735F281BD179DA00EC01BB /* JiroTextField.swift */,
+				9A735F291BD179DA00EC01BB /* KaedeTextField.swift */,
+				9A735F2A1BD179DA00EC01BB /* MadokaTextField.swift */,
+				9A735F2B1BD179DA00EC01BB /* MinoruTextField.swift */,
+				9A735F2C1BD179DA00EC01BB /* TextFieldsEffects.swift */,
+				9A735F2D1BD179DA00EC01BB /* YokoTextField.swift */,
+			);
+			name = TextFieldEffects;
+			sourceTree = "<group>";
+		};
 		9AAD203A1B82A22F0053F743 = {
 			isa = PBXGroup;
 			children = (
@@ -254,6 +288,7 @@
 		9AAD20451B82A22F0053F743 /* Community */ = {
 			isa = PBXGroup;
 			children = (
+				9A735F241BD179CB00EC01BB /* TextFieldEffects */,
 				9AE113D41BB7400800005F30 /* Cells */,
 				9AF4BC271BB91B0A00426A7E /* Custom Views */,
 				9A3DED9C1B9155AF00B90556 /* DKImagePickerController */,
@@ -443,6 +478,7 @@
 		9AAD203B1B82A22F0053F743 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0640;
 				ORGANIZATIONNAME = "David Ilizarov";
 				TargetAttributes = {
@@ -558,12 +594,15 @@
 			files = (
 				9A55665B1BA7E4FB005DDBA3 /* DKAssetGroupVC.swift in Sources */,
 				9AE113D81BB7D29E00005F30 /* NoPostsCell.swift in Sources */,
+				9A735F321BD179DA00EC01BB /* KaedeTextField.swift in Sources */,
 				9AF4BC341BBC996300426A7E /* ImportantDocumentsViewController.swift in Sources */,
 				9AC622181BB222D200347F8D /* EKKeyboardAvoidingProvider.m in Sources */,
 				9A5566531BA78E94005DDBA3 /* CommunityTableViewController.swift in Sources */,
 				9A55665A1BA7E4FB005DDBA3 /* DKAssetGroupDetailVC.swift in Sources */,
+				9A735F351BD179DA00EC01BB /* TextFieldsEffects.swift in Sources */,
 				9AC6220B1BB0FFF000347F8D /* ContainerView.swift in Sources */,
 				9A5566081B9FB60F005DDBA3 /* PostCell.swift in Sources */,
+				9A735F2E1BD179DA00EC01BB /* AkiraTextField.swift in Sources */,
 				9AC622191BB222D200347F8D /* EKKeyboardFrameListener.m in Sources */,
 				9AF4BC321BBC77A900426A7E /* ChatWithUsViewController.swift in Sources */,
 				9A5566B11BAEAE07005DDBA3 /* RoundedView.swift in Sources */,
@@ -571,6 +610,7 @@
 				9A5FC6191BBDB095001937C5 /* UsernameGeneratorViewController.swift in Sources */,
 				9A55665E1BA7E4FB005DDBA3 /* DKImageResource.swift in Sources */,
 				9A5FC61F1BC306AB001937C5 /* LoginViewController.swift in Sources */,
+				9A735F311BD179DA00EC01BB /* JiroTextField.swift in Sources */,
 				9A5FC61D1BBF69E2001937C5 /* Session.swift in Sources */,
 				9AC6221A1BB222D200347F8D /* NSObject+EKKeyboardAvoiding.m in Sources */,
 				9AAD204B1B82A22F0053F743 /* SearchViewController.swift in Sources */,
@@ -580,6 +620,7 @@
 				9AF4BC2E1BBB303500426A7E /* PrivacyPolicyViewController.swift in Sources */,
 				9A5566AD1BAD3CD6005DDBA3 /* PHFDelegateChain.m in Sources */,
 				9AB8D00F1BB23C2200516551 /* Reply.swift in Sources */,
+				9A735F2F1BD179DA00EC01BB /* HoshiTextField.swift in Sources */,
 				9A5FC6231BCB68B5001937C5 /* Notification.swift in Sources */,
 				9A3D2C2B1B8BFD4F00C10CC5 /* Extensions.swift in Sources */,
 				9AF4BC361BBCB19A00426A7E /* WelcomeCreateAccountViewController.swift in Sources */,
@@ -587,10 +628,14 @@
 				9A5FC62B1BD035E5001937C5 /* TermsOfServiceViewController.swift in Sources */,
 				9A55669B1BACC10E005DDBA3 /* ReplyCell.swift in Sources */,
 				9A5566991BACB722005DDBA3 /* RepliesViewController.swift in Sources */,
+				9A735F301BD179DA00EC01BB /* IsaoTextField.swift in Sources */,
+				9A735F331BD179DA00EC01BB /* MadokaTextField.swift in Sources */,
 				9A55665D1BA7E4FB005DDBA3 /* DKImagePickerController.swift in Sources */,
 				9AE113D61BB7412400005F30 /* NoRepliesCell.swift in Sources */,
 				9AAD20491B82A22F0053F743 /* AppDelegate.swift in Sources */,
+				9A735F361BD179DA00EC01BB /* YokoTextField.swift in Sources */,
 				9A55660E1BA0168D005DDBA3 /* Post.swift in Sources */,
+				9A735F341BD179DA00EC01BB /* MinoruTextField.swift in Sources */,
 				9A55669F1BAD19DD005DDBA3 /* RepliesTableViewController.swift in Sources */,
 				9A5566511BA78A2C005DDBA3 /* CommunityViewController.swift in Sources */,
 				9A5566161BA2C512005DDBA3 /* JoinedCommunity.swift in Sources */,

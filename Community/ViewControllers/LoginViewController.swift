@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import TextFieldEffects
 import Alamofire
 import SwiftyJSON
 import MMProgressHUD
@@ -105,11 +104,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         self.view.addSubview(navBar)
         
-        var backButton = UIBarButtonItem(image: UIImage(named: "Back"), style: .Plain, target: self, action: Selector("back"))
+        let backButton = UIBarButtonItem(image: UIImage(named: "Back"), style: .Plain, target: self, action: Selector("back"))
         
         backButton.tintColor = UIColor.whiteColor()
         
-        var navigationItem = UINavigationItem()
+        let navigationItem = UINavigationItem()
         navigationItem.leftBarButtonItem = backButton
         
         navigationItem.title = "Log In"
@@ -124,16 +123,16 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         MMProgressHUD.show()
         
         Alamofire.request(Router.Login(email: emailField.text!.strip(), password: passwordField.text!))
-            .responseJSON { request, response, jsonData, errors in
+            .responseJSON { request, response, result in
                 // We delay by 1 second to keep a very smooth animation.
-                var delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC)))
+                let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC)))
                 
                 dispatch_after(delayTime, dispatch_get_main_queue(), {
-                    var defaultError = errors?.localizedDescription
+                    let defaultError = (result.error as? NSError)?.localizedDescription
                     
                     if (defaultError != nil) {
                         MMProgressHUD.dismissWithError(defaultError?.removeEndingPunctuationAndMakeLowerCase(), afterDelay: NSTimeInterval(3))
-                    } else if let jsonData: AnyObject = jsonData {
+                    } else if let jsonData: AnyObject = result.value {
                         let json = JSON(jsonData)
 
                         if (json["error"] != nil) {
@@ -145,7 +144,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                                 self.emailField.resignFirstResponder()
                                 self.passwordField.resignFirstResponder()
                                 
-                                var delegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                                let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
                                 delegate.configureUsualLaunch(nil)
                             }
                             
@@ -176,20 +175,20 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         MMProgressHUD.show()
         
         Alamofire.request(Router.ForgotPassword(email: emailField.text!.strip()))
-            .responseJSON { request, response, jsonData, errors in
+            .responseJSON { request, response, result in
                 // We delay by 1 second to keep a very smooth animation.
-                var delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC)))
+                let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC)))
                 
                 dispatch_after(delayTime, dispatch_get_main_queue(), {
                     
-                    var defaultError = errors?.localizedDescription
+                    let defaultError = (result.error as? NSError)?.localizedDescription
                     
                     if (defaultError != nil) {
                         MMProgressHUD.dismissWithError(defaultError?.removeEndingPunctuationAndMakeLowerCase(), afterDelay: NSTimeInterval(3))
                     } else if response?.statusCode > 299 {
                         var errorString = "Something went wrong :("
                         
-                        if let jsonData: AnyObject = jsonData {
+                        if let jsonData: AnyObject = result.value {
                             let json = JSON(jsonData)
                             
                             if let error = json["error"].string {
@@ -229,8 +228,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     func textFieldDidChange() {
-        var emailChars = emailField.text!.strip()
-        var passwordChars = passwordField.text!.strip()
+        let emailChars = emailField.text!.strip()
+        let passwordChars = passwordField.text!.strip()
         
         if (emailChars.isEmpty || !String.validateEmail(emailChars)) {
             commandButton.enabled = false

@@ -14,16 +14,15 @@ class NoRepliesCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
         self.layoutIfNeeded()
     }
     
     override func drawRect(rect: CGRect) {
         super.drawRect(rect)
         
-        var maskPath = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: UIRectCorner.BottomLeft | UIRectCorner.BottomRight, cornerRadii: CGSizeMake(5.0, 5.0))
+        let maskPath = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: [.BottomLeft, .BottomRight], cornerRadii: CGSizeMake(5.0, 5.0))
         
-        var maskLayer = CAShapeLayer()
+        let maskLayer = CAShapeLayer()
         maskLayer.frame = self.bounds
         maskLayer.path = maskPath.CGPath
         

@@ -48,9 +48,9 @@ class ReplyCell: UITableViewCell, TTTAttributedLabelDelegate {
         if last { size = CGSizeMake(5.0, 5.0) }
         else { size = CGSizeMake(0.0, 0.0) }
 
-        var maskPath = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: UIRectCorner.BottomLeft | UIRectCorner.BottomRight, cornerRadii: size)
+        let maskPath = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: [.BottomLeft, .BottomRight], cornerRadii: size)
                 
-        var maskLayer = CAShapeLayer()
+        let maskLayer = CAShapeLayer()
         maskLayer.frame = self.bounds
         maskLayer.path = maskPath.CGPath
                 
@@ -107,9 +107,9 @@ class ReplyCell: UITableViewCell, TTTAttributedLabelDelegate {
     
     func attributedLabel(label: TTTAttributedLabel!, didSelectLinkWithURL url: NSURL!) {
        
-        var alertSheet = UIAlertController(title: url.absoluteString, message: nil, preferredStyle: .ActionSheet)
-        var cancelButton = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
-        var openInSafariButton = UIAlertAction(title: "Open Link in Safari", style: .Default, handler: { alert in
+        let alertSheet = UIAlertController(title: url.absoluteString, message: nil, preferredStyle: .ActionSheet)
+        let cancelButton = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+        let openInSafariButton = UIAlertAction(title: "Open Link in Safari", style: .Default, handler: { alert in
             UIApplication.sharedApplication().openURL(url)
         })
         
@@ -135,9 +135,9 @@ class ReplyCell: UITableViewCell, TTTAttributedLabelDelegate {
         toggleLike()
         
         Alamofire.request(Router.LikeReply(reply_id: reply.id, dislike: !reply.liked))
-            .responseJSON { request, response, jsonData, errors in
+            .responseJSON { request, response, result in
                 
-                if (response?.statusCode > 299 || errors != nil) { self.toggleLike() }
+                if (response?.statusCode > 299 || result.error != nil) { self.toggleLike() }
         }
     }
     

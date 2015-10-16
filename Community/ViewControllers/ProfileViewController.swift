@@ -47,7 +47,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet var settingsImage: UIImageView!
     
     lazy var badge: GIBadgeView = {
-       var badge = GIBadgeView.new()
+       var badge = GIBadgeView()
         badge.textColor = UIColor.whiteColor()
         badge.backgroundColor = UIColor.lightGrayColor()
         
@@ -92,12 +92,12 @@ class ProfileViewController: UIViewController {
     }
     
     func setupRoundedViews() {
-        tableHolder.cornersMask = UIRectCorner.TopRight | UIRectCorner.TopLeft
+        tableHolder.cornersMask = [.TopRight, .TopLeft]
 
         var viewingIndicators = [viewingCommunities, viewingNotifications, viewingSettings]
         
         for var i = 0; i < viewingIndicators.count; i++ {
-            viewingIndicators[i].cornersMask = UIRectCorner.BottomRight | UIRectCorner.BottomLeft
+            viewingIndicators[i].cornersMask = [.BottomRight, .BottomLeft]
             
             if i != 0 {
                 viewingIndicators[i].alpha = 0.0
@@ -135,7 +135,7 @@ class ProfileViewController: UIViewController {
                 placeholderImage: UIImage(named: "AvatarPlaceHolder"),
                 options: SDWebImageOptions.RetryFailed,
                 completed: { (image: UIImage!, error: NSError!, cacheType: SDImageCacheType, imageURL: NSURL!) -> Void in
-                    if let actualError = error {
+                    if let _ = error {
                         
                         self.view.makeToast("Could not download profile picture", duration: NSTimeInterval(3), position: CSToastPositionCenter)
                         
@@ -153,15 +153,15 @@ class ProfileViewController: UIViewController {
     }
     
     func avatarImagePressed() {
-        if let avatar_url = Session.get(.AvatarUrl) {
+        if let _ = Session.get(.AvatarUrl) {
             
             if avatarImageError {
                 retrySetAvatarImage()
             } else {
-                var confirmAlert = UIAlertController(title: "Change Profile Picture", message: "Are you sure you want to change your profile picture?", preferredStyle: .Alert)
+                let confirmAlert = UIAlertController(title: "Change Profile Picture", message: "Are you sure you want to change your profile picture?", preferredStyle: .Alert)
                 
-                var cancel = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
-                var confirm = UIAlertAction(title: "Change", style: .Default, handler: { alert in
+                let cancel = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+                let confirm = UIAlertAction(title: "Change", style: .Default, handler: { alert in
                     self.chooseNewProfilePic()
                 })
                 
@@ -239,7 +239,7 @@ class ProfileViewController: UIViewController {
     }
     
     func handleRefresh() {
-        if let avatar_url = Session.get(.AvatarUrl) {
+        if let _ = Session.get(.AvatarUrl) {
             if avatarImage.tintColor == UIColor.redColor() { retrySetAvatarImage() }
         }
     }
@@ -294,10 +294,10 @@ class ProfileViewController: UIViewController {
         pickerController.didCropImage =  { [unowned self] (image: UIImage) in
             
             // Ensure that we're uploading a PNG image no larger than 1000x1000.
-            var croppedImage = image.imageByScalingAspectFitSize(CGSizeMake(1000, 1000))
-            var pngImageData = UIImagePNGRepresentation(croppedImage)
+            let croppedImage = image.imageByScalingAspectFitSize(CGSizeMake(1000, 1000))
+            let pngImageData = UIImagePNGRepresentation(croppedImage)
             
-            self.uploadImageData(pngImageData)
+            self.uploadImageData(pngImageData!)
         }
         
         pickerController.maxSelectableCount = 1
@@ -318,31 +318,31 @@ class ProfileViewController: UIViewController {
         MMProgressHUD.show()
         
         Alamofire.upload(.POST,
-            URLString: "https://infinite-lake-4056.herokuapp.com/api/v1/users/\(Session.get(.UserId)!)/profile_pic.json?auth_token=\(Session.get(.AuthToken)!)&api_key=\(Router.apiKey)",
+            "https://infinite-lake-4056.herokuapp.com/api/v1/users/\(Session.get(.UserId)!)/profile_pic.json?auth_token=\(Session.get(.AuthToken)!)&api_key=\(Router.apiKey)",
             multipartFormData: { multipartFormData in
                 multipartFormData.appendBodyPart(data: imageData, name: "avatar", fileName: "avatar_img.png", mimeType: "image/png")
             },
             encodingCompletion: { encodingResult in
                 
-                var delayTime = dispatch_time(DISPATCH_TIME_NOW,
+                let delayTime = dispatch_time(DISPATCH_TIME_NOW,
                     Int64(1 * Double(NSEC_PER_SEC)))
                 
                 dispatch_after(delayTime,
                     dispatch_get_main_queue(), {
                         
-                        var errorCompletionBlock: (() -> Void) = {
+                        let errorCompletionBlock: (() -> Void) = {
                             
-                            var retryAlert = UIAlertController(title: "Could Not Upload Picture", message: nil, preferredStyle: .Alert)
+                            let retryAlert = UIAlertController(title: "Could Not Upload Picture", message: nil, preferredStyle: .Alert)
                             
-                            var retryAction = UIAlertAction(title: "Retry", style: .Default, handler: { alert in
+                            let retryAction = UIAlertAction(title: "Retry", style: .Default, handler: { alert in
                                 self.uploadImageData(imageData)
                             })
                             
-                            var changePicAction = UIAlertAction(title: "Change Picture", style: .Default, handler: { alert in
+                            let changePicAction = UIAlertAction(title: "Change Picture", style: .Default, handler: { alert in
                                 self.chooseNewProfilePic()
                             })
                             
-                            var cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+                            let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
                             
                             retryAlert.addAction(retryAction)
                             retryAlert.addAction(changePicAction)
@@ -353,23 +353,23 @@ class ProfileViewController: UIViewController {
                         
                         switch encodingResult {
                         case .Success (let upload, _, _):
-                            upload.responseJSON { request, response, data, error in
+                            upload.responseJSON { request, response, result in
                                 
-                                if let defaultError = error {
+                                if let defaultError = (result.error as? NSError) {
                                     MMProgressHUD.sharedHUD().dismissAnimationCompletion = errorCompletionBlock
                                     MMProgressHUD.dismissWithError(
                                         defaultError.localizedDescription.removeEndingPunctuationAndMakeLowerCase(),
                                         afterDelay: NSTimeInterval(3)
                                     )
-                                } else if let jsonData: AnyObject = data {
+                                } else if let jsonData: AnyObject = result.value {
                                     let json = JSON(jsonData)
                                     
                                     if (json["error"] != nil) {
                                         MMProgressHUD.sharedHUD().dismissAnimationCompletion = errorCompletionBlock
                                         MMProgressHUD.dismissWithError(json["error"].stringValue, afterDelay: NSTimeInterval(3))
                                     } else if (json["errors"] == nil) {
-                                        var avatar_url = json["avatar"]["url"].string
-                                        var image = UIImage(data: imageData)
+                                        let avatar_url = json["avatar"]["url"].string
+                                        let image = UIImage(data: imageData)
                                         
                                         self.avatarImage.image = image
                                         
@@ -397,7 +397,7 @@ class ProfileViewController: UIViewController {
                                 }
                             }
                             
-                        case .Failure (let encodingError):
+                        case .Failure ( _):
                             //Realistically, I don't expect this to ever trigger, but I guess if the user uses some very weird image format...
                             MMProgressHUD.sharedHUD().dismissAnimationCompletion = errorCompletionBlock
                             MMProgressHUD.dismissWithError("Having difficulty with this image :(", afterDelay: NSTimeInterval(3))
@@ -414,16 +414,16 @@ class ProfileViewController: UIViewController {
         MMProgressHUD.show()
         
         Alamofire.request(Router.Logout)
-            .responseJSON { request, response, jsonData, errors in
+            .responseJSON { request, response, result in
                 // We delay by 1 second to keep a very smooth animation.
-                var delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC)))
+                let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC)))
                 
                 dispatch_after(delayTime, dispatch_get_main_queue(), {
-                    var defaultError = errors?.localizedDescription
+                    let defaultError = (result.error as? NSError)?.localizedDescription
                     
                     if (defaultError != nil) {
                         MMProgressHUD.dismissWithError(defaultError?.removeEndingPunctuationAndMakeLowerCase(), afterDelay: NSTimeInterval(3))
-                    } else if let jsonData: AnyObject = jsonData {
+                    } else if let jsonData: AnyObject = result.value {
                         let json = JSON(jsonData)
                         
                         if (json["error"] != nil) {
@@ -451,10 +451,10 @@ class ProfileViewController: UIViewController {
                             self.usernameLabel.text = Session.get(.Username)!
                             self.tableViewController.beginInitialLoad()
                             
-                            var delegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                            let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
                             delegate.configureRealm()
                             
-                            var centerNC = delegate.drawerController!.centerViewController as! UINavigationController
+                            let centerNC = delegate.drawerController!.centerViewController as! UINavigationController
                             
                             centerNC.popToRootViewControllerAnimated(false)
                             (centerNC.topViewController as! SearchViewController).setAvatar()

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import TextFieldEffects
 import IQKeyboardManagerSwift
 import MMProgressHUD
 import Alamofire
@@ -29,17 +28,17 @@ class WelcomeCreateAccountViewController: UIViewController, UITextFieldDelegate 
         MMProgressHUD.show()
         
         Alamofire.request(Router.Register(username: usernameField.text!.strip(), email: emailField.text!.strip(), password: passwordField.text!, transfer: false))
-            .responseJSON { request, response, jsonData, errors in
+            .responseJSON { request, response, result in
                 // We delay by 1 second to keep a very smooth animation.
-                var delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC)))
+                let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC)))
                 
                 dispatch_after(delayTime, dispatch_get_main_queue(), {
                     
-                    var defaultError = errors?.localizedDescription
+                    let defaultError = (result.error as? NSError)?.localizedDescription
                     
                     if (defaultError != nil) {
                         MMProgressHUD.dismissWithError(defaultError?.removeEndingPunctuationAndMakeLowerCase(), afterDelay: NSTimeInterval(3))
-                    } else if let jsonData: AnyObject = jsonData {
+                    } else if let jsonData: AnyObject = result.value {
                         let json = JSON(jsonData)
                         
                         if (json["error"] != nil) {
@@ -51,9 +50,9 @@ class WelcomeCreateAccountViewController: UIViewController, UITextFieldDelegate 
                                 self.resignTextFieldResponders()
                                 self.setAccountCreatedView()
                                 
-                                var descriptionAlert = UIAlertController(title: "Account Created", message: "The username we created for you during the previous step will be used whenever you log out.", preferredStyle: .Alert)
+                                let descriptionAlert = UIAlertController(title: "Account Created", message: "The username we created for you during the previous step will be used whenever you log out.", preferredStyle: .Alert)
                                 
-                                var close = UIAlertAction(title: "Close", style: .Default, handler: {
+                                let close = UIAlertAction(title: "Close", style: .Default, handler: {
                                     alert in
                                     
                                     self.performSegueWithIdentifier("showShare", sender: self)
@@ -157,10 +156,10 @@ class WelcomeCreateAccountViewController: UIViewController, UITextFieldDelegate 
     // We check all fields and if the fields meet the criteria, we activate create account button.
     func textFieldDidChange() {
         
-        var usernameChars = usernameField.text!.strip()
-        var emailChars    = emailField.text!.strip()
-        var passwordChars = passwordField.text!.strip()
-        var confirmChars  = passwordConfirmField.text!.strip()
+        let usernameChars = usernameField.text!.strip()
+        let emailChars    = emailField.text!.strip()
+        let passwordChars = passwordField.text!.strip()
+        let confirmChars  = passwordConfirmField.text!.strip()
         
         setValsForRootVC(usernameChars, email: emailChars, password: passwordChars)
         
