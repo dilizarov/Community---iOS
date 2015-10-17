@@ -11,9 +11,10 @@ import MMDrawerController
 import RealmSwift
 import IQKeyboardManagerSwift
 import Alamofire
+import BSForegroundNotification
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, BSForegroundNotificationDelegate {
 
     var window: UIWindow?
     var drawerController: MMDrawerController?
@@ -164,11 +165,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 application.applicationIconBadgeNumber = currentBadgeNumber + 1
                 
                 (controller.leftDrawerViewController as! ProfileViewController).badge.badgeValue = currentBadgeNumber + 1
+            
+                let notification = BSForegroundNotification(userInfo: userInfo)
+                notification.delegate = self
+                notification.presentNotification()
             }
         } else if state == .Inactive {
             application.applicationIconBadgeNumber -= 1
             configureLaunchState(userInfo)
         }
+    }
+    
+    func foregroundRemoteNotificationWasTouched(userInfo: [NSObject : AnyObject]) {
+        UIApplication.sharedApplication().applicationIconBadgeNumber -= 1
+        configureLaunchState(userInfo)
     }
 
     func application(application: UIApplication, performFetchWithCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {

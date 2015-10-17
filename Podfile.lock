@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (2.0.2)
+  - BSForegroundNotification (0.1.2)
   - HexColors (2.3.0)
   - IQKeyboardManagerSwift (3.3.2)
   - iRate (1.11.4)
@@ -38,6 +39,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 2.0)
+  - BSForegroundNotification (~> 0.1)
   - HexColors (~> 2.3)
   - IQKeyboardManagerSwift (~> 3.3)
   - iRate (~> 1.11)
@@ -58,6 +60,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Alamofire: 8edbab00802a752bb5240cc2abe70e7e881488ad
+  BSForegroundNotification: 40e900a424cc307720159c4486dbec004d556a9e
   HexColors: 6ad3947c3447a055a3aa8efa859def096351fe5f
   IQKeyboardManagerSwift: 40a9f6a3a5f60bc311aad5ab3265b9de5ecb9367
   iRate: 599ed07c854e0695f3c605d1b2a64c67d912acb7
