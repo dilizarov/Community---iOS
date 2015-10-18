@@ -37,6 +37,10 @@ class CommunityViewController: UIViewController, CommunityTableDelegate {
         
         setupNavBar()
         verifyJoinOrSettings()
+        
+        if #available(iOS 9, *) {
+            makeCommunitySearchable()
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -54,6 +58,20 @@ class CommunityViewController: UIViewController, CommunityTableDelegate {
         super.viewDidAppear(animated)
         
         potentiallyHeadToReplies()
+    }
+    
+    @available(iOS 9, *)
+    func makeCommunitySearchable() {
+        let activity = NSUserActivity(activityType: "com.community.Main.community")
+        activity.title = communityTitle?.capitalizedString
+        activity.keywords = Set(communityTitle!.componentsSeparatedByString(" "))
+        // Ultimately, the reason I do this is because I don't know enough about Handoff,
+        // its inner-workings and don't know if the app is prepped for that.
+        activity.eligibleForHandoff = false
+        activity.eligibleForSearch = true
+        activity.eligibleForPublicIndexing = true
+        userActivity = activity
+        userActivity!.becomeCurrent()
     }
     
     func communitySelected(notification: NSNotification) {

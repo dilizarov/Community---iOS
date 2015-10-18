@@ -167,7 +167,7 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
     }
 
     func search(community: String) {
-        // Fake key to best of my ability because... assumes we keep this consistent with server-side.
+        // Fake key to best of my ability because... assumes we keep this consistent with server-side. Need better solution.
         communityKey = community.lowercaseString.stringByReplacingOccurrencesOfString(" ", withString: "_", options: .LiteralSearch, range: nil)
         goToCommunityVC(community, animated: true)
     }

@@ -89,10 +89,10 @@ public class BSForegroundNotification: UIView, UITextViewDelegate {
         self.userInfo = userInfo
         
         if let payload = userInfo["aps"] as? NSDictionary {
-            
-            if let summary = payload["alert"] as? String {
-                titleLabel.text = NSBundle.mainBundle().infoDictionary!["CFBundleName"] as! String
-                subtitleLabel.text = summary
+
+            if let alertTitle = payload["alert"] as? String {
+                titleLabel.text = NSBundle.mainBundle().infoDictionary?["CFBundleName"] as? String
+                subtitleLabel.text = alertTitle
             } else {
                 titleLabel.text = payload["alert"]?["title"] as? String ?? ""
                 subtitleLabel.text = payload["alert"]?["body"] as? String ?? ""
@@ -152,16 +152,8 @@ public class BSForegroundNotification: UIView, UITextViewDelegate {
     //MARK: - Public
     
     public func presentNotification() {
-        
-        print("wow I am here")
-        print(titleLabel.text)
-        print(subtitleLabel.text)
-        print(UIApplication.sharedApplication().keyWindow)
-        
+
         if let window = UIApplication.sharedApplication().keyWindow where !titleLabel.text!.isEmpty && !subtitleLabel.text!.isEmpty {
-            
-            print("Wata")
-            print(window)
             
             window.windowLevel = UIWindowLevelStatusBar
             window.addSubview(self)
