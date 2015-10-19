@@ -149,7 +149,7 @@ class RepliesViewController: UIViewController, PHFComposeBarViewDelegate, Replie
                 self.composeBarView.enabled = true
                 let defaultError = (result.error as? NSError)?.localizedDescription
                 
-                if (defaultError != nil) {
+                if ((response == nil || response?.statusCode > 299) && defaultError != nil) {
                     self.composeBarView.stopLoading()
                     self.view.makeToast(defaultError!, duration: NSTimeInterval(3), position: CSToastPositionCenter)
                 } else if let jsonData: AnyObject = result.value {

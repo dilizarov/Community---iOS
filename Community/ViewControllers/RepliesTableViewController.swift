@@ -125,7 +125,7 @@ class RepliesTableViewController: UITableViewController, PresentControllerDelega
                 
                     let defaultError = (result.error as? NSError)?.localizedDescription
                     
-                    if defaultError != nil {
+                    if (response == nil || response?.statusCode > 299) && defaultError != nil {
                         self.emptyOrErrorDescription = defaultError
                     } else if let jsonData: AnyObject = result.value {
                         let json = JSON(jsonData)

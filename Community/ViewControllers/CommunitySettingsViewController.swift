@@ -336,7 +336,7 @@ class CommunitySettingsViewController: UIViewController {
                     dispatch_after(delayTime, dispatch_get_main_queue(), {
                         let defaultError = (result.error as? NSError)?.localizedDescription
                         
-                        if (defaultError != nil) {
+                        if ((response == nil || response?.statusCode > 299) && defaultError != nil) {
                             MMProgressHUD.dismissWithError(defaultError?.removeEndingPunctuationAndMakeLowerCase(), afterDelay: NSTimeInterval(3))
                         } else if let jsonData: AnyObject = result.value {
                             let json = JSON(jsonData)
@@ -391,7 +391,7 @@ class CommunitySettingsViewController: UIViewController {
                             upload.responseJSON { request, response, result in
                                 let defaultError = (result.error as? NSError)?.localizedDescription
                                 
-                                if defaultError != nil {
+                                if (response == nil || response?.statusCode > 299) && defaultError != nil {
                                     MMProgressHUD.dismissWithError(defaultError!.removeEndingPunctuationAndMakeLowerCase(), afterDelay: NSTimeInterval(3))
                                 } else if let jsonData: AnyObject = result.value {
                                     let json = JSON(jsonData)
@@ -450,7 +450,7 @@ class CommunitySettingsViewController: UIViewController {
                     dispatch_after(delayTime, dispatch_get_main_queue(), {
                         let defaultError = (result.error as? NSError)?.localizedDescription
                         
-                        if (defaultError != nil) {
+                        if ((response == nil || response?.statusCode > 299) && defaultError != nil) {
                             MMProgressHUD.dismissWithError(defaultError?.removeEndingPunctuationAndMakeLowerCase(), afterDelay: NSTimeInterval(3))
                         } else if let jsonData: AnyObject = result.value {
                             let json = JSON(jsonData)

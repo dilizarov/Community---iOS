@@ -102,7 +102,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
                     
                     let defaultError = (result.error as? NSError)?.localizedDescription
                     
-                    if (defaultError != nil) {
+                    if ((response == nil || response?.statusCode > 299) && defaultError != nil) {
                         MMProgressHUD.dismissWithError(defaultError?.removeEndingPunctuationAndMakeLowerCase(), afterDelay: NSTimeInterval(3))
                     } else if let jsonData: AnyObject = result.value {
                         let json = JSON(jsonData)

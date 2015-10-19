@@ -176,11 +176,11 @@ class ProfileTableViewController: UITableViewController, PresentControllerDelega
             .responseJSON { request, response, result in
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
                     let defaultError = (result.error as? NSError)?.localizedDescription
-                    
+                                        
                     self.communities = []
                     var failureString: String?
                     
-                    if (defaultError != nil) {
+                    if ((response == nil || response?.statusCode > 299) && defaultError != nil) {
                         failureString = defaultError!.removeEndingPunctuationAndMakeLowerCase()
                     } else if let jsonData: AnyObject = result.value {
                         let json = JSON(jsonData)
@@ -266,7 +266,7 @@ class ProfileTableViewController: UITableViewController, PresentControllerDelega
                     self.notifications = []
                     var failureString: String?
                     
-                    if (defaultError != nil) {
+                    if ((response == nil || response?.statusCode > 299) && defaultError != nil) {
                         failureString = defaultError!.removeEndingPunctuationAndMakeLowerCase()
                     } else if let jsonData: AnyObject = result.value {
                         let json = JSON(jsonData)
@@ -342,7 +342,7 @@ class ProfileTableViewController: UITableViewController, PresentControllerDelega
         Alamofire.request(Router.LeaveCommunity(community: community.name.strip()))
             .responseJSON { request, response, result in
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-                    if (response?.statusCode > 299 || result.error != nil) {
+                    if ((response == nil || response?.statusCode > 299) && result.error != nil) {
                         
                         let arraySize = self.communities.count
                         

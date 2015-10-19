@@ -208,7 +208,9 @@ class CommunityViewController: UIViewController, CommunityTableDelegate {
         Alamofire.request(Router.JoinCommunity(community: communityTitle!.strip()))
             .responseJSON { request, response, result in
                 
-                if (response?.statusCode > 299 || result.error != nil) {
+                if (response?.statusCode > 299) {
+                    self.view.makeToast("Something went wrong :(", duration: NSTimeInterval(3), position: CSToastPositionCenter)
+                } else if ((response == nil || response?.statusCode > 299) && result.error != nil) {
                     if (response?.statusCode > 299) {
                         self.view.makeToast("Something went wrong :(", duration: NSTimeInterval(3), position: CSToastPositionCenter)
                     } else {

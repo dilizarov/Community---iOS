@@ -137,7 +137,7 @@ class ReplyCell: UITableViewCell, TTTAttributedLabelDelegate {
         Alamofire.request(Router.LikeReply(reply_id: reply.id, dislike: !reply.liked))
             .responseJSON { request, response, result in
                 
-                if (response?.statusCode > 299 || result.error != nil) { self.toggleLike() }
+                if ((response == nil || response?.statusCode > 299) && result.error != nil) { self.toggleLike() }
         }
     }
     

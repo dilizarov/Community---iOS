@@ -127,10 +127,11 @@ class PostCell: UITableViewCell, TTTAttributedLabelDelegate {
        toggleLike()
         
         Alamofire.request(Router.LikePost(post_id: post.id, dislike: !post.liked))
-            .responseJSON { request, response, result in//jsonData, errors in
-                
-                if (response?.statusCode > 299 || result.error != nil) { self.toggleLike() }
-            }
+        .responseJSON { request, response, result in//jsonData, errors in
+            
+            if ((response == nil || response?.statusCode > 299) && result.error != nil) { self.toggleLike() }
+        }
+        
     }
     
     func toggleLike() {
