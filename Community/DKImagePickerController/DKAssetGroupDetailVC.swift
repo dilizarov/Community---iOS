@@ -413,12 +413,49 @@ internal class DKAssetGroupDetailVC: UICollectionViewController, UINavigationCon
                 pickerController.allowsEditing = false
                 pickerController.delegate = self
                 
-                if AVCaptureDevice.authorizationStatusForMediaType(AVMediaTypeVideo) != .Authorized {
-                    let permissionView = DKPermissionView.permissionView(.Camera)
-                    pickerController.cameraOverlayView = permissionView
-                }
+                let authorizationState = AVCaptureDevice.authorizationStatusForMediaType(AVMediaTypeVideo)
                 
-                self.presentViewController(pickerController, animated: true, completion: nil)
+                switch authorizationState {
+                case .Authorized:
+                    self.presentViewController(pickerController, animated: true, completion: nil)
+                case .Denied:
+                    let appName =  NSBundle.mainBundle().infoDictionary?["CFBundleName"] as! String
+                    let alertTitle = "\"\(appName)\" Would Like to Access the Camera"
+                    
+                    let alert = UIAlertController(title: alertTitle, message: nil, preferredStyle: .Alert)
+                    
+                    let dontAllowAction = UIAlertAction(title: "Don't Allow", style: .Default, handler: nil)
+                    let goToSettingsAction = UIAlertAction(title: "Go To Settings", style: .Default, handler: { alert in
+                        UIApplication.sharedApplication().openURL(NSURL(string:UIApplicationOpenSettingsURLString)!)
+                    })
+                    
+                    alert.addAction(goToSettingsAction)
+                    alert.addAction(dontAllowAction)
+                    
+                    self.presentViewController(alert, animated: true, completion: nil)
+                case .NotDetermined:
+                    AVCaptureDevice.requestAccessForMediaType(AVMediaTypeVideo, completionHandler: { granted in
+                        if granted {
+                            dispatch_async(dispatch_get_main_queue()) {
+                                self.presentViewController(pickerController, animated: true, completion: nil)
+                            }
+                        }
+                    })
+                case .Restricted:
+                    let alert = UIAlertController(title: "Feature is Restricted on this Device", message: nil, preferredStyle: .Alert)
+                    
+                    let dismissAction = UIAlertAction(title: "OK", style: .Cancel, handler: nil)
+                    
+                    alert.addAction(dismissAction)
+                    
+                    self.presentViewController(alert, animated: true, completion: nil)
+                }
+//                if AVCaptureDevice.authorizationStatusForMediaType(AVMediaTypeVideo) != .Authorized {
+//                    //let permissionView = DKPermissionView.permissionView(.Camera)
+////                    pickerController.cameraOverlayView = permissionView
+//                }
+//                
+//                self.presentViewController(pickerController, animated: true, completion: nil)
             }
         }
 

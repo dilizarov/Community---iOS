@@ -178,6 +178,8 @@ public class BSForegroundNotification: UIView, UITextViewDelegate {
             UIView.animateWithDuration(0.5) {
                 self.topConstraintNotification.constant = 0
                 self.layoutIfNeeded()
+                
+                self.presentView()
             }
             
             if let _ = sound {

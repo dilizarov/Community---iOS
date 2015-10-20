@@ -787,6 +787,7 @@
 				INFOPLIST_FILE = "Community/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.community.Main;
 				PRODUCT_NAME = Main;
 				PROVISIONING_PROFILE = "a145f2d7-8057-44e4-a62d-610cc7c685bf";
 				SWIFT_INSTALL_OBJC_HEADER = YES;
@@ -805,6 +806,7 @@
 				INFOPLIST_FILE = "Community/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.community.Main;
 				PRODUCT_NAME = Main;
 				PROVISIONING_PROFILE = "24ae1faa-dfb3-4877-afda-c0ce726f4c02";
 				SWIFT_INSTALL_OBJC_HEADER = YES;
