@@ -289,7 +289,6 @@
 		9AAD20451B82A22F0053F743 /* Community */ = {
 			isa = PBXGroup;
 			children = (
-				9A6E919E1BE49F3E003B3E1C /* Main.entitlements */,
 				9AE113D41BB7400800005F30 /* Cells */,
 				9AF4BC271BB91B0A00426A7E /* Custom Views */,
 				9A3DED9C1B9155AF00B90556 /* DKImagePickerController */,
@@ -305,6 +304,7 @@
 				9A3D2C2A1B8BFD4E00C10CC5 /* Extensions.swift */,
 				9AAD204F1B82A22F0053F743 /* Images.xcassets */,
 				9AAD20511B82A22F0053F743 /* LaunchScreen.xib */,
+				9A6E919E1BE49F3E003B3E1C /* Main.entitlements */,
 				9A55660A1B9FD955005DDBA3 /* Main.storyboard */,
 				9A5FC61A1BBEF231001937C5 /* Router.swift */,
 				9A5FC61C1BBF69E2001937C5 /* Session.swift */,
