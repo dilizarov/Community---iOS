@@ -84,6 +84,7 @@ class ProfileViewController: UIViewController {
         self.avatarImage.clipsToBounds = true
         
         setAvatarImage()
+        syncAvatarImage()
         
         let singleTap = UITapGestureRecognizer(target: self, action: Selector("avatarImagePressed"))
         singleTap.numberOfTapsRequired = 1
@@ -125,6 +126,23 @@ class ProfileViewController: UIViewController {
         communitiesImage.addGestureRecognizer(communitiesTap)
         notificationsImage.addGestureRecognizer(notificationsTap)
         settingsImage.addGestureRecognizer(settingsTap)
+    }
+    
+    func syncAvatarImage() {
+        Alamofire.request(Router.GetProfilePicUrl)
+            .responseJSON { request, reponse, result in
+                if let jsonData: AnyObject = result.value {
+                    let json = JSON(jsonData)
+                    
+                    if let url = json["avatar"]["url"].string {
+                        if url != Session.get(.AvatarUrl) {
+                            Session.set(url, key: .AvatarUrl)
+                            self.avatarImage.sd_cancelCurrentImageLoad()
+                            self.setAvatarImage()
+                        }
+                    }
+            }
+        }
     }
     
     func setAvatarImage() {

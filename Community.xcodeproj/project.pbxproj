@@ -133,6 +133,7 @@
 		9A5FC6241BCB8330001937C5 /* NotificationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
 		9A5FC6281BD031DD001937C5 /* TermsOfService.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = TermsOfService.html; sourceTree = "<group>"; };
 		9A5FC62A1BD035E5001937C5 /* TermsOfServiceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsOfServiceViewController.swift; sourceTree = "<group>"; };
+		9A6E919E1BE49F3E003B3E1C /* Main.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Main.entitlements; sourceTree = "<group>"; };
 		9A735F251BD179DA00EC01BB /* AkiraTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AkiraTextField.swift; sourceTree = "<group>"; };
 		9A735F261BD179DA00EC01BB /* HoshiTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HoshiTextField.swift; sourceTree = "<group>"; };
 		9A735F271BD179DA00EC01BB /* IsaoTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IsaoTextField.swift; sourceTree = "<group>"; };
@@ -288,6 +289,7 @@
 		9AAD20451B82A22F0053F743 /* Community */ = {
 			isa = PBXGroup;
 			children = (
+				9A6E919E1BE49F3E003B3E1C /* Main.entitlements */,
 				9AE113D41BB7400800005F30 /* Cells */,
 				9AF4BC271BB91B0A00426A7E /* Custom Views */,
 				9A3DED9C1B9155AF00B90556 /* DKImagePickerController */,
@@ -487,6 +489,9 @@
 						DevelopmentTeam = ULTD2T59T4;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.SafariKeychain = {
 								enabled = 1;
 							};
 						};
@@ -781,7 +786,8 @@
 			baseConfigurationReference = 12BC73E1CC021A3521FB56B1 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: David Ilizarov (D4RM9QEJDK)";
+				CODE_SIGN_ENTITLEMENTS = Community/Main.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = "Community/Supporting Files/Info.plist";
@@ -789,7 +795,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.community.Main;
 				PRODUCT_NAME = Main;
-				PROVISIONING_PROFILE = "a145f2d7-8057-44e4-a62d-610cc7c685bf";
+				PROVISIONING_PROFILE = "";
 				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "/Users/dilizarov/Code/Community/iOS/Community/Community/Community-Bridging-Header.h";
 			};
@@ -800,7 +806,8 @@
 			baseConfigurationReference = 066B46063845E40386972153 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: David Ilizarov (D4RM9QEJDK)";
+				CODE_SIGN_ENTITLEMENTS = Community/Main.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = "Community/Supporting Files/Info.plist";
@@ -808,7 +815,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.community.Main;
 				PRODUCT_NAME = Main;
-				PROVISIONING_PROFILE = "24ae1faa-dfb3-4877-afda-c0ce726f4c02";
+				PROVISIONING_PROFILE = "";
 				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "/Users/dilizarov/Code/Community/iOS/Community/Community/Community-Bridging-Header.h";
 			};

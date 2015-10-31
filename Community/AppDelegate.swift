@@ -215,6 +215,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, BSForegroundNotificationD
             if let _ = Session.get(.MetaAuthToken) {
                 configureUsualLaunch(userActivity.title!)
             }
+        } else if userActivity.activityType == NSUserActivityTypeBrowsingWeb {
+            if let _ = Session.get(.MetaAuthToken) {
+                let webpageURL = userActivity.webpageURL!
+                
+                if webpageURL.path == "/" {
+                    let queryItem = webpageURL.queryItemForKey("c")
+                    if let community = queryItem?.value {
+                        configureUsualLaunch(community)
+                    } else {
+                        configureUsualLaunch(nil)
+                    }
+                } else {
+                    UIApplication.sharedApplication().openURL(webpageURL)
+                }
+            }
         }
         
         return true

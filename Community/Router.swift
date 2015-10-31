@@ -31,6 +31,7 @@ enum Router: URLRequestConvertible {
     case JoinCommunity(community: String)
     case LeaveCommunity(community: String)
     case UpdateCommunitySettings(community: String, dfault: Bool, username: String?) //We use dfault because default is reserved
+    case GetProfilePicUrl
     
     var URLRequest: NSMutableURLRequest {
         
@@ -158,11 +159,15 @@ enum Router: URLRequestConvertible {
                         if username != nil {
                             params = [ "username" : username! ]
                         }
-                        
-                        params["community"] = community
                     }
                     
+                    params["community"] = community
+                    
                     return (.PUT, "/communities/update.json", params)
+                
+                case GetProfilePicUrl:
+                
+                    return (.GET, "/users/\(Session.getUserId()!)/profile_pic.json", params)
                 
             }
         }()
@@ -188,7 +193,7 @@ enum Router: URLRequestConvertible {
                     params["meta_auth_token"] = Session.get(.MetaAuthToken)!
                     params["meta_user_id"] = Session.get(.MetaUserId)!
                 }
-            case .GetNotifications:
+            case .GetNotifications, .GetProfilePicUrl:
                 params["auth_token"] = Session.getAuthToken()!
             default:
                 params["auth_token"] = Session.getAuthToken()!
