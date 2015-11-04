@@ -30,8 +30,9 @@ class CommunityCell: MGSwipeTableCell {
             (sender: MGSwipeTableCell!) -> Bool in
             
             let nameWithUnite = "&" + self.normalizedName
+            let url = NSURL(string: "https://get.community/?c=\(self.normalizedName.stringByAddingPercentEncodingForURLQueryValue()!)")
             
-            let objectsToShare: [AnyObject] = [nameWithUnite]
+            let objectsToShare: [AnyObject] = [nameWithUnite, url!]
             
             let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
             activityVC.excludedActivityTypes = [UIActivityTypeAirDrop]
