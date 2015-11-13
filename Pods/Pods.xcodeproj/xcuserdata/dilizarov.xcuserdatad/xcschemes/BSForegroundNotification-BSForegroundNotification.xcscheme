@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'B05AB42B31E670F8D7C56DE9'
+               BlueprintIdentifier = '7CED8411784DAB1F353F6586'
                BlueprintName = 'BSForegroundNotification-BSForegroundNotification'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'BSForegroundNotification.bundle'>

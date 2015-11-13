@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '81290BFF602963746513098D'
+               BlueprintIdentifier = '3E60174F2DBF5AD880D0A2BD'
                BlueprintName = 'UITextField+Shake'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'UITextField_Shake.framework'>

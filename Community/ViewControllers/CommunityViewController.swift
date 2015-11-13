@@ -201,6 +201,10 @@ class CommunityViewController: UIViewController, CommunityTableDelegate {
         self.navigationController?.popViewControllerAnimated(true)
     }
     
+    func spreadToast(string: String) {
+        self.view.makeToast(string, duration: NSTimeInterval(3), position: CSToastPositionCenter)
+    }
+    
     func processJoin() {
         (leftButtonOptions["load"]!.customView as! UIActivityIndicatorView).startAnimating()
         navBar.topItem!.leftBarButtonItem = leftButtonOptions["load"]

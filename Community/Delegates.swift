@@ -25,6 +25,7 @@ protocol UpdateFeedWithLatestPostDelegate {
 protocol CommunityTableDelegate {
     
     func writePost()
+    func spreadToast(string: String)
 }
 
 protocol RepliesTableDelegate {

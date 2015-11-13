@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '43A04242A9F5AD8F82D1DD30'
+               BlueprintIdentifier = 'D7288846BC058C2DADCDBE08'
                BlueprintName = 'BSForegroundNotification'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'BSForegroundNotification.framework'>
