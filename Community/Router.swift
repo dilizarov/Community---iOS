@@ -22,12 +22,11 @@ enum Router: URLRequestConvertible {
     case GetNotifications
     case WritePost(community: String, body: String, title: String?)
     case LikePost(post_id: String, dislike: Bool)
-    case GetPosts(community: String, page: Int?, infiniteScrollTimeBuffer: String?)
+    case GetPosts(community: String, page: Int?, infiniteScrollTimeBuffer: String?, verifyMembership: Bool)
     case WriteReply(post_id: String, body: String)
     case LikeReply(reply_id: String, dislike: Bool)
     case GetReplies(post_id: String, includePost: Bool)
     case GetCommunities
-    case VerifyMembership(community: String)
     case JoinCommunity(community: String)
     case LeaveCommunity(community: String)
     case UpdateCommunitySettings(community: String, dfault: Bool, username: String?) //We use dfault because default is reserved
@@ -102,12 +101,13 @@ enum Router: URLRequestConvertible {
                     
                     return (.GET, "/posts/\(post_id)/like.json", params)
                 
-                case .GetPosts(let community, let page, let infiniteScrollTimeBuffer):
+                case .GetPosts(let community, let page, let infiniteScrollTimeBuffer, let verifyMembership):
                 
                     params = ["community" : community]
                     if page != nil { params["page"] = page }
                     if infiniteScrollTimeBuffer != nil { params["infinite_scroll_time_buffer"] = infiniteScrollTimeBuffer }
-                
+                    if verifyMembership { params["verify_membership"] = true }
+                    
                     return (.GET, "/posts.json", params)
                 
                 case .WriteReply(let post_id, let body):
@@ -132,12 +132,6 @@ enum Router: URLRequestConvertible {
                 case .GetCommunities:
                 
                     return (.GET, "/communities.json", params)
-                
-                case VerifyMembership(let community):
-                    
-                    params = [ "community" : community ]
-                    
-                    return (.GET, "/communities/show.json", params)
                 
                 case JoinCommunity(let community):
                 

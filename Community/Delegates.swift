@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 protocol PresentControllerDelegate {
     func presentController(controller: UIViewController)
@@ -26,6 +27,7 @@ protocol CommunityTableDelegate {
     
     func writePost()
     func spreadToast(string: String)
+    func declareRelationship(relationship: JSON)
 }
 
 protocol RepliesTableDelegate {

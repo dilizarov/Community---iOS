@@ -36,7 +36,6 @@ class CommunityViewController: UIViewController, CommunityTableDelegate {
         super.viewDidLoad()
         
         setupNavBar()
-        verifyJoinOrSettings()
         
         if #available(iOS 9, *) {
             makeCommunitySearchable()
@@ -82,15 +81,15 @@ class CommunityViewController: UIViewController, CommunityTableDelegate {
                 communityKey = info["normalized_name"]
                 
                 navBar.topItem?.title = communityTitle
-                (self.leftButtonOptions["load"]!.customView as! UIActivityIndicatorView).startAnimating()
-                navBar.topItem?.leftBarButtonItem = self.leftButtonOptions["load"]
-                verifyJoinOrSettings()
+                self.leftButtonOptions["join"]!.enabled = false
+                navBar.topItem?.leftBarButtonItem = self.leftButtonOptions["join"]
                 
                 tableViewController.communityTitle = self.communityTitle
                 
                 tableViewController.emptyOrErrorDescription = nil
                 tableViewController.posts = []
                 tableViewController.tableView.reloadData()
+                tableViewController.verifiedMembership = false
                 tableViewController.setInfiniteScrollVars()
                 tableViewController.requestPostsAndPopulateFeed(false, page: nil)
                 
@@ -106,7 +105,6 @@ class CommunityViewController: UIViewController, CommunityTableDelegate {
         if postId != nil {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let repliesVC = storyboard.instantiateViewControllerWithIdentifier("RepliesViewController") as! RepliesViewController
-            
             
             repliesVC.postId = postId
             
@@ -131,26 +129,17 @@ class CommunityViewController: UIViewController, CommunityTableDelegate {
         
         let joinButton = UIBarButtonItem(title: "Join", style: .Plain, target: self, action: Selector("processJoin"))
         joinButton.tintColor = UIColor(hexString: "056A85")
-        
-        let loadIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 22, 22))
-        loadIndicator.stopAnimating()
-        loadIndicator.hidesWhenStopped = true
-        loadIndicator.activityIndicatorViewStyle = .Gray
-        
-        let loadButton = UIBarButtonItem(customView: loadIndicator)
+        joinButton.enabled = false
         
         leftButtonOptions["settings"] = settingsButton
         leftButtonOptions["join"] = joinButton
-        leftButtonOptions["load"] = loadButton
         
         let searchButton = UIBarButtonItem(image: UIImage(named: "Search"), style: .Plain, target: self, action: Selector("goSearch"))
         searchButton.tintColor = UIColor(hexString: "056A85")
         
         let navigationItem = UINavigationItem()
         navigationItem.rightBarButtonItem = searchButton
-        
-        loadIndicator.startAnimating()
-        navigationItem.leftBarButtonItem = loadButton
+        navigationItem.leftBarButtonItem = joinButton
         
         navigationItem.title = communityTitle
         
@@ -161,40 +150,36 @@ class CommunityViewController: UIViewController, CommunityTableDelegate {
         tableViewController.performBackgroundFetch(asyncGroup)
     }
     
-    func verifyJoinOrSettings() {
-        
-        Alamofire.request(Router.VerifyMembership(community: communityTitle!.strip()))
-            .responseJSON { request, response, result in
-                
-                if response?.statusCode == 200 {
-                    self.navBar.topItem!.leftBarButtonItem = self.leftButtonOptions["settings"]
-                    
-                    let json = JSON(result.value!)["community"]
-                    let realm = try! Realm()
-                    
-                    let community = JoinedCommunity()
-                    community.name = json["name"].stringValue
-                    community.normalizedName = json["normalized_name"].stringValue
-                    self.communityKey = json["normalized_name"].stringValue
-                    
-                    if let username = json["user"]["username"].string {
-                        community.username = username
-                    }
-                    
-                    if let avatar_url = json["user"]["avatar_url"].string {
-                        community.avatar_url = avatar_url
-                    }
-                    
-                    try! realm.write {
-                        realm.add(community, update: true)
-                    }
-                } else {
-                    self.navBar.topItem!.leftBarButtonItem = self.leftButtonOptions["join"]
-                }
-                
-                (self.leftButtonOptions["load"]!.customView as! UIActivityIndicatorView).stopAnimating()
+    func declareRelationship(relationship: JSON) {
+        if (relationship != nil) {
+            let realm = try! Realm()
+            
+            let community = JoinedCommunity()
+            community.name = relationship["name"].stringValue
+            community.normalizedName = relationship["normalized_name"].stringValue
+            self.communityKey = relationship["normalized_name"].stringValue
+            
+            if let username = relationship["user"]["username"].string {
+                community.username = username
             }
-        
+            
+            if let avatar_url = relationship["user"]["avatar_url"].string {
+                community.avatar_url = avatar_url
+            }
+            
+            try! realm.write {
+                realm.add(community, update: true)
+            }
+            
+            dispatch_async(dispatch_get_main_queue(), {
+                self.navBar.topItem!.leftBarButtonItem = self.leftButtonOptions["settings"]
+            })
+        } else {
+            dispatch_async(dispatch_get_main_queue(), {
+                self.navBar.topItem!.leftBarButtonItem = self.leftButtonOptions["join"]
+                self.leftButtonOptions["join"]!.enabled = true
+            })
+        }
     }
     
     func goSearch() {

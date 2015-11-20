@@ -14,6 +14,7 @@ class CommunityTableViewController: UITableViewController, UpdateFeedWithLatestP
 
     var delegate: CommunityTableDelegate!
 
+    var verifiedMembership: Bool = false
     var posts = [Post]()
     var cachedHeights = [Int: CGFloat]()
 
@@ -178,7 +179,7 @@ class CommunityTableViewController: UITableViewController, UpdateFeedWithLatestP
     func performBackgroundFetch(asyncGroup: dispatch_group_t!) {
 
         dispatch_group_enter(asyncGroup)
-        Alamofire.request(Router.GetPosts(community: communityTitle!.strip(), page: nil, infiniteScrollTimeBuffer: nil))
+        Alamofire.request(Router.GetPosts(community: communityTitle!.strip(), page: nil, infiniteScrollTimeBuffer: nil, verifyMembership: false))
             .responseJSON { request, response, result in
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
                     if let jsonData: AnyObject = result.value {
@@ -243,7 +244,7 @@ class CommunityTableViewController: UITableViewController, UpdateFeedWithLatestP
 
         }
 
-        Alamofire.request(Router.GetPosts(community: communityTitle!.strip(), page: potentialPage, infiniteScrollTimeBuffer: potentialTimeBuffer))
+        Alamofire.request(Router.GetPosts(community: communityTitle!.strip(), page: potentialPage, infiniteScrollTimeBuffer: potentialTimeBuffer, verifyMembership: !verifiedMembership))
         .responseJSON { request, response, result in
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
 
@@ -282,7 +283,12 @@ class CommunityTableViewController: UITableViewController, UpdateFeedWithLatestP
                         if self.posts.count == 0 {
                             self.emptyOrErrorDescription = "No one has posted in this community. Maybe you can be the first post!"
                         }
-
+                                                
+                        if json["membership"].bool != nil {
+                            self.verifiedMembership = true
+    
+                            self.delegate.declareRelationship(json["relationship"])
+                        }
                     } else {
                         self.emptyOrErrorDescription = ""
 
