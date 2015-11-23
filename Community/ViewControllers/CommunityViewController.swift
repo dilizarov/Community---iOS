@@ -131,8 +131,16 @@ class CommunityViewController: UIViewController, CommunityTableDelegate {
         joinButton.tintColor = UIColor(hexString: "056A85")
         joinButton.enabled = false
         
+        let loadIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 22, 22))
+        loadIndicator.stopAnimating()
+        loadIndicator.hidesWhenStopped = true
+        loadIndicator.activityIndicatorViewStyle = .Gray
+        
+        let loadButton = UIBarButtonItem(customView: loadIndicator)
+        
         leftButtonOptions["settings"] = settingsButton
         leftButtonOptions["join"] = joinButton
+        leftButtonOptions["load"] = loadButton
         
         let searchButton = UIBarButtonItem(image: UIImage(named: "Search"), style: .Plain, target: self, action: Selector("goSearch"))
         searchButton.tintColor = UIColor(hexString: "056A85")

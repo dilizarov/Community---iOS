@@ -283,7 +283,7 @@ class CommunityTableViewController: UITableViewController, UpdateFeedWithLatestP
                         if self.posts.count == 0 {
                             self.emptyOrErrorDescription = "No one has posted in this community. Maybe you can be the first post!"
                         }
-                                                
+                        
                         if json["membership"].bool != nil {
                             self.verifiedMembership = true
     
