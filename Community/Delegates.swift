@@ -34,3 +34,7 @@ protocol RepliesTableDelegate {
     func enableReplying()
     func setPost(post: Post)
 }
+
+protocol ShowLoggedInStateDelegate {
+    func showLoggedInState()
+}

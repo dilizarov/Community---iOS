@@ -12,13 +12,14 @@ import MMProgressHUD
 import Alamofire
 import SwiftyJSON
 
-class WelcomeCreateAccountViewController: UIViewController, UITextFieldDelegate {
+class WelcomeCreateAccountViewController: UIViewController, UITextFieldDelegate, ShowLoggedInStateDelegate  {
     
     @IBOutlet var createAccountButton: UIButton!
     @IBOutlet var usernameField: HoshiTextField!
     @IBOutlet var emailField: HoshiTextField!
     @IBOutlet var passwordField: HoshiTextField!
     @IBOutlet var passwordConfirmField: HoshiTextField!
+    @IBOutlet var loginButton: UIButton!
     
     @IBOutlet var accountCreatedLabel: UILabel!
     
@@ -48,9 +49,9 @@ class WelcomeCreateAccountViewController: UIViewController, UITextFieldDelegate 
                             MMProgressHUD.sharedHUD().dismissAnimationCompletion = {
 
                                 self.resignTextFieldResponders()
-                                self.setAccountCreatedView()
+                                self.setAccountLoggedInView()
                                 
-                                let descriptionAlert = UIAlertController(title: "Account Created", message: "The username we created for you during the previous step will be used whenever you log out.", preferredStyle: .Alert)
+                                let descriptionAlert = UIAlertController(title: Session.get(.MetaUsername), message: "The username we created for you during the previous step will be used whenever you log out.", preferredStyle: .Alert)
                                 
                                 let close = UIAlertAction(title: "Close", style: .Default, handler: {
                                     alert in
@@ -84,6 +85,8 @@ class WelcomeCreateAccountViewController: UIViewController, UITextFieldDelegate 
 
     }
     
+    var toggleOneTimeLoggedInMessage = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -111,18 +114,39 @@ class WelcomeCreateAccountViewController: UIViewController, UITextFieldDelegate 
         self.passwordConfirmField.addTarget(self, action: Selector("textFieldDidChange"), forControlEvents: .EditingChanged)
         
         if Session.loggedIn() {
-            setAccountCreatedView()
+            setAccountLoggedInView()
         } else {
             setCreateAccountView()
         }
     }
     
-    func setAccountCreatedView() {
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if Session.loggedIn() && toggleOneTimeLoggedInMessage {
+        
+            toggleOneTimeLoggedInMessage = false
+            
+            let descriptionAlert = UIAlertController(title: Session.get(.MetaUsername), message: "The username we created for you during the previous step will be used whenever you log out.", preferredStyle: .Alert)
+        
+            let close = UIAlertAction(title: "Close", style: .Default, handler: {
+                alert in
+                self.performSegueWithIdentifier("showShare", sender: self)
+            })
+        
+            descriptionAlert.addAction(close)
+        
+            self.presentViewController(descriptionAlert, animated: true, completion: nil)
+        }
+    }
+    
+    func setAccountLoggedInView() {
         usernameField.alpha = 0
         emailField.alpha = 0
         passwordField.alpha = 0
         passwordConfirmField.alpha = 0
         createAccountButton.alpha = 0
+        loginButton.alpha = 0
         accountCreatedLabel.alpha = 1
         navigationItem.rightBarButtonItem?.title = "Next"
     }
@@ -134,7 +158,13 @@ class WelcomeCreateAccountViewController: UIViewController, UITextFieldDelegate 
         passwordField.alpha = 1
         passwordConfirmField.alpha = 1
         createAccountButton.alpha = 1
+        loginButton.alpha = 1
         navigationItem.rightBarButtonItem?.title = "Skip"
+    }
+    
+    func showLoggedInState() {
+        self.toggleOneTimeLoggedInMessage = true
+        setAccountLoggedInView()
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -223,6 +253,14 @@ class WelcomeCreateAccountViewController: UIViewController, UITextFieldDelegate 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "welcomeLogIn" {
+            let destination = segue.destinationViewController as! WelcomeLoginViewController
+            
+            destination.delegate = self
+        }
     }
     
 

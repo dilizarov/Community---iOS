@@ -43,6 +43,8 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
         search.alpha = 0
         search.delegate = self
         
+        search.keyboardDistanceFromTextField = 130
+        
         setupAvatar()
         setAvatar()
     }

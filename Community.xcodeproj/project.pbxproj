@@ -43,6 +43,7 @@
 		9A5FC6251BCB8331001937C5 /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5FC6241BCB8330001937C5 /* NotificationCell.swift */; };
 		9A5FC6291BD031DE001937C5 /* TermsOfService.html in Resources */ = {isa = PBXBuildFile; fileRef = 9A5FC6281BD031DD001937C5 /* TermsOfService.html */; };
 		9A5FC62B1BD035E5001937C5 /* TermsOfServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5FC62A1BD035E5001937C5 /* TermsOfServiceViewController.swift */; };
+		9A67D67A1C59DDA600AC6970 /* WelcomeLogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A67D6791C59DDA600AC6970 /* WelcomeLogInViewController.swift */; };
 		9A735F2E1BD179DA00EC01BB /* AkiraTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A735F251BD179DA00EC01BB /* AkiraTextField.swift */; };
 		9A735F2F1BD179DA00EC01BB /* HoshiTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A735F261BD179DA00EC01BB /* HoshiTextField.swift */; };
 		9A735F301BD179DA00EC01BB /* IsaoTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A735F271BD179DA00EC01BB /* IsaoTextField.swift */; };
@@ -133,6 +134,7 @@
 		9A5FC6241BCB8330001937C5 /* NotificationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
 		9A5FC6281BD031DD001937C5 /* TermsOfService.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = TermsOfService.html; sourceTree = "<group>"; };
 		9A5FC62A1BD035E5001937C5 /* TermsOfServiceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsOfServiceViewController.swift; sourceTree = "<group>"; };
+		9A67D6791C59DDA600AC6970 /* WelcomeLogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeLogInViewController.swift; sourceTree = "<group>"; };
 		9A6E919E1BE49F3E003B3E1C /* Main.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Main.entitlements; sourceTree = "<group>"; };
 		9A735F251BD179DA00EC01BB /* AkiraTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AkiraTextField.swift; sourceTree = "<group>"; };
 		9A735F261BD179DA00EC01BB /* HoshiTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HoshiTextField.swift; sourceTree = "<group>"; };
@@ -420,6 +422,7 @@
 				9A5FC62A1BD035E5001937C5 /* TermsOfServiceViewController.swift */,
 				9A5FC6181BBDB095001937C5 /* UsernameGeneratorViewController.swift */,
 				9AF4BC351BBCB19A00426A7E /* WelcomeCreateAccountViewController.swift */,
+				9A67D6791C59DDA600AC6970 /* WelcomeLogInViewController.swift */,
 			);
 			path = Welcome;
 			sourceTree = "<group>";
@@ -597,6 +600,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A67D67A1C59DDA600AC6970 /* WelcomeLogInViewController.swift in Sources */,
 				9A55665B1BA7E4FB005DDBA3 /* DKAssetGroupVC.swift in Sources */,
 				9AE113D81BB7D29E00005F30 /* NoPostsCell.swift in Sources */,
 				9A735F321BD179DA00EC01BB /* KaedeTextField.swift in Sources */,
