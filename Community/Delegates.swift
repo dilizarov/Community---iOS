@@ -18,20 +18,16 @@ protocol LeaveCommunityDelegate {
 }
 
 protocol UpdateFeedWithLatestPostDelegate {
-    
     func updateFeedWithLatestPost(post: Post)
-    
 }
 
 protocol CommunityTableDelegate {
-    
     func writePost()
     func spreadToast(string: String)
     func declareRelationship(relationship: JSON)
 }
 
 protocol RepliesTableDelegate {
-    
     func startLoading()
     func stopLoading()
     func stopRefreshing()

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A278b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="VLa-Vs-co8">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15A278b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="VLa-Vs-co8">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -14,7 +14,6 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ALD-9a-Wzu">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
                         <color key="barTintColor" red="0.018165555810000001" green="0.41620616300000002" blue="0.52175376559999997" alpha="1" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -29,7 +28,7 @@
             </objects>
             <point key="canvasLocation" x="-398" y="356"/>
         </scene>
-        <!--Great, let us set you up :)-->
+        <!--Great, let us set you up-->
         <scene sceneID="gHJ-Zo-fwP">
             <objects>
                 <viewController id="4Zc-0n-RsE" customClass="UsernameGeneratorViewController" customModule="Main" customModuleProvider="target" sceneMemberID="viewController">
@@ -43,7 +42,6 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V9a-N5-86X">
                                 <rect key="frame" x="47" y="400" width="226" height="40"/>
-                                <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="Mgl-Em-9wX"/>
                                 </constraints>
@@ -64,7 +62,6 @@
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Username" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a2Y-y0-X0i">
                                 <rect key="frame" x="16" y="237" width="288" height="138"/>
-                                <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="138" id="TUs-Jn-Fkf"/>
                                 </constraints>
@@ -74,7 +71,6 @@
                             </label>
                             <view alpha="0.25" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sgZ-16-nVm">
                                 <rect key="frame" x="20" y="202" width="280" height="1"/>
-                                <animations/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="g0o-WK-r8U"/>
@@ -82,20 +78,17 @@
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Below is a username we created for you" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WV3-i7-D8b">
                                 <rect key="frame" x="16" y="168" width="288" height="18"/>
-                                <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="You don't need an account for Community" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pK7-Tq-gLY">
                                 <rect key="frame" x="16" y="108" width="288" height="36"/>
-                                <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="sgZ-16-nVm" firstAttribute="top" secondItem="WV3-i7-D8b" secondAttribute="bottom" constant="16" id="9vx-1X-tAv"/>
@@ -121,7 +114,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Great, let us set you up :)" id="46U-CX-4KQ">
+                    <navigationItem key="navigationItem" title="Great, let us set you up" id="46U-CX-4KQ">
                         <barButtonItem key="rightBarButtonItem" enabled="NO" title="Next" id="kXo-ej-ONk">
                             <connections>
                                 <segue destination="dT0-f1-PV6" kind="show" id="0AO-gx-LAk"/>
@@ -152,7 +145,6 @@
                         <subviews>
                             <view alpha="0.25" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DSq-LN-dkc">
                                 <rect key="frame" x="20" y="160" width="280" height="1"/>
-                                <animations/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="jzj-2u-eIl"/>
@@ -160,7 +152,6 @@
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IH3-1V-0P6">
                                 <rect key="frame" x="16" y="267" width="288" height="34"/>
-                                <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="Privacy Policy">
                                     <color key="titleColor" red="0.018165555810000001" green="0.41620616300000002" blue="0.52175376559999997" alpha="1" colorSpace="calibratedRGB"/>
@@ -172,7 +163,6 @@
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Before we get started, please take a look at our important documents" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R43-9p-ied">
                                 <rect key="frame" x="16" y="108" width="288" height="36"/>
-                                <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="v2n-Th-UQW"/>
                                 </constraints>
@@ -187,7 +177,6 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IRZ-3q-Rc5">
                                 <rect key="frame" x="16" y="514" width="288" height="30"/>
-                                <animations/>
                                 <state key="normal" title="I agree with the Terms of Service">
                                     <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -198,7 +187,6 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O1C-qD-xDL">
                                 <rect key="frame" x="16" y="309" width="288" height="34"/>
-                                <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="Terms of Service">
                                     <color key="titleColor" red="0.018165555810000001" green="0.41620616300000002" blue="0.52175376559999997" alpha="1" colorSpace="calibratedRGB"/>
@@ -209,7 +197,6 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="O1C-qD-xDL" firstAttribute="top" secondItem="IH3-1V-0P6" secondAttribute="bottom" constant="4" id="12U-59-J8c"/>
@@ -315,7 +302,6 @@
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WJz-vo-1GF" customClass="HoshiTextField" customModule="Main">
                                 <rect key="frame" x="16" y="108" width="288" height="60"/>
-                                <animations/>
                                 <color key="tintColor" red="0.018165555810000001" green="0.41620616300000002" blue="0.52175376559999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="n3p-2S-Wg1"/>
@@ -340,7 +326,6 @@
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QYX-WY-2jX" customClass="HoshiTextField" customModule="Main">
                                 <rect key="frame" x="16" y="176" width="288" height="60"/>
-                                <animations/>
                                 <color key="tintColor" red="0.018165555810000001" green="0.41620616300000002" blue="0.52175376559999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="nrS-3f-cUL"/>
@@ -362,7 +347,6 @@
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ulj-iq-P3I" customClass="HoshiTextField" customModule="Main">
                                 <rect key="frame" x="16" y="244" width="288" height="60"/>
-                                <animations/>
                                 <color key="tintColor" red="0.018165555810000001" green="0.41620616300000002" blue="0.52175376559999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="D2n-Oa-KWN"/>
@@ -384,7 +368,6 @@
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Azy-Fp-8r0">
                                 <rect key="frame" x="16" y="404" width="288" height="30"/>
-                                <animations/>
                                 <color key="tintColor" red="0.018165555810000001" green="0.41620616300000002" blue="0.52175376559999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Create Account">
                                     <color key="titleColor" red="0.018165555810000001" green="0.41620616300000002" blue="0.52175376559999997" alpha="1" colorSpace="calibratedRGB"/>
@@ -399,7 +382,6 @@
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vip-VP-MXb" customClass="HoshiTextField" customModule="Main">
                                 <rect key="frame" x="16" y="312" width="288" height="60"/>
-                                <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="MH0-0C-ngK"/>
                                 </constraints>
@@ -420,13 +402,11 @@
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your account has been created" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wSO-Tb-CEE">
                                 <rect key="frame" x="16" y="273" width="288" height="22"/>
-                                <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <color key="textColor" red="0.24037527210000001" green="0.24037527210000001" blue="0.24037527210000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="QYX-WY-2jX" secondAttribute="trailing" id="0pJ-gS-CuZ"/>
@@ -485,7 +465,6 @@
                         <subviews>
                             <view alpha="0.25" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WTy-pE-zJk">
                                 <rect key="frame" x="20" y="163" width="280" height="1"/>
-                                <animations/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="M92-iZ-o2z"/>
@@ -493,7 +472,6 @@
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Community is great for friends and organizations" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jl7-wW-2Wi">
                                 <rect key="frame" x="16" y="108" width="288" height="45"/>
-                                <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="OJL-H5-7zu"/>
                                 </constraints>
@@ -503,7 +481,6 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HWo-hA-tcg">
                                 <rect key="frame" x="16" y="212" width="288" height="144"/>
-                                <animations/>
                                 <state key="normal">
                                     <attributedString key="attributedTitle">
                                         <fragment content="Share Community ">
@@ -527,7 +504,6 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="HWo-hA-tcg" firstAttribute="leading" secondItem="P20-E0-sgG" secondAttribute="leadingMargin" id="HD3-49-5BU"/>
@@ -569,12 +545,10 @@
                         <subviews>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ytf-zc-vRK">
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
-                                <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <dataDetectorType key="dataDetectorTypes"/>
                             </webView>
                         </subviews>
-                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="ytf-zc-vRK" secondAttribute="trailing" constant="-16" id="KZE-Iz-mCL"/>
@@ -615,7 +589,6 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qeI-HJ-iCr">
                                 <rect key="frame" x="16" y="269" width="288" height="30"/>
-                                <animations/>
                                 <state key="normal" title="Failed to load Privacy Policy. Retry?">
                                     <color key="titleColor" red="0.018165555810000001" green="0.41620616300000002" blue="0.52175376559999997" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -626,12 +599,10 @@
                             </button>
                             <webView contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WaE-vy-Q6M">
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
-                                <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <dataDetectorType key="dataDetectorTypes" link="YES"/>
                             </webView>
                         </subviews>
-                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="WaE-vy-Q6M" firstAttribute="leading" secondItem="0Ca-1R-fcc" secondAttribute="leadingMargin" constant="-16" id="Dmn-C5-qgV"/>
@@ -677,7 +648,6 @@
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We love hearing feedback" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XLn-ma-AMK">
                                 <rect key="frame" x="16" y="108" width="288" height="45"/>
-                                <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="Pcb-vX-YuC"/>
                                 </constraints>
@@ -687,7 +657,6 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Nz0-vk-dVf">
                                 <rect key="frame" x="16" y="254" width="288" height="60"/>
-                                <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="Chat with us at &amp;community">
                                     <color key="titleColor" red="0.018165555810000001" green="0.41620616300000002" blue="0.52175376559999997" alpha="1" colorSpace="calibratedRGB"/>
@@ -699,25 +668,12 @@
                             </button>
                             <view alpha="0.25" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DLq-nd-7jd">
                                 <rect key="frame" x="20" y="163" width="280" height="1"/>
-                                <animations/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="K5P-1a-NMU"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mFj-jL-rDW">
-                                <rect key="frame" x="16" y="174" width="288" height="30"/>
-                                <animations/>
-                                <state key="normal" title="What does &amp; mean?">
-                                    <color key="titleColor" red="0.018165555810000001" green="0.41620616300000002" blue="0.52175376559999997" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="uniteMeaning:" destination="Y21-sP-n4z" eventType="touchUpInside" id="Zj4-3t-Ych"/>
-                                </connections>
-                            </button>
                         </subviews>
-                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="DLq-nd-7jd" secondAttribute="trailing" constant="4" id="8Dd-rQ-7HR"/>
@@ -727,13 +683,9 @@
                             <constraint firstItem="XLn-ma-AMK" firstAttribute="top" secondItem="mfj-FB-V8N" secondAttribute="bottom" constant="44" id="Kfj-CU-ewX"/>
                             <constraint firstItem="XLn-ma-AMK" firstAttribute="trailing" secondItem="5V7-Ry-UvX" secondAttribute="trailingMargin" id="Niy-RN-yfJ"/>
                             <constraint firstItem="Nz0-vk-dVf" firstAttribute="leading" secondItem="5V7-Ry-UvX" secondAttribute="leadingMargin" id="Qmd-zi-dNJ"/>
-                            <constraint firstItem="mFj-jL-rDW" firstAttribute="trailing" secondItem="5V7-Ry-UvX" secondAttribute="trailingMargin" id="Yxy-sl-Ony"/>
                             <constraint firstItem="DLq-nd-7jd" firstAttribute="top" secondItem="XLn-ma-AMK" secondAttribute="bottom" constant="10" id="bOt-cA-VaV"/>
                             <constraint firstItem="DLq-nd-7jd" firstAttribute="leading" secondItem="5V7-Ry-UvX" secondAttribute="leadingMargin" constant="4" id="cWm-CX-Tr0"/>
-                            <constraint firstItem="Nz0-vk-dVf" firstAttribute="top" secondItem="mFj-jL-rDW" secondAttribute="bottom" constant="50" id="gJF-Fr-Re2"/>
-                            <constraint firstItem="mFj-jL-rDW" firstAttribute="top" secondItem="DLq-nd-7jd" secondAttribute="bottom" constant="10" id="p1c-fs-e8S"/>
                             <constraint firstItem="XLn-ma-AMK" firstAttribute="leading" secondItem="5V7-Ry-UvX" secondAttribute="leadingMargin" id="qRs-ho-AaG"/>
-                            <constraint firstItem="mFj-jL-rDW" firstAttribute="leading" secondItem="5V7-Ry-UvX" secondAttribute="leadingMargin" id="zin-At-etV"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Chat with us!" id="cT3-QD-PWV">

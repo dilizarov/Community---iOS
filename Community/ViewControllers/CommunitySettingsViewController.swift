@@ -125,7 +125,7 @@ class CommunitySettingsViewController: UIViewController {
         
         let saveButton = UIBarButtonItem(title: "Save", style: .Plain, target: self, action: Selector("save"))
         saveButton.tintColor = UIColor(hexString: "056A85")
-        saveButton.enabled = false
+        saveButton.enabled = true
         
         let loadIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 22, 22))
         loadIndicator.stopAnimating()
@@ -262,7 +262,7 @@ class CommunitySettingsViewController: UIViewController {
         pickerController.didCancelled = {}
         pickerController.didCropImage = { [unowned self] (image: UIImage) in
             
-            self.croppedNewImage = image.imageByScalingAspectFitSize(CGSizeMake(1000, 1000))
+            self.croppedNewImage = image.imageByScalingAspectFitSize(CGSizeMake(500, 500))
             
             self.avatar.image = self.croppedNewImage
             self.latestCommunityAvatarState = .New
@@ -305,21 +305,9 @@ class CommunitySettingsViewController: UIViewController {
         
         let saveButton = rightButtonOptions["save"]!
         
-        if originalState == .Default && defaultSwitch.on {
-            saveButton.enabled = false
-        } else if originalState == .Default && !defaultSwitch.on {
-            saveButton.enabled = true
-        } else if originalState == .Community && defaultSwitch.on {
-            saveButton.enabled = true
-        } else if originalState == .Community && !defaultSwitch.on {
-            if communityUsername == latestCommunityUsername &&
-               ((communityAvatarUrl == defaultAvatarUrl && latestCommunityAvatarState == .Default) ||
-               (originalAvatarState == .Community && latestCommunityAvatarState == .Community)) {
-                saveButton.enabled = false
-            } else {
-                saveButton.enabled = true
-            }
-        }
+        saveButton.enabled = !self.usernameField.text!.strip().isEmpty &&
+            ((defaultSwitch.on && defaultAvatarUrl != "") ||
+             (!defaultSwitch.on && (croppedNewImage != nil || communityAvatarUrl != "")))
     }
     
     func save() {
@@ -373,8 +361,15 @@ class CommunitySettingsViewController: UIViewController {
                         }
                     })
                 }
-        } else if croppedNewImage != nil {
-            let imageData = UIImagePNGRepresentation(croppedNewImage!)
+        } else {
+
+            let imageData: NSData?
+            
+            if croppedNewImage != nil {
+                imageData = UIImagePNGRepresentation(croppedNewImage!)
+            } else {
+                imageData = UIImagePNGRepresentation(self.avatar.image!)
+            }
             
             let url = Router.baseURLString + "/communities/update.json?user_id=\(Session.getUserId()!)&auth_token=\(Session.getAuthToken()!)&community=\(communityName.strip())&username=\(latestCommunityUsername.strip())&api_key=\(Router.apiKey)"
             
@@ -438,85 +433,16 @@ class CommunitySettingsViewController: UIViewController {
                                 }
                             }
                         case .Failure ( _):
-                            MMProgressHUD.dismissWithError("Having difficult with this image :(", afterDelay: NSTimeInterval(3))
+                            MMProgressHUD.dismissWithError("Having difficulty with this image :(", afterDelay: NSTimeInterval(3))
                         }
                     })
                 }
             )
-        } else {
-            Alamofire.request(Router.UpdateCommunitySettings(community: communityName.strip(), dfault: false, username: latestCommunityUsername.strip()))
-                .responseJSON { request, response, result in
-                
-                    dispatch_after(delayTime, dispatch_get_main_queue(), {
-                        let defaultError = (result.error as? NSError)?.localizedDescription
-                        
-                        if ((response == nil || response?.statusCode > 299) && defaultError != nil) {
-                            MMProgressHUD.dismissWithError(defaultError?.removeEndingPunctuationAndMakeLowerCase(), afterDelay: NSTimeInterval(3))
-                        } else if let jsonData: AnyObject = result.value {
-                            let json = JSON(jsonData)
-                            
-                            if (json["error"] != nil) {
-                                MMProgressHUD.dismissWithError(json["error"].stringValue, afterDelay: NSTimeInterval(3))
-                            } else if (json["errors"] == nil) {
-                                let realm = try! Realm()
-                                let community = realm.objectForPrimaryKey(JoinedCommunity.self, key: self.communityKey)
-                                
-                                var username = ""
-                                
-                                if json["community"]["user"]["username"].stringValue != self.defaultUsername {
-                                    username = json["community"]["user"]["username"].stringValue
-                                }
-
-                                
-                                try! realm.write {
-                                    community?.username = username
-                                }
-                                
-                                MMProgressHUD.dismissWithSuccess(":)")
-                                let newDelayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0.5 * Double(NSEC_PER_SEC)))
-                                
-                                dispatch_after(newDelayTime, dispatch_get_main_queue(), {
-                                    self.dismissViewControllerAnimated(true, completion: nil)
-                                })
-                            } else {
-                                var errorString = ""
-                                
-                                for var i = 0; i < json["errors"].count; i++ {
-                                    if (i != 0) { errorString += "\n\n" }
-                                    errorString += json["errors"][i].string!
-                                }
-                                
-                                MMProgressHUD.dismissWithError(errorString, afterDelay: NSTimeInterval(3))
-                            }
-                        } else {
-                            MMProgressHUD.dismissWithError("Something went wrong :(", afterDelay: NSTimeInterval(3))
-                        }
-                        
-                    })
-                }
         }
     }
     
     func cancel() {
-        if rightButtonOptions["save"]!.enabled {
-            let confirmAlert = UIAlertController(title: "Go Back Without Saving", message: "Are you sure you want to go back without saving?", preferredStyle: .Alert)
-            
-            let back = UIAlertAction(title: "Back", style: .Default, handler: { alert in
-                self.dismissViewControllerAnimated(true, completion: nil)
-            })
-            
-            let save = UIAlertAction(title: "Save", style: .Default, handler: { alert in
-                self.save()
-            })
-            
-            confirmAlert.addAction(save)
-            confirmAlert.addAction(back)
-            
-            self.presentViewController(confirmAlert, animated: true, completion: nil)
- 
-        } else {
-            self.dismissViewControllerAnimated(true, completion: nil)
-        }
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     override func didReceiveMemoryWarning() {

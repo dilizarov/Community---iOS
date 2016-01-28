@@ -139,6 +139,7 @@ class ProfileViewController: UIViewController {
                             Session.set(url, key: .AvatarUrl)
                             self.avatarImage.sd_cancelCurrentImageLoad()
                             self.setAvatarImage()
+                            NSNotificationCenter.defaultCenter().postNotificationName("avatarChanged", object: nil)
                         }
                     }
             }
@@ -312,7 +313,7 @@ class ProfileViewController: UIViewController {
         pickerController.didCropImage =  { [unowned self] (image: UIImage) in
             
             // Ensure that we're uploading a PNG image no larger than 1000x1000.
-            let croppedImage = image.imageByScalingAspectFitSize(CGSizeMake(1000, 1000))
+            let croppedImage = image.imageByScalingAspectFitSize(CGSizeMake(500, 500))
             let pngImageData = UIImagePNGRepresentation(croppedImage)
             
             self.uploadImageData(pngImageData!)

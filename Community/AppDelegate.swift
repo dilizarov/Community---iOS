@@ -219,12 +219,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, BSForegroundNotificationD
             if let _ = Session.get(.MetaAuthToken) {
                 let webpageURL = userActivity.webpageURL!
                 
-                if webpageURL.path == "/" {
-                    let queryItem = webpageURL.queryItemForKey("c")
-                    if let community = queryItem?.value {
+                if let path = webpageURL.path {
+                    if path == "" || path == "/" || path == "/&" {
+                        configureUsualLaunch(nil)
+                    } else if path.hasPrefix("/&") && NSString(string: path).length > 2 {
+                        let community = path.substringFromIndex(path.startIndex.advancedBy(2))
                         configureUsualLaunch(community)
                     } else {
-                        configureUsualLaunch(nil)
+                        UIApplication.sharedApplication().openURL(webpageURL)
                     }
                 } else {
                     UIApplication.sharedApplication().openURL(webpageURL)

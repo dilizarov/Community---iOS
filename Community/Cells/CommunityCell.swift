@@ -30,7 +30,7 @@ class CommunityCell: MGSwipeTableCell {
             (sender: MGSwipeTableCell!) -> Bool in
             
             let nameWithUnite = "&" + self.normalizedName
-            let url = NSURL(string: "https://get.community/?c=\(self.normalizedName.stringByAddingPercentEncodingForURLQueryValue()!)")
+            let url = NSURL(string: "https://get.community/&\(self.normalizedName.stringByAddingPercentEncodingForURLQueryValue()!)")
             
             let objectsToShare: [AnyObject] = [nameWithUnite, url!]
             

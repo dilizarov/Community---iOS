@@ -31,8 +31,7 @@ class TermsOfServiceViewController: UIViewController, UIWebViewDelegate {
         webView.scrollView.showsVerticalScrollIndicator = false
         webView.delegate = self
         
-        // Sometimes, web views jitter at the beginning due to screen constraints. We give it 0.25 seconds
-        // to figure that out invisibly so it looks smooth.
+        // Sometimes, web views jitter at the beginning due to screen constraints. Hence, we start out with alpha 0.
         webView.alpha = 0.0
         webView.loadRequest(requestObj)
     }

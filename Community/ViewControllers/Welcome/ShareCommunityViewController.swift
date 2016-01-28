@@ -12,7 +12,7 @@ class ShareCommunityViewController: UIViewController {
 
     @IBAction func shareCommunity(sender: AnyObject) {
         let text = "Join me on #Community"
-        let url = NSURL(string: "http://get.community")!
+        let url = NSURL(string: "https://get.community")!
         
         let objectsToShare: [AnyObject] = [text, url]
         

@@ -10,17 +10,6 @@ import UIKit
 import MMDrawerController
 
 class ChatWithUsViewController: UIViewController {
-
-    @IBAction func uniteMeaning(sender: AnyObject) {
-        let definitionAlert = UIAlertController(title: "& Stands For Unite", message: "&example and &another_one are ways to mark 'example' and 'another one' as communities.", preferredStyle: .Alert)
-        
-        let confirm = UIAlertAction(title: "Close", style: .Default, handler: nil)
-        
-        definitionAlert.addAction(confirm)
-        
-        self.presentViewController(definitionAlert, animated: true, completion: nil)
-
-    }
     
     @IBAction func chatWithUs(sender: AnyObject) {
         (UIApplication.sharedApplication().delegate as! AppDelegate).configureUsualLaunch("Community")

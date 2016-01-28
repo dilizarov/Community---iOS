@@ -93,7 +93,7 @@ class ProfileTableViewController: UITableViewController, PresentControllerDelega
     
     func presentLeaveCommunityController(community: JoinedCommunity, row: Int) {
         
-        let nameWithUnite = "&" + community.name.strip().lowercaseString.stringByReplacingOccurrencesOfString(" ", withString: "_")
+        let nameWithUnite = "&" + community.name.strip().lowercaseString.stringByReplacingOccurrencesOfString(" ", withString: "")
         
         let confirmLeaveAlert = UIAlertController(title: "Leave \(nameWithUnite)", message: "Are you sure you want to leave?", preferredStyle: .Alert)
         
