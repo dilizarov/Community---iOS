@@ -61,16 +61,18 @@ class CommunityViewController: UIViewController, CommunityTableDelegate {
     
     @available(iOS 9, *)
     func makeCommunitySearchable() {
-        let activity = NSUserActivity(activityType: "com.community.Main.community")
-        activity.title = communityTitle?.capitalizedString
-        activity.keywords = Set(communityTitle!.componentsSeparatedByString(" "))
-        // Ultimately, the reason I do this is because I don't know enough about Handoff,
-        // its inner-workings and don't know if the app is prepped for that.
-        activity.eligibleForHandoff = false
-        activity.eligibleForSearch = true
-        activity.eligibleForPublicIndexing = true
-        userActivity = activity
-        userActivity!.becomeCurrent()
+        if let key = communityKey {
+            let activity = NSUserActivity(activityType: "get.community.Community.searchable")
+            activity.title = "&" + key
+            activity.keywords = Set(communityTitle!.componentsSeparatedByString(" "))
+            // Ultimately, the reason I do this is because I don't know enough about Handoff,
+            // its inner-workings and don't know if the app is prepped for that.
+            activity.eligibleForHandoff = false
+            activity.eligibleForSearch = true
+            activity.eligibleForPublicIndexing = true
+            userActivity = activity
+            userActivity!.becomeCurrent()
+        }
     }
     
     func communitySelected(notification: NSNotification) {
@@ -92,6 +94,10 @@ class CommunityViewController: UIViewController, CommunityTableDelegate {
                 tableViewController.verifiedMembership = false
                 tableViewController.setInfiniteScrollVars()
                 tableViewController.requestPostsAndPopulateFeed(false, page: nil)
+                
+                if #available(iOS 9, *) {
+                    makeCommunitySearchable()
+                }
                 
                 (UIApplication.sharedApplication().delegate as! AppDelegate).drawerController?.closeDrawerAnimated(true, completion: nil)
                 

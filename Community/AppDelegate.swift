@@ -210,10 +210,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, BSForegroundNotificationD
     }
     
     func application(application: UIApplication, continueUserActivity userActivity: NSUserActivity, restorationHandler: ([AnyObject]?) -> Void) -> Bool {
-        if userActivity.activityType == "com.community.Main.community" {
+        if userActivity.activityType == "get.community.Community.searchable" {
             // We need to ensure user has already gone through welcome phase because search is public.
             if let _ = Session.get(.MetaAuthToken) {
-                configureUsualLaunch(userActivity.title!)
+                if let communityName = userActivity.title {
+                    
+                    var community = communityName
+                    
+                    if communityName.hasPrefix("&") {
+                        community = communityName.substringFromIndex(communityName.startIndex.advancedBy(1))
+                    }
+                    
+                    configureUsualLaunch(community)
+                }
             }
         } else if userActivity.activityType == NSUserActivityTypeBrowsingWeb {
             if let _ = Session.get(.MetaAuthToken) {

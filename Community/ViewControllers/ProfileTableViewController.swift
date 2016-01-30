@@ -56,9 +56,13 @@ class ProfileTableViewController: UITableViewController, PresentControllerDelega
             communities = Array(realm.objects(JoinedCommunity
                 ).sorted("normalizedName", ascending: true))
             
-            if communities.count != 0 && delegate.currentState == .Communities {
-                delegate.successRequestJoinedCommunities()
-                tableView.reloadData()
+            if communities.count != 0 {
+                if delegate.currentState == .Communities {
+                    delegate.successRequestJoinedCommunities()
+                    tableView.reloadData()
+                } else {
+                    delegate.communitiesError = nil
+                }
             }
 
             triggerRealmReload = false

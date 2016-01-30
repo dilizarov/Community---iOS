@@ -207,7 +207,7 @@ class CommunitySettingsViewController: UIViewController {
     func setDefaultAvatar() {
         if defaultAvatarUrl != "" {
             self.avatar.setImageWithURL(NSURL(string: defaultAvatarUrl),
-                placeholderImage: UIImage(named: "AvatarPlaceHolder"),
+                placeholderImage: UIImage(named: "AvatarPlaceHolderGray"),
                 options: SDWebImageOptions.RetryFailed,
                 completed: { (image: UIImage!, error: NSError!, cacheType: SDImageCacheType, imageURL: NSURL!) -> Void in
                     
@@ -235,7 +235,7 @@ class CommunitySettingsViewController: UIViewController {
         } else {
             if communityAvatarUrl != "" {
                 self.avatar.setImageWithURL(NSURL(string: communityAvatarUrl),
-                    placeholderImage: UIImage(named: "AvatarPlaceHolder"),
+                    placeholderImage: UIImage(named: "AvatarPlaceHolderGray"),
                     options: SDWebImageOptions.RetryFailed,
                     completed: { (image: UIImage!, error: NSError!, cacheType: SDImageCacheType, imageURL: NSURL!) -> Void in
                         

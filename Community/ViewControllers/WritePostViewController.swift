@@ -90,7 +90,7 @@ class WritePostViewController: UIViewController, UITextViewDelegate {
             
             avatar.setImageWithURL(
                 NSURL(string: avatar_url),
-                placeholderImage: UIImage(named: "AvatarPlaceHolder"),
+                placeholderImage: UIImage(named: "AvatarPlaceHolderGray"),
                 options: SDWebImageOptions.RetryFailed,
                 completed: { (image: UIImage!, error: NSError!, cacheType: SDImageCacheType, imageURL: NSURL!) -> Void in
                     if let _ = error {

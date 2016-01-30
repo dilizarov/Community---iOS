@@ -135,7 +135,7 @@
 		9A5FC6281BD031DD001937C5 /* TermsOfService.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = TermsOfService.html; sourceTree = "<group>"; };
 		9A5FC62A1BD035E5001937C5 /* TermsOfServiceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsOfServiceViewController.swift; sourceTree = "<group>"; };
 		9A67D6791C59DDA600AC6970 /* WelcomeLogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeLogInViewController.swift; sourceTree = "<group>"; };
-		9A6E919E1BE49F3E003B3E1C /* Main.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Main.entitlements; sourceTree = "<group>"; };
+		9A67D6B71C5A06A200AC6970 /* Community.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Community.entitlements; sourceTree = "<group>"; };
 		9A735F251BD179DA00EC01BB /* AkiraTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AkiraTextField.swift; sourceTree = "<group>"; };
 		9A735F261BD179DA00EC01BB /* HoshiTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HoshiTextField.swift; sourceTree = "<group>"; };
 		9A735F271BD179DA00EC01BB /* IsaoTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IsaoTextField.swift; sourceTree = "<group>"; };
@@ -147,7 +147,7 @@
 		9A735F2D1BD179DA00EC01BB /* YokoTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YokoTextField.swift; sourceTree = "<group>"; };
 		9AA526851B89CF4C00900383 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		9AA6135F1B8464F0004911C2 /* CommunityCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunityCell.swift; sourceTree = "<group>"; };
-		9AAD20431B82A22F0053F743 /* Main.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Main.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AAD20431B82A22F0053F743 /* Community.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Community.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AAD20471B82A22F0053F743 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9AAD20481B82A22F0053F743 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9AAD204A1B82A22F0053F743 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -282,7 +282,7 @@
 		9AAD20441B82A22F0053F743 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9AAD20431B82A22F0053F743 /* Main.app */,
+				9AAD20431B82A22F0053F743 /* Community.app */,
 				9AAD20581B82A22F0053F743 /* CommunityTests.xctest */,
 			);
 			name = Products;
@@ -291,6 +291,7 @@
 		9AAD20451B82A22F0053F743 /* Community */ = {
 			isa = PBXGroup;
 			children = (
+				9A67D6B71C5A06A200AC6970 /* Community.entitlements */,
 				9AE113D41BB7400800005F30 /* Cells */,
 				9AF4BC271BB91B0A00426A7E /* Custom Views */,
 				9A3DED9C1B9155AF00B90556 /* DKImagePickerController */,
@@ -306,7 +307,6 @@
 				9A3D2C2A1B8BFD4E00C10CC5 /* Extensions.swift */,
 				9AAD204F1B82A22F0053F743 /* Images.xcassets */,
 				9AAD20511B82A22F0053F743 /* LaunchScreen.xib */,
-				9A6E919E1BE49F3E003B3E1C /* Main.entitlements */,
 				9A55660A1B9FD955005DDBA3 /* Main.storyboard */,
 				9A5FC61A1BBEF231001937C5 /* Router.swift */,
 				9A5FC61C1BBF69E2001937C5 /* Session.swift */,
@@ -456,7 +456,7 @@
 			);
 			name = Community;
 			productName = Community;
-			productReference = 9AAD20431B82A22F0053F743 /* Main.app */;
+			productReference = 9AAD20431B82A22F0053F743 /* Community.app */;
 			productType = "com.apple.product-type.application";
 		};
 		9AAD20571B82A22F0053F743 /* CommunityTests */ = {
@@ -790,15 +790,15 @@
 			baseConfigurationReference = 12BC73E1CC021A3521FB56B1 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Community/Main.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Community/Community.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = "Community/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.community.Main;
-				PRODUCT_NAME = Main;
+				PRODUCT_BUNDLE_IDENTIFIER = get.community.Community;
+				PRODUCT_NAME = Community;
 				PROVISIONING_PROFILE = "";
 				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "/Users/dilizarov/Code/Community/iOS/Community/Community/Community-Bridging-Header.h";
@@ -810,15 +810,15 @@
 			baseConfigurationReference = 066B46063845E40386972153 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Community/Main.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Community/Community.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = "Community/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.community.Main;
-				PRODUCT_NAME = Main;
+				PRODUCT_BUNDLE_IDENTIFIER = get.community.Community;
+				PRODUCT_NAME = Community;
 				PROVISIONING_PROFILE = "";
 				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "/Users/dilizarov/Code/Community/iOS/Community/Community/Community-Bridging-Header.h";

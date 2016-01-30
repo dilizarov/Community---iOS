@@ -99,9 +99,7 @@ class WelcomeLoginViewController: UIViewController, UITextFieldDelegate {
         MMProgressHUD.sharedHUD().overlayMode = .Linear
         MMProgressHUD.setPresentationStyle(.Balloon)
         MMProgressHUD.show()
-        
-        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC)))
-        
+                
         Alamofire.request(Router.Login(email: emailField.text!.strip(), password: passwordField.text!))
             .responseJSON { request, response, result in
                 // We delay by 1 second to keep a very smooth animation.

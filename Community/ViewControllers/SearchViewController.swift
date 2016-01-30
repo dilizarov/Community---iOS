@@ -130,7 +130,7 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
                         self.avatar.image = UIImage(named: "AvatarPlaceHolderError")
                     }
                 },
-                usingActivityIndicatorStyle: .White
+                usingActivityIndicatorStyle: .Gray
             )
             
         } else {
