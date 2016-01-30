@@ -468,10 +468,11 @@ class ProfileViewController: UIViewController {
                             self.tableViewController.tableView.setContentOffset(CGPointZero, animated: false)
                             self.setAvatarImage()
                             self.usernameLabel.text = Session.get(.Username)!
-                            self.tableViewController.beginInitialLoad()
                             
                             let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
                             delegate.configureRealm()
+                            
+                            self.tableViewController.beginInitialLoad()
                             
                             let centerNC = delegate.drawerController!.centerViewController as! UINavigationController
                             

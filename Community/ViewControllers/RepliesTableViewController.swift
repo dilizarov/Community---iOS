@@ -219,7 +219,7 @@ class RepliesTableViewController: UITableViewController, PresentControllerDelega
                 // than just no replies, but it suffices here.
                 let cell = tableView.dequeueReusableCellWithIdentifier("noReplies") as! NoRepliesCell
                 
-                cell.configureView("Could not load post")
+                cell.configureView("Failed to load post")
                 
                 cell.layoutIfNeeded()
                 

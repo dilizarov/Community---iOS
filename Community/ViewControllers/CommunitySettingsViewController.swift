@@ -375,7 +375,7 @@ class CommunitySettingsViewController: UIViewController {
             
             Alamofire.upload(.PUT, url.stringByAddingPercentEncodingWithAllowedCharacters(.URLQueryAllowedCharacterSet())!,
                 multipartFormData: { multipartFormData in
-                    multipartFormData.appendBodyPart(data: imageData!, name: "community_avatar", fileName: "community_avatar_img.png", mimeType: "image/png")
+                    multipartFormData.appendBodyPart(data: imageData!, name: "community_avatar", fileName: "community_avatar.png", mimeType: "image/png")
                 
                 },
                 encodingCompletion: { encodingResult in

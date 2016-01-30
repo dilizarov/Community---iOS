@@ -37,8 +37,8 @@ class RepliesViewController: UIViewController, PHFComposeBarViewDelegate, Replie
         var composeBarView = PHFComposeBarView(frame: frame)
         
         composeBarView.maxLinesCount = 6
-        composeBarView.placeholder = "Write some text"
-        composeBarView.buttonTitle = "Reply"
+        composeBarView.placeholder = "Write a reply..."
+        composeBarView.buttonTitle = "Post"
         composeBarView.delegate = self
         
         composeBarView.buttonTintColor = UIColor(hexString: "056A85")

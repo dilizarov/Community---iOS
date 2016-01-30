@@ -666,19 +666,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We love hearing feedback" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XLn-ma-AMK">
-                                <rect key="frame" x="16" y="108" width="288" height="45"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="Pcb-vX-YuC"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Nz0-vk-dVf">
-                                <rect key="frame" x="16" y="254" width="288" height="60"/>
+                                <rect key="frame" x="16" y="239" width="288" height="90"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <state key="normal" title="Chat with us at &amp;community">
+                                <state key="normal" title="&amp;community">
                                     <color key="titleColor" red="0.018165555810000001" green="0.41620616300000002" blue="0.52175376559999997" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -686,26 +677,13 @@
                                     <action selector="chatWithUs:" destination="Y21-sP-n4z" eventType="touchUpInside" id="68z-hK-zxP"/>
                                 </connections>
                             </button>
-                            <view alpha="0.25" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DLq-nd-7jd">
-                                <rect key="frame" x="20" y="163" width="280" height="1"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="1" id="K5P-1a-NMU"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="DLq-nd-7jd" secondAttribute="trailing" constant="4" id="8Dd-rQ-7HR"/>
                             <constraint firstItem="Nz0-vk-dVf" firstAttribute="trailing" secondItem="5V7-Ry-UvX" secondAttribute="trailingMargin" id="94N-a1-9Zs"/>
-                            <constraint firstItem="Nz0-vk-dVf" firstAttribute="top" secondItem="DLq-nd-7jd" secondAttribute="bottom" constant="90" id="CYz-4u-mtd"/>
-                            <constraint firstItem="k9b-T2-Sgt" firstAttribute="top" secondItem="Nz0-vk-dVf" secondAttribute="bottom" constant="254" id="KdK-Ee-Sod"/>
-                            <constraint firstItem="XLn-ma-AMK" firstAttribute="top" secondItem="mfj-FB-V8N" secondAttribute="bottom" constant="44" id="Kfj-CU-ewX"/>
-                            <constraint firstItem="XLn-ma-AMK" firstAttribute="trailing" secondItem="5V7-Ry-UvX" secondAttribute="trailingMargin" id="Niy-RN-yfJ"/>
+                            <constraint firstItem="k9b-T2-Sgt" firstAttribute="top" secondItem="Nz0-vk-dVf" secondAttribute="bottom" constant="239" id="KdK-Ee-Sod"/>
                             <constraint firstItem="Nz0-vk-dVf" firstAttribute="leading" secondItem="5V7-Ry-UvX" secondAttribute="leadingMargin" id="Qmd-zi-dNJ"/>
-                            <constraint firstItem="DLq-nd-7jd" firstAttribute="top" secondItem="XLn-ma-AMK" secondAttribute="bottom" constant="10" id="bOt-cA-VaV"/>
-                            <constraint firstItem="DLq-nd-7jd" firstAttribute="leading" secondItem="5V7-Ry-UvX" secondAttribute="leadingMargin" constant="4" id="cWm-CX-Tr0"/>
-                            <constraint firstItem="XLn-ma-AMK" firstAttribute="leading" secondItem="5V7-Ry-UvX" secondAttribute="leadingMargin" id="qRs-ho-AaG"/>
+                            <constraint firstItem="Nz0-vk-dVf" firstAttribute="top" secondItem="mfj-FB-V8N" secondAttribute="bottom" constant="175" id="ZEK-0g-Tiy"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Chat with us!" id="cT3-QD-PWV">

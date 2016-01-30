@@ -211,7 +211,7 @@ class CommunityTableViewController: UITableViewController, UpdateFeedWithLatestP
                             self.backgroundRefreshed = true
 
                             if self.posts.count == 0 {
-                                self.emptyOrErrorDescription = "No one has posted in this community. Maybe you can be the first post!"
+                                self.emptyOrErrorDescription = "This community has no posts"
                             } else {
                                 self.emptyOrErrorDescription = nil
                             }
@@ -281,7 +281,7 @@ class CommunityTableViewController: UITableViewController, UpdateFeedWithLatestP
                         }
 
                         if self.posts.count == 0 {
-                            self.emptyOrErrorDescription = "No one has posted in this community. Maybe you can be the first post!"
+                            self.emptyOrErrorDescription = "This community has no posts"
                         }
                         
                         if json["membership"].bool != nil {

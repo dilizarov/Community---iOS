@@ -28,8 +28,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, BSForegroundNotificationD
         IQKeyboardManager.sharedManager().disableInViewControllerClass(RepliesViewController)
         IQKeyboardManager.sharedManager().disableInViewControllerClass(RepliesTableViewController)
         
-        configureRealm()
-        
         var userInfo: Dictionary<NSObject, AnyObject>?
         
         if let options = launchOptions {
@@ -86,6 +84,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, BSForegroundNotificationD
     }
     
     func configureUsualLaunch(community: String?, userInfo: Dictionary<NSObject, AnyObject>? = nil) {
+        configureRealm()
+        
         let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
         
         let searchViewController = mainStoryboard.instantiateViewControllerWithIdentifier("SearchViewController") as! SearchViewController
@@ -120,6 +120,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, BSForegroundNotificationD
         
         self.window?.rootViewController = drawerController
         self.window?.makeKeyAndVisible()
+        
+        
         
         let application = UIApplication.sharedApplication()
         let pushSettings: UIUserNotificationSettings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)

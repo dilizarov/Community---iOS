@@ -87,24 +87,7 @@ class ReplyCell: UITableViewCell, TTTAttributedLabelDelegate {
         
         setupLikeGesture()
     }
-    
-//    func attributedLabel(label: TTTAttributedLabel!, didSelectLinkWithPhoneNumber phoneNumber: String!) {
-//        
-//        var alertSheet = UIAlertController(title: phoneNumber, message: nil, preferredStyle: .ActionSheet)
-//        var cancelButton = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
-//        var callNumber = UIAlertAction(title: "Make a Phone Call", style: .Default, handler: { alert in
-//            var phoneURLString = NSURL(string: "tel://\(phoneNumber)")
-//            
-//            UIApplication.sharedApplication().openURL(phoneURLString!)
-//        })
-//        
-//        alertSheet.addAction(cancelButton)
-//        alertSheet.addAction(callNumber)
-//        
-//        self.delegate.presentController(alertSheet)
-//        
-//    }
-    
+        
     func attributedLabel(label: TTTAttributedLabel!, didSelectLinkWithURL url: NSURL!) {
        
         let alertSheet = UIAlertController(title: url.absoluteString, message: nil, preferredStyle: .ActionSheet)

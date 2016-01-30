@@ -52,6 +52,7 @@ class ProfileTableViewController: UITableViewController, PresentControllerDelega
         super.viewWillAppear(true)
         
         let realm = try! Realm()
+        print(realm.path)
         if triggerRealmReload {
             communities = Array(realm.objects(JoinedCommunity
                 ).sorted("normalizedName", ascending: true))
@@ -212,7 +213,7 @@ class ProfileTableViewController: UITableViewController, PresentControllerDelega
                             }
                             
                             if self.communities.count == 0 {
-                                failureString = "Communities you join will be located here"
+                                failureString = "Communities joined will be located here"
                             }
                         } else {
                             var errorString = ""
