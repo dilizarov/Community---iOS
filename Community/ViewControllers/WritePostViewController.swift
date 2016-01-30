@@ -93,9 +93,11 @@ class WritePostViewController: UIViewController, UITextViewDelegate {
                 placeholderImage: UIImage(named: "AvatarPlaceHolder"),
                 options: SDWebImageOptions.RetryFailed,
                 completed: { (image: UIImage!, error: NSError!, cacheType: SDImageCacheType, imageURL: NSURL!) -> Void in
+                    
                     if let _ = error {
-                        // Don't do anything.
+                        self.avatar.image = UIImage(named: "AvatarPlaceHolderError")
                     }
+                    
                 },
                 usingActivityIndicatorStyle: .Gray
             )

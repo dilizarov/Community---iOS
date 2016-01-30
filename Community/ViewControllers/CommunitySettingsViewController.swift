@@ -244,7 +244,7 @@ class CommunitySettingsViewController: UIViewController {
                         if let _ = error {
                             self.avatar.image = UIImage(named: "AvatarPlaceHolderError")
                         }
-                            
+                        
                     },
                     usingActivityIndicatorStyle: .Gray)
             } else {

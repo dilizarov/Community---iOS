@@ -150,7 +150,11 @@ class PostCell: UITableViewCell, TTTAttributedLabelDelegate {
     
     func processAvatarImage(url: String) {
         self.avatarImage.setImageWithURL(NSURL(string: url), placeholderImage: UIImage(named: "AvatarPlaceHolder"), options: SDWebImageOptions.RetryFailed, completed: { (image: UIImage!, error: NSError!, cacheType: SDImageCacheType, imageURL: NSURL!) -> Void in
-                
+            
+                if let _ = error {
+                    self.avatarImage.image = UIImage(named: "AvatarPlaceHolderError")
+                }
+            
             }, usingActivityIndicatorStyle: .Gray)
     }
     

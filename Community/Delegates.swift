@@ -38,3 +38,8 @@ protocol RepliesTableDelegate {
 protocol ShowLoggedInStateDelegate {
     func showLoggedInState()
 }
+
+//To be honest, I suppose I can just setAvatar() in Search VC whenever viewWillAppear, but this seems less hackyish to me.
+protocol AvatarChangedAlertDelegate {
+    func avatarChanged()
+}

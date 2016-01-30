@@ -11,7 +11,7 @@ import SDWebImage
 import UIActivityIndicator_for_SDWebImage
 import UITextField_Shake
 
-class SearchViewController: UIViewController, UITextFieldDelegate {
+class SearchViewController: UIViewController, UITextFieldDelegate, AvatarChangedAlertDelegate {
 
     // Crappy quick solution to getting stuff across to other VCs.
     var headingToCommunity: String?
@@ -124,11 +124,12 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
                 placeholderImage: UIImage(named: "AvatarPlaceHolderGray"),
                 options: SDWebImageOptions.RetryFailed,
                 completed: { (image: UIImage!, error: NSError!, cacheType: SDImageCacheType, imageURL: NSURL!) -> Void in
+                    
                     if let _ = error {
-                        
                         self.avatarImageError = true
                         self.avatar.image = UIImage(named: "AvatarPlaceHolderError")
                     }
+                    
                 },
                 usingActivityIndicatorStyle: .Gray
             )
@@ -137,6 +138,10 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
             avatar.image = UIImage(named: "AvatarPlaceHolderGray")
         }
 
+    }
+    
+    func avatarChanged() {
+        setAvatar()
     }
     
     func avatarPressed() {
@@ -181,6 +186,7 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
         communityVC.communityTitle = community
         communityVC.postId = postId
         communityVC.communityKey = communityKey
+        communityVC.delegate = self
         
         communityKey = nil
         postId = nil

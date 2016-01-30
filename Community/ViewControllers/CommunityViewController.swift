@@ -20,7 +20,10 @@ class CommunityViewController: UIViewController, CommunityTableDelegate {
     // Handles propogation for notifications.
     var postId: String?
     
+    var delegate: AvatarChangedAlertDelegate?
+    
     var observingCommunitySelected: Bool = false
+    var observingAvatarChanged: Bool = false
     
     var tableViewController: CommunityTableViewController!
     
@@ -49,6 +52,11 @@ class CommunityViewController: UIViewController, CommunityTableDelegate {
         if (!observingCommunitySelected) {
             observingCommunitySelected = true
             NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("communitySelected:"), name: "communitySelected", object: nil)
+        }
+
+        if (!observingAvatarChanged) {
+            observingAvatarChanged = true
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("avatarChanged"), name: "avatarChanged", object: nil)
         }
 
     }
@@ -104,6 +112,12 @@ class CommunityViewController: UIViewController, CommunityTableDelegate {
                 postId = info["postId"]
                 potentiallyHeadToReplies()
             }
+        }
+    }
+    
+    func avatarChanged() {
+        if let confirmedDelegate = delegate {
+            confirmedDelegate.avatarChanged()
         }
     }
     
@@ -285,11 +299,17 @@ class CommunityViewController: UIViewController, CommunityTableDelegate {
         
         NSNotificationCenter.defaultCenter().removeObserver(self, name: "communitySelected", object: nil)
         observingCommunitySelected = false
+        
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "avatarChanged", object: nil)
+        observingAvatarChanged = false
     }
     
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self, name: "communitySelected", object: nil)
         observingCommunitySelected = false
+        
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "avatarChanged", object: nil)
+        observingAvatarChanged = false
     }
 
 }

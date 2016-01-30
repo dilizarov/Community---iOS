@@ -161,6 +161,7 @@ class ProfileViewController: UIViewController {
                         self.avatarImageError = true
                         self.avatarImage.image = UIImage(named: "AvatarPlaceHolderError")
                         self.avatarImage.layer.borderColor = UIColor.redColor().CGColor
+                        
                     }
                 },
                 usingActivityIndicatorStyle: .White
