@@ -52,7 +52,7 @@ class ProfileTableViewController: UITableViewController, PresentControllerDelega
         super.viewWillAppear(true)
         
         let realm = try! Realm()
-        print(realm.path)
+        
         if triggerRealmReload {
             communities = Array(realm.objects(JoinedCommunity
                 ).sorted("normalizedName", ascending: true))
