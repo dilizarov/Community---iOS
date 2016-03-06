@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "9AAD20421B82A22F0053F743"
-               BuildableName = "Main.app"
+               BuildableName = "Community.app"
                BlueprintName = "Community"
                ReferencedContainer = "container:Community.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9AAD20421B82A22F0053F743"
-            BuildableName = "Main.app"
+            BuildableName = "Community.app"
             BlueprintName = "Community"
             ReferencedContainer = "container:Community.xcodeproj">
          </BuildableReference>
@@ -66,7 +66,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9AAD20421B82A22F0053F743"
-            BuildableName = "Main.app"
+            BuildableName = "Community.app"
             BlueprintName = "Community"
             ReferencedContainer = "container:Community.xcodeproj">
          </BuildableReference>
@@ -85,7 +85,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9AAD20421B82A22F0053F743"
-            BuildableName = "Main.app"
+            BuildableName = "Community.app"
             BlueprintName = "Community"
             ReferencedContainer = "container:Community.xcodeproj">
          </BuildableReference>

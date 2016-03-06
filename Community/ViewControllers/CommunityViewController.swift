@@ -91,6 +91,7 @@ class CommunityViewController: UIViewController, CommunityTableDelegate {
                 communityKey = info["normalized_name"]
                 
                 navBar.topItem?.title = communityTitle
+                
                 self.leftButtonOptions["join"]!.enabled = false
                 navBar.topItem?.leftBarButtonItem = self.leftButtonOptions["join"]
                 

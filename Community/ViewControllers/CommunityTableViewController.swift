@@ -279,7 +279,7 @@ class CommunityTableViewController: UITableViewController, UpdateFeedWithLatestP
 
                             self.posts.append(post)
                         }
-
+                        
                         if self.posts.count == 0 {
                             self.emptyOrErrorDescription = "This community has no posts"
                         }
