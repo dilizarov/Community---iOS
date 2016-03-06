@@ -115,6 +115,7 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Great, let us set you up" id="46U-CX-4KQ">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="VHf-Uy-TYt"/>
                         <barButtonItem key="rightBarButtonItem" enabled="NO" title="Next" id="kXo-ej-ONk">
                             <connections>
                                 <segue destination="dT0-f1-PV6" kind="show" id="0AO-gx-LAk"/>
@@ -539,6 +540,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Would you share us?" id="cCn-ed-boJ">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="Owx-q4-cNs"/>
                         <barButtonItem key="rightBarButtonItem" title="Next" id="Qnu-Nf-Oul">
                             <connections>
                                 <segue destination="Y21-sP-n4z" kind="show" id="NWP-6L-RFE"/>
